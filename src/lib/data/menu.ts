@@ -130,6 +130,23 @@ export const MENU_ITEMS: MenuItem[] = [
     isCustomizable: true,
     defaultPortion: '200g Veggie Craft',
   },
+  {
+    id: 'crunch-haehnchen-salat',
+    name: 'Schmiede Knusper-Salat',
+    nameEn: 'Forge Crispy Chicken Salad Bowl',
+    subtitle: 'Mit goldbraun soufflierten Hähnchenstreifen',
+    subtitleEn: 'With golden souffléed chicken strips',
+    description:
+      'Frischer bunter Marktsalat mit Radieschen, Gurken, Tomaten und kross panierten Hähnchenstreifen aus reinem Butterschmalz, serviert mit feinem Kräuter-Dressing.',
+    descriptionEn:
+      'Fresh colorful market salad with crisp radishes, cucumbers, tomatoes, and golden breaded chicken tenders fried in clarified butter, with house herb dressing.',
+    price: 14.5,
+    category: 'specials',
+    image: '/images/dishes/crunch-haehnchen-salat.jpg',
+    allergens: ['A', 'C', 'G', 'J'],
+    tags: ['bestseller', 'halal'],
+    defaultPortion: 'Große Salatschale',
+  },
 
   // --- BURGER & LOADED FRIES ---
   {

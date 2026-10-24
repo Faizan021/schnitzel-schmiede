@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   Calendar as CalendarIcon,
@@ -148,6 +149,32 @@ export function ReservationForm() {
         <p className="mt-3 text-sm sm:text-base text-[#C4BFB5]">
           {t.reservation.subtitle}
         </p>
+      </div>
+
+      {/* Real Restaurant Atmosphere Showcase */}
+      <div className="relative h-48 sm:h-64 w-full rounded-2xl overflow-hidden mb-8 border border-white/10 shadow-2xl group">
+        <Image
+          src="/images/restaurant/gastraum-interior.jpg"
+          alt={isEn ? "Schnitzel Schmiede Restaurant Dining Room" : "Schnitzel Schmiede Mönchengladbach Gastraum"}
+          fill
+          priority
+          sizes="(max-width: 1024px) 100vw, 896px"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0C] via-transparent to-black/30" />
+        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+          <div>
+            <span className="rounded-md bg-[#E6B84A] text-[#0A0A0C] px-2 py-0.5 text-[10px] font-black uppercase">
+              {isEn ? "Authentic Atmosphere" : "Original Gastraum"}
+            </span>
+            <h3 className="text-base sm:text-lg font-bold text-[#FDFBF7] mt-1">
+              Bismarckstraße 45, 41061 Mönchengladbach
+            </h3>
+          </div>
+          <span className="text-xs text-[#E6B84A] font-semibold hidden sm:inline-block">
+            {isEn ? "Cozy dining room · 40 seats" : "Gemütlicher Gastraum · 40 Plätze"}
+          </span>
+        </div>
       </div>
 
       {isSuccess ? (
