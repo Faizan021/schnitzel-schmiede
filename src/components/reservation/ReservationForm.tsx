@@ -94,33 +94,26 @@ export function ReservationForm() {
         particleCount: 70,
         spread: 60,
         origin: { y: 0.6 },
-        colors: ['#E6B84A', '#F5C75D', '#10B981'],
+        colors: ['#D4A347', '#E5B24E', '#10B981'],
       });
     } catch {
       // Ignore
     }
   };
 
-  // Generate .ics calendar download
   const downloadIcs = () => {
-    const [year, month, day] = date.split('-');
-    const [hours, mins] = selectedTime.split(':');
-    const startStr = `${year}${month}${day}T${hours}${mins}00`;
-    const endHour = String(Number(hours) + 2).padStart(2, '0');
-    const endStr = `${year}${month}${day}T${endHour}${mins}00`;
-
     const icsContent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
       'PRODID:-//Schnitzel Schmiede MG//Tischreservierung//DE',
       'BEGIN:VEVENT',
       `UID:${bookingRef}@schnitzel-schmiede-mg.de`,
-      `DTSTAMP:${startStr}Z`,
-      `DTSTART:${startStr}`,
-      `DTEND:${endStr}`,
-      `SUMMARY:Tischreservierung Schnitzel Schmiede MG (${guests} Gäste)`,
-      `DESCRIPTION:Reservierung für ${name} (${guests} Personen, ${seatingArea === 'indoor' ? 'Gastraum' : 'Terrasse'}). Buchungs-ID: ${bookingRef}`,
-      'LOCATION:Schnitzel Schmiede, Bismarckstraße 45, 41061 Mönchengladbach',
+      `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
+      `DTSTART:${date.replace(/-/g, '')}T${selectedTime.replace(':', '')}00`,
+      `DTEND:${date.replace(/-/g, '')}T${(parseInt(selectedTime.split(':')[0]) + 2).toString().padStart(2, '0')}${selectedTime.split(':')[1]}00`,
+      'SUMMARY:Tischreservierung - Schnitzel Schmiede Mönchengladbach',
+      `DESCRIPTION:Reservierung für ${guests} Personen auf den Namen ${name}. Buchungs-Nr: ${bookingRef}. Bereich: ${seatingArea === 'indoor' ? 'Gastraum Innen' : 'Außenterrasse'}.`,
+      'LOCATION:Schnitzel Schmiede\\, Bismarckstraße 45\\, 41061 Mönchengladbach',
       'STATUS:CONFIRMED',
       'END:VEVENT',
       'END:VCALENDAR',
@@ -139,20 +132,20 @@ export function ReservationForm() {
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto mb-10">
-        <div className="inline-flex items-center gap-2 rounded-full border border-[#E6B84A]/30 bg-[#E6B84A]/10 px-4 py-1.5 text-xs font-bold text-[#E6B84A] mb-4">
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#D4A347]/30 bg-[#D4A347]/10 px-4 py-1.5 text-xs font-bold text-[#E5B24E] mb-4">
           <Utensils className="h-3.5 w-3.5" />
           <span>{t.reservation.tagline}</span>
         </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#FDFBF7]">
+        <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-[#FBF9F5] font-serif">
           {t.reservation.heading}
         </h1>
-        <p className="mt-3 text-sm sm:text-base text-[#C4BFB5]">
+        <p className="mt-3 text-sm sm:text-base text-[#D5CEBF]">
           {t.reservation.subtitle}
         </p>
       </div>
 
       {/* Real Restaurant Atmosphere Showcase */}
-      <div className="relative h-48 sm:h-64 w-full rounded-2xl overflow-hidden mb-8 border border-white/10 shadow-2xl group">
+      <div className="relative h-52 sm:h-72 w-full rounded-2xl overflow-hidden mb-8 border border-[#312B26] shadow-2xl group">
         <Image
           src="/images/restaurant/gastraum-interior.jpg"
           alt={isEn ? "Schnitzel Schmiede Restaurant Dining Room" : "Schnitzel Schmiede Mönchengladbach Gastraum"}
@@ -161,18 +154,18 @@ export function ReservationForm() {
           sizes="(max-width: 1024px) 100vw, 896px"
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0C] via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#121110] via-transparent to-black/30" />
         <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
           <div>
-            <span className="rounded-md bg-[#E6B84A] text-[#0A0A0C] px-2 py-0.5 text-[10px] font-black uppercase">
-              {isEn ? "Authentic Atmosphere" : "Original Gastraum"}
+            <span className="rounded-md bg-[#D4A347] text-[#121110] px-2 py-0.5 text-[10px] font-black uppercase">
+              {isEn ? "Authentic Gastraum" : "Original Gastraum"}
             </span>
-            <h3 className="text-base sm:text-lg font-bold text-[#FDFBF7] mt-1">
+            <h3 className="text-base sm:text-lg font-bold text-[#FBF9F5] font-serif mt-1">
               Bismarckstraße 45, 41061 Mönchengladbach
             </h3>
           </div>
-          <span className="text-xs text-[#E6B84A] font-semibold hidden sm:inline-block">
-            {isEn ? "Cozy dining room · 40 seats" : "Gemütlicher Gastraum · 40 Plätze"}
+          <span className="text-xs text-[#E5B24E] font-semibold hidden sm:inline-block">
+            {isEn ? "Cozy dining room · Warm brick fireplace" : "Gemütlicher Gastraum mit Kamin · 40 Plätze"}
           </span>
         </div>
       </div>
@@ -181,7 +174,7 @@ export function ReservationForm() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="rounded-2xl border border-emerald-500/30 bg-[#121216] p-8 text-center shadow-2xl max-w-xl mx-auto"
+          className="rounded-2xl border border-emerald-500/30 bg-[#1C1A18] p-8 text-center shadow-2xl max-w-xl mx-auto"
         >
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400 mx-auto mb-4">
             <CheckCircle2 className="h-10 w-10" />
@@ -190,51 +183,51 @@ export function ReservationForm() {
           <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">
             {t.reservation.successTag}
           </span>
-          <h2 className="text-2xl font-black text-[#FDFBF7] mt-1">
+          <h2 className="text-2xl font-bold text-[#FBF9F5] font-serif mt-1">
             {t.reservation.successHeading}
           </h2>
-          <p className="text-xs text-[#C4BFB5] mt-2">
-            {t.reservation.bookingNumber}: <strong className="text-[#E6B84A]">{bookingRef}</strong>
+          <p className="text-xs text-[#D5CEBF] mt-2">
+            {t.reservation.bookingNumber}: <strong className="text-[#E5B24E]">{bookingRef}</strong>
           </p>
 
-          <div className="my-6 rounded-xl border border-white/5 bg-[#181820] p-4 text-xs text-left space-y-2">
+          <div className="my-6 rounded-xl border border-[#312B26] bg-[#24211D] p-4 text-xs text-left space-y-2">
             <div className="flex justify-between">
               <span className="text-[#C4BFB5]">{t.reservation.guest}:</span>
-              <span className="font-bold text-[#FDFBF7]">{name}</span>
+              <span className="font-bold text-[#FBF9F5]">{name}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[#C4BFB5]">{t.reservation.dateTime}:</span>
-              <span className="font-bold text-[#E6B84A]">
+              <span className="font-bold text-[#E5B24E]">
                 {date} {isEn ? 'at' : 'um'} {selectedTime} {isEn ? '' : 'Uhr'}
               </span>
             </div>
             <div className="flex justify-between">
               <span className="text-[#C4BFB5]">{t.reservation.partySize}:</span>
-              <span className="font-bold text-[#FDFBF7]">{guests} {isEn ? 'Guests' : 'Gäste'}</span>
+              <span className="font-bold text-[#FBF9F5]">{guests} {isEn ? 'Guests' : 'Gäste'}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[#C4BFB5]">{t.reservation.seatingArea}:</span>
-              <span className="font-bold text-[#FDFBF7]">
+              <span className="font-bold text-[#FBF9F5]">
                 {seatingArea === 'indoor' ? t.reservation.indoor : t.reservation.terrace}
               </span>
             </div>
             <div className="flex justify-between">
               <span className="text-[#C4BFB5]">{t.reservation.location}:</span>
-              <span className="font-bold text-[#FDFBF7]">Bismarckstr. 45, Mönchengladbach</span>
+              <span className="font-bold text-[#FBF9F5]">Bismarckstr. 45, Mönchengladbach</span>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
               onClick={downloadIcs}
-              className="flex items-center justify-center gap-2 rounded-xl bg-[#E6B84A] px-5 py-2.5 text-xs font-bold text-[#0A0A0C] hover:bg-[#F5C75D] transition-colors cursor-pointer"
+              className="flex items-center justify-center gap-2 rounded-xl bg-[#D4A347] px-5 py-2.5 text-xs font-bold text-[#121110] hover:bg-[#E5B24E] transition-colors cursor-pointer"
             >
               <Download className="h-4 w-4" />
               <span>{t.reservation.saveCalendar}</span>
             </button>
             <button
               onClick={() => setIsSuccess(false)}
-              className="rounded-xl border border-white/10 px-4 py-2.5 text-xs text-[#C4BFB5] hover:text-[#FDFBF7] transition-colors cursor-pointer"
+              className="rounded-xl border border-[#312B26] px-4 py-2.5 text-xs text-[#D5CEBF] hover:text-[#FBF9F5] transition-colors cursor-pointer"
             >
               {t.reservation.anotherBooking}
             </button>
@@ -243,11 +236,11 @@ export function ReservationForm() {
       ) : (
         <form
           onSubmit={handleBooking}
-          className="rounded-2xl border border-white/10 bg-[#121216] p-6 sm:p-8 shadow-xl space-y-6"
+          className="rounded-2xl border border-[#312B26] bg-[#1C1A18] p-6 sm:p-8 shadow-xl space-y-6"
         >
           {/* Capacity Guard Info Banner */}
           {isWeekendPeak && (
-            <div className="flex items-start gap-3 rounded-xl border border-[#E6B84A]/30 bg-[#E6B84A]/10 p-3.5 text-xs text-[#E6B84A]">
+            <div className="flex items-start gap-3 rounded-xl border border-[#D4A347]/30 bg-[#D4A347]/10 p-3.5 text-xs text-[#E5B24E]">
               <ShieldAlert className="h-5 w-5 shrink-0" />
               <div>
                 <strong>Smart Capacity Guard:</strong> {t.reservation.capacityNotice}
@@ -258,8 +251,8 @@ export function ReservationForm() {
           {/* Date & Guests */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-[#C4BFB5] uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                <CalendarIcon className="h-3.5 w-3.5 text-[#E6B84A]" />
+              <label className="block text-xs font-bold text-[#D5CEBF] uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                <CalendarIcon className="h-3.5 w-3.5 text-[#E5B24E]" />
                 <span>{t.reservation.dateLabel}</span>
               </label>
               <input
@@ -267,9 +260,9 @@ export function ReservationForm() {
                 value={date}
                 min={minDate}
                 onChange={(e) => setDate(e.target.value)}
-                className={`w-full rounded-xl bg-[#181820] border ${
-                  formErrors.date ? 'border-rose-500' : 'border-white/10'
-                } px-4 py-2.5 text-sm text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none`}
+                className={`w-full rounded-xl bg-[#24211D] border ${
+                  formErrors.date ? 'border-rose-500' : 'border-[#312B26]'
+                } px-4 py-2.5 text-sm text-[#FBF9F5] focus:border-[#D4A347] focus:outline-none`}
               />
               {isMondayRuhetag ? (
                 <p className="text-xs text-rose-400 mt-1">
@@ -281,8 +274,8 @@ export function ReservationForm() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#C4BFB5] uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                <Users className="h-3.5 w-3.5 text-[#E6B84A]" />
+              <label className="block text-xs font-bold text-[#D5CEBF] uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                <Users className="h-3.5 w-3.5 text-[#E5B24E]" />
                 <span>{t.reservation.guestsLabel}</span>
               </label>
               <div className="flex items-center gap-2">
@@ -296,8 +289,8 @@ export function ReservationForm() {
                       onClick={() => setGuests(val)}
                       className={`flex-1 rounded-xl py-2.5 text-xs font-bold transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-[#E6B84A] text-[#0A0A0C] shadow-md shadow-[#E6B84A]/20'
-                          : 'bg-[#181820] text-[#C4BFB5] hover:text-[#FDFBF7] border border-white/5'
+                          ? 'bg-[#D4A347] text-[#121110] shadow-md shadow-[#D4A347]/20'
+                          : 'bg-[#24211D] text-[#D5CEBF] hover:text-[#FBF9F5] border border-[#312B26]'
                       }`}
                     >
                       {num}
@@ -310,8 +303,8 @@ export function ReservationForm() {
 
           {/* Time Slot Picker with Capacity Feedback */}
           <div>
-            <label className="block text-xs font-bold text-[#C4BFB5] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <Clock className="h-3.5 w-3.5 text-[#E6B84A]" />
+            <label className="block text-xs font-bold text-[#D5CEBF] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <Clock className="h-3.5 w-3.5 text-[#E5B24E]" />
               <span>{t.reservation.timeLabel}</span>
             </label>
             <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-2">
@@ -325,10 +318,10 @@ export function ReservationForm() {
                     onClick={() => setSelectedTime(slot.time)}
                     className={`flex flex-col items-center justify-center rounded-xl p-2.5 text-xs transition-all border cursor-pointer ${
                       slot.isLocked
-                        ? 'bg-neutral-900 border-white/5 text-neutral-600 cursor-not-allowed opacity-50'
+                        ? 'bg-neutral-900 border-[#312B26] text-neutral-600 cursor-not-allowed opacity-50'
                         : isSelected
-                        ? 'border-[#E6B84A] bg-[#E6B84A] text-[#0A0A0C] font-black'
-                        : 'border-white/5 bg-[#181820] text-[#FDFBF7] hover:border-white/20'
+                        ? 'border-[#D4A347] bg-[#D4A347] text-[#121110] font-black'
+                        : 'border-[#312B26] bg-[#24211D] text-[#FBF9F5] hover:border-[#D4A347]/40'
                     }`}
                   >
                     <span className="font-bold">{slot.time}</span>
@@ -343,7 +336,7 @@ export function ReservationForm() {
 
           {/* Area Preference */}
           <div>
-            <label className="block text-xs font-bold text-[#C4BFB5] uppercase tracking-wider mb-2">
+            <label className="block text-xs font-bold text-[#D5CEBF] uppercase tracking-wider mb-2">
               {t.reservation.areaLabel}
             </label>
             <div className="grid grid-cols-2 gap-3">
@@ -352,8 +345,8 @@ export function ReservationForm() {
                 onClick={() => setSeatingArea('indoor')}
                 className={`rounded-xl p-3 text-xs font-bold border transition-all cursor-pointer ${
                   seatingArea === 'indoor'
-                    ? 'border-[#E6B84A] bg-[#E6B84A]/10 text-[#FDFBF7]'
-                    : 'border-white/5 bg-[#181820] text-[#C4BFB5]'
+                    ? 'border-[#D4A347] bg-[#D4A347]/15 text-[#FBF9F5]'
+                    : 'border-[#312B26] bg-[#24211D] text-[#D5CEBF]'
                 }`}
               >
                 🏠 {t.reservation.indoor}
@@ -363,8 +356,8 @@ export function ReservationForm() {
                 onClick={() => setSeatingArea('terrace')}
                 className={`rounded-xl p-3 text-xs font-bold border transition-all cursor-pointer ${
                   seatingArea === 'terrace'
-                    ? 'border-[#E6B84A] bg-[#E6B84A]/10 text-[#FDFBF7]'
-                    : 'border-white/5 bg-[#181820] text-[#C4BFB5]'
+                    ? 'border-[#D4A347] bg-[#D4A347]/15 text-[#FBF9F5]'
+                    : 'border-[#312B26] bg-[#24211D] text-[#D5CEBF]'
                 }`}
               >
                 🌿 {t.reservation.terrace}
@@ -373,21 +366,21 @@ export function ReservationForm() {
           </div>
 
           {/* Personal Info */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-white/5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-[#312B26]">
             <div>
-              <label className="block text-xs font-medium text-[#C4BFB5] mb-1">{t.reservation.nameLabel}</label>
+              <label className="block text-xs font-medium text-[#D5CEBF] mb-1">{t.reservation.nameLabel}</label>
               <input
                 type="text"
                 placeholder={isEn ? "e.g. John Doe" : "z.B. Familie Schmidt"}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className={`w-full rounded-xl bg-[#181820] border ${
-                  formErrors.name ? 'border-rose-500' : 'border-white/10'
-                } px-3 py-2 text-sm text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none`}
+                className={`w-full rounded-xl bg-[#24211D] border ${
+                  formErrors.name ? 'border-rose-500' : 'border-[#312B26]'
+                } px-3 py-2 text-sm text-[#FBF9F5] focus:border-[#D4A347] focus:outline-none`}
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-[#C4BFB5] mb-1">
+              <label className="block text-xs font-medium text-[#D5CEBF] mb-1">
                 {t.reservation.phoneLabel}
               </label>
               <input
@@ -395,13 +388,13 @@ export function ReservationForm() {
                 placeholder="0172 1234567"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className={`w-full rounded-xl bg-[#181820] border ${
-                  formErrors.phone ? 'border-rose-500' : 'border-white/10'
-                } px-3 py-2 text-sm text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none`}
+                className={`w-full rounded-xl bg-[#24211D] border ${
+                  formErrors.phone ? 'border-rose-500' : 'border-[#312B26]'
+                } px-3 py-2 text-sm text-[#FBF9F5] focus:border-[#D4A347] focus:outline-none`}
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-[#C4BFB5] mb-1">
+              <label className="block text-xs font-medium text-[#D5CEBF] mb-1">
                 {t.reservation.emailLabel}
               </label>
               <input
@@ -409,15 +402,15 @@ export function ReservationForm() {
                 placeholder="guest@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`w-full rounded-xl bg-[#181820] border ${
-                  formErrors.email ? 'border-rose-500' : 'border-white/10'
-                } px-3 py-2 text-sm text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none`}
+                className={`w-full rounded-xl bg-[#24211D] border ${
+                  formErrors.email ? 'border-rose-500' : 'border-[#312B26]'
+                } px-3 py-2 text-sm text-[#FBF9F5] focus:border-[#D4A347] focus:outline-none`}
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-[#C4BFB5] mb-1">
+            <label className="block text-xs font-medium text-[#D5CEBF] mb-1">
               {t.reservation.requestsLabel}
             </label>
             <input
@@ -425,13 +418,13 @@ export function ReservationForm() {
               placeholder={t.reservation.requestsPlaceholder}
               value={specialRequest}
               onChange={(e) => setSpecialRequest(e.target.value)}
-              className="w-full rounded-xl bg-[#181820] border border-white/10 px-3 py-2 text-sm text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
+              className="w-full rounded-xl bg-[#24211D] border border-[#312B26] px-3 py-2 text-sm text-[#FBF9F5] focus:border-[#D4A347] focus:outline-none"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#E6B84A] via-[#F5C75D] to-[#E6B84A] py-4 text-sm font-black text-[#0A0A0C] shadow-lg shadow-[#E6B84A]/25 hover:shadow-[#E6B84A]/40 transition-all cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#D4A347] via-[#E5B24E] to-[#D4A347] py-4 text-sm font-bold text-[#121110] shadow-lg shadow-[#D4A347]/25 hover:brightness-110 transition-all cursor-pointer"
           >
             <CheckCircle2 className="h-5 w-5" />
             <span>{t.reservation.submitBtn}</span>
