@@ -9,6 +9,7 @@ import {
   Trash2,
   Plus,
   Minus,
+  Flame,
   MessageSquare,
   Sparkles,
   ArrowRight,
@@ -322,13 +323,19 @@ export function CartSlideOver() {
                         >
                           {item.type === 'standard' ? (
                             <div className="flex gap-3">
-                              <Image
-                                src={item.item.image}
-                                alt={isEn && item.item.nameEn ? item.item.nameEn : item.item.name}
-                                width={64}
-                                height={64}
-                                className="h-16 w-16 rounded-lg object-cover"
-                              />
+                              {item.item.image ? (
+                                <Image
+                                  src={item.item.image}
+                                  alt={isEn && item.item.nameEn ? item.item.nameEn : item.item.name}
+                                  width={64}
+                                  height={64}
+                                  className="h-16 w-16 rounded-lg object-cover"
+                                />
+                              ) : (
+                                <div className="h-16 w-16 rounded-lg bg-[#22222A] border border-white/5 flex items-center justify-center shrink-0 text-[#E6B84A]">
+                                  <Flame className="h-6 w-6" />
+                                </div>
+                              )}
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-start justify-between">
                                   <h4 className="font-semibold text-sm text-[#FDFBF7] truncate">

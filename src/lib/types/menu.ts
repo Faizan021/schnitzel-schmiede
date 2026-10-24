@@ -72,7 +72,7 @@ export interface MenuItem {
   descriptionEn?: string;
   price: number;
   category: 'schnitzel' | 'specials' | 'burgers' | 'fries' | 'kids' | 'desserts' | 'drinks';
-  image: string;
+  image?: string;
   allergens: AllergenKey[];
   tags: DietaryTag[];
   isCustomizable?: boolean;

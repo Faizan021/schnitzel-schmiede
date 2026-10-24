@@ -175,25 +175,50 @@ export function MenuSection() {
                 className="flex flex-col h-full bg-[#141418] border border-white/10 overflow-hidden hover:border-[#E6B84A]/40 transition-all duration-300 group"
               >
                 {/* Dish Visual Header */}
-                <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-neutral-900">
-                  <Image
-                    src={dish.image}
-                    alt={displayName}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#141418] via-transparent to-black/30" />
+                <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-[#181820] flex items-center justify-center">
+                  {dish.image ? (
+                    <>
+                      <Image
+                        src={dish.image}
+                        alt={displayName}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#141418] via-transparent to-black/30" />
+
+                      {/* Authentic Photo Verification Pill */}
+                      <span className="absolute top-3 right-3 rounded-full bg-black/75 backdrop-blur-md border border-[#E6B84A]/40 px-2 py-0.5 text-[10px] font-bold text-[#E6B84A] flex items-center gap-1 shadow-sm z-10">
+                        <span>📸</span>
+                        <span>{isEn ? 'Original Photo' : 'Original-Foto'}</span>
+                      </span>
+                    </>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center p-6 text-center w-full h-full bg-gradient-to-br from-[#1A1A22] via-[#141418] to-[#101014] relative">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(230,184,74,0.06)_0%,transparent_70%)]" />
+                      <div className="relative z-10 flex flex-col items-center">
+                        <div className="h-12 w-12 rounded-2xl bg-[#E6B84A]/10 border border-[#E6B84A]/20 flex items-center justify-center mb-2 text-[#E6B84A] shadow-inner">
+                          <ChefHat className="h-6 w-6" />
+                        </div>
+                        <span className="text-[11px] font-semibold text-[#C4BFB5] tracking-wide">
+                          {isEn ? 'Fresh from the Pan' : 'Frisch aus der Schmiede'}
+                        </span>
+                        <span className="text-[10px] text-[#C4BFB5]/60 mt-0.5">
+                          {isEn ? 'Original photo coming soon' : 'Foto folgt in Kürze'}
+                        </span>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Dietary Badges */}
-                  <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                  <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
                     {dish.tags.map((tag) => (
                       <Badge key={tag} tag={tag} />
                     ))}
                   </div>
 
                   {dish.defaultPortion && (
-                    <span className="absolute bottom-3 right-3 rounded-md bg-black/60 backdrop-blur-md px-2 py-0.5 text-[10px] font-semibold text-[#FDFBF7]">
+                    <span className="absolute bottom-3 right-3 rounded-md bg-black/60 backdrop-blur-md px-2 py-0.5 text-[10px] font-semibold text-[#FDFBF7] z-10">
                       {dish.defaultPortion}
                     </span>
                   )}
