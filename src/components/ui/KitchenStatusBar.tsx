@@ -4,13 +4,25 @@ import React, { useSyncExternalStore } from 'react';
 import { getLiveKitchenStatus, KitchenStatus } from '@/lib/utils/kitchenStatus';
 import { Clock } from 'lucide-react';
 
+let cachedStatus: KitchenStatus | null = null;
+let lastCheckTime = 0;
+
 function subscribe(callback: () => void) {
-  const interval = setInterval(callback, 60000);
+  const interval = setInterval(() => {
+    cachedStatus = getLiveKitchenStatus();
+    lastCheckTime = Date.now();
+    callback();
+  }, 60000);
   return () => clearInterval(interval);
 }
 
 function getSnapshot(): KitchenStatus {
-  return getLiveKitchenStatus();
+  const now = Date.now();
+  if (!cachedStatus || now - lastCheckTime > 30000) {
+    cachedStatus = getLiveKitchenStatus();
+    lastCheckTime = now;
+  }
+  return cachedStatus;
 }
 
 function getServerSnapshot(): KitchenStatus | null {
