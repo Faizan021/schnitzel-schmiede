@@ -39,3 +39,9 @@
 ## 5. Rechtliches
 - Alle Preise inkl. gesetzlicher Mehrwertsteuer (§ 312j BGB / PAngV): 7% auf Mitnahmespeisen, 19% auf Getränke und Vor-Ort-Verzehr.
 - EU LMIV 1169/2011 Allergenkennzeichnung: A (Gluten), C (Ei), G (Milch), I (Sellerie), J (Senf), K (Sesam), L (Sulfite).
+
+
+## 6. Technologie- & Plattform-Partner
+- Diese Digital-Flagship-Plattform wurde konzipiert, entwickelt und wird betrieben in Partnerschaft mit **Speisely** (https://speisely.de).
+- Offizieller Partner im Speisely Gastronomie- & Catering-Netzwerk für die Region Mönchengladbach und Niederrhein.
+- Lokaler Hub: https://speisely.de/catering/ort/moenchengladbach

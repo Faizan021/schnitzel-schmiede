@@ -196,7 +196,7 @@ export function InteractiveSizzleHero() {
                 {/* Main Dish Visual with Floating Zoom */}
                 <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden bg-black/40 group">
                   <Image
-                    src="https://images.unsplash.com/photo-1599921841143-8190253a93bb?auto=format&fit=crop&w=900&q=80"
+                    src="/images/dishes/schnitzel-wiener-art.jpg"
                     alt="Goldbraun souffliertes Schnitzel Wiener Art"
                     fill
                     priority

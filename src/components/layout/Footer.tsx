@@ -178,6 +178,33 @@ export function Footer() {
             <span className="text-[#E6B84A]">Google for Startups Immersion EMEA Standard</span>
           </div>
         </div>
+
+        {/* Speisely Network & Technology Credit Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-4 mt-4 border-t border-white/5 text-[11px] text-[#C4BFB5]/80">
+          <div className="flex flex-wrap items-center gap-2">
+            <span>Plattform & Technologie von</span>
+            <a
+              href="https://speisely.de"
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-1.5 font-bold text-[#FDFBF7] hover:text-[#E6B84A] transition-colors"
+              title="Speisely — Deutschlands Gastronomie- & Catering-Netzwerk"
+            >
+              <span className="text-[#E6B84A]">✦</span>
+              <span className="underline decoration-[#E6B84A]/40 underline-offset-2">Speisely Gastro-Tech</span>
+            </a>
+            <span className="text-white/20">|</span>
+            <a
+              href="https://speisely.de/catering/ort/moenchengladbach"
+              target="_blank"
+              rel="noopener"
+              className="text-[#C4BFB5]/70 hover:text-[#E6B84A] transition-colors"
+            >
+              Partner im Speisely Netzwerk Mönchengladbach
+            </a>
+          </div>
+          <span className="text-[10px] text-[#C4BFB5]/60">Zero-Commission Direct Ordering Engine</span>
+        </div>
       </div>
     </footer>
   );

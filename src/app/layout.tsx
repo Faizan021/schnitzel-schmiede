@@ -32,7 +32,12 @@ export const metadata: Metadata = {
     'Catering Mönchengladbach',
     'Beste Schnitzel Gladbach',
   ],
-  authors: [{ name: 'Schnitzel Schmiede Mönchengladbach' }],
+  authors: [
+    { name: 'Schnitzel Schmiede Mönchengladbach' },
+    { name: 'Speisely Gastro-Engine', url: 'https://speisely.de' },
+  ],
+  creator: 'Speisely (https://speisely.de)',
+  publisher: 'Speisely Gastronomie-Netzwerk Deutschland',
   metadataBase: new URL('https://schnitzel-schmiede-mg.de'),
   openGraph: {
     title: 'Schnitzel Schmiede Mönchengladbach | Echtes Handwerk',
@@ -44,7 +49,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1599921841143-8190253a93bb?auto=format&fit=crop&w=1200&q=80',
+        url: '/images/dishes/schnitzel-wiener-art.jpg',
         width: 1200,
         height: 630,
         alt: 'Goldbraunes Schnitzel Wiener Art in Butterschmalz souffliert',
