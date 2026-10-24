@@ -11,9 +11,11 @@ import {
 } from 'lucide-react';
 import { SpotlightCard } from '../ui/SpotlightCard';
 import { playCrunchSound, playSizzleSound } from './AudioCrunchEngine';
+import { getKitchenWhatsAppNumber } from '@/lib/utils/whatsapp';
 
 export function BentoCraftGrid() {
   const [activeStep, setActiveStep] = useState(3); // Default to Butterschmalz
+  const whatsappPhone = getKitchenWhatsAppNumber();
 
   const panierSteps = [
     {
@@ -238,7 +240,7 @@ export function BentoCraftGrid() {
             <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-[#C4BFB5]">
               <span>Bismarckstraße 45, 41061 Mönchengladbach</span>
               <a
-                href="https://wa.me/4917612345678"
+                href={`https://wa.me/${whatsappPhone}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#25D366] font-bold hover:underline"

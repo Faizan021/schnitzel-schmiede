@@ -6,6 +6,7 @@ import {
   MessageSquare,
   Flame,
 } from 'lucide-react';
+import { getKitchenWhatsAppNumber, generateReferenceId } from '@/lib/utils/whatsapp';
 import confetti from 'canvas-confetti';
 
 interface PackageTier {
@@ -87,8 +88,9 @@ export function CateringCalculator() {
     e.preventDefault();
     if (!contactName || !phone) return;
 
+    const refId = generateReferenceId('CAT-MG');
     const message = [
-      '🎉 *CATERING ANFRAGE | SCHNITZEL SCHMIEDE MG*',
+      `🎉 [SCHNITZEL-SCHMIEDE] 🎪 CATERING ANFRAGE #${refId}`,
       '━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
       `Event-Art: ${eventType === 'company' ? 'Firmenfeier' : eventType === 'birthday' ? 'Geburtstag' : 'Vereins-/Sportfeier'}`,
       `Gästeanzahl: *${guests} Personen*`,
@@ -108,7 +110,8 @@ export function CateringCalculator() {
       .filter(Boolean)
       .join('\n');
 
-    const url = `https://wa.me/4917612345678?text=${encodeURIComponent(message)}`;
+    const kitchenPhone = getKitchenWhatsAppNumber();
+    const url = `https://wa.me/${kitchenPhone}?text=${encodeURIComponent(message)}`;
     setIsSent(true);
 
     try {

@@ -80,7 +80,7 @@ export function ReservationForm() {
     e.preventDefault();
     if (!validate()) return;
 
-    const ref = `TISCH-MG-${Math.floor(1000 + Math.random() * 9000)}`;
+    const ref = `TISCH-MG-${Date.now().toString().slice(-4)}`;
     setBookingRef(ref);
     setIsSuccess(true);
 

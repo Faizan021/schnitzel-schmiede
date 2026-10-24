@@ -11,8 +11,10 @@ import {
   ShieldCheck,
   MessageSquare,
 } from 'lucide-react';
+import { getKitchenWhatsAppNumber } from '@/lib/utils/whatsapp';
 
 export function Footer() {
+  const whatsappPhone = getKitchenWhatsAppNumber();
   return (
     <footer className="border-t border-white/10 bg-[#0A0A0D] text-[#C4BFB5] pt-14 pb-24 md:pb-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -94,13 +96,13 @@ export function Footer() {
                   <span>02161 / 123456</span>
                 </a>
                 <a
-                  href="https://wa.me/4917612345678"
+                  href={`https://wa.me/${whatsappPhone}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-[#C4BFB5] hover:text-[#25D366] transition-colors"
                 >
                   <MessageSquare className="h-3.5 w-3.5 text-[#25D366]" />
-                  <span>WhatsApp: 0176 12345678</span>
+                  <span>WhatsApp: {whatsappPhone.replace(/^49/, '+49 ')}</span>
                 </a>
                 <a
                   href="mailto:bestellung@schnitzel-schmiede-mg.de"

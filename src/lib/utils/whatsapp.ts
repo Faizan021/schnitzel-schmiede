@@ -76,6 +76,17 @@ export function calculateOrderSummary(
   };
 }
 
+export const DEFAULT_WHATSAPP_PHONE =
+  process.env.NEXT_PUBLIC_RESTAURANT_WHATSAPP || '4917612345678';
+
+export function getKitchenWhatsAppNumber(): string {
+  return DEFAULT_WHATSAPP_PHONE;
+}
+
+export function generateReferenceId(prefix: string): string {
+  return `${prefix}-${Date.now().toString().slice(-4)}`;
+}
+
 export function generateWhatsAppOrderMessage(
   orderNumber: string,
   items: CartItem[],
@@ -84,7 +95,7 @@ export function generateWhatsAppOrderMessage(
 ): string {
   const fulfillmentTitle =
     details.fulfillmentType === 'pickup'
-      ? '🥡 *SELBSTABHOLUNG* (10% Rabatt erhalten)'
+      ? '🥡 *SELBSTABHOLUNG* (10% Rabatt)'
       : `🚗 *LIEFERUNG* (PLZ: ${details.postalCode} Mönchengladbach)`;
 
   const paymentLabels: Record<string, string> = {
@@ -94,11 +105,10 @@ export function generateWhatsAppOrderMessage(
   };
 
   const lines: string[] = [
-    '🔨 *NEUE SCHNITZEL-SCHMIEDE BESTELLUNG*',
+    `🔥 [SCHNITZEL-SCHMIEDE] 🥩 BESTELLUNG #${orderNumber}`,
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-    `Bestell-ID: *${orderNumber}*`,
-    `Fulfillment: ${fulfillmentTitle}`,
-    `Wunschzeit: *${details.preferredTime}*`,
+    `📍 Art: ${fulfillmentTitle}`,
+    `⏰ Wunschzeit: *${details.preferredTime}*`,
     '',
     '👤 *KUNDENDATEN:*',
     `Name: *${details.name}*`,
@@ -193,7 +203,7 @@ export function buildWhatsAppLink(
   items: CartItem[],
   details: CustomerDetails,
   calc: OrderCalculation,
-  kitchenPhone: string = '4917612345678'
+  kitchenPhone: string = getKitchenWhatsAppNumber()
 ): string {
   const text = generateWhatsAppOrderMessage(orderNumber, items, details, calc);
   return `https://wa.me/${kitchenPhone}?text=${encodeURIComponent(text)}`;

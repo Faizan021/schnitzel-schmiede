@@ -88,7 +88,7 @@ export function CartSlideOver() {
       return;
     }
 
-    const orderNumber = `SS-${Math.floor(1000 + Math.random() * 9000)}`;
+    const orderNumber = `SS-${Date.now().toString().slice(-4)}`;
     const url = buildWhatsAppLink(
       orderNumber,
       items,
