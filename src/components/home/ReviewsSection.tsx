@@ -1,31 +1,43 @@
+'use client';
+
 import React from 'react';
 import { Star, CheckCircle2 } from 'lucide-react';
 import { SpotlightCard } from '../ui/SpotlightCard';
+import { useLanguage } from '../providers/LanguageContext';
 
 export function ReviewsSection() {
+  const { lang } = useLanguage();
+  const isEn = lang === 'en';
+
   const reviews = [
     {
       author: 'Dennis M.',
       location: 'Mönchengladbach-Mitte',
       rating: 5,
-      date: 'Vor 3 Tagen',
-      text: 'Bester Schnitzel-Laden in ganz MG! Die Idee, die Champignon-Rahmsauce separat zu liefern, ist Gold wert – das Schnitzel kam heiß und super kross an. Die Trüffel-Fries sind süchtig machend!',
+      date: isEn ? '3 days ago' : 'Vor 3 Tagen',
+      text: isEn
+        ? 'Best schnitzel place in the entire region! The concept of delivering the mushroom cream sauce in a separate jar is brilliant – the schnitzel arrived piping hot and ultra-crispy. The truffle fries are addictive!'
+        : 'Bester Schnitzel-Laden in ganz MG! Die Idee, die Champignon-Rahmsauce separat zu liefern, ist Gold wert – das Schnitzel kam heiß und super kross an. Die Trüffel-Fries sind süchtig machend!',
       dish: 'Jägerschnitzel "Schmiede Art"',
     },
     {
       author: 'Fatima & Yasin K.',
       location: 'Rheydt',
       rating: 5,
-      date: 'Vor 1 Woche',
-      text: 'Endlich ein richtig gutes Schnitzel-Restaurant mit 100% Halal Hähnchenfleisch! Das Fleisch war extrem zart und saftig. Auch die WhatsApp-Bestellung ging in unter 30 Sekunden.',
-      dish: 'Brauhaus-Schnitzel (Halal Hähnchen)',
+      date: isEn ? '1 week ago' : 'Vor 1 Woche',
+      text: isEn
+        ? 'Finally a truly premium schnitzel restaurant with authentic 100% Halal chicken options! The meat was extraordinarily tender and juicy. The 1-click WhatsApp order was completed in under 30 seconds.'
+        : 'Endlich ein richtig gutes Schnitzel-Restaurant mit 100% Halal Hähnchenfleisch! Das Fleisch war extrem zart und saftig. Auch die WhatsApp-Bestellung ging in unter 30 Sekunden.',
+      dish: isEn ? 'Brewery Schnitzel (Halal Chicken)' : 'Brauhaus-Schnitzel (Halal Hähnchen)',
     },
     {
       author: 'Stefan B.',
       location: 'Borussia-Fanclub MG',
       rating: 5,
-      date: 'Vor 2 Wochen',
-      text: 'Hatten das XXL-Schnitzel vor dem Borussia-Heimspiel bestellt. Unglaubliche Portion, echter Butterschmalz-Geschmack und die Bratkartoffeln mit Zwiebeln waren auf den Punkt.',
+      date: isEn ? '2 weeks ago' : 'Vor 2 Wochen',
+      text: isEn
+        ? 'Ordered the XXL Schnitzel right before the Borussia home match. Huge portion, real clarified butter flavor, and the fried potatoes with onions were browned to absolute perfection.'
+        : 'Hatten das XXL-Schnitzel vor dem Borussia-Heimspiel bestellt. Unglaubliche Portion, echter Butterschmalz-Geschmack und die Bratkartoffeln mit Zwiebeln waren auf den Punkt.',
       dish: 'Schmiede-XXL 440g Duo',
     },
   ];
@@ -39,14 +51,18 @@ export function ReviewsSection() {
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-4 w-4 fill-current" />
               ))}
-              <span className="text-xs font-bold text-[#FDFBF7] ml-2">4.9 von 5 Sternen</span>
+              <span className="text-xs font-bold text-[#FDFBF7] ml-2">
+                {isEn ? '4.9 out of 5 Stars' : '4.9 von 5 Sternen'}
+              </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-[#FDFBF7] font-display">
-              Das sagen Gäste aus Mönchengladbach
+              {isEn ? 'What Guests in Mönchengladbach Say' : 'Das sagen Gäste aus Mönchengladbach'}
             </h2>
           </div>
           <p className="text-xs text-[#C4BFB5] mt-2 md:mt-0">
-            Über 850+ verifizierte Bewertungen bei Google & Lieferando
+            {isEn
+              ? 'Over 850+ verified reviews on Google & Delivery networks'
+              : 'Über 850+ verifizierte Bewertungen bei Google & Lieferando'}
           </p>
         </div>
 

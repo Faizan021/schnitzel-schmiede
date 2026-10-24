@@ -13,11 +13,14 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { useCart } from '../providers/CartContext';
+import { useLanguage } from '../providers/LanguageContext';
 import { KitchenStatusBar } from '../ui/KitchenStatusBar';
+import { LanguageSwitcher } from '../ui/LanguageSwitcher';
 
 export function Header() {
   const pathname = usePathname();
   const { itemCount, openCart } = useCart();
+  const { t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -30,10 +33,10 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { href: '/speisekarte', label: 'Speisekarte' },
-    { href: '/konfigurator', label: 'Schnitzel-Baukasten', highlight: true },
-    { href: '/reservierung', label: 'Tisch reservieren' },
-    { href: '/catering', label: 'Catering & Feiern' },
+    { href: '/speisekarte', label: t.nav.menu },
+    { href: '/konfigurator', label: t.nav.configurator, highlight: true },
+    { href: '/reservierung', label: t.nav.reservation },
+    { href: '/catering', label: t.nav.catering },
   ];
 
   return (
@@ -63,7 +66,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Live Kitchen Pill */}
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <KitchenStatusBar />
           </div>
 
@@ -93,24 +96,29 @@ export function Header() {
             })}
           </nav>
 
-          {/* Action Hub (Cart + Table Booking CTA) */}
-          <div className="flex items-center gap-2.5">
+          {/* Action Hub (Language Switcher + Cart + Table Booking CTA) */}
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            {/* Desktop Language Switcher */}
+            <div className="hidden sm:block">
+              <LanguageSwitcher />
+            </div>
+
             {/* Table Booking Shortcut */}
             <Link
               href="/reservierung"
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-[#E6B84A]/30 bg-[#16161C] px-3.5 py-2 text-xs font-bold text-[#E6B84A] hover:bg-[#E6B84A] hover:text-[#0A0A0C] transition-colors"
+              className="hidden lg:inline-flex items-center gap-1.5 rounded-xl border border-[#E6B84A]/30 bg-[#16161C] px-3.5 py-2 text-xs font-bold text-[#E6B84A] hover:bg-[#E6B84A] hover:text-[#0A0A0C] transition-colors"
             >
               <Calendar className="h-3.5 w-3.5" />
-              <span>Tisch buchen</span>
+              <span>{t.nav.bookTable}</span>
             </Link>
 
             {/* Cart Trigger */}
             <button
               onClick={openCart}
-              className="relative flex items-center gap-2 rounded-xl bg-[#E6B84A] px-4 py-2 text-xs font-black text-[#0A0A0C] hover:bg-[#F5C75D] shadow-md shadow-[#E6B84A]/20 transition-all cursor-pointer active:scale-95"
+              className="relative flex items-center gap-2 rounded-xl bg-[#E6B84A] px-3.5 sm:px-4 py-2 text-xs font-black text-[#0A0A0C] hover:bg-[#F5C75D] shadow-md shadow-[#E6B84A]/20 transition-all cursor-pointer active:scale-95"
             >
               <ShoppingBag className="h-4 w-4" />
-              <span className="hidden xs:inline">Warenkorb</span>
+              <span className="hidden xs:inline">{t.nav.cart}</span>
               {itemCount > 0 && (
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#0A0A0C] text-[10px] font-bold text-[#E6B84A]">
                   {itemCount}
@@ -122,6 +130,7 @@ export function Header() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden rounded-xl border border-white/10 bg-[#141418] p-2 text-[#C4BFB5] hover:text-[#FDFBF7]"
+              aria-label="Navigation menu"
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -132,16 +141,18 @@ export function Header() {
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 z-50 bg-[#0A0A0C] pt-20 px-6 space-y-6">
-          <div className="flex justify-end pb-2">
+          <div className="flex items-center justify-between pb-2">
+            <LanguageSwitcher />
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="p-2 text-[#C4BFB5] hover:text-white"
+              aria-label="Close menu"
             >
               <X className="h-6 w-6" />
             </button>
           </div>
 
-          <div className="pb-4">
+          <div className="pb-2">
             <KitchenStatusBar />
           </div>
 
@@ -165,7 +176,7 @@ export function Header() {
               className="flex items-center justify-center gap-2 rounded-xl bg-[#181820] p-3 text-sm font-semibold text-[#FDFBF7]"
             >
               <Phone className="h-4 w-4 text-[#E6B84A]" />
-              <span>02161 / 123456 anrufen</span>
+              <span>{t.nav.callUs}</span>
             </a>
           </div>
         </div>

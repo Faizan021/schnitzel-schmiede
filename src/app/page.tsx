@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { InteractiveSizzleHero } from '@/components/creative/InteractiveSizzleHero';
@@ -7,9 +9,13 @@ import { SauceDipInteractive } from '@/components/creative/SauceDipInteractive';
 import { ReviewsSection } from '@/components/home/ReviewsSection';
 import { MenuSection } from '@/components/menu/MenuSection';
 import { EmbersBackground } from '@/components/creative/EmbersBackground';
+import { useLanguage } from '@/components/providers/LanguageContext';
 import { ArrowRight, UtensilsCrossed } from 'lucide-react';
 
 export default function HomePage() {
+  const { t, lang } = useLanguage();
+  const isEn = lang === 'en';
+
   return (
     <div className="relative">
       {/* Dynamic Forge Embers Simulation */}
@@ -33,17 +39,17 @@ export default function HomePage() {
           <div>
             <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#E6B84A] uppercase tracking-wider mb-2">
               <UtensilsCrossed className="h-4 w-4" />
-              <span>Aus unserer Schmiede-Küche</span>
+              <span>{isEn ? 'From Our Forge Kitchen' : 'Aus unserer Schmiede-Küche'}</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-[#FDFBF7] font-display">
-              Die beliebtesten Kreationen
+              {isEn ? 'Most Popular Creations' : 'Die beliebtesten Kreationen'}
             </h2>
           </div>
           <Link
             href="/speisekarte"
             className="inline-flex items-center gap-2 text-xs font-bold text-[#E6B84A] hover:text-[#F5C75D] transition-colors"
           >
-            <span>Gesamte Speisekarte öffnen</span>
+            <span>{t.menu.openAll}</span>
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

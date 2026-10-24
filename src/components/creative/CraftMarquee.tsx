@@ -2,15 +2,18 @@
 
 import React from 'react';
 import { Flame, Sparkles, Award, ShieldCheck, Heart, Zap } from 'lucide-react';
+import { useLanguage } from '../providers/LanguageContext';
 
 export function CraftMarquee() {
+  const { t } = useLanguage();
+
   const items = [
-    { icon: Flame, text: 'In reinem Butterschmalz souffliert' },
-    { icon: ShieldCheck, text: '100% Halal Hähnchen-Optionen' },
-    { icon: Sparkles, text: 'Saucen stets separat verpackt' },
-    { icon: Award, text: 'Mönchengladbachs Schnitzel-Manufaktur' },
-    { icon: Zap, text: '1-Klick WhatsApp Blitz-Bestellung' },
-    { icon: Heart, text: '10% Rabatt bei Selbstabholung' },
+    { icon: Flame, text: t.marquee.inButter },
+    { icon: ShieldCheck, text: t.marquee.halal },
+    { icon: Sparkles, text: t.marquee.saucesSeparate },
+    { icon: Award, text: t.marquee.manufaktur },
+    { icon: Zap, text: t.marquee.whatsappOrder },
+    { icon: Heart, text: t.marquee.pickupDiscount },
   ];
 
   return (

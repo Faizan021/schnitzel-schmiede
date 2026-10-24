@@ -11,16 +11,19 @@ import {
   Flame,
 } from 'lucide-react';
 import { useCart } from '../providers/CartContext';
+import { useLanguage } from '../providers/LanguageContext';
 
 export function MobileBottomNav() {
   const pathname = usePathname();
   const { itemCount, openCart } = useCart();
+  const { lang } = useLanguage();
+  const isEn = lang === 'en';
 
   const navItems = [
-    { href: '/', label: 'Start', icon: Flame },
-    { href: '/speisekarte', label: 'Menü', icon: UtensilsCrossed },
-    { href: '/konfigurator', label: 'Baukasten', icon: Sparkles, highlight: true },
-    { href: '/reservierung', label: 'Tisch', icon: Calendar },
+    { href: '/', label: isEn ? 'Home' : 'Start', icon: Flame },
+    { href: '/speisekarte', label: isEn ? 'Menu' : 'Menü', icon: UtensilsCrossed },
+    { href: '/konfigurator', label: isEn ? 'Builder' : 'Baukasten', icon: Sparkles, highlight: true },
+    { href: '/reservierung', label: isEn ? 'Table' : 'Tisch', icon: Calendar },
   ];
 
   return (
@@ -48,8 +51,8 @@ export function MobileBottomNav() {
         {/* Cart Trigger (48x48px touch target with badge) */}
         <button
           onClick={openCart}
-          className="relative flex flex-col items-center justify-center min-w-[54px] min-h-[48px] rounded-xl px-1.5 py-1 text-[#C4BFB5] hover:text-[#E6B84A] transition-all"
-          aria-label="Warenkorb öffnen"
+          className="relative flex flex-col items-center justify-center min-w-[54px] min-h-[48px] rounded-xl px-1.5 py-1 text-[#C4BFB5] hover:text-[#E6B84A] transition-all cursor-pointer"
+          aria-label={isEn ? 'Open Cart' : 'Warenkorb öffnen'}
         >
           <div className="relative">
             <ShoppingBag className="h-5 w-5" />
@@ -59,7 +62,7 @@ export function MobileBottomNav() {
               </span>
             )}
           </div>
-          <span className="text-[10px] font-bold mt-0.5 tracking-tight">Korb</span>
+          <span className="text-[10px] font-bold mt-0.5 tracking-tight">{isEn ? 'Cart' : 'Korb'}</span>
         </button>
       </div>
     </div>

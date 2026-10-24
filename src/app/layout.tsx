@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
 import { CartProvider } from '@/components/providers/CartContext';
+import { LanguageProvider } from '@/components/providers/LanguageContext';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { MobileBottomNav } from '@/components/layout/MobileBottomNav';
@@ -82,13 +83,15 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-[#0A0A0C] text-[#FDFBF7] selection:bg-[#E6B84A] selection:text-[#0A0A0C]">
         <SmoothScrollProvider>
-          <CartProvider>
-            <Header />
-            <main className="flex-1 pb-mobile-safe md:pb-0">{children}</main>
-            <Footer />
-            <CartSlideOver />
-            <MobileBottomNav />
-          </CartProvider>
+          <LanguageProvider>
+            <CartProvider>
+              <Header />
+              <main className="flex-1 pb-mobile-safe md:pb-0">{children}</main>
+              <Footer />
+              <CartSlideOver />
+              <MobileBottomNav />
+            </CartProvider>
+          </LanguageProvider>
         </SmoothScrollProvider>
       </body>
     </html>

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { DietaryTag } from '@/lib/types/menu';
+import { useLanguage } from '../providers/LanguageContext';
 
 interface BadgeProps {
   tag?: DietaryTag;
@@ -12,6 +13,9 @@ interface BadgeProps {
 }
 
 export function Badge({ tag, label, variant, className = '', onClick }: BadgeProps) {
+  const { lang } = useLanguage();
+  const isEn = lang === 'en';
+
   let displayLabel = label;
   let resolvedVariant = variant || 'muted';
 
@@ -22,7 +26,7 @@ export function Badge({ tag, label, variant, className = '', onClick }: BadgePro
         resolvedVariant = 'emerald';
         break;
       case 'veggie':
-        displayLabel = 'Vegetarisch';
+        displayLabel = isEn ? 'Vegetarian' : 'Vegetarisch';
         resolvedVariant = 'emerald';
         break;
       case 'bestseller':
@@ -30,11 +34,11 @@ export function Badge({ tag, label, variant, className = '', onClick }: BadgePro
         resolvedVariant = 'gold';
         break;
       case 'chef_special':
-        displayLabel = 'Schmiede-Tipp';
+        displayLabel = isEn ? 'Forge Pick' : 'Schmiede-Tipp';
         resolvedVariant = 'gold';
         break;
       case 'spicy':
-        displayLabel = 'Pikant';
+        displayLabel = isEn ? 'Spicy' : 'Pikant';
         resolvedVariant = 'ruby';
         break;
     }

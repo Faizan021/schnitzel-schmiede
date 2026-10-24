@@ -3,26 +3,38 @@
 import React, { useSyncExternalStore } from 'react';
 import { getLiveKitchenStatus, KitchenStatus } from '@/lib/utils/kitchenStatus';
 import { Clock } from 'lucide-react';
+import { useLanguage } from '@/components/providers/LanguageContext';
 
-let cachedStatus: KitchenStatus | null = null;
+let cachedStatusDe: KitchenStatus | null = null;
+let cachedStatusEn: KitchenStatus | null = null;
 let lastCheckTime = 0;
 
 function subscribe(callback: () => void) {
   const interval = setInterval(() => {
-    cachedStatus = getLiveKitchenStatus();
+    cachedStatusDe = getLiveKitchenStatus(new Date(), 'de');
+    cachedStatusEn = getLiveKitchenStatus(new Date(), 'en');
     lastCheckTime = Date.now();
     callback();
   }, 60000);
   return () => clearInterval(interval);
 }
 
-function getSnapshot(): KitchenStatus {
+function getSnapshotDe(): KitchenStatus {
   const now = Date.now();
-  if (!cachedStatus || now - lastCheckTime > 30000) {
-    cachedStatus = getLiveKitchenStatus();
+  if (!cachedStatusDe || now - lastCheckTime > 30000) {
+    cachedStatusDe = getLiveKitchenStatus(new Date(), 'de');
     lastCheckTime = now;
   }
-  return cachedStatus;
+  return cachedStatusDe;
+}
+
+function getSnapshotEn(): KitchenStatus {
+  const now = Date.now();
+  if (!cachedStatusEn || now - lastCheckTime > 30000) {
+    cachedStatusEn = getLiveKitchenStatus(new Date(), 'en');
+    lastCheckTime = now;
+  }
+  return cachedStatusEn;
 }
 
 function getServerSnapshot(): KitchenStatus | null {
@@ -30,7 +42,12 @@ function getServerSnapshot(): KitchenStatus | null {
 }
 
 export function KitchenStatusBar() {
-  const status = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const { lang } = useLanguage();
+  const status = useSyncExternalStore(
+    subscribe,
+    lang === 'en' ? getSnapshotEn : getSnapshotDe,
+    getServerSnapshot
+  );
 
   if (!status) return null;
 

@@ -7,7 +7,8 @@ export interface KitchenStatus {
   acceptsPreOrders: boolean;
 }
 
-export function getLiveKitchenStatus(date: Date = new Date()): KitchenStatus {
+export function getLiveKitchenStatus(date: Date = new Date(), lang: 'de' | 'en' = 'de'): KitchenStatus {
+  const isEn = lang === 'en';
   const day = date.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
   const hours = date.getHours();
   const minutes = date.getMinutes();
@@ -17,10 +18,12 @@ export function getLiveKitchenStatus(date: Date = new Date()): KitchenStatus {
   if (day === 1) {
     return {
       isOpen: false,
-      statusBadge: 'Montag Ruhetag',
+      statusBadge: isEn ? 'Monday Closed' : 'Montag Ruhetag',
       statusColor: 'ruby',
-      details: 'Unsere Küche schöpft neue Kraft. Wieder geöffnet am Dienstag ab 12:00 Uhr.',
-      nextOpenNotice: 'Dienstag 12:00 Uhr',
+      details: isEn
+        ? 'Our kitchen is resting. Reopening Tuesday at 12:00 PM.'
+        : 'Unsere Küche schöpft neue Kraft. Wieder geöffnet am Dienstag ab 12:00 Uhr.',
+      nextOpenNotice: isEn ? 'Tuesday 12:00 PM' : 'Dienstag 12:00 Uhr',
       acceptsPreOrders: true,
     };
   }
@@ -35,9 +38,11 @@ export function getLiveKitchenStatus(date: Date = new Date()): KitchenStatus {
     if (currentTimeVal >= lunchStart && currentTimeVal < lunchEnd) {
       return {
         isOpen: true,
-        statusBadge: 'Jetzt geöffnet (Mittagstisch)',
+        statusBadge: isEn ? 'Open Now (Lunch)' : 'Jetzt geöffnet (Mittagstisch)',
         statusColor: 'emerald',
-        details: 'Mittags geöffnet bis 14:30 Uhr · Schnelle Zubereitung',
+        details: isEn
+          ? 'Lunch service open until 2:30 PM · Fast preparation'
+          : 'Mittags geöffnet bis 14:30 Uhr · Schnelle Zubereitung',
         acceptsPreOrders: true,
       };
     }
@@ -45,10 +50,12 @@ export function getLiveKitchenStatus(date: Date = new Date()): KitchenStatus {
     if (currentTimeVal >= lunchEnd && currentTimeVal < dinnerStart) {
       return {
         isOpen: false,
-        statusBadge: 'Mittagspause',
+        statusBadge: isEn ? 'Afternoon Break' : 'Mittagspause',
         statusColor: 'amber',
-        details: 'Abends wieder geöffnet ab 17:00 Uhr. Vorbestellungen jederzeit möglich!',
-        nextOpenNotice: 'Heute 17:00 Uhr',
+        details: isEn
+          ? 'Reopening for dinner at 5:00 PM. Pre-orders welcome!'
+          : 'Abends wieder geöffnet ab 17:00 Uhr. Vorbestellungen jederzeit möglich!',
+        nextOpenNotice: isEn ? 'Today 5:00 PM' : 'Heute 17:00 Uhr',
         acceptsPreOrders: true,
       };
     }
@@ -56,19 +63,23 @@ export function getLiveKitchenStatus(date: Date = new Date()): KitchenStatus {
     if (currentTimeVal >= dinnerStart && currentTimeVal < dinnerEnd) {
       return {
         isOpen: true,
-        statusBadge: 'Jetzt geöffnet (Abend-Service)',
+        statusBadge: isEn ? 'Open Now (Dinner Service)' : 'Jetzt geöffnet (Abend-Service)',
         statusColor: 'emerald',
-        details: 'Küche heiß bis 22:00 Uhr · Abholung & Lieferung aktiv',
+        details: isEn
+          ? 'Hot kitchen until 10:00 PM · Pickup & delivery active'
+          : 'Küche heiß bis 22:00 Uhr · Abholung & Lieferung aktiv',
         acceptsPreOrders: true,
       };
     }
 
     return {
       isOpen: false,
-      statusBadge: 'Geschlossen',
+      statusBadge: isEn ? 'Closed' : 'Geschlossen',
       statusColor: 'amber',
-      details: 'Wieder geöffnet ab 12:00 Uhr. Vorbestellungen für heute werden gerne entgegengenommen!',
-      nextOpenNotice: 'Heute 12:00 Uhr',
+      details: isEn
+        ? 'Reopening at 12:00 PM. Pre-orders for today are warmly welcomed!'
+        : 'Wieder geöffnet ab 12:00 Uhr. Vorbestellungen für heute werden gerne entgegengenommen!',
+      nextOpenNotice: isEn ? 'Today 12:00 PM' : 'Heute 12:00 Uhr',
       acceptsPreOrders: true,
     };
   }
@@ -80,19 +91,23 @@ export function getLiveKitchenStatus(date: Date = new Date()): KitchenStatus {
   if (currentTimeVal >= weekendStart && currentTimeVal < weekendEnd) {
     return {
       isOpen: true,
-      statusBadge: 'Jetzt geöffnet (Wochenend-Küche)',
+      statusBadge: isEn ? 'Open Now (Weekend Kitchen)' : 'Jetzt geöffnet (Wochenend-Küche)',
       statusColor: 'emerald',
-      details: 'Durchgehend warme Küche bis 22:00 Uhr · Tischreservierung empfohlen',
+      details: isEn
+        ? 'Continuous hot kitchen until 10:00 PM · Table reservation recommended'
+        : 'Durchgehend warme Küche bis 22:00 Uhr · Tischreservierung empfohlen',
       acceptsPreOrders: true,
     };
   }
 
   return {
     isOpen: false,
-    statusBadge: 'Geschlossen',
+    statusBadge: isEn ? 'Closed' : 'Geschlossen',
     statusColor: 'amber',
-    details: 'Wieder geöffnet ab 12:00 Uhr. Gerne für heute vorbestellen oder reservieren!',
-    nextOpenNotice: '12:00 Uhr',
+    details: isEn
+      ? 'Reopening at 12:00 PM. Feel free to pre-order or book a table!'
+      : 'Wieder geöffnet ab 12:00 Uhr. Gerne für heute vorbestellen oder reservieren!',
+    nextOpenNotice: isEn ? '12:00 PM' : '12:00 Uhr',
     acceptsPreOrders: true,
   };
 }

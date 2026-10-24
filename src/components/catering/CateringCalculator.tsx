@@ -7,19 +7,27 @@ import {
   Flame,
 } from 'lucide-react';
 import { getKitchenWhatsAppNumber, generateReferenceId } from '@/lib/utils/whatsapp';
+import { useLanguage } from '../providers/LanguageContext';
 import confetti from 'canvas-confetti';
 
 interface PackageTier {
   id: string;
   name: string;
+  nameEn: string;
   subtitle: string;
+  subtitleEn: string;
   pricePerPerson: number;
   description: string;
+  descriptionEn: string;
   features: string[];
+  featuresEn: string[];
   recommended?: boolean;
 }
 
 export function CateringCalculator() {
+  const { t, lang } = useLanguage();
+  const isEn = lang === 'en';
+
   const [guests, setGuests] = useState(30);
   const [selectedTier, setSelectedTier] = useState('classic');
   const [eventType, setEventType] = useState('company');
@@ -35,9 +43,12 @@ export function CateringCalculator() {
     {
       id: 'classic',
       name: 'Schmiede-Klassik Buffet',
+      nameEn: 'Forge Classic Buffet',
       subtitle: 'Der bewährte Party-Hit',
+      subtitleEn: 'The proven crowd favorite',
       pricePerPerson: 18.90,
       description: 'Heiß geliefertes Buffet mit professionellen Chafing Dishes (Warmhaltebehältern).',
+      descriptionEn: 'Hot delivered buffet equipped with professional stainless chafing dishes.',
       features: [
         'Hähnchen- & Schweineschnitzel in Goldpanade (100% Halal Option)',
         'Schmiede Champignon-Rahmsauce & Paprikasauce',
@@ -45,14 +56,24 @@ export function CateringCalculator() {
         'Rheinischer Gurkensalat & knackiger Marktsalat',
         'Inkl. Vorlegebesteck & Chafing Dishes',
       ],
+      featuresEn: [
+        'Chicken & pork schnitzels in golden crust (100% Halal option)',
+        'Forge mushroom cream sauce & bell pepper sauce',
+        'Crispy fried potatoes with onions & potato salad',
+        'Rhenish cucumber salad & garden salad',
+        'Includes serving cutlery & chafing dishes',
+      ],
     },
     {
       id: 'live_cooking',
       name: 'Schmiede Live-Cooking Station',
+      nameEn: 'Forge Live-Cooking Station',
       subtitle: 'Der Publikumsmagnet für Ihr Event',
+      subtitleEn: 'The ultimate attraction for your event',
       pricePerPerson: 27.50,
       recommended: true,
       description: 'Unsere Köche braten die Schnitzel live vor den Augen Ihrer Gäste in Butterschmalz aus!',
+      descriptionEn: 'Our chefs fry fresh schnitzels live in clarified butter right before your guests!',
       features: [
         'Live-Zubereitung vor Ort (inkl. Koch & Gussbräter)',
         'Original Kalbsschnitzel & zartes Hähnchenfilet',
@@ -60,19 +81,36 @@ export function CateringCalculator() {
         'Süßkartoffel-Fries & Trüffel-Parmesan Topping',
         'Live zubereiteter Schmiede-Kaiserschmarrn als Dessert',
       ],
+      featuresEn: [
+        'On-site live cooking (chef & cast-iron skillets included)',
+        'Original veal schnitzels & tender chicken breast',
+        '4 sauce variations incl. Peppercorn-Cognac & Hollandaise',
+        'Sweet potato fries & Truffle-Parmesan topping',
+        'Live caramelized Kaiserschmarrn pancake dessert',
+      ],
     },
     {
       id: 'burger_streetfood',
       name: 'Streetfood & Burger Schmiede',
+      nameEn: 'Streetfood & Burger Forge',
       subtitle: 'Locker & modern für Vereine & Geburtstage',
+      subtitleEn: 'Casual & modern for birthdays & parties',
       pricePerPerson: 22.90,
       description: 'Interaktive Burger- & Loaded-Fries Station für informelle Feiern.',
+      descriptionEn: 'Interactive burger & loaded fries station for informal celebrations.',
       features: [
         'Mini-Schnitzel-Burger im Brioche Bun',
         'Loaded Fries Station mit Pulled Pork & Käsesauce',
         'Veggie Schnitzel-Häppchen mit Kräuterdip',
         'Fingerfood-Spieße & Dips',
         'Unkompliziertes Handling für Stehpartys',
+      ],
+      featuresEn: [
+        'Mini schnitzel sliders in brioche buns',
+        'Loaded fries station with pulled pork & warm cheese sauce',
+        'Veggie schnitzel bites with fresh herb dip',
+        'Fingerfood skewers & gourmet dips',
+        'Easy handling for stand-up cocktail receptions',
       ],
     },
   ];
@@ -94,15 +132,15 @@ export function CateringCalculator() {
       '━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
       `Event-Art: ${eventType === 'company' ? 'Firmenfeier' : eventType === 'birthday' ? 'Geburtstag' : 'Vereins-/Sportfeier'}`,
       `Gästeanzahl: *${guests} Personen*`,
-      `Gewähltes Paket: *${currentPkg.name}* (${currentPkg.pricePerPerson.toFixed(2).replace('.', ',')} € p.P.)`,
+      `Gewähltes Paket: *${isEn ? currentPkg.nameEn : currentPkg.name}* (${currentPkg.pricePerPerson.toFixed(2).replace('.', ',')} € p.P.)`,
       `Geschätztes Budget: *ca. ${totalEstimate.toFixed(2).replace('.', ',')} € netto*`,
-      `Wunschdatum: ${date || 'Noch flexibel'}`,
+      `Wunschdatum: ${date || (isEn ? 'Still flexible' : 'Noch flexibel')}`,
       `Veranstaltungsort: ${city}`,
       '',
       '👤 *KONTAKTPERSON:*',
       `Name: ${contactName}`,
       `Telefon: ${phone}`,
-      `E-Mail: ${email || 'Nicht angegeben'}`,
+      `E-Mail: ${email || (isEn ? 'Not specified' : 'Nicht angegeben')}`,
       notes ? `Notiz: "${notes}"` : '',
       '━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
       'Bitte um Zusendung eines unverbindlichen Catering-Angebots.',
@@ -134,14 +172,13 @@ export function CateringCalculator() {
       <div className="text-center max-w-3xl mx-auto mb-10">
         <div className="inline-flex items-center gap-2 rounded-full border border-[#E6B84A]/30 bg-[#E6B84A]/10 px-4 py-1.5 text-xs font-bold text-[#E6B84A] mb-4">
           <Flame className="h-3.5 w-3.5" />
-          <span>Mönchengladbach · Krefeld · Neuss · Viersen</span>
+          <span>{t.catering.tagline}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#FDFBF7]">
-          Catering & Live-Cooking Event-Rechner
+          {t.catering.heading}
         </h1>
         <p className="mt-3 text-sm sm:text-base text-[#C4BFB5]">
-          Ob Firmenjubiläum, Geburtstag oder Borussia-Vereinsfeier: Berechnen Sie Ihr Wunsch-Catering
-          in Echtzeit und erhalten Sie sofort ein verbindliches Schmiede-Angebot.
+          {t.catering.subtitle}
         </p>
       </div>
 
@@ -152,25 +189,25 @@ export function CateringCalculator() {
             {/* Event Type */}
             <div>
               <label className="block text-xs font-bold text-[#C4BFB5] uppercase tracking-wider mb-2">
-                1. Art der Veranstaltung
+                {t.catering.eventType}
               </label>
               <div className="grid grid-cols-3 gap-2">
                 {[
-                  { id: 'company', label: 'Firmenfeier' },
-                  { id: 'birthday', label: 'Geburtstag' },
-                  { id: 'club', label: 'Verein / Sport' },
-                ].map((t) => (
+                  { id: 'company', label: t.catering.company },
+                  { id: 'birthday', label: t.catering.birthday },
+                  { id: 'club', label: t.catering.club },
+                ].map((item) => (
                   <button
                     type="button"
-                    key={t.id}
-                    onClick={() => setEventType(t.id)}
-                    className={`rounded-xl py-2.5 px-3 text-xs font-bold border transition-all ${
-                      eventType === t.id
+                    key={item.id}
+                    onClick={() => setEventType(item.id)}
+                    className={`rounded-xl py-2.5 px-3 text-xs font-bold border transition-all cursor-pointer ${
+                      eventType === item.id
                         ? 'border-[#E6B84A] bg-[#E6B84A]/10 text-[#FDFBF7]'
                         : 'border-white/5 bg-[#181820] text-[#C4BFB5]'
                     }`}
                   >
-                    {t.label}
+                    {item.label}
                   </button>
                 ))}
               </div>
@@ -181,10 +218,10 @@ export function CateringCalculator() {
               <div className="flex items-center justify-between mb-2">
                 <label className="text-xs font-bold text-[#C4BFB5] uppercase tracking-wider flex items-center gap-1.5">
                   <Users className="h-4 w-4 text-[#E6B84A]" />
-                  <span>2. Gästeanzahl planen</span>
+                  <span>{t.catering.guestSlider}</span>
                 </label>
                 <span className="font-mono text-xl font-black text-[#E6B84A]">
-                  {guests} Personen
+                  {guests} {isEn ? 'Guests' : 'Personen'}
                 </span>
               </div>
               <input
@@ -197,20 +234,25 @@ export function CateringCalculator() {
                 className="w-full accent-[#E6B84A] cursor-pointer"
               />
               <div className="flex justify-between text-[11px] text-[#C4BFB5] mt-1">
-                <span>15 Gäste (Mindestgröße)</span>
-                <span>100 Gäste</span>
-                <span>250+ Gäste (Großevent)</span>
+                <span>{t.catering.minSize}</span>
+                <span>100 {isEn ? 'Guests' : 'Gäste'}</span>
+                <span>{t.catering.largeEvent}</span>
               </div>
             </div>
 
             {/* Package Selection */}
             <div>
               <label className="block text-xs font-bold text-[#C4BFB5] uppercase tracking-wider mb-3">
-                3. Catering-Paket wählen
+                {t.catering.packageHeading}
               </label>
               <div className="space-y-3">
                 {packages.map((pkg) => {
                   const isSelected = selectedTier === pkg.id;
+                  const name = isEn ? pkg.nameEn : pkg.name;
+                  const subtitle = isEn ? pkg.subtitleEn : pkg.subtitle;
+                  const desc = isEn ? pkg.descriptionEn : pkg.description;
+                  const features = isEn ? pkg.featuresEn : pkg.features;
+
                   return (
                     <div
                       key={pkg.id}
@@ -223,22 +265,22 @@ export function CateringCalculator() {
                     >
                       {pkg.recommended && (
                         <span className="absolute top-3 right-3 rounded-md bg-[#E6B84A] px-2 py-0.5 text-[10px] font-black text-[#0A0A0C] uppercase">
-                          Bestseller
+                          {t.catering.bestseller}
                         </span>
                       )}
                       <div className="flex items-start justify-between">
                         <div>
-                          <h4 className="text-sm font-bold text-[#FDFBF7]">{pkg.name}</h4>
-                          <p className="text-xs text-[#E6B84A]">{pkg.subtitle}</p>
+                          <h4 className="text-sm font-bold text-[#FDFBF7]">{name}</h4>
+                          <p className="text-xs text-[#E6B84A]">{subtitle}</p>
                         </div>
                         <span className="font-mono text-base font-bold text-[#FDFBF7]">
                           {pkg.pricePerPerson.toFixed(2).replace('.', ',')} €{' '}
-                          <span className="text-[10px] text-[#C4BFB5] font-normal">p.P.</span>
+                          <span className="text-[10px] text-[#C4BFB5] font-normal">{t.catering.perPerson}</span>
                         </span>
                       </div>
-                      <p className="text-xs text-[#C4BFB5] mt-2">{pkg.description}</p>
+                      <p className="text-xs text-[#C4BFB5] mt-2">{desc}</p>
                       <ul className="mt-3 space-y-1 text-xs text-[#C4BFB5]">
-                        {pkg.features.map((f, idx) => (
+                        {features.map((f, idx) => (
                           <li key={idx} className="flex items-center gap-1.5">
                             <span className="text-[#E6B84A] font-bold">✓</span>
                             <span>{f}</span>
@@ -257,7 +299,7 @@ export function CateringCalculator() {
         <div className="lg:col-span-5 sticky top-24 space-y-4">
           <div className="rounded-2xl border border-[#E6B84A]/30 bg-[#141418] p-6 shadow-2xl">
             <span className="text-[11px] font-bold text-[#E6B84A] uppercase tracking-widest">
-              Live-Kostenschätzung
+              {t.catering.liveEstimate}
             </span>
             <div className="mt-2 flex items-baseline justify-between border-b border-white/10 pb-4">
               <div>
@@ -265,21 +307,21 @@ export function CateringCalculator() {
                   ca. {totalEstimate.toFixed(2).replace('.', ',')} €
                 </span>
                 <span className="block text-[11px] text-[#C4BFB5]">
-                  ({guests} x {currentPkg.pricePerPerson.toFixed(2).replace('.', ',')} € zzgl. ges. MwSt.)
+                  ({guests} x {currentPkg.pricePerPerson.toFixed(2).replace('.', ',')} € {isEn ? 'plus VAT' : 'zzgl. ges. MwSt.'})
                 </span>
               </div>
             </div>
 
             <form onSubmit={handleInquiry} className="mt-5 space-y-3">
               <h4 className="text-xs font-bold uppercase tracking-wider text-[#FDFBF7]">
-                Unverbindliches Angebot per WhatsApp anfordern
+                {t.catering.inquiryHeading}
               </h4>
 
               <div>
                 <input
                   type="text"
                   required
-                  placeholder="Ihr Name / Firma *"
+                  placeholder={t.catering.nameCompany}
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
                   className="w-full rounded-xl bg-[#1E1E26] border border-white/10 px-3 py-2 text-xs text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
@@ -290,7 +332,7 @@ export function CateringCalculator() {
                 <input
                   type="tel"
                   required
-                  placeholder="Telefonnummer *"
+                  placeholder={t.catering.phone}
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="w-full rounded-xl bg-[#1E1E26] border border-white/10 px-3 py-2 text-xs text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
@@ -300,7 +342,7 @@ export function CateringCalculator() {
               <div>
                 <input
                   type="email"
-                  placeholder="E-Mail-Adresse (optional)"
+                  placeholder={isEn ? "Email Address (optional)" : "E-Mail-Adresse (optional)"}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full rounded-xl bg-[#1E1E26] border border-white/10 px-3 py-2 text-xs text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
@@ -310,14 +352,14 @@ export function CateringCalculator() {
               <div className="grid grid-cols-2 gap-2">
                 <input
                   type="date"
-                  placeholder="Wunschdatum"
+                  placeholder={t.catering.date}
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
                   className="w-full rounded-xl bg-[#1E1E26] border border-white/10 px-3 py-2 text-xs text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
                 />
                 <input
                   type="text"
-                  placeholder="Ort (z.B. MG-Nord)"
+                  placeholder={t.catering.city}
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                   className="w-full rounded-xl bg-[#1E1E26] border border-white/10 px-3 py-2 text-xs text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
@@ -327,7 +369,7 @@ export function CateringCalculator() {
               <div>
                 <input
                   type="text"
-                  placeholder="Zusätzliche Wünsche (z.B. Besteck, Servicekraft)"
+                  placeholder={t.catering.wishes}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   className="w-full rounded-xl bg-[#1E1E26] border border-white/10 px-3 py-2 text-xs text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
@@ -339,17 +381,17 @@ export function CateringCalculator() {
                 className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] py-3.5 text-xs font-black text-white hover:brightness-110 shadow-lg shadow-[#25D366]/20 transition-all cursor-pointer"
               >
                 <MessageSquare className="h-4 w-4 fill-current" />
-                <span>Angebot via WhatsApp anfragen (1-Klick)</span>
+                <span>{t.catering.inquiryWhatsappBtn}</span>
               </button>
 
               {isSent && (
                 <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-2 text-center text-xs text-emerald-300">
-                  ✓ WhatsApp wurde geöffnet! Wir melden uns innerhalb von 2 Stunden.
+                  {t.catering.openedNotice}
                 </div>
               )}
 
               <p className="text-[10px] text-center text-[#C4BFB5]/80">
-                Kostenlose & unverbindliche Angebotserstellung innerhalb von 2 Stunden.
+                {t.catering.replyGuarantee}
               </p>
             </form>
           </div>

@@ -12,9 +12,13 @@ import {
   MessageSquare,
 } from 'lucide-react';
 import { getKitchenWhatsAppNumber } from '@/lib/utils/whatsapp';
+import { useLanguage } from '@/components/providers/LanguageContext';
 
 export function Footer() {
+  const { t, lang } = useLanguage();
   const whatsappPhone = getKitchenWhatsAppNumber();
+  const isEn = lang === 'en';
+
   return (
     <footer className="border-t border-white/10 bg-[#0A0A0D] text-[#C4BFB5] pt-14 pb-24 md:pb-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -30,16 +34,14 @@ export function Footer() {
               </div>
             </div>
             <p className="text-xs leading-relaxed text-[#C4BFB5]">
-              Traditionelle Handwerksgastronomie in Mönchengladbach. Goldbraun soufflierte
-              Schnitzel, saftiges Fleisch, hausgemachte Saucen und knusprige Beilagen ohne
-              Kompromisse.
+              {t.footer.craftDescription}
             </p>
             <div className="flex items-center gap-2 pt-2">
               <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
-                ✓ 100% Halal Optionen
+                {t.footer.halalTag}
               </span>
               <span className="rounded-md border border-[#E6B84A]/30 bg-[#E6B84A]/10 px-2 py-0.5 text-[10px] font-bold text-[#E6B84A]">
-                ✓ Frisches Butterschmalz
+                {t.footer.butterTag}
               </span>
             </div>
           </div>
@@ -48,27 +50,27 @@ export function Footer() {
           <div className="space-y-3">
             <h4 className="text-sm font-bold uppercase tracking-wider text-[#FDFBF7] flex items-center gap-1.5">
               <Clock className="h-4 w-4 text-[#E6B84A]" />
-              <span>Öffnungszeiten</span>
+              <span>{t.footer.openingHours}</span>
             </h4>
             <div className="space-y-1.5 text-xs">
               <div className="flex justify-between">
-                <span>Montag:</span>
-                <span className="text-rose-400 font-semibold">Ruhetag</span>
+                <span>{isEn ? 'Monday:' : 'Montag:'}</span>
+                <span className="text-rose-400 font-semibold">{t.footer.mondayRest}</span>
               </div>
               <div className="flex justify-between">
-                <span>Dienstag – Freitag:</span>
-                <span className="text-[#FDFBF7]">12:00 – 14:30 Uhr</span>
+                <span>{isEn ? 'Tuesday – Friday:' : 'Dienstag – Freitag:'}</span>
+                <span className="text-[#FDFBF7]">12:00 – 14:30 {isEn ? 'PM' : 'Uhr'}</span>
               </div>
               <div className="flex justify-between">
                 <span></span>
-                <span className="text-[#FDFBF7]">17:00 – 22:00 Uhr</span>
+                <span className="text-[#FDFBF7]">17:00 – 22:00 {isEn ? 'PM' : 'Uhr'}</span>
               </div>
               <div className="flex justify-between pt-1">
-                <span>Samstag & Sonntag:</span>
-                <span className="text-[#E6B84A] font-semibold">12:00 – 22:00 Uhr</span>
+                <span>{isEn ? 'Saturday & Sunday:' : 'Samstag & Sonntag:'}</span>
+                <span className="text-[#E6B84A] font-semibold">12:00 – 22:00 {isEn ? 'PM' : 'Uhr'}</span>
               </div>
               <p className="text-[11px] text-[#C4BFB5]/80 pt-1">
-                Durchgehend warme Küche am Wochenende.
+                {t.footer.weekendAllDay}
               </p>
             </div>
           </div>
@@ -77,7 +79,7 @@ export function Footer() {
           <div className="space-y-3">
             <h4 className="text-sm font-bold uppercase tracking-wider text-[#FDFBF7] flex items-center gap-1.5">
               <MapPin className="h-4 w-4 text-[#E6B84A]" />
-              <span>Standort & Kontakt</span>
+              <span>{t.footer.locationContact}</span>
             </h4>
             <div className="space-y-2 text-xs">
               <p className="text-[#FDFBF7] font-semibold">
@@ -119,7 +121,7 @@ export function Footer() {
           <div className="space-y-3">
             <h4 className="text-sm font-bold uppercase tracking-wider text-[#FDFBF7] flex items-center gap-1.5">
               <ShieldCheck className="h-4 w-4 text-[#E6B84A]" />
-              <span>Rechtliches & Transparenz</span>
+              <span>{t.footer.legalTransparency}</span>
             </h4>
             <ul className="space-y-1.5 text-xs">
               <li>
@@ -127,7 +129,7 @@ export function Footer() {
                   href="/speisekarte"
                   className="hover:text-[#E6B84A] transition-colors"
                 >
-                  Digitale Speisekarte
+                  {t.footer.menuLink}
                 </Link>
               </li>
               <li>
@@ -135,7 +137,7 @@ export function Footer() {
                   href="/reservierung"
                   className="hover:text-[#E6B84A] transition-colors"
                 >
-                  Tisch online reservieren
+                  {t.footer.reserveLink}
                 </Link>
               </li>
               <li>
@@ -143,7 +145,7 @@ export function Footer() {
                   href="/catering"
                   className="hover:text-[#E6B84A] transition-colors"
                 >
-                  Catering-Rechner Mönchengladbach
+                  {t.footer.cateringLink}
                 </Link>
               </li>
               <li>
@@ -151,7 +153,7 @@ export function Footer() {
                   href="/impressum"
                   className="hover:text-[#E6B84A] transition-colors"
                 >
-                  Impressum (§ 5 DDG)
+                  {t.footer.imprintLink}
                 </Link>
               </li>
               <li>
@@ -159,7 +161,7 @@ export function Footer() {
                   href="/datenschutz"
                   className="hover:text-[#E6B84A] transition-colors"
                 >
-                  Datenschutzerklärung (DSGVO)
+                  {t.footer.privacyLink}
                 </Link>
               </li>
             </ul>
@@ -169,11 +171,10 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#C4BFB5]/70 gap-3">
           <p>
-            © 2026 Schnitzel Schmiede Mönchengladbach. Alle Rechte
-            vorbehalten.
+            © 2026 {t.footer.allRightsReserved}
           </p>
           <div className="flex items-center gap-4">
-            <span>Alle Preise inkl. gesetzlicher MwSt. (§ 312j BGB / PAngV)</span>
+            <span>{t.footer.pricesVatNotice}</span>
             <span>·</span>
             <span className="text-[#E6B84A]">Google for Startups Immersion EMEA Standard</span>
           </div>
@@ -182,7 +183,7 @@ export function Footer() {
         {/* Speisely Network & Technology Credit Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 pt-4 mt-4 border-t border-white/5 text-[11px] text-[#C4BFB5]/80">
           <div className="flex flex-wrap items-center gap-2">
-            <span>Plattform & Technologie von</span>
+            <span>{t.footer.platformTechBy}</span>
             <a
               href="https://speisely.de"
               target="_blank"
@@ -200,10 +201,10 @@ export function Footer() {
               rel="noopener"
               className="text-[#C4BFB5]/70 hover:text-[#E6B84A] transition-colors"
             >
-              Partner im Speisely Netzwerk Mönchengladbach
+              {t.footer.partnerNetwork}
             </a>
           </div>
-          <span className="text-[10px] text-[#C4BFB5]/60">Zero-Commission Direct Ordering Engine</span>
+          <span className="text-[10px] text-[#C4BFB5]/60">{t.footer.zeroCommission}</span>
         </div>
       </div>
     </footer>

@@ -3,69 +3,96 @@
 import React, { useState } from 'react';
 import { Soup, Check } from 'lucide-react';
 import { playSizzleSound } from './AudioCrunchEngine';
+import { useLanguage } from '../providers/LanguageContext';
 
 interface SauceFlavor {
   id: string;
   name: string;
+  nameEn: string;
   subtitle: string;
+  subtitleEn: string;
   description: string;
+  descriptionEn: string;
   heat: number; // 0 - 5
   creaminess: number; // 0 - 5
   depth: number; // 0 - 5
   bestPair: string;
+  bestPairEn: string;
   color: string;
 }
 
 export function SauceDipInteractive() {
+  const { t, lang } = useLanguage();
+  const isEn = lang === 'en';
   const [selectedSauce, setSelectedSauce] = useState<string>('champignon_rahm');
 
   const sauces: SauceFlavor[] = [
     {
       id: 'champignon_rahm',
       name: 'Schmiede Champignon-Rahm',
+      nameEn: 'Forge Mushroom Cream Sauce',
       subtitle: 'Der unangefochtene Haus-Favorit',
+      subtitleEn: 'The undisputed house favorite',
       description:
         'Täglich frisch geschnittene braune Champignons, feine Schalotten, frischer Rahm und glatte Petersilie – langsam einreduziert.',
+      descriptionEn:
+        'Daily fresh sliced brown mushrooms, shallots, rich cream, and flat-leaf parsley – gently simmered and reduced.',
       heat: 0,
       creaminess: 5,
       depth: 4,
       bestPair: 'Wiener Kalbsschnitzel & Bratkartoffeln',
+      bestPairEn: 'Wiener Veal Schnitzel & Fried Potatoes',
       color: '#C4975A',
     },
     {
       id: 'puszta_fire',
       name: 'Paprikasauce "Puszta Fire"',
+      nameEn: 'Bell Pepper Sauce "Puszta Fire"',
       subtitle: 'Fruchtig-pikant mit geschmorten Paprikastreifen',
+      subtitleEn: 'Fruity & piquant with roasted bell pepper strips',
       description:
         'Traditioneller Paprikasud nach ungarischer Art mit milder Schärfe, Tomatenessenz und frischen Zwiebeln.',
+      descriptionEn:
+        'Traditional Hungarian style bell pepper reduction with mild heat, tomato essence, and sweet onions.',
       heat: 3,
       creaminess: 1,
       depth: 5,
       bestPair: 'Hähnchen-Schnitzel mit Knusper-Pommes',
+      bestPairEn: 'Chicken Schnitzel with Crispy Fries',
       color: '#DC2626',
     },
     {
       id: 'pfeffer_cognac',
       name: 'Madagaskar Pfeffer-Cognac',
+      nameEn: 'Madagascar Green Peppercorn Cognac',
       subtitle: 'Ganze grüne Pfefferkörner mit edlem Weinbrand',
+      subtitleEn: 'Whole green peppercorns flambéed with fine cognac',
       description:
         'Flambierte grüne Pfefferkörner, abgelöscht mit edlem Cognac und vollendet mit geschlagenem Rahm.',
+      descriptionEn:
+        'Flambéed green peppercorns deglazed with fine cognac, finished with silky heavy cream.',
       heat: 2,
       creaminess: 4,
       depth: 5,
       bestPair: 'Schweinesteak im Panko-Crunch',
+      bestPairEn: 'Pork Cutlet with Panko Crunch',
       color: '#65A30D',
     },
     {
       id: 'hollandaise',
       name: 'Cremige Sauce Hollandaise',
+      nameEn: 'Creamy Sauce Hollandaise',
       subtitle: 'Feine Buttersauce mit Eigelb & Weißweinsäure',
+      subtitleEn: 'Silky butter sauce with egg yolk & white wine reduction',
       description:
         'Samtige, warme Emulsion aus reinem Butterschmalz, frischem Eigelb und einer feinen Säurenote.',
+      descriptionEn:
+        'Velvety, warm emulsion of clarified butter, fresh egg yolks, and a balanced white wine reduction.',
       heat: 0,
       creaminess: 5,
       depth: 3,
       bestPair: 'Brezel-Schnitzel mit Spiegelei',
+      bestPairEn: 'Pretzel Schnitzel with Sunny Side Up Egg',
       color: '#FBBF24',
     },
   ];
@@ -78,14 +105,13 @@ export function SauceDipInteractive() {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#E6B84A]/30 bg-[#E6B84A]/10 px-4 py-1.5 text-xs font-bold text-[#E6B84A] mb-3">
             <Soup className="h-3.5 w-3.5" />
-            <span>Interaktive Saucen-Manufaktur</span>
+            <span>{t.sauce.tagline}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-[#FDFBF7] font-display">
-            Entdecken Sie Ihr Saucen-Match
+            {t.sauce.heading}
           </h2>
           <p className="mt-2 text-sm text-[#C4BFB5]">
-            Jede Sauce wird in unserer Küche frisch eingekocht und für den Transport separat
-            im Becher versiegelt.
+            {t.sauce.subtitle}
           </p>
         </div>
 
@@ -94,6 +120,8 @@ export function SauceDipInteractive() {
           <div className="lg:col-span-5 space-y-3">
             {sauces.map((sauce) => {
               const isSelected = selectedSauce === sauce.id;
+              const name = isEn ? sauce.nameEn : sauce.name;
+              const subtitle = isEn ? sauce.subtitleEn : sauce.subtitle;
               return (
                 <button
                   key={sauce.id}
@@ -101,7 +129,7 @@ export function SauceDipInteractive() {
                     setSelectedSauce(sauce.id);
                     playSizzleSound();
                   }}
-                  className={`w-full text-left rounded-2xl p-4 transition-all border flex items-center justify-between ${
+                  className={`w-full text-left rounded-2xl p-4 transition-all border flex items-center justify-between cursor-pointer ${
                     isSelected
                       ? 'border-[#E6B84A] bg-[#1A1A22] shadow-lg shadow-[#E6B84A]/15'
                       : 'border-white/5 bg-[#121216] hover:border-white/20'
@@ -113,8 +141,8 @@ export function SauceDipInteractive() {
                       className="h-4 w-4 rounded-full shrink-0 shadow-sm"
                     />
                     <div>
-                      <div className="text-sm font-bold text-[#FDFBF7]">{sauce.name}</div>
-                      <div className="text-[11px] text-[#C4BFB5]">{sauce.subtitle}</div>
+                      <div className="text-sm font-bold text-[#FDFBF7]">{name}</div>
+                      <div className="text-[11px] text-[#C4BFB5]">{subtitle}</div>
                     </div>
                   </div>
                   {isSelected && <Check className="h-4 w-4 text-[#E6B84A]" />}
@@ -129,24 +157,26 @@ export function SauceDipInteractive() {
               <div className="flex items-center justify-between pb-4 border-b border-white/10">
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-[#E6B84A]">
-                    Geschmacksprofil
+                    {t.sauce.flavorProfile}
                   </span>
-                  <h3 className="text-xl font-black text-[#FDFBF7] mt-0.5">{current.name}</h3>
+                  <h3 className="text-xl font-black text-[#FDFBF7] mt-0.5">
+                    {isEn ? current.nameEn : current.name}
+                  </h3>
                 </div>
                 <span className="rounded-lg bg-[#E6B84A]/10 px-2.5 py-1 text-xs font-bold text-[#E6B84A]">
-                  Separat verpackt
+                  {t.sauce.packedSeparately}
                 </span>
               </div>
 
               <p className="mt-4 text-xs sm:text-sm text-[#C4BFB5] leading-relaxed">
-                {current.description}
+                {isEn ? current.descriptionEn : current.description}
               </p>
 
               {/* Flavor Meters */}
               <div className="mt-6 space-y-3 bg-[#1A1A22] p-4 rounded-2xl border border-white/5">
                 <div>
                   <div className="flex justify-between text-xs font-semibold mb-1">
-                    <span className="text-[#C4BFB5]">Cremigkeit:</span>
+                    <span className="text-[#C4BFB5]">{t.sauce.creaminess}:</span>
                     <span className="text-[#E6B84A]">{current.creaminess} / 5</span>
                   </div>
                   <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
@@ -159,7 +189,7 @@ export function SauceDipInteractive() {
 
                 <div>
                   <div className="flex justify-between text-xs font-semibold mb-1">
-                    <span className="text-[#C4BFB5]">Schärfe / Pikanz:</span>
+                    <span className="text-[#C4BFB5]">{t.sauce.heat}:</span>
                     <span className="text-rose-400">{current.heat} / 5</span>
                   </div>
                   <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
@@ -172,7 +202,7 @@ export function SauceDipInteractive() {
 
                 <div>
                   <div className="flex justify-between text-xs font-semibold mb-1">
-                    <span className="text-[#C4BFB5]">Geschmackstiefe:</span>
+                    <span className="text-[#C4BFB5]">{t.sauce.depth}:</span>
                     <span className="text-[#E6B84A]">{current.depth} / 5</span>
                   </div>
                   <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
@@ -186,8 +216,10 @@ export function SauceDipInteractive() {
 
               {/* Recommendation */}
               <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between text-xs">
-                <span className="text-[#C4BFB5]">Perfekt kombiniert mit:</span>
-                <span className="font-bold text-[#FDFBF7]">{current.bestPair}</span>
+                <span className="text-[#C4BFB5]">{t.sauce.perfectPair}:</span>
+                <span className="font-bold text-[#FDFBF7]">
+                  {isEn ? current.bestPairEn : current.bestPair}
+                </span>
               </div>
             </div>
           </div>

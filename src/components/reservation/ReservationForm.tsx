@@ -12,6 +12,7 @@ import {
   Utensils,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { useLanguage } from '../providers/LanguageContext';
 
 interface TimeSlot {
   time: string;
@@ -21,6 +22,9 @@ interface TimeSlot {
 }
 
 export function ReservationForm() {
+  const { t, lang } = useLanguage();
+  const isEn = lang === 'en';
+
   const [date, setDate] = useState('2026-10-25');
   const [minDate, setMinDate] = useState('2026-10-25');
 
@@ -67,10 +71,10 @@ export function ReservationForm() {
 
   const validate = () => {
     const errors: Record<string, string> = {};
-    if (!name.trim()) errors.name = 'Bitte Namen eingeben';
-    if (!phone.trim() || phone.length < 6) errors.phone = 'Telefonnummer für Rückfragen erforderlich';
-    if (!email.trim() || !email.includes('@')) errors.email = 'Gültige E-Mail erforderlich';
-    if (isMondayRuhetag) errors.date = 'Montags hat unsere Schmiede Ruhetag';
+    if (!name.trim()) errors.name = isEn ? 'Please enter your name' : 'Bitte Namen eingeben';
+    if (!phone.trim() || phone.length < 6) errors.phone = isEn ? 'Phone number required' : 'Telefonnummer für Rückfragen erforderlich';
+    if (!email.trim() || !email.includes('@')) errors.email = isEn ? 'Valid email required' : 'Gültige E-Mail erforderlich';
+    if (isMondayRuhetag) errors.date = t.reservation.mondayError;
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
@@ -136,14 +140,13 @@ export function ReservationForm() {
       <div className="text-center max-w-2xl mx-auto mb-10">
         <div className="inline-flex items-center gap-2 rounded-full border border-[#E6B84A]/30 bg-[#E6B84A]/10 px-4 py-1.5 text-xs font-bold text-[#E6B84A] mb-4">
           <Utensils className="h-3.5 w-3.5" />
-          <span>Echtzeit-Kapazitätsgarantie</span>
+          <span>{t.reservation.tagline}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#FDFBF7]">
-          Tisch reservieren
+          {t.reservation.heading}
         </h1>
         <p className="mt-3 text-sm sm:text-base text-[#C4BFB5]">
-          Genießen Sie knusprige Spezialitäten im rustikal-modernen Schmiede-Ambiente in
-          Mönchengladbach. Mit Sofort-Bestätigung & Kalendereintrag.
+          {t.reservation.subtitle}
         </p>
       </div>
 
@@ -158,38 +161,38 @@ export function ReservationForm() {
           </div>
 
           <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">
-            Erfolgreich bestätigt
+            {t.reservation.successTag}
           </span>
           <h2 className="text-2xl font-black text-[#FDFBF7] mt-1">
-            Wir freuen uns auf Ihren Besuch!
+            {t.reservation.successHeading}
           </h2>
           <p className="text-xs text-[#C4BFB5] mt-2">
-            Buchungsnummer: <strong className="text-[#E6B84A]">{bookingRef}</strong>
+            {t.reservation.bookingNumber}: <strong className="text-[#E6B84A]">{bookingRef}</strong>
           </p>
 
           <div className="my-6 rounded-xl border border-white/5 bg-[#181820] p-4 text-xs text-left space-y-2">
             <div className="flex justify-between">
-              <span className="text-[#C4BFB5]">Gast:</span>
+              <span className="text-[#C4BFB5]">{t.reservation.guest}:</span>
               <span className="font-bold text-[#FDFBF7]">{name}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[#C4BFB5]">Datum & Uhrzeit:</span>
+              <span className="text-[#C4BFB5]">{t.reservation.dateTime}:</span>
               <span className="font-bold text-[#E6B84A]">
-                {date} um {selectedTime} Uhr
+                {date} {isEn ? 'at' : 'um'} {selectedTime} {isEn ? '' : 'Uhr'}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[#C4BFB5]">Personenanzahl:</span>
-              <span className="font-bold text-[#FDFBF7]">{guests} Gäste</span>
+              <span className="text-[#C4BFB5]">{t.reservation.partySize}:</span>
+              <span className="font-bold text-[#FDFBF7]">{guests} {isEn ? 'Guests' : 'Gäste'}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[#C4BFB5]">Bereich:</span>
+              <span className="text-[#C4BFB5]">{t.reservation.seatingArea}:</span>
               <span className="font-bold text-[#FDFBF7]">
-                {seatingArea === 'indoor' ? 'Gastraum Innen' : 'Außenterrasse'}
+                {seatingArea === 'indoor' ? t.reservation.indoor : t.reservation.terrace}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[#C4BFB5]">Ort:</span>
+              <span className="text-[#C4BFB5]">{t.reservation.location}:</span>
               <span className="font-bold text-[#FDFBF7]">Bismarckstr. 45, Mönchengladbach</span>
             </div>
           </div>
@@ -197,16 +200,16 @@ export function ReservationForm() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
               onClick={downloadIcs}
-              className="flex items-center justify-center gap-2 rounded-xl bg-[#E6B84A] px-5 py-2.5 text-xs font-bold text-[#0A0A0C] hover:bg-[#F5C75D] transition-colors"
+              className="flex items-center justify-center gap-2 rounded-xl bg-[#E6B84A] px-5 py-2.5 text-xs font-bold text-[#0A0A0C] hover:bg-[#F5C75D] transition-colors cursor-pointer"
             >
               <Download className="h-4 w-4" />
-              <span>In Kalender speichern (.ics)</span>
+              <span>{t.reservation.saveCalendar}</span>
             </button>
             <button
               onClick={() => setIsSuccess(false)}
-              className="rounded-xl border border-white/10 px-4 py-2.5 text-xs text-[#C4BFB5] hover:text-[#FDFBF7] transition-colors"
+              className="rounded-xl border border-white/10 px-4 py-2.5 text-xs text-[#C4BFB5] hover:text-[#FDFBF7] transition-colors cursor-pointer"
             >
-              Weitere Reservierung aufgeben
+              {t.reservation.anotherBooking}
             </button>
           </div>
         </motion.div>
@@ -220,9 +223,7 @@ export function ReservationForm() {
             <div className="flex items-start gap-3 rounded-xl border border-[#E6B84A]/30 bg-[#E6B84A]/10 p-3.5 text-xs text-[#E6B84A]">
               <ShieldAlert className="h-5 w-5 shrink-0" />
               <div>
-                <strong>Smart Capacity Guard aktiv:</strong> Freitag- & Samstagabend ist unsere
-                Schmiede stark frequentiert. Tischplätze werden in Echtzeit geschützt, um
-                Wartezeiten in der Küche zu vermeiden.
+                <strong>Smart Capacity Guard:</strong> {t.reservation.capacityNotice}
               </div>
             </div>
           )}
@@ -232,7 +233,7 @@ export function ReservationForm() {
             <div>
               <label className="block text-xs font-bold text-[#C4BFB5] uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                 <CalendarIcon className="h-3.5 w-3.5 text-[#E6B84A]" />
-                <span>Datum wählen *</span>
+                <span>{t.reservation.dateLabel}</span>
               </label>
               <input
                 type="date"
@@ -245,7 +246,7 @@ export function ReservationForm() {
               />
               {isMondayRuhetag ? (
                 <p className="text-xs text-rose-400 mt-1">
-                  Montag ist Ruhetag. Bitte wählen Sie Di-So.
+                  {t.reservation.mondayError}
                 </p>
               ) : formErrors.date ? (
                 <p className="text-xs text-rose-400 mt-1">{formErrors.date}</p>
@@ -255,7 +256,7 @@ export function ReservationForm() {
             <div>
               <label className="block text-xs font-bold text-[#C4BFB5] uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                 <Users className="h-3.5 w-3.5 text-[#E6B84A]" />
-                <span>Gästeanzahl *</span>
+                <span>{t.reservation.guestsLabel}</span>
               </label>
               <div className="flex items-center gap-2">
                 {[1, 2, 3, 4, 5, 6, 8, '10+'].map((num) => {
@@ -266,7 +267,7 @@ export function ReservationForm() {
                       type="button"
                       key={String(num)}
                       onClick={() => setGuests(val)}
-                      className={`flex-1 rounded-xl py-2.5 text-xs font-bold transition-all ${
+                      className={`flex-1 rounded-xl py-2.5 text-xs font-bold transition-all cursor-pointer ${
                         isSelected
                           ? 'bg-[#E6B84A] text-[#0A0A0C] shadow-md shadow-[#E6B84A]/20'
                           : 'bg-[#181820] text-[#C4BFB5] hover:text-[#FDFBF7] border border-white/5'
@@ -284,7 +285,7 @@ export function ReservationForm() {
           <div>
             <label className="block text-xs font-bold text-[#C4BFB5] uppercase tracking-wider mb-2 flex items-center gap-1.5">
               <Clock className="h-3.5 w-3.5 text-[#E6B84A]" />
-              <span>Verfügbare Uhrzeit *</span>
+              <span>{t.reservation.timeLabel}</span>
             </label>
             <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-2">
               {timeSlots.map((slot) => {
@@ -295,7 +296,7 @@ export function ReservationForm() {
                     key={slot.time}
                     disabled={slot.isLocked}
                     onClick={() => setSelectedTime(slot.time)}
-                    className={`flex flex-col items-center justify-center rounded-xl p-2.5 text-xs transition-all border ${
+                    className={`flex flex-col items-center justify-center rounded-xl p-2.5 text-xs transition-all border cursor-pointer ${
                       slot.isLocked
                         ? 'bg-neutral-900 border-white/5 text-neutral-600 cursor-not-allowed opacity-50'
                         : isSelected
@@ -305,7 +306,7 @@ export function ReservationForm() {
                   >
                     <span className="font-bold">{slot.time}</span>
                     <span className="text-[9px] mt-0.5 opacity-80">
-                      {slot.isLocked ? 'Voll' : `${slot.availableSeats} Plätze`}
+                      {slot.isLocked ? t.reservation.fullSlot : `${slot.availableSeats} ${t.reservation.seatsLeft}`}
                     </span>
                   </button>
                 );
@@ -316,30 +317,30 @@ export function ReservationForm() {
           {/* Area Preference */}
           <div>
             <label className="block text-xs font-bold text-[#C4BFB5] uppercase tracking-wider mb-2">
-              Sitzbereich
+              {t.reservation.areaLabel}
             </label>
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
                 onClick={() => setSeatingArea('indoor')}
-                className={`rounded-xl p-3 text-xs font-bold border transition-all ${
+                className={`rounded-xl p-3 text-xs font-bold border transition-all cursor-pointer ${
                   seatingArea === 'indoor'
                     ? 'border-[#E6B84A] bg-[#E6B84A]/10 text-[#FDFBF7]'
                     : 'border-white/5 bg-[#181820] text-[#C4BFB5]'
                 }`}
               >
-                🏠 Gemütlicher Gastraum
+                🏠 {t.reservation.indoor}
               </button>
               <button
                 type="button"
                 onClick={() => setSeatingArea('terrace')}
-                className={`rounded-xl p-3 text-xs font-bold border transition-all ${
+                className={`rounded-xl p-3 text-xs font-bold border transition-all cursor-pointer ${
                   seatingArea === 'terrace'
                     ? 'border-[#E6B84A] bg-[#E6B84A]/10 text-[#FDFBF7]'
                     : 'border-white/5 bg-[#181820] text-[#C4BFB5]'
                 }`}
               >
-                🌿 Sonnige Außenterrasse (wetterabhängig)
+                🌿 {t.reservation.terrace}
               </button>
             </div>
           </div>
@@ -347,10 +348,10 @@ export function ReservationForm() {
           {/* Personal Info */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-white/5">
             <div>
-              <label className="block text-xs font-medium text-[#C4BFB5] mb-1">Ihr Name *</label>
+              <label className="block text-xs font-medium text-[#C4BFB5] mb-1">{t.reservation.nameLabel}</label>
               <input
                 type="text"
-                placeholder="z.B. Familie Schmidt"
+                placeholder={isEn ? "e.g. John Doe" : "z.B. Familie Schmidt"}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className={`w-full rounded-xl bg-[#181820] border ${
@@ -360,7 +361,7 @@ export function ReservationForm() {
             </div>
             <div>
               <label className="block text-xs font-medium text-[#C4BFB5] mb-1">
-                Telefonnummer *
+                {t.reservation.phoneLabel}
               </label>
               <input
                 type="tel"
@@ -374,11 +375,11 @@ export function ReservationForm() {
             </div>
             <div>
               <label className="block text-xs font-medium text-[#C4BFB5] mb-1">
-                E-Mail-Adresse *
+                {t.reservation.emailLabel}
               </label>
               <input
                 type="email"
-                placeholder="schmidt@web.de"
+                placeholder="guest@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={`w-full rounded-xl bg-[#181820] border ${
@@ -390,11 +391,11 @@ export function ReservationForm() {
 
           <div>
             <label className="block text-xs font-medium text-[#C4BFB5] mb-1">
-              Besondere Wünsche (z.B. Kinderstuhl, Geburtstag, Rollstuhlplatz)
+              {t.reservation.requestsLabel}
             </label>
             <input
               type="text"
-              placeholder="z.B. Wir feiern einen 50. Geburtstag, bitte einen ruhigen Tisch"
+              placeholder={t.reservation.requestsPlaceholder}
               value={specialRequest}
               onChange={(e) => setSpecialRequest(e.target.value)}
               className="w-full rounded-xl bg-[#181820] border border-white/10 px-3 py-2 text-sm text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
@@ -406,7 +407,7 @@ export function ReservationForm() {
             className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#E6B84A] via-[#F5C75D] to-[#E6B84A] py-4 text-sm font-black text-[#0A0A0C] shadow-lg shadow-[#E6B84A]/25 hover:shadow-[#E6B84A]/40 transition-all cursor-pointer"
           >
             <CheckCircle2 className="h-5 w-5" />
-            <span>Jetzt verbindlich reservieren</span>
+            <span>{t.reservation.submitBtn}</span>
           </button>
         </form>
       )}

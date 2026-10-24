@@ -12,31 +12,34 @@ import {
 import { SpotlightCard } from '../ui/SpotlightCard';
 import { playCrunchSound, playSizzleSound } from './AudioCrunchEngine';
 import { getKitchenWhatsAppNumber } from '@/lib/utils/whatsapp';
+import { useLanguage } from '../providers/LanguageContext';
 
 export function BentoCraftGrid() {
   const [activeStep, setActiveStep] = useState(3); // Default to Butterschmalz
   const whatsappPhone = getKitchenWhatsAppNumber();
+  const { t, lang } = useLanguage();
+  const isEn = lang === 'en';
 
   const panierSteps = [
     {
       step: 1,
-      title: 'Handgeklopft',
-      desc: 'Saftiges Fleisch wird hauchdünn mit dem Plattiereisen geklopft.',
+      title: t.bento.step1Title,
+      desc: t.bento.step1Desc,
     },
     {
       step: 2,
-      title: 'Mehl & Land-Ei',
-      desc: 'Feinstes Weizenmehl und frische Eier für die perfekte Bindung.',
+      title: t.bento.step2Title,
+      desc: t.bento.step2Desc,
     },
     {
       step: 3,
-      title: 'Knusper-Panade',
-      desc: 'Klassische Semmelbrösel, Panko-Flocken oder bayerische Brezelkruste.',
+      title: t.bento.step3Title,
+      desc: t.bento.step3Desc,
     },
     {
       step: 4,
-      title: 'Butterschmalz-Pfanne',
-      desc: 'Schwimmend bei 175°C wellenförmig souffliert – goldgelb und federleicht.',
+      title: t.bento.step4Title,
+      desc: t.bento.step4Desc,
     },
   ];
 
@@ -45,14 +48,13 @@ export function BentoCraftGrid() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-bold text-[#E6B84A] uppercase tracking-widest">
-            2026 Craft Gastronomy Bento
+            {t.bento.tagline}
           </span>
           <h2 className="text-3xl sm:text-5xl font-black text-[#FDFBF7] mt-2 font-display">
-            Das Geheimnis der Schmiede
+            {t.bento.heading}
           </h2>
           <p className="mt-3 text-sm sm:text-base text-[#C4BFB5]">
-            Vier Säulen, die jedes Schmiede-Schnitzel zu einem unvergleichlichen Geschmackserlebnis
-            machen.
+            {t.bento.subtitle}
           </p>
         </div>
 
@@ -64,17 +66,16 @@ export function BentoCraftGrid() {
               <div className="flex items-center justify-between mb-4">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E6B84A]/10 border border-[#E6B84A]/30 px-3 py-1 text-xs font-bold text-[#E6B84A]">
                   <Layers className="h-3.5 w-3.5" />
-                  <span>Schritt für Schritt</span>
+                  <span>{isEn ? 'Step by Step' : 'Schritt für Schritt'}</span>
                 </span>
-                <span className="text-xs text-[#C4BFB5]">Täglich frisch vor Ihren Augen</span>
+                <span className="text-xs text-[#C4BFB5]">{t.bento.stationSubtitle}</span>
               </div>
 
               <h3 className="text-2xl font-black text-[#FDFBF7]">
-                Die Mönchengladbacher Panierstraße
+                {t.bento.stationTitle}
               </h3>
               <p className="text-xs text-[#C4BFB5] mt-1 max-w-md">
-                Klicken Sie auf die Stationen, um das Geheimnis unserer soufflierten Kruste zu
-                entdecken.
+                {isEn ? 'Click through the stations to discover our souffléing secret.' : 'Klicken Sie auf die Stationen, um das Geheimnis unserer soufflierten Kruste zu entdecken.'}
               </p>
 
               {/* Interactive Step Selector */}
@@ -88,14 +89,14 @@ export function BentoCraftGrid() {
                         setActiveStep(idx);
                         playSizzleSound();
                       }}
-                      className={`rounded-2xl p-3.5 text-left transition-all border ${
+                      className={`rounded-2xl p-3.5 text-left transition-all border cursor-pointer ${
                         isActive
                           ? 'border-[#E6B84A] bg-[#E6B84A]/15 shadow-md shadow-[#E6B84A]/20'
                           : 'border-white/5 bg-[#1B1B24] hover:border-white/20'
                       }`}
                     >
                       <div className="text-[10px] font-black uppercase text-[#E6B84A]">
-                        Station 0{s.step}
+                        {isEn ? `Station 0${s.step}` : `Station 0${s.step}`}
                       </div>
                       <div className="text-xs font-bold text-[#FDFBF7] mt-1">{s.title}</div>
                     </button>
@@ -120,8 +121,8 @@ export function BentoCraftGrid() {
             </div>
 
             <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-[#C4BFB5]">
-              <span>Handwerk statt Fließband-TK</span>
-              <span className="text-[#E6B84A] font-semibold">100% Butterschmalz</span>
+              <span>{t.bento.handcraftedTag}</span>
+              <span className="text-[#E6B84A] font-semibold">{isEn ? '100% Clarified Butter' : '100% Butterschmalz'}</span>
             </div>
           </SpotlightCard>
 
@@ -131,9 +132,9 @@ export function BentoCraftGrid() {
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E6B84A]/10 text-[#E6B84A] mb-4">
                 <Volume2 className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-black text-[#FDFBF7]">Der Crunch-Faktor</h3>
+              <h3 className="text-xl font-black text-[#FDFBF7]">{t.bento.crunchTitle}</h3>
               <p className="text-xs text-[#C4BFB5] mt-1">
-                Akustisch verifizierte Knusprigkeit bei jedem Biss.
+                {t.bento.crunchDesc}
               </p>
 
               {/* Animated Decibel Waveform */}
@@ -150,16 +151,16 @@ export function BentoCraftGrid() {
               <div className="text-center">
                 <span className="font-mono text-3xl font-black text-[#E6B84A]">89.4 dB</span>
                 <span className="block text-[11px] text-[#C4BFB5]">
-                  Gemessene Knusprigkeit der soufflierten Panade
+                  {isEn ? 'Measured crispiness of souffléed crust' : 'Gemessene Knusprigkeit der soufflierten Panade'}
                 </span>
               </div>
             </div>
 
             <button
               onClick={playCrunchSound}
-              className="mt-6 w-full rounded-xl border border-[#E6B84A]/30 bg-[#E6B84A]/10 py-2.5 text-xs font-bold text-[#E6B84A] hover:bg-[#E6B84A] hover:text-[#0A0A0C] transition-colors"
+              className="mt-6 w-full rounded-xl border border-[#E6B84A]/30 bg-[#E6B84A]/10 py-2.5 text-xs font-bold text-[#E6B84A] hover:bg-[#E6B84A] hover:text-[#0A0A0C] transition-colors cursor-pointer"
             >
-              Akustik-Test abspielen 🔊
+              {t.bento.crunchPlay}
             </button>
           </SpotlightCard>
 
@@ -169,30 +170,29 @@ export function BentoCraftGrid() {
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400 mb-4">
                 <ShieldCheck className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-black text-[#FDFBF7]">Knusper-Garantie</h3>
+              <h3 className="text-xl font-black text-[#FDFBF7]">{t.bento.guaranteeTitle}</h3>
               <p className="text-xs text-[#C4BFB5] mt-1">
-                Warum unsere Schnitzel niemals matschig bei Ihnen ankommen.
+                {t.bento.guaranteeDesc}
               </p>
 
               <div className="my-6 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4 space-y-2 text-xs text-emerald-200">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                  <span>Saucen reisen im separaten Glas</span>
+                  <span>{t.bento.sauceGlass}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                  <span>Dampfdurchlässige Kartonagen</span>
+                  <span>{t.bento.breathableBox}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                  <span>Erst vor Ort dippen oder übergießen</span>
+                  <span>{t.bento.dipAtHome}</span>
                 </div>
               </div>
             </div>
 
             <p className="text-[11px] text-[#C4BFB5] italic">
-              &ldquo;Das einzige Schnitzel in Mönchengladbach, das nach 20 Minuten Fahrt noch
-              kracht.&rdquo;
+              {t.bento.quote}
             </p>
           </SpotlightCard>
 
@@ -202,37 +202,36 @@ export function BentoCraftGrid() {
               <div className="flex items-center justify-between mb-4">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E6B84A]/10 border border-[#E6B84A]/30 px-3 py-1 text-xs font-bold text-[#E6B84A]">
                   <MapPin className="h-3.5 w-3.5" />
-                  <span>Lokal verwurzelt</span>
+                  <span>{t.bento.radarTag}</span>
                 </span>
                 <span className="text-xs text-[#E6B84A] font-bold">Mönchengladbach & Umland</span>
               </div>
 
               <h3 className="text-2xl font-black text-[#FDFBF7]">
-                Von Bismarckstraße direkt auf Ihren Tisch
+                {t.bento.radarHeading}
               </h3>
               <p className="text-xs text-[#C4BFB5] mt-1 max-w-lg">
-                Zentral in Mönchengladbach gelegen beliefern wir die Stadtteile Mitte, Rheydt,
-                Odenkirchen, Lürrip, Windberg sowie Teile von Korschenbroich in kürzester Zeit.
+                {t.bento.radarDesc}
               </p>
 
               {/* Delivery Speed Metric Pills */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
                 <div className="rounded-xl bg-[#1B1B24] p-3.5 border border-white/5">
-                  <div className="text-xs text-[#C4BFB5]">Durchschnittliche Zeit</div>
-                  <div className="text-lg font-black text-[#E6B84A] mt-0.5">32 Minuten</div>
-                  <div className="text-[10px] text-[#C4BFB5]">Lieferung heiß & kross</div>
+                  <div className="text-xs text-[#C4BFB5]">{t.bento.speedAvg}</div>
+                  <div className="text-lg font-black text-[#E6B84A] mt-0.5">{t.bento.speedMinutes}</div>
+                  <div className="text-[10px] text-[#C4BFB5]">{t.bento.speedDesc}</div>
                 </div>
 
                 <div className="rounded-xl bg-[#1B1B24] p-3.5 border border-white/5">
-                  <div className="text-xs text-[#C4BFB5]">Selbstabholung</div>
-                  <div className="text-lg font-black text-emerald-400 mt-0.5">-10% Rabatt</div>
-                  <div className="text-[10px] text-[#C4BFB5]">Direkt an der Theke</div>
+                  <div className="text-xs text-[#C4BFB5]">{t.bento.pickupTag}</div>
+                  <div className="text-lg font-black text-emerald-400 mt-0.5">{t.bento.pickupDiscount}</div>
+                  <div className="text-[10px] text-[#C4BFB5]">{t.bento.pickupDesc}</div>
                 </div>
 
                 <div className="rounded-xl bg-[#1B1B24] p-3.5 border border-white/5">
-                  <div className="text-xs text-[#C4BFB5]">Liefergebiet</div>
-                  <div className="text-lg font-black text-[#FDFBF7] mt-0.5">9 PLZ-Zonen</div>
-                  <div className="text-[10px] text-[#C4BFB5]">Ab 15 € Mindestbestellwert</div>
+                  <div className="text-xs text-[#C4BFB5]">{t.bento.zonesTag}</div>
+                  <div className="text-lg font-black text-[#FDFBF7] mt-0.5">{t.bento.zonesCount}</div>
+                  <div className="text-[10px] text-[#C4BFB5]">{t.bento.zonesMin}</div>
                 </div>
               </div>
             </div>
@@ -245,7 +244,7 @@ export function BentoCraftGrid() {
                 rel="noopener noreferrer"
                 className="text-[#25D366] font-bold hover:underline"
               >
-                Frage stellen via WhatsApp &rarr;
+                {t.bento.askWhatsapp} &rarr;
               </a>
             </div>
           </SpotlightCard>

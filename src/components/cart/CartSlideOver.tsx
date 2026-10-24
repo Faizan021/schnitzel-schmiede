@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useCart } from '../providers/CartContext';
+import { useLanguage } from '../providers/LanguageContext';
 import { DELIVERY_ZONES, PaymentMethod } from '@/lib/types/order';
 import {
   MEAT_OPTIONS,
@@ -53,6 +54,9 @@ export function CartSlideOver() {
     updateCustomerDetails,
   } = useCart();
 
+  const { t, lang } = useLanguage();
+  const isEn = lang === 'en';
+
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [orderSent, setOrderSent] = useState(false);
   const [activeTab, setActiveTab] = useState<'cart' | 'checkout'>('cart');
@@ -65,17 +69,26 @@ export function CartSlideOver() {
 
   const validateForm = () => {
     const errors: Record<string, string> = {};
-    if (!customerDetails.name.trim()) errors.name = 'Bitte Namen eingeben';
-    if (!customerDetails.phone.trim() || customerDetails.phone.length < 6)
-      errors.phone = 'Gültige Telefonnummer erforderlich';
+    if (!customerDetails.name.trim()) {
+      errors.name = isEn ? 'Please enter your name' : 'Bitte Namen eingeben';
+    }
+    if (!customerDetails.phone.trim() || customerDetails.phone.length < 6) {
+      errors.phone = isEn ? 'Valid phone number required' : 'Gültige Telefonnummer erforderlich';
+    }
 
     if (fulfillmentType === 'delivery') {
-      if (!customerDetails.street.trim()) errors.street = 'Straße erforderlich';
-      if (!customerDetails.houseNumber.trim()) errors.houseNumber = 'Hausnr. erforderlich';
+      if (!customerDetails.street.trim()) {
+        errors.street = isEn ? 'Street required' : 'Straße erforderlich';
+      }
+      if (!customerDetails.houseNumber.trim()) {
+        errors.houseNumber = isEn ? 'House number required' : 'Hausnr. erforderlich';
+      }
     }
 
     if (!customerDetails.privacyAgreed) {
-      errors.privacy = 'Bitte stimmen Sie den Bestellbedingungen zu';
+      errors.privacy = isEn
+        ? 'Please agree to the order terms'
+        : 'Bitte stimmen Sie den Bestellbedingungen zu';
     }
 
     setFormErrors(errors);
@@ -96,7 +109,6 @@ export function CartSlideOver() {
       calculations
     );
 
-    // Trigger celebration confetti
     try {
       confetti({
         particleCount: 80,
@@ -105,7 +117,7 @@ export function CartSlideOver() {
         colors: ['#E6B84A', '#F5C75D', '#FFFFFF'],
       });
     } catch {
-      // Ignore if canvas-confetti is not loaded
+      // Ignore
     }
 
     setOrderSent(true);
@@ -140,9 +152,9 @@ export function CartSlideOver() {
                   <ShoppingBag className="h-5 w-5" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-[#FDFBF7]">Ihr Schmiede-Warenkorb</h2>
+                  <h2 className="text-lg font-bold text-[#FDFBF7]">{t.cart.title}</h2>
                   <p className="text-xs text-[#C4BFB5]">
-                    {itemCount} {itemCount === 1 ? 'Position' : 'Positionen'} · Frische Zubereitung
+                    {itemCount} {t.cart.positions} · {isEn ? 'Fresh Preparation' : 'Frische Zubereitung'}
                   </p>
                 </div>
               </div>
@@ -151,15 +163,16 @@ export function CartSlideOver() {
                 {items.length > 0 && (
                   <button
                     onClick={clearCart}
-                    className="rounded-lg p-2 text-xs text-[#C4BFB5] hover:text-rose-400 hover:bg-white/5 transition-colors"
-                    title="Warenkorb leeren"
+                    className="rounded-lg p-2 text-xs text-[#C4BFB5] hover:text-rose-400 hover:bg-white/5 transition-colors cursor-pointer"
+                    title={isEn ? "Clear Cart" : "Warenkorb leeren"}
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>
                 )}
                 <button
                   onClick={closeCart}
-                  className="rounded-xl p-2 text-[#C4BFB5] hover:bg-white/5 hover:text-[#FDFBF7] transition-colors"
+                  className="rounded-xl p-2 text-[#C4BFB5] hover:bg-white/5 hover:text-[#FDFBF7] transition-colors cursor-pointer"
+                  aria-label={isEn ? "Close Cart" : "Schließen"}
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -172,17 +185,16 @@ export function CartSlideOver() {
                 <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/5 text-[#E6B84A] mb-4">
                   <ShoppingBag className="h-10 w-10 opacity-70" />
                 </div>
-                <h3 className="text-xl font-bold text-[#FDFBF7]">Ihr Warenkorb ist noch leer</h3>
+                <h3 className="text-xl font-bold text-[#FDFBF7]">{t.cart.emptyTitle}</h3>
                 <p className="mt-2 text-sm text-[#C4BFB5] max-w-xs">
-                  Entdecken Sie unsere legendären Schnitzel-Kreationen oder konfigurieren Sie Ihr
-                  Wunsch-Schnitzel nach Maß.
+                  {t.cart.emptyDesc}
                 </p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={closeCart}
-                    className="rounded-xl bg-[#E6B84A] px-5 py-2.5 text-sm font-bold text-[#0A0A0C] hover:bg-[#F5C75D] transition-colors"
+                    className="rounded-xl bg-[#E6B84A] px-5 py-2.5 text-sm font-bold text-[#0A0A0C] hover:bg-[#F5C75D] transition-colors cursor-pointer"
                   >
-                    Zur Speisekarte
+                    {t.cart.exploreMenu}
                   </button>
                 </div>
               </div>
@@ -195,16 +207,16 @@ export function CartSlideOver() {
                       setFulfillmentType('pickup');
                       updateCustomerDetails({ fulfillmentType: 'pickup' });
                     }}
-                    className={`flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold transition-all ${
+                    className={`flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold transition-all cursor-pointer ${
                       fulfillmentType === 'pickup'
                         ? 'bg-[#E6B84A] text-[#0A0A0C] shadow-md shadow-[#E6B84A]/20'
                         : 'bg-[#1C1C22] text-[#C4BFB5] hover:text-[#FDFBF7]'
                     }`}
                   >
                     <Store className="h-4 w-4" />
-                    <span>Selbstabholung</span>
+                    <span>{t.cart.pickupTab}</span>
                     <span className="rounded-md bg-black/20 px-1.5 py-0.5 text-[10px]">
-                      -10% Rabatt
+                      {t.cart.pickupDiscountBadge}
                     </span>
                   </button>
 
@@ -213,14 +225,14 @@ export function CartSlideOver() {
                       setFulfillmentType('delivery');
                       updateCustomerDetails({ fulfillmentType: 'delivery' });
                     }}
-                    className={`flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold transition-all ${
+                    className={`flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold transition-all cursor-pointer ${
                       fulfillmentType === 'delivery'
                         ? 'bg-[#E6B84A] text-[#0A0A0C] shadow-md shadow-[#E6B84A]/20'
                         : 'bg-[#1C1C22] text-[#C4BFB5] hover:text-[#FDFBF7]'
                     }`}
                   >
                     <Car className="h-4 w-4" />
-                    <span>Lieferung (MG)</span>
+                    <span>{t.cart.deliveryTab}</span>
                   </button>
                 </div>
 
@@ -228,7 +240,7 @@ export function CartSlideOver() {
                 {fulfillmentType === 'delivery' && (
                   <div className="bg-[#181820] px-4 py-3 border-b border-white/5">
                     <div className="flex items-center justify-between text-xs mb-1.5">
-                      <span className="text-[#C4BFB5]">Liefergebiet in Mönchengladbach:</span>
+                      <span className="text-[#C4BFB5]">{t.cart.deliveryArea}:</span>
                       <span className="font-semibold text-[#E6B84A]">{selectedZone.name}</span>
                     </div>
 
@@ -255,8 +267,8 @@ export function CartSlideOver() {
                       <div className="text-[11px] text-[#C4BFB5] flex-1">
                         Min. {selectedZone.minOrder.toFixed(2).replace('.', ',')} € ·{' '}
                         {calculations.subtotal >= selectedZone.freeDeliveryThreshold
-                          ? '🎉 Frei Haus'
-                          : `Lieferung ${selectedZone.deliveryFee.toFixed(2).replace('.', ',')} €`}
+                          ? (isEn ? '🎉 Free Delivery' : '🎉 Frei Haus')
+                          : `${isEn ? 'Delivery' : 'Lieferung'} ${selectedZone.deliveryFee.toFixed(2).replace('.', ',')} €`}
                       </div>
                     </div>
 
@@ -264,9 +276,11 @@ export function CartSlideOver() {
                       <div className="mt-2 flex items-center gap-2 rounded-lg bg-rose-500/10 p-2 text-xs text-rose-300 border border-rose-500/20">
                         <AlertCircle className="h-4 w-4 shrink-0 text-rose-400" />
                         <span>
-                          Noch{' '}
-                          <strong>{missingForMinOrder.toFixed(2).replace('.', ',')} €</strong> bis
-                          zum Mindestbestellwert für Ihr PLZ-Gebiet.
+                          {isEn ? 'Still ' : 'Noch '}
+                          <strong>{missingForMinOrder.toFixed(2).replace('.', ',')} €</strong>{' '}
+                          {isEn
+                            ? 'needed for minimum order in this postal code.'
+                            : 'bis zum Mindestbestellwert für Ihr PLZ-Gebiet.'}
                         </span>
                       </div>
                     )}
@@ -277,23 +291,23 @@ export function CartSlideOver() {
                 <div className="flex border-b border-white/5 bg-[#121216] px-4">
                   <button
                     onClick={() => setActiveTab('cart')}
-                    className={`py-2.5 px-4 text-xs font-bold border-b-2 transition-colors ${
+                    className={`py-2.5 px-4 text-xs font-bold border-b-2 transition-colors cursor-pointer ${
                       activeTab === 'cart'
                         ? 'border-[#E6B84A] text-[#E6B84A]'
                         : 'border-transparent text-[#C4BFB5] hover:text-[#FDFBF7]'
                     }`}
                   >
-                    1. Positionen ({itemCount})
+                    {t.cart.tabPositions} ({itemCount})
                   </button>
                   <button
                     onClick={() => setActiveTab('checkout')}
-                    className={`py-2.5 px-4 text-xs font-bold border-b-2 transition-colors ${
+                    className={`py-2.5 px-4 text-xs font-bold border-b-2 transition-colors cursor-pointer ${
                       activeTab === 'checkout'
                         ? 'border-[#E6B84A] text-[#E6B84A]'
                         : 'border-transparent text-[#C4BFB5] hover:text-[#FDFBF7]'
                     }`}
                   >
-                    2. Kundendaten & Bezahlung
+                    {t.cart.tabCheckout}
                   </button>
                 </div>
 
@@ -310,7 +324,7 @@ export function CartSlideOver() {
                             <div className="flex gap-3">
                               <Image
                                 src={item.item.image}
-                                alt={item.item.name}
+                                alt={isEn && item.item.nameEn ? item.item.nameEn : item.item.name}
                                 width={64}
                                 height={64}
                                 className="h-16 w-16 rounded-lg object-cover"
@@ -318,18 +332,20 @@ export function CartSlideOver() {
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-start justify-between">
                                   <h4 className="font-semibold text-sm text-[#FDFBF7] truncate">
-                                    {item.item.name}
+                                    {isEn && item.item.nameEn ? item.item.nameEn : item.item.name}
                                   </h4>
                                   <button
                                     onClick={() => removeItem(item.cartItemId)}
-                                    className="text-[#C4BFB5] hover:text-rose-400 p-1"
-                                    title="Entfernen"
+                                    className="text-[#C4BFB5] hover:text-rose-400 p-1 cursor-pointer"
+                                    title={isEn ? "Remove" : "Entfernen"}
                                   >
                                     <Trash2 className="h-3.5 w-3.5" />
                                   </button>
                                 </div>
                                 <p className="text-xs text-[#C4BFB5] mt-0.5 line-clamp-1">
-                                  {item.item.subtitle || item.item.description}
+                                  {isEn && item.item.subtitleEn
+                                    ? item.item.subtitleEn
+                                    : (item.item.subtitle || item.item.description)}
                                 </p>
                                 <div className="mt-2.5 flex items-center justify-between">
                                   <span className="font-mono text-sm font-bold text-[#E6B84A]">
@@ -341,7 +357,7 @@ export function CartSlideOver() {
                                   <div className="flex items-center gap-2 rounded-lg bg-[#22222A] px-2 py-1">
                                     <button
                                       onClick={() => updateQuantity(item.cartItemId, -1)}
-                                      className="text-[#C4BFB5] hover:text-[#FDFBF7] p-0.5"
+                                      className="text-[#C4BFB5] hover:text-[#FDFBF7] p-0.5 cursor-pointer"
                                     >
                                       <Minus className="h-3.5 w-3.5" />
                                     </button>
@@ -350,7 +366,7 @@ export function CartSlideOver() {
                                     </span>
                                     <button
                                       onClick={() => updateQuantity(item.cartItemId, 1)}
-                                      className="text-[#C4BFB5] hover:text-[#FDFBF7] p-0.5"
+                                      className="text-[#C4BFB5] hover:text-[#FDFBF7] p-0.5 cursor-pointer"
                                     >
                                       <Plus className="h-3.5 w-3.5" />
                                     </button>
@@ -371,8 +387,8 @@ export function CartSlideOver() {
                                 </div>
                                 <button
                                   onClick={() => removeItem(item.cartItemId)}
-                                  className="text-[#C4BFB5] hover:text-rose-400 p-1"
-                                  title="Entfernen"
+                                  className="text-[#C4BFB5] hover:text-rose-400 p-1 cursor-pointer"
+                                  title={isEn ? "Remove" : "Entfernen"}
                                 >
                                   <Trash2 className="h-3.5 w-3.5" />
                                 </button>
@@ -380,29 +396,29 @@ export function CartSlideOver() {
 
                               <div className="mt-2 space-y-1 text-xs text-[#C4BFB5] bg-black/20 p-2.5 rounded-lg border border-white/5">
                                 <div>
-                                  • <strong className="text-[#FDFBF7]">Größe:</strong>{' '}
+                                  • <strong className="text-[#FDFBF7]">{t.customizer.sizeLabel}:</strong>{' '}
                                   {SIZE_OPTIONS[item.config.size]?.name}
                                 </div>
                                 <div>
-                                  • <strong className="text-[#FDFBF7]">Panade:</strong>{' '}
+                                  • <strong className="text-[#FDFBF7]">{t.customizer.crustLabel}:</strong>{' '}
                                   {CRUST_OPTIONS[item.config.crust]?.name}
                                 </div>
                                 <div>
-                                  • <strong className="text-[#FDFBF7]">Sauce:</strong>{' '}
+                                  • <strong className="text-[#FDFBF7]">{t.customizer.sauceLabel}:</strong>{' '}
                                   {SAUCE_OPTIONS[item.config.sauce]?.name}
                                   {item.config.sauceSeparated && (
                                     <span className="ml-1 text-[#E6B84A] text-[11px] font-medium">
-                                      (separat im Becher)
+                                      ({isEn ? 'packaged separately' : 'separat im Becher'})
                                     </span>
                                   )}
                                 </div>
                                 <div>
-                                  • <strong className="text-[#FDFBF7]">Beilage:</strong>{' '}
+                                  • <strong className="text-[#FDFBF7]">{t.customizer.sidesLabel}:</strong>{' '}
                                   {SIDE_OPTIONS[item.config.side]?.name}
                                 </div>
                                 {item.config.extras.length > 0 && (
                                   <div>
-                                    • <strong className="text-[#FDFBF7]">Extras:</strong>{' '}
+                                    • <strong className="text-[#FDFBF7]">{t.customizer.extrasLabel}:</strong>{' '}
                                     {item.config.extras
                                       .map((e) => EXTRA_OPTIONS[e]?.name)
                                       .join(', ')}
@@ -420,7 +436,7 @@ export function CartSlideOver() {
                                 <div className="flex items-center gap-2 rounded-lg bg-[#22222A] px-2 py-1">
                                   <button
                                     onClick={() => updateQuantity(item.cartItemId, -1)}
-                                    className="text-[#C4BFB5] hover:text-[#FDFBF7] p-0.5"
+                                    className="text-[#C4BFB5] hover:text-[#FDFBF7] p-0.5 cursor-pointer"
                                   >
                                     <Minus className="h-3.5 w-3.5" />
                                   </button>
@@ -429,7 +445,7 @@ export function CartSlideOver() {
                                   </span>
                                   <button
                                     onClick={() => updateQuantity(item.cartItemId, 1)}
-                                    className="text-[#C4BFB5] hover:text-[#FDFBF7] p-0.5"
+                                    className="text-[#C4BFB5] hover:text-[#FDFBF7] p-0.5 cursor-pointer"
                                   >
                                     <Plus className="h-3.5 w-3.5" />
                                   </button>
@@ -445,7 +461,7 @@ export function CartSlideOver() {
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs font-semibold text-[#FDFBF7] flex items-center gap-1.5">
                             <Sparkles className="h-3.5 w-3.5 text-[#E6B84A]" />
-                            Trinkgeld für das Schmiede-Team:
+                            {t.cart.tipLabel}
                           </span>
                           <span className="text-xs font-mono font-bold text-[#E6B84A]">
                             {calculations.tipAmount.toFixed(2).replace('.', ',')} €
@@ -456,13 +472,13 @@ export function CartSlideOver() {
                             <button
                               key={pct}
                               onClick={() => setTipPercent(pct)}
-                              className={`rounded-lg py-1.5 text-xs font-bold transition-all ${
+                              className={`rounded-lg py-1.5 text-xs font-bold transition-all cursor-pointer ${
                                 tipPercent === pct
                                   ? 'bg-[#E6B84A] text-[#0A0A0C]'
                                   : 'bg-[#22222A] text-[#C4BFB5] hover:text-[#FDFBF7]'
                               }`}
                             >
-                              {pct === 0 ? 'Kein' : `${pct}%`}
+                              {pct === 0 ? t.cart.noneTip : `${pct}%`}
                             </button>
                           ))}
                         </div>
@@ -473,16 +489,16 @@ export function CartSlideOver() {
                     <div className="space-y-3.5">
                       <div className="rounded-xl border border-white/10 bg-[#16161C] p-3.5 space-y-3">
                         <h4 className="text-xs font-bold uppercase tracking-wider text-[#E6B84A]">
-                          Kontaktdaten für die Bestellung
+                          {t.cart.contactHeading}
                         </h4>
 
                         <div>
                           <label className="block text-xs font-medium text-[#C4BFB5] mb-1">
-                            Vollständiger Name *
+                            {t.cart.nameLabel}
                           </label>
                           <input
                             type="text"
-                            placeholder="z.B. Max Mustermann"
+                            placeholder={t.cart.namePlaceholder}
                             value={customerDetails.name}
                             onChange={(e) => updateCustomerDetails({ name: e.target.value })}
                             className={`w-full rounded-lg bg-[#22222A] px-3 py-2 text-sm text-[#FDFBF7] border ${
@@ -496,11 +512,11 @@ export function CartSlideOver() {
 
                         <div>
                           <label className="block text-xs font-medium text-[#C4BFB5] mb-1">
-                            Telefonnummer (für Rückfragen / Fahrer) *
+                            {t.cart.phoneLabel}
                           </label>
                           <input
                             type="tel"
-                            placeholder="z.B. 0172 1234567"
+                            placeholder={t.cart.phonePlaceholder}
                             value={customerDetails.phone}
                             onChange={(e) => updateCustomerDetails({ phone: e.target.value })}
                             className={`w-full rounded-lg bg-[#22222A] px-3 py-2 text-sm text-[#FDFBF7] border ${
@@ -516,7 +532,7 @@ export function CartSlideOver() {
                           <div className="grid grid-cols-3 gap-2">
                             <div className="col-span-2">
                               <label className="block text-xs font-medium text-[#C4BFB5] mb-1">
-                                Straße *
+                                {t.cart.streetLabel}
                               </label>
                               <input
                                 type="text"
@@ -530,7 +546,7 @@ export function CartSlideOver() {
                             </div>
                             <div>
                               <label className="block text-xs font-medium text-[#C4BFB5] mb-1">
-                                Hausnr. *
+                                {t.cart.houseNumberLabel}
                               </label>
                               <input
                                 type="text"
@@ -546,11 +562,11 @@ export function CartSlideOver() {
                             </div>
                             <div className="col-span-3">
                               <label className="block text-xs font-medium text-[#C4BFB5] mb-1">
-                                Zusatzangaben (Etage, Klingelname, Hinterhaus)
+                                {t.cart.floorNotesLabel}
                               </label>
                               <input
                                 type="text"
-                                placeholder="z.B. 2. OG rechts, Klingel Mustermann"
+                                placeholder={t.cart.floorNotesPlaceholder}
                                 value={customerDetails.floorNotes || ''}
                                 onChange={(e) =>
                                   updateCustomerDetails({ floorNotes: e.target.value })
@@ -563,7 +579,7 @@ export function CartSlideOver() {
 
                         <div>
                           <label className="block text-xs font-medium text-[#C4BFB5] mb-1">
-                            Wunschzeit
+                            {t.cart.preferredTimeLabel}
                           </label>
                           <select
                             value={customerDetails.preferredTime}
@@ -572,12 +588,12 @@ export function CartSlideOver() {
                             }
                             className="w-full rounded-lg bg-[#22222A] px-3 py-2 text-sm text-[#FDFBF7] border border-white/10 focus:border-[#E6B84A] focus:outline-none"
                           >
-                            <option>Schnellstmöglich (ca. 30–45 Min)</option>
-                            <option>In ca. 60 Minuten</option>
-                            <option>In ca. 90 Minuten</option>
-                            <option>Vorbestellung für heute Abend 18:30 Uhr</option>
-                            <option>Vorbestellung für heute Abend 19:30 Uhr</option>
-                            <option>Vorbestellung für heute Abend 20:30 Uhr</option>
+                            <option>{isEn ? 'As soon as possible (~30–45 mins)' : 'Schnellstmöglich (ca. 30–45 Min)'}</option>
+                            <option>{isEn ? 'In approx. 60 minutes' : 'In ca. 60 Minuten'}</option>
+                            <option>{isEn ? 'In approx. 90 minutes' : 'In ca. 90 Minuten'}</option>
+                            <option>{isEn ? 'Pre-order for tonight 6:30 PM' : 'Vorbestellung für heute Abend 18:30 Uhr'}</option>
+                            <option>{isEn ? 'Pre-order for tonight 7:30 PM' : 'Vorbestellung für heute Abend 19:30 Uhr'}</option>
+                            <option>{isEn ? 'Pre-order for tonight 8:30 PM' : 'Vorbestellung für heute Abend 20:30 Uhr'}</option>
                           </select>
                         </div>
                       </div>
@@ -585,27 +601,27 @@ export function CartSlideOver() {
                       {/* Payment Method Pre-Selection */}
                       <div className="rounded-xl border border-white/10 bg-[#16161C] p-3.5 space-y-2">
                         <h4 className="text-xs font-bold uppercase tracking-wider text-[#E6B84A]">
-                          Gewünschte Zahlungsart vor Ort
+                          {t.cart.paymentHeading}
                         </h4>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                           {[
                             {
                               id: 'cash',
-                              label: 'Bar passend',
+                              label: isEn ? 'Exact Cash' : 'Bar passend',
                               icon: DollarSign,
-                              desc: 'An Haustür / Theke',
+                              desc: isEn ? 'At door / counter' : 'An Haustür / Theke',
                             },
                             {
                               id: 'card',
-                              label: 'EC / Karte',
+                              label: isEn ? 'EC / Card' : 'EC / Karte',
                               icon: CreditCard,
-                              desc: 'Mobiles SumUp Terminal',
+                              desc: isEn ? 'Mobile terminal' : 'Mobiles SumUp Terminal',
                             },
                             {
                               id: 'paypal',
                               label: 'PayPal QR',
                               icon: QrCode,
-                              desc: 'Per App vor Ort',
+                              desc: isEn ? 'Via App on-site' : 'Per App vor Ort',
                             },
                           ].map((pay) => {
                             const Icon = pay.icon;
@@ -619,7 +635,7 @@ export function CartSlideOver() {
                                     paymentMethod: pay.id as PaymentMethod,
                                   })
                                 }
-                                className={`flex flex-col items-center justify-center rounded-xl p-2.5 text-center transition-all border ${
+                                className={`flex flex-col items-center justify-center rounded-xl p-2.5 text-center transition-all border cursor-pointer ${
                                   isSelected
                                     ? 'border-[#E6B84A] bg-[#E6B84A]/10 text-[#FDFBF7]'
                                     : 'border-white/5 bg-[#22222A] text-[#C4BFB5] hover:border-white/20'
@@ -641,11 +657,11 @@ export function CartSlideOver() {
                       {/* Kitchen Note */}
                       <div className="rounded-xl border border-white/10 bg-[#16161C] p-3.5">
                         <label className="block text-xs font-medium text-[#C4BFB5] mb-1">
-                          Notiz an die Schmiede-Küche (optional)
+                          {t.cart.kitchenNoteLabel}
                         </label>
                         <input
                           type="text"
-                          placeholder="z.B. Bitte Besteck beilegen, Sauce extra heiß"
+                          placeholder={t.cart.kitchenNotePlaceholder}
                           value={customerDetails.notes || ''}
                           onChange={(e) => updateCustomerDetails({ notes: e.target.value })}
                           className="w-full rounded-lg bg-[#22222A] px-3 py-2 text-sm text-[#FDFBF7] border border-white/10 focus:border-[#E6B84A] focus:outline-none"
@@ -664,9 +680,7 @@ export function CartSlideOver() {
                             className="mt-1 h-4 w-4 rounded border-white/20 bg-[#22222A] text-[#E6B84A] focus:ring-0"
                           />
                           <span className="text-xs text-[#C4BFB5] leading-relaxed">
-                            Ich willige in die Datenübermittlung zur Auftragsabwicklung gemäß der{' '}
-                            <span className="text-[#E6B84A] underline">Datenschutzerklärung</span>{' '}
-                            ein. Alle Preise verstehen sich inkl. ges. MwSt. (§ 312j BGB).
+                            {t.cart.privacyConsent}
                           </span>
                         </label>
                         {formErrors.privacy && (
@@ -683,7 +697,7 @@ export function CartSlideOver() {
                 <div className="border-t border-white/10 bg-[#141418] p-4 sm:p-5 space-y-3">
                   <div className="space-y-1.5 text-xs text-[#C4BFB5]">
                     <div className="flex justify-between">
-                      <span>Zwischensumme:</span>
+                      <span>{t.cart.subtotal}:</span>
                       <span className="font-mono text-[#FDFBF7]">
                         {calculations.subtotal.toFixed(2).replace('.', ',')} €
                       </span>
@@ -691,7 +705,7 @@ export function CartSlideOver() {
 
                     {calculations.pickupDiscount > 0 && (
                       <div className="flex justify-between text-emerald-400 font-semibold">
-                        <span>Selbstabholer-Rabatt (10%):</span>
+                        <span>{t.cart.pickupDiscount} (10%):</span>
                         <span className="font-mono">
                           -{calculations.pickupDiscount.toFixed(2).replace('.', ',')} €
                         </span>
@@ -700,10 +714,10 @@ export function CartSlideOver() {
 
                     {fulfillmentType === 'delivery' && (
                       <div className="flex justify-between">
-                        <span>Lieferkosten ({selectedZone.name.split('(')[0].trim()}):</span>
+                        <span>{t.cart.deliveryFee} ({selectedZone.name.split('(')[0].trim()}):</span>
                         <span className="font-mono text-[#FDFBF7]">
                           {calculations.deliveryFee === 0
-                            ? 'Kostenlos (Frei Haus)'
+                            ? (isEn ? 'Free Delivery' : 'Kostenlos (Frei Haus)')
                             : `${calculations.deliveryFee.toFixed(2).replace('.', ',')} €`}
                         </span>
                       </div>
@@ -711,7 +725,7 @@ export function CartSlideOver() {
 
                     {calculations.tipAmount > 0 && (
                       <div className="flex justify-between">
-                        <span>Trinkgeld für das Team:</span>
+                        <span>{t.cart.tip}:</span>
                         <span className="font-mono text-[#FDFBF7]">
                           {calculations.tipAmount.toFixed(2).replace('.', ',')} €
                         </span>
@@ -719,15 +733,15 @@ export function CartSlideOver() {
                     )}
 
                     <div className="flex justify-between pt-2 border-t border-white/10 text-base font-bold text-[#FDFBF7]">
-                      <span>Gesamtbetrag:</span>
+                      <span>{t.cart.totalAmount}:</span>
                       <span className="font-mono text-xl text-[#E6B84A]">
                         {calculations.total.toFixed(2).replace('.', ',')} €
                       </span>
                     </div>
 
                     <div className="text-[10px] text-[#C4BFB5]/70 flex justify-between">
-                      <span>inkl. 7% MwSt. auf Speisen: {calculations.taxFood7.toFixed(2).replace('.', ',')} €</span>
-                      <span>19% MwSt.: {calculations.taxDrinks19.toFixed(2).replace('.', ',')} €</span>
+                      <span>{t.cart.taxFood}: {calculations.taxFood7.toFixed(2).replace('.', ',')} €</span>
+                      <span>{t.cart.taxDrinks}: {calculations.taxDrinks19.toFixed(2).replace('.', ',')} €</span>
                     </div>
                   </div>
 
@@ -735,23 +749,21 @@ export function CartSlideOver() {
                   <button
                     disabled={isBelowMinOrder}
                     onClick={handleWhatsAppDispatch}
-                    className={`w-full relative flex items-center justify-center gap-2.5 rounded-xl py-3.5 px-4 text-sm font-black transition-all ${
+                    className={`w-full relative flex items-center justify-center gap-2.5 rounded-xl py-3.5 px-4 text-sm font-black transition-all cursor-pointer ${
                       isBelowMinOrder
                         ? 'bg-neutral-800 text-neutral-500 cursor-not-allowed'
                         : 'bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white hover:brightness-110 shadow-lg shadow-[#25D366]/20'
                     }`}
                   >
                     <MessageSquare className="h-5 w-5 fill-current" />
-                    <span>Bestellung via WhatsApp aufgeben (1-Klick)</span>
+                    <span>{t.cart.dispatchWhatsappBtn}</span>
                     <ArrowRight className="h-4 w-4" />
                   </button>
 
                   {orderSent && (
                     <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-2.5 text-center text-xs text-emerald-300 flex items-center justify-center gap-2">
                       <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                      <span>
-                        WhatsApp wurde geöffnet! Bitte senden Sie die Nachricht jetzt ab.
-                      </span>
+                      <span>{t.cart.whatsappOpenedNotice}</span>
                     </div>
                   )}
                 </div>

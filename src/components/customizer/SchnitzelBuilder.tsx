@@ -15,6 +15,7 @@ import {
   RotateCcw,
 } from 'lucide-react';
 import { useCart } from '../providers/CartContext';
+import { useLanguage } from '../providers/LanguageContext';
 import {
   MEAT_OPTIONS,
   SIZE_OPTIONS,
@@ -33,6 +34,9 @@ const BASE_PRICE = 14.90;
 
 export function SchnitzelBuilder() {
   const { addCustomSchnitzel } = useCart();
+  const { t, lang } = useLanguage();
+  const isEn = lang === 'en';
+
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3 | 4>(1);
   const [selectedMeat, setSelectedMeat] = useState<keyof typeof MEAT_OPTIONS>('haehnchen');
   const [selectedSize, setSelectedSize] = useState<keyof typeof SIZE_OPTIONS>('normal');
@@ -124,14 +128,13 @@ export function SchnitzelBuilder() {
       <div className="text-center max-w-3xl mx-auto mb-10">
         <div className="inline-flex items-center gap-2 rounded-full border border-[#E6B84A]/30 bg-[#E6B84A]/10 px-4 py-1.5 text-xs font-bold text-[#E6B84A] mb-4">
           <Sparkles className="h-3.5 w-3.5" />
-          <span>Der Digitale Schmiede-Baukasten 2026</span>
+          <span>{t.customizer.tagline}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#FDFBF7]">
-          Bauen Sie Ihr Meister-Schnitzel
+          {t.customizer.heading}
         </h1>
         <p className="mt-3 text-sm sm:text-base text-[#C4BFB5]">
-          Wählen Sie Fleisch, Knusperpanade, hausgemachte Saucen und knusprige Beilagen.
-          Frisch von Hand geklopft und in reinem Butterschmalz souffliert.
+          {t.customizer.subtitle}
         </p>
       </div>
 
@@ -141,10 +144,10 @@ export function SchnitzelBuilder() {
           {/* Step Navigation Pills */}
           <div className="grid grid-cols-4 gap-2 rounded-2xl bg-[#141418] p-2 border border-white/5">
             {[
-              { step: 1 as const, title: '1. Fleisch', icon: Flame },
-              { step: 2 as const, title: '2. Panade', icon: Layers },
-              { step: 3 as const, title: '3. Sauce', icon: Soup },
-              { step: 4 as const, title: '4. Beilagen', icon: UtensilsCrossed },
+              { step: 1 as const, title: t.customizer.step1, icon: Flame },
+              { step: 2 as const, title: t.customizer.step2, icon: Layers },
+              { step: 3 as const, title: t.customizer.step3, icon: Soup },
+              { step: 4 as const, title: t.customizer.step4, icon: UtensilsCrossed },
             ].map((tab) => {
               const Icon = tab.icon;
               const isActive = currentStep === tab.step;
@@ -152,7 +155,7 @@ export function SchnitzelBuilder() {
                 <button
                   key={tab.step}
                   onClick={() => setCurrentStep(tab.step)}
-                  className={`flex flex-col sm:flex-row items-center justify-center gap-1.5 rounded-xl py-2.5 px-3 text-xs font-bold transition-all ${
+                  className={`flex flex-col sm:flex-row items-center justify-center gap-1.5 rounded-xl py-2.5 px-3 text-xs font-bold transition-all cursor-pointer ${
                     isActive
                       ? 'bg-[#E6B84A] text-[#0A0A0C] shadow-lg shadow-[#E6B84A]/25'
                       : 'text-[#C4BFB5] hover:bg-white/5 hover:text-[#FDFBF7]'
@@ -176,9 +179,9 @@ export function SchnitzelBuilder() {
               >
                 <div>
                   <h3 className="text-lg font-bold text-[#FDFBF7] flex items-center justify-between">
-                    <span>1. Wählen Sie Ihre Fleischart</span>
+                    <span>{t.customizer.meatHeading}</span>
                     <span className="text-xs font-normal text-[#C4BFB5]">
-                      Frisch aus regionaler Schlachtung
+                      {t.customizer.meatSub}
                     </span>
                   </h3>
                   <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -213,7 +216,7 @@ export function SchnitzelBuilder() {
                           <p className="mt-1 text-xs text-[#C4BFB5]">{opt.description}</p>
                           <div className="mt-3 text-xs font-semibold text-[#E6B84A]">
                             {opt.priceDelta === 0
-                              ? 'Im Basispreis enthalten'
+                              ? t.customizer.included
                               : `+${opt.priceDelta.toFixed(2).replace('.', ',')} €`}
                           </div>
                         </div>
@@ -224,7 +227,7 @@ export function SchnitzelBuilder() {
 
                 <div className="pt-6 border-t border-white/5">
                   <h3 className="text-lg font-bold text-[#FDFBF7]">
-                    Größe & Einwaage
+                    {t.customizer.sizeHeading}
                   </h3>
                   <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {Object.entries(SIZE_OPTIONS).map(([key, opt]) => {
@@ -247,7 +250,7 @@ export function SchnitzelBuilder() {
                           <p className="mt-1 text-xs text-[#C4BFB5]">{opt.description}</p>
                           <div className="mt-2 text-xs font-semibold text-[#E6B84A]">
                             {opt.priceDelta === 0
-                              ? 'Standard-Portion'
+                              ? t.customizer.standardPortion
                               : `+${opt.priceDelta.toFixed(2).replace('.', ',')} €`}
                           </div>
                         </div>
@@ -259,9 +262,9 @@ export function SchnitzelBuilder() {
                 <div className="flex justify-end pt-4">
                   <button
                     onClick={() => setCurrentStep(2)}
-                    className="rounded-xl bg-[#E6B84A] px-6 py-2.5 text-sm font-bold text-[#0A0A0C] hover:bg-[#F5C75D] transition-colors"
+                    className="rounded-xl bg-[#E6B84A] px-6 py-2.5 text-sm font-bold text-[#0A0A0C] hover:bg-[#F5C75D] transition-colors cursor-pointer"
                   >
-                    Weiter zu Schritt 2: Panade &rarr;
+                    {isEn ? 'Next: Breading &rarr;' : 'Weiter zu Schritt 2: Panade &rarr;'}
                   </button>
                 </div>
               </motion.div>
@@ -276,9 +279,9 @@ export function SchnitzelBuilder() {
               >
                 <div>
                   <h3 className="text-lg font-bold text-[#FDFBF7] flex items-center justify-between">
-                    <span>2. Wählen Sie Ihre Knusper-Panade</span>
+                    <span>{t.customizer.crustHeading}</span>
                     <span className="text-xs font-normal text-[#C4BFB5]">
-                      Souffliert in reinem Butterschmalz
+                      {t.customizer.crustSub}
                     </span>
                   </h3>
                   <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -302,7 +305,7 @@ export function SchnitzelBuilder() {
                           <p className="mt-1 text-xs text-[#C4BFB5]">{opt.description}</p>
                           <div className="mt-3 text-xs font-semibold text-[#E6B84A]">
                             {opt.priceDelta === 0
-                              ? 'Klassisch inklusive'
+                              ? t.customizer.included
                               : `+${opt.priceDelta.toFixed(2).replace('.', ',')} €`}
                           </div>
                         </div>
@@ -314,15 +317,15 @@ export function SchnitzelBuilder() {
                 <div className="flex justify-between pt-4">
                   <button
                     onClick={() => setCurrentStep(1)}
-                    className="rounded-xl border border-white/10 px-5 py-2 text-sm text-[#C4BFB5] hover:text-[#FDFBF7] transition-colors"
+                    className="rounded-xl border border-white/10 px-5 py-2 text-sm text-[#C4BFB5] hover:text-[#FDFBF7] transition-colors cursor-pointer"
                   >
-                    &larr; Zurück
+                    &larr; {t.customizer.backBtn}
                   </button>
                   <button
                     onClick={() => setCurrentStep(3)}
-                    className="rounded-xl bg-[#E6B84A] px-6 py-2.5 text-sm font-bold text-[#0A0A0C] hover:bg-[#F5C75D] transition-colors"
+                    className="rounded-xl bg-[#E6B84A] px-6 py-2.5 text-sm font-bold text-[#0A0A0C] hover:bg-[#F5C75D] transition-colors cursor-pointer"
                   >
-                    Weiter zu Schritt 3: Sauce &rarr;
+                    {isEn ? 'Next: Sauce &rarr;' : 'Weiter zu Schritt 3: Sauce &rarr;'}
                   </button>
                 </div>
               </motion.div>
@@ -337,9 +340,9 @@ export function SchnitzelBuilder() {
               >
                 <div>
                   <h3 className="text-lg font-bold text-[#FDFBF7] flex items-center justify-between">
-                    <span>3. Hausgemachte Schmiede-Sauce</span>
+                    <span>{t.customizer.sauceHeading}</span>
                     <span className="text-xs font-normal text-[#C4BFB5]">
-                      Täglich frisch eingekocht
+                      {t.customizer.sauceSub}
                     </span>
                   </h3>
 
@@ -349,10 +352,10 @@ export function SchnitzelBuilder() {
                       <ShieldCheck className="h-5 w-5 text-[#E6B84A] shrink-0" />
                       <div>
                         <div className="text-xs font-bold text-[#FDFBF7]">
-                          Knusper-Garantie: Sauce separat verpacken
+                          {t.customizer.sauceToggleTitle}
                         </div>
                         <div className="text-[11px] text-[#C4BFB5]">
-                          Verhindert matschige Panade beim Transport und zu Hause.
+                          {t.customizer.sauceToggleDesc}
                         </div>
                       </div>
                     </div>
@@ -388,7 +391,7 @@ export function SchnitzelBuilder() {
                           <p className="mt-1 text-xs text-[#C4BFB5]">{opt.description}</p>
                           <div className="mt-3 text-xs font-semibold text-[#E6B84A]">
                             {opt.priceDelta === 0
-                              ? 'Inklusive'
+                              ? t.customizer.included
                               : `+${opt.priceDelta.toFixed(2).replace('.', ',')} €`}
                           </div>
                         </div>
@@ -400,15 +403,15 @@ export function SchnitzelBuilder() {
                 <div className="flex justify-between pt-4">
                   <button
                     onClick={() => setCurrentStep(2)}
-                    className="rounded-xl border border-white/10 px-5 py-2 text-sm text-[#C4BFB5] hover:text-[#FDFBF7] transition-colors"
+                    className="rounded-xl border border-white/10 px-5 py-2 text-sm text-[#C4BFB5] hover:text-[#FDFBF7] transition-colors cursor-pointer"
                   >
-                    &larr; Zurück
+                    &larr; {t.customizer.backBtn}
                   </button>
                   <button
                     onClick={() => setCurrentStep(4)}
-                    className="rounded-xl bg-[#E6B84A] px-6 py-2.5 text-sm font-bold text-[#0A0A0C] hover:bg-[#F5C75D] transition-colors"
+                    className="rounded-xl bg-[#E6B84A] px-6 py-2.5 text-sm font-bold text-[#0A0A0C] hover:bg-[#F5C75D] transition-colors cursor-pointer"
                   >
-                    Weiter zu Schritt 4: Beilagen &rarr;
+                    {isEn ? 'Next: Sides &rarr;' : 'Weiter zu Schritt 4: Beilagen &rarr;'}
                   </button>
                 </div>
               </motion.div>
@@ -423,7 +426,7 @@ export function SchnitzelBuilder() {
               >
                 <div>
                   <h3 className="text-lg font-bold text-[#FDFBF7]">
-                    4. Wählen Sie Ihre Hauptbeilage
+                    {t.customizer.sidesHeading}
                   </h3>
                   <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {Object.entries(SIDE_OPTIONS).map(([key, opt]) => {
@@ -446,7 +449,7 @@ export function SchnitzelBuilder() {
                           <p className="mt-1 text-xs text-[#C4BFB5]">{opt.description}</p>
                           <div className="mt-3 text-xs font-semibold text-[#E6B84A]">
                             {opt.priceDelta === 0
-                              ? 'Inklusive'
+                              ? t.customizer.included
                               : `+${opt.priceDelta.toFixed(2).replace('.', ',')} €`}
                           </div>
                         </div>
@@ -458,8 +461,8 @@ export function SchnitzelBuilder() {
                 {/* Gourmet Extras */}
                 <div className="pt-6 border-t border-white/5">
                   <h3 className="text-lg font-bold text-[#FDFBF7] flex items-center justify-between">
-                    <span>Gourmet-Extras & Toppings</span>
-                    <span className="text-xs font-normal text-[#C4BFB5]">Mehrfachauswahl möglich</span>
+                    <span>{t.customizer.extrasHeading}</span>
+                    <span className="text-xs font-normal text-[#C4BFB5]">{t.customizer.extrasSub}</span>
                   </h3>
                   <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {Object.entries(EXTRA_OPTIONS).map(([key, opt]) => {
@@ -500,12 +503,12 @@ export function SchnitzelBuilder() {
                 {/* Special Instructions */}
                 <div className="pt-4 border-t border-white/5">
                   <label className="block text-xs font-bold text-[#C4BFB5] uppercase tracking-wider mb-1.5">
-                    Besondere Zubereitungswünsche an die Schmiede (optional)
+                    {t.customizer.notesLabel}
                   </label>
                   <input
                     type="text"
                     maxLength={160}
-                    placeholder="z.B. Zitrone extra dick schneiden, Sauce sehr heiß"
+                    placeholder={t.customizer.notesPlaceholder}
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     className="w-full rounded-xl bg-[#181820] border border-white/10 px-4 py-2.5 text-sm text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
@@ -515,16 +518,16 @@ export function SchnitzelBuilder() {
                 <div className="flex justify-between pt-4">
                   <button
                     onClick={() => setCurrentStep(3)}
-                    className="rounded-xl border border-white/10 px-5 py-2 text-sm text-[#C4BFB5] hover:text-[#FDFBF7] transition-colors"
+                    className="rounded-xl border border-white/10 px-5 py-2 text-sm text-[#C4BFB5] hover:text-[#FDFBF7] transition-colors cursor-pointer"
                   >
-                    &larr; Zurück
+                    &larr; {t.customizer.backBtn}
                   </button>
                   <button
                     onClick={handleAddToCart}
-                    className="rounded-xl bg-[#E6B84A] px-7 py-3 text-sm font-black text-[#0A0A0C] hover:bg-[#F5C75D] shadow-lg shadow-[#E6B84A]/25 transition-all flex items-center gap-2"
+                    className="rounded-xl bg-[#E6B84A] px-7 py-3 text-sm font-black text-[#0A0A0C] hover:bg-[#F5C75D] shadow-lg shadow-[#E6B84A]/25 transition-all flex items-center gap-2 cursor-pointer"
                   >
                     <ShoppingBag className="h-4 w-4" />
-                    <span>In den Warenkorb ({totalPrice.toFixed(2).replace('.', ',')} €)</span>
+                    <span>{t.customizer.addCustomBtn} ({totalPrice.toFixed(2).replace('.', ',')} €)</span>
                   </button>
                 </div>
               </motion.div>
@@ -540,14 +543,14 @@ export function SchnitzelBuilder() {
             <div className="flex items-center justify-between pb-4 border-b border-white/10">
               <div>
                 <span className="text-[11px] font-bold text-[#E6B84A] uppercase tracking-widest">
-                  Live Konfiguration
+                  {t.customizer.liveConfigTitle}
                 </span>
-                <h3 className="text-lg font-extrabold text-[#FDFBF7]">Ihr Schmiede-Unikat</h3>
+                <h3 className="text-lg font-extrabold text-[#FDFBF7]">{t.customizer.liveConfigHeading}</h3>
               </div>
               <button
                 onClick={resetConfig}
-                className="text-[#C4BFB5] hover:text-[#FDFBF7] p-1.5 rounded-lg hover:bg-white/5 transition-colors"
-                title="Zurücksetzen"
+                className="text-[#C4BFB5] hover:text-[#FDFBF7] p-1.5 rounded-lg hover:bg-white/5 transition-colors cursor-pointer"
+                title={isEn ? "Reset" : "Zurücksetzen"}
               >
                 <RotateCcw className="h-4 w-4" />
               </button>
@@ -555,41 +558,41 @@ export function SchnitzelBuilder() {
 
             <div className="py-4 space-y-2.5 text-xs">
               <div className="flex justify-between">
-                <span className="text-[#C4BFB5]">Basis:</span>
+                <span className="text-[#C4BFB5]">{t.customizer.baseLabel}:</span>
                 <span className="font-semibold text-[#FDFBF7] text-right">
                   {MEAT_OPTIONS[selectedMeat].name}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#C4BFB5]">Portion:</span>
+                <span className="text-[#C4BFB5]">{t.customizer.sizeLabel}:</span>
                 <span className="font-semibold text-[#FDFBF7] text-right">
                   {SIZE_OPTIONS[selectedSize].name.split('(')[0]}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#C4BFB5]">Kruste:</span>
+                <span className="text-[#C4BFB5]">{t.customizer.crustLabel}:</span>
                 <span className="font-semibold text-[#FDFBF7] text-right">
                   {CRUST_OPTIONS[selectedCrust].name}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#C4BFB5]">Sauce:</span>
+                <span className="text-[#C4BFB5]">{t.customizer.sauceLabel}:</span>
                 <span className="font-semibold text-[#FDFBF7] text-right">
                   {SAUCE_OPTIONS[selectedSauce].name}
                   {sauceSeparated && (
-                    <span className="block text-[10px] text-[#E6B84A]">separat verpackt</span>
+                    <span className="block text-[10px] text-[#E6B84A]">{t.customizer.separateNotice}</span>
                   )}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#C4BFB5]">Beilage:</span>
+                <span className="text-[#C4BFB5]">{t.customizer.sidesLabel}:</span>
                 <span className="font-semibold text-[#FDFBF7] text-right">
                   {SIDE_OPTIONS[selectedSide].name}
                 </span>
               </div>
               {selectedExtras.length > 0 && (
                 <div className="flex justify-between">
-                  <span className="text-[#C4BFB5]">Extras:</span>
+                  <span className="text-[#C4BFB5]">{t.customizer.extrasLabel}:</span>
                   <span className="font-semibold text-[#FDFBF7] text-right">
                     {selectedExtras.map((e) => EXTRA_OPTIONS[e].name).join(', ')}
                   </span>
@@ -601,17 +604,17 @@ export function SchnitzelBuilder() {
             <div className="pt-3 border-t border-white/10 flex items-center justify-between">
               <button
                 onClick={() => setIsAllergenModalOpen(true)}
-                className="inline-flex items-center gap-1.5 text-[11px] text-[#C4BFB5] hover:text-[#E6B84A] transition-colors"
+                className="inline-flex items-center gap-1.5 text-[11px] text-[#C4BFB5] hover:text-[#E6B84A] transition-colors cursor-pointer"
               >
                 <Info className="h-3.5 w-3.5 text-[#E6B84A]" />
-                <span>Allergene: {activeAllergens.join(', ')} (Ansehen)</span>
+                <span>{isEn ? 'Allergens:' : 'Allergene:'} {activeAllergens.length > 0 ? activeAllergens.join(', ') : (isEn ? 'None' : 'Keine')} ({isEn ? 'View' : 'Ansehen'})</span>
               </button>
             </div>
 
             {/* Live Price Display & Add To Cart Button */}
             <div className="mt-5 pt-4 border-t border-white/10 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-[#C4BFB5]">Preis inkl. MwSt.:</span>
+                <span className="text-sm font-medium text-[#C4BFB5]">{t.customizer.priceIncVat}:</span>
                 <span className="text-2xl font-black font-mono text-[#E6B84A]">
                   {totalPrice.toFixed(2).replace('.', ',')} €
                 </span>
@@ -622,7 +625,7 @@ export function SchnitzelBuilder() {
                 className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#E6B84A] via-[#F5C75D] to-[#E6B84A] py-3.5 text-sm font-black text-[#0A0A0C] shadow-lg shadow-[#E6B84A]/25 hover:shadow-[#E6B84A]/40 transition-all cursor-pointer"
               >
                 <ShoppingBag className="h-4 w-4" />
-                <span>In den Warenkorb legen</span>
+                <span>{t.customizer.addCustomBtn}</span>
               </button>
             </div>
           </div>

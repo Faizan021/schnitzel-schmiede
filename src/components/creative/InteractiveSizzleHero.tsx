@@ -18,9 +18,13 @@ import {
 import { playCrunchSound, playSizzleSound } from './AudioCrunchEngine';
 import { AudioTogglePill } from './AudioTogglePill';
 import { GlowingButton } from '../ui/GlowingButton';
+import { useLanguage } from '../providers/LanguageContext';
 import confetti from 'canvas-confetti';
 
 export function InteractiveSizzleHero() {
+  const { t, lang } = useLanguage();
+  const isEn = lang === 'en';
+
   const [crunchCount, setCrunchCount] = useState(0);
   const [decibels, setDecibels] = useState(88.4);
   const [isCrunching, setIsCrunching] = useState(false);
@@ -88,25 +92,22 @@ export function InteractiveSizzleHero() {
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
               <div className="inline-flex items-center gap-2 rounded-full border border-[#E6B84A]/30 bg-[#16161C]/90 px-4 py-1.5 text-xs font-bold text-[#E6B84A] shadow-lg backdrop-blur-md">
                 <Flame className="h-4 w-4 fill-[#E6B84A]" />
-                <span>Die Manufaktur für echtes Schnitzel · Mönchengladbach</span>
+                <span>{t.hero.tagline}</span>
               </div>
               <AudioTogglePill />
             </div>
 
             {/* Giant Creative Headline */}
             <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-[#FDFBF7] font-display leading-[1.05]">
-              DIE KUNST DES{' '}
+              {t.hero.titleStart}{' '}
               <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#E6B84A] via-[#F5C75D] to-[#E6B84A]">
-                CRUNCH.
+                {t.hero.titleHighlight}
                 <span className="absolute -bottom-1 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-[#E6B84A] to-transparent rounded-full" />
               </span>
             </h1>
 
             <p className="text-base sm:text-lg text-[#C4BFB5] max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              Jedes Schnitzel wird erst auf Bestellung frisch von Hand geklopft, in reinem
-              Butterschmalz souffliert und mit der patenten{' '}
-              <strong className="text-[#FDFBF7]">Knusper-Garantie</strong> geliefert –{' '}
-              Saucen reisen stets separat im versiegelten Glas.
+              {t.hero.description}
             </p>
 
             {/* CTA Buttons */}
@@ -117,7 +118,7 @@ export function InteractiveSizzleHero() {
                   icon={<ShoppingBag className="h-5 w-5" />}
                   onMouseEnter={playSizzleSound}
                 >
-                  Speisekarte & Bestellen
+                  {t.hero.orderCta}
                 </GlowingButton>
               </Link>
 
@@ -128,7 +129,7 @@ export function InteractiveSizzleHero() {
                   icon={<Sparkles className="h-5 w-5 text-[#E6B84A]" />}
                   onMouseEnter={playSizzleSound}
                 >
-                  Schnitzel-Baukasten
+                  {t.hero.customizerCta}
                 </GlowingButton>
               </Link>
 
@@ -138,7 +139,7 @@ export function InteractiveSizzleHero() {
                   size="lg"
                   icon={<Calendar className="h-5 w-5 text-[#E6B84A]" />}
                 >
-                  Tisch buchen
+                  {t.hero.reserveCta}
                 </GlowingButton>
               </Link>
             </div>
@@ -151,15 +152,15 @@ export function InteractiveSizzleHero() {
                     <Star key={i} className="h-3.5 w-3.5 fill-current" />
                   ))}
                 </div>
-                <span className="font-bold text-[#FDFBF7]">4.9 / 5.0 Google</span>
+                <span className="font-bold text-[#FDFBF7]">{t.hero.ratingGoogle}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                <span>100% Halal Optionen</span>
+                <span>{t.hero.halalBadge}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Award className="h-4 w-4 text-[#E6B84A]" />
-                <span>10% Abholer-Rabatt</span>
+                <span>{t.hero.pickupBadge}</span>
               </div>
             </div>
           </div>
@@ -185,11 +186,11 @@ export function InteractiveSizzleHero() {
                   <div className="flex items-center gap-2">
                     <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-400 animate-ping" />
                     <span className="text-xs font-bold text-[#FDFBF7]">
-                      Frisch in Butterschmalz
+                      {t.hero.inButter}
                     </span>
                   </div>
                   <span className="rounded-full bg-[#E6B84A]/15 border border-[#E6B84A]/30 px-2.5 py-0.5 text-[10px] font-black uppercase text-[#E6B84A]">
-                    Schmiede-Spezialität
+                    {t.hero.specialty}
                   </span>
                 </div>
 
@@ -197,7 +198,7 @@ export function InteractiveSizzleHero() {
                 <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden bg-black/40 group">
                   <Image
                     src="/images/dishes/schnitzel-wiener-art.jpg"
-                    alt="Goldbraun souffliertes Schnitzel Wiener Art"
+                    alt={isEn ? "Golden souffléed Schnitzel Wiener Art" : "Goldbraun souffliertes Schnitzel Wiener Art"}
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, 400px"
@@ -219,7 +220,7 @@ export function InteractiveSizzleHero() {
                         Schnitzel Wiener Art (220g)
                       </h3>
                       <p className="text-[11px] text-[#E6B84A]">
-                        Soufflierte Goldpanade · Bio-Zitrone · Pommes
+                        {isEn ? 'Souffléed golden crust · Organic lemon · Fries' : 'Soufflierte Goldpanade · Bio-Zitrone · Pommes'}
                       </p>
                     </div>
                     <span className="font-mono text-base font-extrabold text-[#E6B84A]">
@@ -233,10 +234,10 @@ export function InteractiveSizzleHero() {
                   <div className="flex items-center justify-between text-xs">
                     <div className="flex items-center gap-1.5 text-[#C4BFB5]">
                       <Activity className="h-4 w-4 text-[#E6B84A]" />
-                      <span className="font-semibold">Akustik-Sensor:</span>
+                      <span className="font-semibold">{t.hero.crunchSensorTitle}</span>
                     </div>
                     <span className="font-mono text-sm font-bold text-[#E6B84A]">
-                      {decibels} dB (Ultra-Kross)
+                      {decibels} dB ({isEn ? 'Ultra-Crispy' : 'Ultra-Kross'})
                     </span>
                   </div>
 
@@ -252,14 +253,14 @@ export function InteractiveSizzleHero() {
                     <Volume2 className="h-4 w-4" />
                     <span>
                       {crunchCount === 0
-                        ? 'Hier klicken für Crunch-Test 🔊'
-                        : `Geknuspert (${crunchCount}x) · Nochmal!`}
+                        ? t.hero.crunchButtonDefault
+                        : `${t.hero.crunchButtonDone} (${crunchCount}x)`}
                     </span>
                   </button>
 
                   <div className="flex justify-between items-center text-[10px] text-[#C4BFB5]/80 pt-1">
-                    <span>Synthetischer Sound via Web Audio API</span>
-                    <span className="text-[#E6B84A]">Knusper-Garantie</span>
+                    <span>{t.hero.crunchSubtitle}</span>
+                    <span className="text-[#E6B84A]">{t.hero.crunchGuarantee}</span>
                   </div>
                 </div>
               </motion.div>
