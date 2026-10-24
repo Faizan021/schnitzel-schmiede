@@ -186,7 +186,7 @@ export function MenuSection() {
                   className="flex flex-col sm:flex-row bg-[#1C1A18] border border-[#D4A347]/30 overflow-hidden hover:border-[#D4A347] transition-all duration-300 group rounded-2xl"
                 >
                   {/* Photo Section */}
-                  <div className="relative h-56 sm:h-auto sm:w-1/2 overflow-hidden bg-black/40">
+                  <div className="relative h-56 sm:h-auto sm:min-h-[220px] sm:w-1/2 overflow-hidden bg-black/40">
                     <Image
                       src={dish.image!}
                       alt={displayName}
