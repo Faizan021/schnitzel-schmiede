@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --forge-950: #0a0a0c;
+    --forge-900: #121216;
+    --forge-850: #18181e;
+    --forge-800: #22222a;
+    --forge-750: #2a2a35;
+    --forge-700: #353542;
+    --amber-gold: #e6b84a;
+    --amber-hover: #f5c75d;
+    --amber-light: #fef3c7;
+    --amber-dark: #b88526;
+    --cream-50: #ffffff;
+    --cream-100: #fdfbf7;
+    --cream-200: #f5efe6;
+    --cream-400: #c4bfb5;
+    --cream-600: #8a857b;
+    --emerald-accent: #10b981;
+    --ruby-accent: #ef4444;
+  }
+
+  * {
+    border-color: var(--forge-800);
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--forge-950);
+    color: var(--cream-100);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom scrollbar for modern dark gastronomy theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #22222a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e6b84a;
+}
+
+/* Golden Craft Glow Utilities */
+.gold-glow {
+  box-shadow: 0 0 25px -5px rgba(230, 184, 74, 0.35);
+}
+
+.gold-glow-lg {
+  box-shadow: 0 0 45px -8px rgba(230, 184, 74, 0.45);
+}
+
+.gold-text-glow {
+  text-shadow: 0 0 20px rgba(230, 184, 74, 0.4);
+}
+
+.glass-forge {
+  background: rgba(18, 18, 22, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(230, 184, 74, 0.12);
+}
+
+.glass-forge-solid {
+  background: rgba(18, 18, 22, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Mobile Safe Bottom Padding for Sticky Nav */
+.pb-mobile-safe {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+}
