@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono, Playfair_Display, Outfit } from 'next/font/google';
 import './globals.css';
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
@@ -10,6 +10,13 @@ import { MobileBottomNav } from '@/components/layout/MobileBottomNav';
 import { CartSlideOver } from '@/components/cart/CartSlideOver';
 import { FloatingWhatsAppFAB } from '@/components/ui/FloatingWhatsAppFAB';
 import { getRestaurantJsonLd } from '@/lib/seo/schema-org';
+
+export const viewport: Viewport = {
+  themeColor: '#edf7fc',
+  colorScheme: 'light',
+  width: 'device-width',
+  initialScale: 1,
+};
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -89,6 +96,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${outfit.variable} h-full antialiased`}
     >
       <head>
+        <meta name="color-scheme" content="light" />
+        <meta name="supported-color-schemes" content="light" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

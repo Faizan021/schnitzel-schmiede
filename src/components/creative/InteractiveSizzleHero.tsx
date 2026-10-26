@@ -131,14 +131,14 @@ export function InteractiveSizzleHero() {
             {isEn ? (
               <>
                 WHERE CRAFT MEETS THE{' '}
-                <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[#2e5f7e] via-[#a87b41] to-[#1a3a52]">
+                <span className="italic text-[#d99036] drop-shadow-sm">
                   GOLDEN CRUST.
                 </span>
               </>
             ) : (
               <>
                 WO DIE SCHMIEDE AUF DIE{' '}
-                <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[#2e5f7e] via-[#a87b41] to-[#1a3a52]">
+                <span className="italic text-[#d99036] drop-shadow-sm">
                   GOLDENE KRUSTE TRIFFT.
                 </span>
               </>
@@ -163,7 +163,7 @@ export function InteractiveSizzleHero() {
           <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#9bc1d9] to-transparent opacity-90" />
 
           {/* Dish Showcase Container with Live Cinematic Video */}
-          <div className="relative w-full aspect-[16/10] sm:aspect-[21/9] rounded-xl overflow-hidden border border-[#b8d4e8]/50 bg-[#1a3a52] shadow-inner group">
+          <div className="relative w-full h-80 sm:h-auto sm:aspect-[21/9] rounded-xl overflow-hidden border border-[#b8d4e8]/50 bg-[#1a3a52] shadow-inner group">
             {/* Live Video Element */}
             <video
               ref={showcaseVideoRef}
@@ -181,51 +181,54 @@ export function InteractiveSizzleHero() {
             {/* Cinematic Shadow Vignette */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a52]/90 via-transparent to-black/30 pointer-events-none" />
 
-            {/* Top Interactive Row: Origin Badge + Controls + Sizzle Audio Simulator Switch */}
-            <div className="absolute top-3 inset-x-3 flex items-center justify-between z-20 gap-2 flex-wrap">
-              <div className="bg-white/90 backdrop-blur-md border border-white px-3 py-1 rounded-lg text-xs font-bold text-[#1a3a52] flex items-center gap-1.5 shadow-md">
-                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
-                <span>{isEn ? 'LIVE CINEMATIC FORGE' : 'ECHTE PFANNEN-KUNST'}</span>
+            {/* Top Interactive Row: Origin Badge + Controls + Sizzle Audio Simulator Switch (Mobile-Optimized Single Row) */}
+            <div className="absolute top-3 inset-x-3 flex items-center justify-between z-20 gap-1.5 sm:gap-2">
+              <div className="bg-white/90 backdrop-blur-md border border-white px-2 sm:px-3 py-1 rounded-lg text-[10px] sm:text-xs font-bold text-[#1a3a52] flex items-center gap-1 sm:gap-1.5 shadow-md shrink-0">
+                <CheckCircle2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-emerald-600" />
+                <span>{isEn ? 'LIVE FORGE' : 'PFANNEN-KUNST'}</span>
               </div>
 
-              <div className="flex items-center gap-2.5">
-                {/* Play / Pause Toggle (44x44px Touch Target) */}
+              <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+                {/* Play / Pause Toggle */}
                 <button
                   type="button"
                   onClick={handleTogglePlay}
-                  className="h-11 w-11 flex items-center justify-center rounded-xl bg-white/95 hover:bg-white text-[#1a3a52] backdrop-blur-md border border-[#b8d4e8] transition-all shadow-md cursor-pointer active:scale-95"
+                  className="h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-xl bg-white/95 hover:bg-white text-[#1a3a52] backdrop-blur-md border border-[#b8d4e8] transition-all shadow-md cursor-pointer active:scale-95 shrink-0"
                   title={isPlayingVideo ? 'Pause Video' : 'Play Video'}
                   aria-label="Video Play/Pause"
                 >
-                  {isPlayingVideo ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 fill-current" />}
+                  {isPlayingVideo ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4 fill-current" />}
                 </button>
 
-                {/* Mute / Unmute Toggle (44x44px Touch Target) */}
+                {/* Mute / Unmute Toggle */}
                 <button
                   type="button"
                   onClick={handleToggleMute}
-                  className="h-11 w-11 flex items-center justify-center rounded-xl bg-white/95 hover:bg-white text-[#1a3a52] backdrop-blur-md border border-[#b8d4e8] transition-all shadow-md cursor-pointer active:scale-95"
+                  className="h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-xl bg-white/95 hover:bg-white text-[#1a3a52] backdrop-blur-md border border-[#b8d4e8] transition-all shadow-md cursor-pointer active:scale-95 shrink-0"
                   title={isMuted ? 'Unmute Video' : 'Mute Video'}
                   aria-label="Video Sound"
                 >
-                  {isMuted ? <VolumeX className="h-5 w-5 text-[#2e5f7e]" /> : <Volume2 className="h-5 w-5 text-emerald-600" />}
+                  {isMuted ? <VolumeX className="h-4 w-4 text-[#2e5f7e]" /> : <Volume2 className="h-4 w-4 text-emerald-600" />}
                 </button>
 
-                {/* Sizzle Simulator Interactive Toggle (Min 44px Height) */}
+                {/* Sizzle Simulator Interactive Toggle */}
                 <button
                   type="button"
                   onClick={handleTriggerSizzle}
-                  className={`min-h-[44px] px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold tracking-wider flex items-center gap-2 transition-all shadow-md cursor-pointer active:scale-95 ${
+                  className={`h-8 sm:h-10 px-2.5 sm:px-4 rounded-xl text-[11px] sm:text-xs font-mono font-bold tracking-wider flex items-center gap-1.5 transition-all shadow-md cursor-pointer active:scale-95 shrink-0 ${
                     isSizzlingActive
                       ? 'bg-[#9bc1d9] text-[#1a3a52] shadow-[#9bc1d9]/50 scale-105 border border-white'
                       : 'bg-white/95 backdrop-blur-md border border-[#b8d4e8] text-[#1a3a52] hover:bg-[#cce3f1]'
                   }`}
                 >
-                  <Flame className={`h-4 w-4 ${isSizzlingActive ? 'animate-bounce text-[#92601e]' : 'text-[#92601e]'}`} />
-                  <span>
+                  <Flame className={`h-3.5 w-3.5 ${isSizzlingActive ? 'animate-bounce text-[#92601e]' : 'text-[#92601e]'}`} />
+                  <span className="hidden sm:inline">
                     {isSizzlingActive
                       ? (isEn ? '🔥 SIZZLING @ 178°C' : '🔥 178°C BUTTER-HITZE')
                       : (isEn ? 'Sizzle Sound 🔊' : 'Pfannen-Hitze zünden 🔊')}
+                  </span>
+                  <span className="sm:hidden">
+                    {isSizzlingActive ? '🔥 178°C' : 'Hitze 🔊'}
                   </span>
                 </button>
               </div>

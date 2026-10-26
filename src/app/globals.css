@@ -8,6 +8,8 @@
 
 @layer base {
   :root {
+    color-scheme: light only;
+    supported-color-schemes: light;
     /* BebeQ Berlin Theme Tokens */
     --bebeq-blue: #9bc1d9;       /* Primary Riviera / Glacier Blue */
     --bebeq-mid: #b8d4e8;        /* Frosted Sky Blue */
@@ -29,7 +31,7 @@
   }
 
   html {
-    color-scheme: light;
+    color-scheme: light only;
   }
 
   body {
