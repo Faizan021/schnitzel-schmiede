@@ -76,10 +76,14 @@ export function Header() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 font-bold text-emerald-300 hover:text-emerald-200 transition-colors"
+              className="flex items-center gap-1.5 font-bold text-emerald-300 hover:text-white transition-colors"
             >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+              </span>
               <MessageSquare className="h-3 w-3 fill-current text-emerald-400" />
-              <span>WhatsApp: 0176 70341602</span>
+              <span>WhatsApp Live</span>
             </a>
           </div>
         </div>
@@ -137,16 +141,20 @@ export function Header() {
 
           {/* Action Hub (Language Switcher + WhatsApp Direct + Table Booking + Cart) */}
           <div className="flex items-center gap-2 sm:gap-2.5">
-            {/* Direct WhatsApp Pill (Owner's Top Priority) */}
+            {/* Eye-Catching Official WhatsApp Action Pill (No Raw Phone Digits) */}
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/40 bg-emerald-50 hover:bg-emerald-100/90 px-3.5 py-2 text-xs font-black text-emerald-900 transition-all shadow-sm active:scale-95"
-              title="Per WhatsApp direkt anfragen (0176 70341602)"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 px-3.5 py-2 text-xs font-black text-white shadow-md shadow-emerald-900/20 hover:shadow-lg hover:shadow-emerald-900/30 transition-all duration-300 border border-emerald-400/40 active:scale-95 cursor-pointer"
+              title="Per WhatsApp direkt anfragen & bestellen"
             >
-              <MessageSquare className="h-3.5 w-3.5 text-emerald-600 fill-emerald-600" />
-              <span>WhatsApp <span className="hidden xl:inline">0176 70341602</span></span>
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-200" />
+              </span>
+              <MessageSquare className="h-3.5 w-3.5 fill-white text-white" />
+              <span className="tracking-wide font-extrabold">{isEn ? 'WhatsApp Chat' : 'WhatsApp Live'}</span>
             </a>
 
             {/* Desktop Language Switcher */}

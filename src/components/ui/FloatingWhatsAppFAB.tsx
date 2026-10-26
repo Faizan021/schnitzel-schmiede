@@ -42,11 +42,11 @@ export function FloatingWhatsAppFAB() {
 
         <div className="flex flex-col text-left">
           <span className="text-[10px] font-mono font-bold tracking-wider text-emerald-800 uppercase flex items-center gap-1">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            {isEn ? 'Direct WhatsApp' : 'Inhaber WhatsApp'}
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            {isEn ? 'Direct WhatsApp' : 'WhatsApp Live'}
           </span>
           <span className="text-xs font-black text-[#1a3a52] leading-none mt-0.5">
-            0176 70341602
+            {isEn ? 'Chat Now →' : 'Jetzt anfragen →'}
           </span>
         </div>
       </a>

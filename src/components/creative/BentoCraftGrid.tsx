@@ -21,6 +21,7 @@ import { useLanguage } from '../providers/LanguageContext';
 export function BentoCraftGrid() {
   const { lang } = useLanguage();
   const isEn = lang === 'en';
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const [isPlayingSound, setIsPlayingSound] = useState(false);
 
   const handlePlaySound = () => {
@@ -56,7 +57,7 @@ export function BentoCraftGrid() {
           <div className="rounded-2xl overflow-hidden border border-white/90 bg-white/85 backdrop-blur-md shadow-lg shadow-[#1a3a52]/5 flex flex-col justify-between">
             <div className="relative h-56 w-full overflow-hidden bg-[#ddeef7]">
               <Image
-                src="/images/stitch/schnitzel-hero-stitch.jpg"
+                src={`${basePath}/images/stitch/schnitzel-hero-stitch.jpg`}
                 alt="Die Schmiede Goldbraunes Kalbsschnitzel"
                 fill
                 sizes="(max-width: 768px) 100vw, 500px"
@@ -180,7 +181,7 @@ export function BentoCraftGrid() {
           <div className="rounded-2xl overflow-hidden border border-white/90 bg-white/85 backdrop-blur-md shadow-lg shadow-[#1a3a52]/5 flex flex-col justify-between">
             <div className="relative h-56 w-full overflow-hidden bg-[#ddeef7]">
               <Image
-                src="/images/stitch/sauce-pan-stitch.jpg"
+                src={`${basePath}/images/stitch/sauce-pan-stitch.jpg`}
                 alt="Artisanal Sauce Alchemy Skillet - Champignon Rahm"
                 fill
                 sizes="(max-width: 768px) 100vw, 500px"
