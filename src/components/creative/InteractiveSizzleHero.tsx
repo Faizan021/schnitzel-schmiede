@@ -31,6 +31,7 @@ export function InteractiveSizzleHero() {
   const { lang } = useLanguage();
   const isEn = lang === 'en';
   const whatsappPhone = getKitchenWhatsAppNumber();
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const [isSizzlingActive, setIsSizzlingActive] = useState(false);
   const [isPlayingVideo, setIsPlayingVideo] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
@@ -102,11 +103,11 @@ export function InteractiveSizzleHero() {
           loop
           playsInline
           preload="metadata"
-          poster="/images/stitch/schnitzel-hero-stitch.jpg"
+          poster={`${basePath}/images/stitch/schnitzel-hero-stitch.jpg`}
           className="h-full w-full object-cover object-center filter brightness-[0.96] contrast-[1.06] opacity-50 transition-opacity duration-1000"
         >
-          <source src="/videos/kitchen-free.mp4" type="video/mp4" />
-          <source src="/videos/zeitlos-hero.mp4" type="video/mp4" />
+          <source src={`${basePath}/videos/kitchen-free.mp4`} type="video/mp4" />
+          <source src={`${basePath}/videos/zeitlos-hero.mp4`} type="video/mp4" />
         </video>
         {/* BebeQ Light Frosted Ambient Overlays - Crystal Visibility */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#edf7fc]/50 via-[#ddeef7]/35 to-[#edf7fc]/95 backdrop-blur-[0.5px]" />
@@ -172,11 +173,11 @@ export function InteractiveSizzleHero() {
               loop
               playsInline
               preload="auto"
-              poster="/images/stitch/schnitzel-hero-stitch.jpg"
+              poster={`${basePath}/images/stitch/schnitzel-hero-stitch.jpg`}
               className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             >
-              <source src="/videos/pan-sizzle-free.mp4" type="video/mp4" />
-              <source src="/videos/kitchen-free.mp4" type="video/mp4" />
+              <source src={`${basePath}/videos/pan-sizzle-free.mp4`} type="video/mp4" />
+              <source src={`${basePath}/videos/kitchen-free.mp4`} type="video/mp4" />
             </video>
 
             {/* Cinematic Shadow Vignette */}

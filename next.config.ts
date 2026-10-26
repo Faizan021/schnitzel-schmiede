@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
 
+const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (isGithubActions ? '/schnitzel-schmiede' : '');
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: 'export',
+  basePath,
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -10,8 +15,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  cacheComponents: true,
-  partialPrefetching: true,
   turbopack: {
     rules: {
       "*.css": {
