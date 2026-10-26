@@ -11,7 +11,7 @@ import { SauceDipInteractive } from '@/components/creative/SauceDipInteractive';
 import { PartyCelebrationChapter } from '@/components/home/PartyCelebrationChapter';
 import { ReviewsSection } from '@/components/home/ReviewsSection';
 import { InvitationBanner } from '@/components/home/InvitationBanner';
-import { MenuSection } from '@/components/menu/MenuSection';
+import { FeaturedDishesPreview } from '@/components/home/FeaturedDishesPreview';
 import { EmbersBackground } from '@/components/creative/EmbersBackground';
 import { LiveKitchenRadar } from '@/components/ui/LiveKitchenRadar';
 import { useLanguage } from '@/components/providers/LanguageContext';
@@ -68,7 +68,7 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <MenuSection />
+        <FeaturedDishesPreview />
       </section>
 
       {/* Zeitlos-inspired Chapter: "Für Ihre Feier reserviert" & Catering Party Deals */}

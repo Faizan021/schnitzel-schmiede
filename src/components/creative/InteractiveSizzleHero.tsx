@@ -94,31 +94,17 @@ export function InteractiveSizzleHero() {
   };
 
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-center overflow-hidden pt-6 pb-20 bg-[#edf7fc]">
-      {/* Full-Bleed Cinematic Background Video (Zeitlos & BebeQ Inspired) */}
+    <section className="relative overflow-hidden pt-8 pb-16 bg-[#edf7fc]">
+      {/* BebeQ Riviera & Glacier Atmospheric Ambient Lighting (Clean & Elegant, No Double Video) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster={`${basePath}/images/stitch/schnitzel-hero-stitch.jpg`}
-          className="h-full w-full object-cover object-center filter brightness-[0.96] contrast-[1.06] opacity-50 transition-opacity duration-1000"
-        >
-          <source src={`${basePath}/videos/kitchen-free.mp4`} type="video/mp4" />
-          <source src={`${basePath}/videos/zeitlos-hero.mp4`} type="video/mp4" />
-        </video>
-        {/* BebeQ Light Frosted Ambient Overlays - Crystal Visibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#edf7fc]/50 via-[#ddeef7]/35 to-[#edf7fc]/95 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#edf7fc] via-[#ddeef7]/80 to-[#edf7fc]" />
+        {/* Soft BebeQ Glacier & Riviera Blue Light Pools */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-[#9bc1d9]/25 rounded-full blur-[160px]" />
+        <div className="absolute top-10 left-10 w-[420px] h-[420px] bg-[#b8d4e8]/35 rounded-full blur-[140px]" />
+        <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-[#ffecd2]/30 rounded-full blur-[150px]" />
       </div>
 
-      {/* BebeQ Ambient Glacier & Water Light Pools */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[500px] bg-[#9bc1d9]/25 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute top-10 left-10 w-[380px] h-[380px] bg-[#b8d4e8]/30 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[420px] h-[420px] bg-[#cce3f1]/40 rounded-full blur-[150px] pointer-events-none" />
-
-      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 w-full space-y-8 pt-4">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 w-full space-y-8">
         {/* Hero Editorial Statement: BebeQ Deep Marine & Sky Blue */}
         <div className="text-center space-y-3">
           <div className="inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-white/85 border border-[#b8d4e8] shadow-sm backdrop-blur-md">

@@ -15,6 +15,11 @@ export function SmoothScrollProvider({ children }: SmoothScrollProps) {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
+    // Prevent browser from auto-jumping down to previous scroll position on reload
+    if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
     const lenis = new Lenis({
       duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -22,9 +27,16 @@ export function SmoothScrollProvider({ children }: SmoothScrollProps) {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 0.9,
+      autoResize: true,
     });
 
     lenisRef.current = lenis;
+
+    // If there is no hash in URL on initial entry, ensure we are pinned cleanly at the top
+    if (typeof window !== 'undefined' && !window.location.hash) {
+      window.scrollTo(0, 0);
+      lenis.scrollTo(0, { immediate: true });
+    }
 
     function raf(time: number) {
       lenis.raf(time);

@@ -12,6 +12,7 @@ import {
   MessageSquare,
   Truck,
   ExternalLink,
+  ArrowRight,
 } from 'lucide-react';
 import { getKitchenWhatsAppNumber } from '@/lib/utils/whatsapp';
 import { useLanguage } from '@/components/providers/LanguageContext';
@@ -162,34 +163,70 @@ export function Footer() {
                 </a>
               </div>
 
-              <div className="pt-1 flex flex-col space-y-2">
-                <a
-                  href="tel:+4921669786951"
-                  className="flex items-center gap-2 text-[#1a3a52] hover:bg-white p-2 rounded-lg bg-white/70 border border-[#b8d4e8] transition-colors"
-                >
-                  <Phone className="h-3.5 w-3.5 text-[#1a3a52] shrink-0" />
-                  <span className="font-mono font-bold text-[#1a3a52]">02166 9786951</span>
-                </a>
-
-                <a
-                  href="mailto:umarjabbar@yahoo.com?subject=Anfrage%20von%20schnitzel-schmiede-mg.de"
-                  className="flex items-center gap-2 text-[#1a3a52] hover:bg-white p-2 rounded-lg bg-white/70 border border-[#b8d4e8] transition-colors"
-                >
-                  <Mail className="h-3.5 w-3.5 text-[#1a3a52] shrink-0" />
-                  <span className="truncate text-xs">umarjabbar@yahoo.com</span>
-                </a>
-
+              {/* Eye-Catching Official WhatsApp Card (Senior UX/UI Lead Pattern - No Messy Phone Numbers) */}
+              <div className="pt-2 flex flex-col space-y-2.5">
                 <a
                   href={`https://wa.me/${whatsappPhone}?text=${encodeURIComponent(
-                    '🔥 [SCHNITZEL SCHMIEDE MÖNCHENGLADBACH · Dohler Str. 269]\n\nHallo Team der Schnitzelschmiede, ich habe eine Frage:'
+                    '🔥 [SCHNITZEL SCHMIEDE MÖNCHENGLADBACH · Dohler Str. 269]\n\nHallo Team der Schnitzelschmiede, ich habe eine Frage / möchte gerne bestellen:'
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-emerald-800 bg-emerald-50 hover:bg-emerald-100 p-2 rounded-lg border border-emerald-300 transition-colors font-semibold"
+                  className="group relative block p-4 rounded-2xl bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 text-white shadow-lg shadow-emerald-900/15 hover:shadow-xl hover:shadow-emerald-900/25 transition-all duration-300 active:scale-[0.98] border border-emerald-400/30 overflow-hidden cursor-pointer"
                 >
-                  <MessageSquare className="h-3.5 w-3.5 shrink-0" />
-                  <span>{isEn ? 'Kitchen WhatsApp Support' : 'Küchen-WhatsApp Support'}</span>
+                  <div className="absolute top-0 right-0 -mt-2 -mr-2 w-16 h-16 bg-white/10 rounded-full blur-xl pointer-events-none" />
+
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="h-6 w-6 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center">
+                        <MessageSquare className="h-3.5 w-3.5 fill-white text-white" />
+                      </div>
+                      <span className="text-[10px] font-black uppercase tracking-wider text-emerald-200">
+                        WhatsApp Live
+                      </span>
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[9px] font-bold bg-white/20 text-emerald-100 backdrop-blur-sm">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 animate-pulse" />
+                      Erreichbar
+                    </span>
+                  </div>
+
+                  <div className="text-sm font-black text-white leading-tight">
+                    {isEn ? 'Direct WhatsApp Contact' : 'Direkt per WhatsApp anfragen'}
+                  </div>
+                  <p className="text-[11px] text-emerald-100/90 mt-1 leading-snug">
+                    {isEn ? 'Fastest replies for orders, table inquiries & menu questions.' : 'Schnelle Antworten für Vorbestellungen & Fragen an die Küche.'}
+                  </p>
+
+                  <div className="mt-3 flex items-center justify-between pt-2.5 border-t border-white/20 text-[11px] font-bold text-white">
+                    <span>{isEn ? 'Start WhatsApp Chat' : 'Chat jetzt starten'}</span>
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  </div>
                 </a>
+
+                {/* Clean Secondary Contact Pills */}
+                <div className="grid grid-cols-1 gap-1.5 pt-1">
+                  <a
+                    href="tel:+4921669786951"
+                    className="flex items-center justify-between px-3 py-2 rounded-xl bg-white/80 hover:bg-white border border-[#b8d4e8] text-[#1a3a52] transition-colors shadow-sm"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Phone className="h-3.5 w-3.5 text-[#2e5f7e]" />
+                      <span className="text-xs font-semibold">{isEn ? 'Phone (Landline)' : 'Telefon (Festnetz)'}</span>
+                    </div>
+                    <span className="font-mono text-xs font-bold text-[#1a3a52]">02166 9786951</span>
+                  </a>
+
+                  <a
+                    href="mailto:umarjabbar@yahoo.com?subject=Anfrage%20von%20schnitzel-schmiede-mg.de"
+                    className="flex items-center justify-between px-3 py-2 rounded-xl bg-white/80 hover:bg-white border border-[#b8d4e8] text-[#1a3a52] transition-colors shadow-sm"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Mail className="h-3.5 w-3.5 text-[#2e5f7e]" />
+                      <span className="text-xs font-semibold">E-Mail</span>
+                    </div>
+                    <span className="text-xs text-[#2e5f7e] truncate max-w-[140px]">umarjabbar@yahoo.com</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
