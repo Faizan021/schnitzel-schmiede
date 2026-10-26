@@ -13,6 +13,7 @@ export function LiveKitchenRadar() {
 
   const [status, setStatus] = useState<KitchenStatus | null>(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
     setStatus(getLiveKitchenStatus(new Date(), isEn ? 'en' : 'de'));
@@ -22,16 +23,16 @@ export function LiveKitchenRadar() {
     return () => clearInterval(interval);
   }, [isEn]);
 
-  if (!status) return null;
+  if (!status || isDismissed) return null;
 
   return (
     <>
       {/* Sticky Bottom-Right Live Chip (Engineered to not block mobile menu or dish buttons) */}
-      <div className="fixed bottom-16 md:bottom-6 right-3 md:right-6 z-30">
+      <div className="fixed bottom-16 md:bottom-6 right-2 sm:right-4 md:right-6 z-30 flex items-center gap-1">
         <button
           type="button"
           onClick={() => setIsOpenModal(true)}
-          className="group flex items-center gap-2 px-3 py-1.5 md:px-3.5 md:py-2 rounded-full bg-white/95 backdrop-blur-md border border-[#b8d4e8] shadow-md shadow-[#1a3a52]/10 hover:border-[#9bc1d9] transition-all cursor-pointer active:scale-95"
+          className="group flex items-center gap-1.5 px-2.5 py-1 md:px-3.5 md:py-2 rounded-full bg-white/95 backdrop-blur-md border border-[#b8d4e8] shadow-md shadow-[#1a3a52]/10 hover:border-[#9bc1d9] transition-all cursor-pointer active:scale-95"
           aria-label="Live Kitchen Status"
         >
           <span className="relative flex h-2 w-2 md:h-2.5 md:w-2.5">
@@ -47,17 +48,28 @@ export function LiveKitchenRadar() {
             />
           </span>
 
-          <span className="text-[10px] md:text-xs font-mono font-bold text-[#1a3a52] group-hover:text-[#163044] transition-colors">
+          <span className="text-[9px] sm:text-[10px] md:text-xs font-mono font-bold text-[#1a3a52] group-hover:text-[#163044] transition-colors">
             {status.isOpen
               ? isEn
-                ? 'Kitchen & Delivery Active'
+                ? 'Kitchen Active'
                 : 'Küche aktiv'
-              : status.nextOpenNotice || (isEn ? 'Pre-Order Active' : 'Vorbestellung')}
+              : status.nextOpenNotice || (isEn ? 'Pre-Order' : 'Vorbestellung')}
           </span>
 
           <span className="text-[10px] text-[#163044] font-mono font-black hidden sm:inline">
             // LIVE
           </span>
+        </button>
+
+        {/* Quick Dismiss Button (Mobile-Friendly) */}
+        <button
+          type="button"
+          onClick={() => setIsDismissed(true)}
+          className="h-6 w-6 rounded-full bg-white/90 border border-[#b8d4e8] text-[#2e5f7e] hover:text-[#1a3a52] flex items-center justify-center transition-all shadow-sm cursor-pointer"
+          aria-label="Status schließen"
+          title="Schließen"
+        >
+          <X className="h-3 w-3" />
         </button>
       </div>
 

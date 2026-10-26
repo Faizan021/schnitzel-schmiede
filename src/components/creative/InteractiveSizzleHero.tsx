@@ -157,7 +157,7 @@ export function InteractiveSizzleHero() {
           ref={cardRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative rounded-2xl bg-white/80 backdrop-blur-md p-4 sm:p-6 border border-white shadow-[0_20px_50px_rgba(26,58,82,0.1)] overflow-hidden"
+          className="relative rounded-2xl bg-white/80 backdrop-blur-md p-2.5 sm:p-6 border border-white shadow-[0_20px_50px_rgba(26,58,82,0.1)] overflow-hidden"
         >
           {/* Top Edge Glow */}
           <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#9bc1d9] to-transparent opacity-90" />
@@ -181,14 +181,16 @@ export function InteractiveSizzleHero() {
             {/* Cinematic Shadow Vignette */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a52]/90 via-transparent to-black/30 pointer-events-none" />
 
-            {/* Top Interactive Row: Origin Badge + Controls + Sizzle Audio Simulator Switch (Mobile-Optimized Single Row) */}
-            <div className="absolute top-3 inset-x-3 flex items-center justify-between z-20 gap-1.5 sm:gap-2">
-              <div className="bg-white/90 backdrop-blur-md border border-white px-2 sm:px-3 py-1 rounded-lg text-[10px] sm:text-xs font-bold text-[#1a3a52] flex items-center gap-1 sm:gap-1.5 shadow-md shrink-0">
-                <CheckCircle2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-emerald-600" />
+            {/* Top Interactive Row: Origin Badge + Controls (Never Clips or Hides on Mobile) */}
+            <div className="absolute top-3 inset-x-3 flex items-center justify-between z-20 gap-2">
+              {/* Origin badge - visible on tablet and desktop to preserve mobile space */}
+              <div className="hidden sm:flex bg-white/90 backdrop-blur-md border border-white px-3 py-1 rounded-lg text-xs font-bold text-[#1a3a52] items-center gap-1.5 shadow-md shrink-0">
+                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
                 <span>{isEn ? 'LIVE FORGE' : 'PFANNEN-KUNST'}</span>
               </div>
 
-              <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+              {/* Action buttons with plenty of breathing room */}
+              <div className="flex items-center gap-2 sm:gap-2.5 ml-auto shrink-0">
                 {/* Play / Pause Toggle */}
                 <button
                   type="button"
@@ -215,7 +217,7 @@ export function InteractiveSizzleHero() {
                 <button
                   type="button"
                   onClick={handleTriggerSizzle}
-                  className={`h-8 sm:h-10 px-2.5 sm:px-4 rounded-xl text-[11px] sm:text-xs font-mono font-bold tracking-wider flex items-center gap-1.5 transition-all shadow-md cursor-pointer active:scale-95 shrink-0 ${
+                  className={`h-8 sm:h-10 px-3 sm:px-4 rounded-xl text-xs font-mono font-bold tracking-wider flex items-center gap-1.5 transition-all shadow-md cursor-pointer active:scale-95 shrink-0 ${
                     isSizzlingActive
                       ? 'bg-[#9bc1d9] text-[#1a3a52] shadow-[#9bc1d9]/50 scale-105 border border-white'
                       : 'bg-white/95 backdrop-blur-md border border-[#b8d4e8] text-[#1a3a52] hover:bg-[#cce3f1]'
@@ -235,16 +237,17 @@ export function InteractiveSizzleHero() {
             </div>
 
             <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between text-white pointer-events-none">
-              <div>
-                <p className="text-xs font-mono text-[#ffecd2] uppercase tracking-wider">
+              <div className="pr-2">
+                <p className="text-[10px] sm:text-xs font-mono text-[#ffecd2] uppercase tracking-wider">
                   MASTERPIECE SPEISE NR. 01
                 </p>
-                <h3 className="text-xl sm:text-2xl font-bold font-serif text-white drop-shadow">
+                <h3 className="text-base sm:text-2xl font-bold font-serif text-white drop-shadow">
                   Original Wiener Schnitzel
                 </h3>
               </div>
-              <div className="text-right">
-                <span className="text-2xl sm:text-3xl font-black text-[#ffecd2] font-serif drop-shadow">
+
+              <div className="text-right shrink-0">
+                <span className="text-xl sm:text-3xl font-black font-mono tracking-tight text-[#ffecd2] drop-shadow">
                   12,90 €
                 </span>
               </div>

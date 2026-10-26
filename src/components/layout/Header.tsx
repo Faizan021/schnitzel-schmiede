@@ -145,12 +145,12 @@ export function Header() {
 
           {/* Action Hub (Language Switcher + WhatsApp Direct + Table Booking + Cart) */}
           <div className="flex items-center gap-1.5 sm:gap-2.5">
-            {/* Eye-Catching Official WhatsApp Action Pill (No Raw Phone Digits, Never Overflows) */}
+            {/* Eye-Catching Official WhatsApp Action Pill (Visible on Tablet & Desktop; On Mobile user has the bottom nav WhatsApp button) */}
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs font-black text-white shadow-md shadow-emerald-900/20 hover:shadow-lg transition-all duration-300 border border-emerald-400/40 active:scale-95 cursor-pointer shrink-0"
+              className="hidden sm:inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 px-3.5 py-2 text-xs font-black text-white shadow-md shadow-emerald-900/20 hover:shadow-lg transition-all duration-300 border border-emerald-400/40 active:scale-95 cursor-pointer shrink-0"
               title="Per WhatsApp direkt anfragen & bestellen"
             >
               <span className="relative flex h-2 w-2">
@@ -158,10 +158,7 @@ export function Header() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-200" />
               </span>
               <MessageSquare className="h-3.5 w-3.5 fill-white text-white" />
-              <span className="tracking-wide font-extrabold text-[11px] sm:text-xs">
-                <span className="hidden xs:inline sm:hidden">WhatsApp</span>
-                <span className="hidden sm:inline">{isEn ? 'WhatsApp Chat' : 'WhatsApp Live'}</span>
-              </span>
+              <span className="tracking-wide font-extrabold">{isEn ? 'WhatsApp Chat' : 'WhatsApp Live'}</span>
             </a>
 
             {/* Desktop Language Switcher */}
