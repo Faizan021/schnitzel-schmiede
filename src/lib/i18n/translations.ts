@@ -37,7 +37,7 @@ export interface Translations {
     customizerCta: string;
     reserveCta: string;
     ratingGoogle: string;
-    halalBadge: string;
+    regionalBadge: string;
     pickupBadge: string;
     sauceBadge: string;
     audioLabel: string;
@@ -52,7 +52,7 @@ export interface Translations {
   // Marquee
   marquee: {
     inButter: string;
-    halal: string;
+    regional: string;
     saucesSeparate: string;
     manufaktur: string;
     whatsappOrder: string;
@@ -125,7 +125,7 @@ export interface Translations {
     catDesserts: string;
     catDrinks: string;
     filterAll: string;
-    filterHalal: string;
+    filterRegional: string;
     filterVeggie: string;
     filterBestseller: string;
     filterChef: string;
@@ -284,7 +284,7 @@ export interface Translations {
   // Footer & Tech
   footer: {
     craftDescription: string;
-    halalTag: string;
+    regionalTag: string;
     butterTag: string;
     openingHours: string;
     mondayRest: string;
@@ -322,7 +322,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       openWeekend: 'Jetzt geöffnet (Wochenend-Küche)',
       breakTime: 'Mittagspause',
       closed: 'Geschlossen',
-      mondayRest: 'Montag Ruhetag',
+      mondayRest: 'Mo–Fr ab 16:30 Uhr geöffnet',
       reopenTuesday: 'Dienstag 12:00 Uhr',
       speedPrep: 'Mittags geöffnet bis 14:30 Uhr · Schnelle Zubereitung',
       hotKitchen: 'Küche heiß bis 22:00 Uhr · Abholung & Lieferung aktiv',
@@ -340,7 +340,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       customizerCta: 'Schnitzel-Baukasten',
       reserveCta: 'Tisch buchen',
       ratingGoogle: '4.9 / 5.0 Google Reviews',
-      halalBadge: '100% Halal Optionen',
+      regionalBadge: 'Regionale Fleischqualität',
       pickupBadge: '10% Abholer-Rabatt',
       sauceBadge: 'Saucen separat verpackt',
       audioLabel: 'Crunch-Audio',
@@ -354,7 +354,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     },
     marquee: {
       inButter: 'In reinem Butterschmalz souffliert',
-      halal: '100% Halal Hähnchen-Optionen',
+      regional: 'Regionales Fleisch & Echtes Kalb',
       saucesSeparate: 'Saucen stets separat verpackt',
       manufaktur: 'Mönchengladbachs Schnitzel-Manufaktur',
       whatsappOrder: '1-Klick WhatsApp Blitz-Bestellung',
@@ -386,7 +386,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       dipAtHome: 'Erst vor Ort dippen oder übergießen',
       quote: '„Das einzige Schnitzel in Mönchengladbach, das nach 20 Minuten Fahrt noch kracht.“',
       radarTag: 'Lokal verwurzelt',
-      radarHeading: 'Von Bismarckstraße direkt auf Ihren Tisch',
+      radarHeading: 'Von Dohler Straße direkt auf Ihren Tisch',
       radarDesc:
         'Zentral in Mönchengladbach gelegen beliefern wir die Stadtteile Mitte, Rheydt, Odenkirchen, Lürrip, Windberg sowie Teile von Korschenbroich in kürzester Zeit.',
       speedAvg: 'Durchschnittliche Zeit',
@@ -427,7 +427,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       catDesserts: 'Desserts',
       catDrinks: 'Getränke',
       filterAll: 'Alle',
-      filterHalal: '100% Halal',
+      filterRegional: 'Regionales Fleisch',
       filterVeggie: 'Vegetarisch',
       filterBestseller: 'Bestseller',
       filterChef: 'Schmiede-Tipp',
@@ -442,10 +442,10 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       none: 'Keine',
     },
     customizer: {
-      tagline: 'Der Digitale Schmiede-Baukasten 2026',
-      heading: 'Bauen Sie Ihr Meister-Schnitzel',
+      tagline: 'LIVE FORGE // SCHRITT-FÜR-SCHRITT',
+      heading: 'Schmiede-Konfigurator',
       subtitle:
-        'Wählen Sie Fleisch, Knusperpanade, hausgemachte Saucen und knusprige Beilagen. Frisch von Hand geklopft und in reinem Butterschmalz souffliert.',
+        'Definiere Legierung, Krustenstruktur & Schmelzpunkt deines Meisterstücks nach traditioneller Handwerksart. 100% Butterschmalz.',
       step1: '1. Fleisch',
       step2: '2. Panade',
       step3: '3. Sauce',
@@ -544,7 +544,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       capacityNotice:
         'Smart Capacity Guard aktiv: Freitag- & Samstagabend ist unsere Schmiede stark frequentiert. Plätze werden in Echtzeit geschützt.',
       dateLabel: 'Datum wählen *',
-      mondayError: 'Montag ist Ruhetag. Bitte wählen Sie Di-So.',
+      mondayError: 'Öffnungszeit beachten: Mo-Fr ab 16:30 Uhr.',
       guestsLabel: 'Gästeanzahl *',
       timeLabel: 'Verfügbare Uhrzeit *',
       seatsLeft: 'Plätze',
@@ -587,10 +587,10 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     footer: {
       craftDescription:
         'Traditionelle Handwerksgastronomie in Mönchengladbach. Goldbraun soufflierte Schnitzel, saftiges Fleisch, hausgemachte Saucen und knusprige Beilagen ohne Kompromisse.',
-      halalTag: '✓ 100% Halal Optionen',
+      regionalTag: '✓ 100% Regionales Fleisch',
       butterTag: '✓ Frisches Butterschmalz',
       openingHours: 'Öffnungszeiten',
-      mondayRest: 'Ruhetag',
+      mondayRest: 'Mo–Fr 16:30–21:45',
       weekendAllDay: 'Durchgehend warme Küche am Wochenende.',
       locationContact: 'Standort & Kontakt',
       legalTransparency: 'Rechtliches & Transparenz',
@@ -623,7 +623,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       openWeekend: 'Open Now (Weekend Kitchen)',
       breakTime: 'Afternoon Break',
       closed: 'Closed',
-      mondayRest: 'Monday Closed',
+      mondayRest: 'Mon–Fri open from 4:30 PM',
       reopenTuesday: 'Tuesday at 12:00 PM',
       speedPrep: 'Open until 2:30 PM · Quick Artisanal Preparation',
       hotKitchen: 'Hot Kitchen until 10:00 PM · Pickup & Delivery Active',
@@ -641,7 +641,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       customizerCta: 'Custom Schnitzel Builder',
       reserveCta: 'Book a Table',
       ratingGoogle: '4.9 / 5.0 Google Reviews',
-      halalBadge: '100% Halal Options',
+      regionalBadge: 'Regional Meat Quality',
       pickupBadge: '10% Pickup Discount',
       sauceBadge: 'Sauces Packed Separately',
       audioLabel: 'Crunch Audio',
@@ -655,7 +655,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     },
     marquee: {
       inButter: 'Soufflé-Fried in Pure Clarified Butter',
-      halal: '100% Halal Certified Chicken Options',
+      regional: 'Regional Cuts & Authentic Veal',
       saucesSeparate: 'Sauces Always Packed Separately',
       manufaktur: "Mönchengladbach's #1 Schnitzel Forge",
       whatsappOrder: '1-Click WhatsApp Instant Ordering',
@@ -687,7 +687,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       dipAtHome: 'Dip or pour freshly at your table',
       quote: '“The only schnitzel delivery in town that still crunches after a 20-minute drive.”',
       radarTag: 'Locally Rooted',
-      radarHeading: 'From Bismarckstraße Straight to Your Door',
+      radarHeading: 'From Dohler Straße Straight to Your Door',
       radarDesc:
         'Centrally situated in Mönchengladbach, delivering to City Centre, Rheydt, Odenkirchen, Lürrip, Windberg, and Korschenbroich in record time.',
       speedAvg: 'Average Delivery Time',
@@ -728,7 +728,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       catDesserts: 'Desserts',
       catDrinks: 'Drinks',
       filterAll: 'All',
-      filterHalal: '100% Halal',
+      filterRegional: 'Regionales Fleisch',
       filterVeggie: 'Vegetarian',
       filterBestseller: 'Bestseller',
       filterChef: "Chef's Choice",
@@ -743,10 +743,10 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       none: 'None',
     },
     customizer: {
-      tagline: '2026 Digital Schnitzel Builder',
-      heading: 'Craft Your Masterpiece Schnitzel',
+      tagline: 'LIVE FORGE // STEP-BY-STEP',
+      heading: 'Schmiede Configurator',
       subtitle:
-        'Choose your meat base, artisan crust, slow-simmered sauces, and hot sides. Hand-pounded fresh and soufflé-fried in clarified butter.',
+        'Define meat cut, crust texture & molten sauce of your culinary masterpiece according to traditional pan craft.',
       step1: '1. Meat Base',
       step2: '2. Crust',
       step3: '3. Sauce',
@@ -888,10 +888,10 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     footer: {
       craftDescription:
         'Traditional artisanal gastronomy in Mönchengladbach. Gold-souffléd schnitzels, tender cuts, homemade sauces, and crispy sides with zero compromises.',
-      halalTag: '✓ 100% Halal Options',
+      regionalTag: '✓ 100% Regional Meat',
       butterTag: '✓ Pure Clarified Butter',
       openingHours: 'Opening Hours',
-      mondayRest: 'Day of Rest',
+      mondayRest: 'Mon–Fri 4:30–9:45 PM',
       weekendAllDay: 'Continuous hot kitchen on weekends.',
       locationContact: 'Location & Contact',
       legalTransparency: 'Legal & Transparency',

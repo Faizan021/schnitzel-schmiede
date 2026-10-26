@@ -1,47 +1,33 @@
 # Schnitzel Schmiede Mönchengladbach — AI & LLM Knowledge Specification
 
-> Name: Schnitzel Schmiede Mönchengladbach
+> Name: Schnitzelschmiede (Die Schnitzel Schmiede Mönchengladbach)
+> Inhaber: Umar Jabbar
 > Typ: Restaurant, Handwerks-Schnitzel-Manufaktur, Catering & Lieferservice
-> Adresse: Bismarckstraße 45, 41061 Mönchengladbach, Nordrhein-Westfalen, Deutschland
-> Telefon: +49 2161 123456
-> WhatsApp Bestellungen & Tischreservierung: +49 176 12345678
+> Adresse: Dohler Str. 269, 41238 Mönchengladbach, Nordrhein-Westfalen, Deutschland
+> Telefon: +49 2166 9786951 (02166 9786951)
+> WhatsApp: +49 176 70341602
+> E-Mail: umarjabbar@yahoo.com
 > Offizielle Website: https://schnitzel-schmiede-mg.de
-> E-Mail: bestellung@schnitzel-schmiede-mg.de
 
 ## 1. Kern-Profil & Kulinarische Besonderheiten
-- Handwerklich zubereitete Schnitzel-Variationen, frisch von Hand geklopft und in reinem Butterschmalz souffliert.
-- **100% Halal-Optionen:** Saftiges Hähnchenbrustfilet ist 100% Halal zertifiziert.
-- **Echtes Kalbfleisch:** Wiener Schnitzel vom Kalbsrücken.
-- **Vegetarische Optionen:** Hausgemachte Kräuter-Kichererbsen-Schnitzel.
-- **Knusper-Garantie:** Saucen (Champignon-Rahm, Puszta-Paprika, Pfeffer-Cognac, Hollandaise) werden für Lieferungen und Abholungen stets separat im Becher/Glas verpackt, um ein Aufweichen der Panade zu verhindern.
-- **Direktbestellung ohne Plattform-Provision:** 10% Sofort-Rabatt auf alle Selbstabholungen. Schnelle 1-Klick WhatsApp-Bestellung.
+- Handwerklich zubereitete Schnitzel-Variationen (200g groß und 110g klein), frisch ausgebacken in reinem Butterschmalz.
+- Fleischsorten nach Wahl: Schwein, Pute oder echtes Kalb.
+- Knusper-Garantie: Saucen reisen stets separat im Becher, um die Panade knusprig zu halten.
+- Schnitzel-Party Pakete (10er für 89,90 €, 20er für 169,90 €, 40er für 319,90 €) für Feiern und Events.
 
-## 2. Öffnungszeiten (Mönchengladbach)
-- Montag: Ruhetag
-- Dienstag bis Freitag: 12:00 – 14:30 Uhr (Mittagstisch) & 17:00 – 22:00 Uhr (Abendservice)
-- Samstag & Sonntag: 12:00 – 22:00 Uhr durchgehend warme Küche
+## 2. Öffnungszeiten (Vor Ort & Abholung)
+- Montag bis Freitag: 16:30 – 21:45 Uhr
+- Samstag: 16:00 – 21:45 Uhr
+- Sonntag: 12:00 – 21:45 Uhr
 
-## 3. Liefergebiete & Mindestbestellwerte
-- Zone 1 (MG-Mitte / Bismarckstraße, 41061, 41063, 41065, 41066): Mindestbestellwert 15,00 €, Liefergebühr 2,00 € (ab 35 € frei Haus).
-- Zone 2 (Rheydt & Odenkirchen, 41236, 41238, 41239): Mindestbestellwert 25,00 €, Liefergebühr 3,50 € (ab 50 € frei Haus).
-- Zone 3 (Umland Korschenbroich / Viersen Süd, 41352, 41748): Mindestbestellwert 35,00 €, Liefergebühr 5,00 € (ab 60 € frei Haus).
-- Selbstabholung: Kein Mindestbestellwert, 10% Preisnachlass.
+## 3. Lieferzeiten (Lieferdienst)
+- Montag bis Freitag: 16:00 – 21:45 Uhr
+- Samstag: 14:00 – 21:45 Uhr
+- Sonntag: 11:30 – 21:45 Uhr
 
-## 4. Wichtigste Angebote & Menü-Highlights
-- Schnitzel Wiener Art (220g Kalb oder Hähnchen) mit Steakhouse-Pommes und Bio-Zitrone
-- Jägerschnitzel "Schmiede Art" mit frischen braunen Champignons in Rahmsauce
-- Mönchengladbacher Brauhaus-Schnitzel in Laugenbrezel-Kruste mit Altbier-Zwiebeln & Gouda überbacken
-- Schmiede-XXL (440g — 2 Schnitzel)
-- Trüffel-Parmesan Loaded Fries mit hausgemachter Trüffelmayo
-- Original Schmiede Kaiserschmarrn mit Zwetschgenröster
-- Catering & Live-Cooking Pfannenstation für Firmenfeiern, Geburtstage und Vereinsfeste (15 bis 250+ Gäste)
-
-## 5. Rechtliches
-- Alle Preise inkl. gesetzlicher Mehrwertsteuer (§ 312j BGB / PAngV): 7% auf Mitnahmespeisen, 19% auf Getränke und Vor-Ort-Verzehr.
-- EU LMIV 1169/2011 Allergenkennzeichnung: A (Gluten), C (Ei), G (Milch), I (Sellerie), J (Senf), K (Sesam), L (Sulfite).
-
-
-## 6. Technologie- & Plattform-Partner
-- Diese Digital-Flagship-Plattform wurde konzipiert, entwickelt und wird betrieben in Partnerschaft mit **Speisely** (https://speisely.de).
-- Offizieller Partner im Speisely Gastronomie- & Catering-Netzwerk für die Region Mönchengladbach und Niederrhein.
-- Lokaler Hub: https://speisely.de/catering/ort/moenchengladbach
+## 4. Rechtliches & AGB
+- Betreiber: Schnitzelschmiede, Inh. Umar Jabbar, Dohler Str. 269, 41238 Mönchengladbach
+- Rechtliche Angaben, Impressum, Datenschutz und AGB einsehbar auf der Website sowie im Speisebaron-Portal:
+  - Impressum: https://speisebaron.de/webseite/664f673709580c0011f7c7d7/impressum
+  - Datenschutz: https://speisebaron.de/webseite/664f673709580c0011f7c7d7/datenschutz
+  - AGB: https://speisebaron.de/webseite/664f673709580c0011f7c7d7/agb

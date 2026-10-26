@@ -2,119 +2,92 @@
 
 @theme {
   --font-serif: var(--font-serif), "Playfair Display", Georgia, serif;
-  --font-display: var(--font-serif), "Playfair Display", Georgia, serif;
+  --font-display: var(--font-outfit), var(--font-serif), "Playfair Display", sans-serif;
+  --font-sans: var(--font-outfit), var(--font-geist-sans), "Inter", sans-serif;
 }
 
 @layer base {
   :root {
-    --forge-950: #121110;
-    --forge-900: #191716;
-    --forge-850: #211e1c;
-    --forge-800: #2c2825;
-    --forge-750: #383430;
-    --forge-700: #46413c;
-    --amber-gold: #d4a347;
-    --amber-hover: #e5b24e;
-    --amber-light: #fef3c7;
-    --amber-dark: #a97723;
-    --cream-50: #ffffff;
-    --cream-100: #fbf9f5;
-    --cream-200: #f3efe6;
-    --cream-400: #c9c3b8;
-    --cream-600: #8c867a;
-    --emerald-accent: #10b981;
-    --ruby-accent: #ef4444;
+    /* BebeQ Berlin Theme Tokens */
+    --bebeq-blue: #9bc1d9;       /* Primary Riviera / Glacier Blue */
+    --bebeq-mid: #b8d4e8;        /* Frosted Sky Blue */
+    --bebeq-light: #ddeef7;      /* Ice Mist Section Tint */
+    --bebeq-section: #cce3f1;    /* Powder Blue Section Background */
+    --bebeq-bg: #edf7fc;         /* Main Page Background */
+    --bebeq-navy: #1a3a52;       /* Deep Marine Navy (Primary Text & Headings) */
+    --bebeq-teal: #2e5f7e;       /* Slate Ocean Teal (Secondary Text) */
+    --bebeq-gold: #a87b41;       /* Warm Caramel / Butter Gold Accent */
+    --bebeq-peach: #ffecd2;      /* Champagne Warm Glow */
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.85);
+    --glass-shadow: 0 10px 32px 0 rgba(26, 58, 82, 0.08);
   }
 
   * {
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(184, 212, 232, 0.35);
     box-sizing: border-box;
   }
 
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
-    background-color: #121110;
-    color: #fbf9f5;
+    background: linear-gradient(180deg, #edf7fc 0%, #ddeef7 45%, #edf7fc 100%);
+    color: #1a3a52;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, .font-serif, .font-display {
+  h1, h2, h3, .font-serif {
     font-family: var(--font-serif), "Playfair Display", Georgia, serif;
   }
 }
 
-/* Custom scrollbar for modern warm gastronomy theme */
+/* Custom scrollbar for BebeQ frosted glass theme */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #121110;
+  background: #edf7fc;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2c2825;
+  background: #b8d4e8;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #d4a347;
+  background: #9bc1d9;
 }
 
-/* Golden Craft Glow Utilities */
-.gold-glow {
-  box-shadow: 0 0 30px -5px rgba(212, 163, 71, 0.3);
-}
-
-.gold-glow-lg {
-  box-shadow: 0 0 50px -8px rgba(212, 163, 71, 0.4);
-}
-
-.gold-text-glow {
-  text-shadow: 0 0 20px rgba(212, 163, 71, 0.35);
-}
-
-.glass-forge {
-  background: rgba(25, 23, 22, 0.85);
+/* BebeQ Glassmorphism Utilities */
+.glass-bebeq {
+  background: rgba(255, 255, 255, 0.68);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(212, 163, 71, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 32px 0 rgba(26, 58, 82, 0.07);
 }
 
-.glass-forge-solid {
-  background: rgba(25, 23, 22, 0.96);
+.glass-bebeq-card {
+  background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 30px -4px rgba(26, 58, 82, 0.08);
+}
+
+.bebeq-glow {
+  box-shadow: 0 0 35px -5px rgba(155, 193, 217, 0.45);
 }
 
 /* Mobile Safe Bottom Padding for Sticky Nav */
 .pb-mobile-safe {
-  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-33.333%);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 35s linear infinite;
-  will-change: transform;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
 }

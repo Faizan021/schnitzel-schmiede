@@ -21,9 +21,9 @@ export function Badge({ tag, label, variant, className = '', onClick }: BadgePro
 
   if (tag) {
     switch (tag) {
-      case 'halal':
-        displayLabel = '100% Halal';
-        resolvedVariant = 'emerald';
+      case 'regional':
+        displayLabel = isEn ? 'Regional Meat' : 'Regionales Fleisch';
+        resolvedVariant = 'gold';
         break;
       case 'veggie':
         displayLabel = isEn ? 'Vegetarian' : 'Vegetarisch';
@@ -45,10 +45,10 @@ export function Badge({ tag, label, variant, className = '', onClick }: BadgePro
   }
 
   const variantStyles = {
-    gold: 'bg-[#E6B84A]/15 text-[#E6B84A] border-[#E6B84A]/30',
-    emerald: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
-    ruby: 'bg-rose-500/15 text-rose-400 border-rose-500/30',
-    muted: 'bg-white/5 text-[#C4BFB5] border-white/10',
+    gold: 'bg-[#9bc1d9]/30 text-[#1a3a52] border-[#9bc1d9]',
+    emerald: 'bg-emerald-50 text-emerald-800 border-emerald-300',
+    ruby: 'bg-rose-50 text-rose-800 border-rose-300',
+    muted: 'bg-[#f0f7fb] text-[#2e5f7e] border-[#b8d4e8]',
   }[resolvedVariant];
 
   return (

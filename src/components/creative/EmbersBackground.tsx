@@ -16,6 +16,10 @@ export function EmbersBackground() {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
     const handleResize = () => {
       if (!canvas) return;
       width = canvas.width = window.innerWidth;
@@ -24,7 +28,7 @@ export function EmbersBackground() {
 
     window.addEventListener('resize', handleResize);
 
-    // Particle definition for glowing forge embers
+    // Particle definition for soft ambient luxury mist & light bokeh
     interface Ember {
       x: number;
       y: number;
@@ -37,20 +41,21 @@ export function EmbersBackground() {
     }
 
     const emberColors = [
-      'rgba(230, 184, 74, ',  // Amber Gold
-      'rgba(245, 199, 93, ',  // Bright Gold
-      'rgba(255, 138, 43, ',  // Forge Orange
-      'rgba(239, 68, 68, ',   // Deep Ember Red
+      'rgba(155, 193, 217, ',  // Glacier Blue (BebeQ)
+      'rgba(184, 212, 232, ',  // Frosted Sky Blue
+      'rgba(255, 236, 210, ',  // Warm Champagne Light
+      'rgba(204, 227, 241, ',  // Soft Powder Mist
     ];
 
-    const embers: Ember[] = Array.from({ length: 45 }, () => ({
+    // Subtle 20 particle count to keep CPU load near 0% and prevent visual noise
+    const embers: Ember[] = Array.from({ length: 20 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 2.5 + 0.8,
-      speedY: -(Math.random() * 0.8 + 0.3),
-      speedX: (Math.random() - 0.5) * 0.5,
-      opacity: Math.random() * 0.7 + 0.2,
-      fadeSpeed: Math.random() * 0.006 + 0.002,
+      size: Math.random() * 3.5 + 1.2,
+      speedY: -(Math.random() * 0.4 + 0.15),
+      speedX: (Math.random() - 0.5) * 0.3,
+      opacity: Math.random() * 0.35 + 0.1,
+      fadeSpeed: Math.random() * 0.003 + 0.001,
       color: emberColors[Math.floor(Math.random() * emberColors.length)],
     }));
 
@@ -59,21 +64,21 @@ export function EmbersBackground() {
 
       for (const ember of embers) {
         ember.y += ember.speedY;
-        ember.x += ember.speedX + Math.sin(ember.y * 0.01) * 0.3;
+        ember.x += ember.speedX + Math.sin(ember.y * 0.005) * 0.2;
         ember.opacity -= ember.fadeSpeed;
 
         if (ember.opacity <= 0 || ember.y < 0) {
           ember.y = height + 10;
           ember.x = Math.random() * width;
-          ember.opacity = Math.random() * 0.7 + 0.3;
-          ember.size = Math.random() * 2.5 + 0.8;
+          ember.opacity = Math.random() * 0.35 + 0.1;
+          ember.size = Math.random() * 3.5 + 1.2;
         }
 
         ctx.beginPath();
         ctx.arc(ember.x, ember.y, ember.size, 0, Math.PI * 2);
         ctx.fillStyle = `${ember.color}${ember.opacity})`;
-        ctx.shadowBlur = ember.size * 4;
-        ctx.shadowColor = '#E6B84A';
+        ctx.shadowBlur = ember.size * 3;
+        ctx.shadowColor = 'rgba(155, 193, 217, 0.4)';
         ctx.fill();
       }
 
@@ -91,7 +96,7 @@ export function EmbersBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-60 mix-blend-screen"
+      className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-40"
     />
   );
 }

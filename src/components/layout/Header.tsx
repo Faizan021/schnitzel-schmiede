@@ -10,19 +10,27 @@ import {
   Phone,
   Menu,
   X,
-  Sparkles,
+  MessageSquare,
+  MapPin,
+  Clock,
 } from 'lucide-react';
 import { useCart } from '../providers/CartContext';
 import { useLanguage } from '../providers/LanguageContext';
-import { KitchenStatusBar } from '../ui/KitchenStatusBar';
 import { LanguageSwitcher } from '../ui/LanguageSwitcher';
+import { getKitchenWhatsAppNumber } from '@/lib/utils/whatsapp';
 
 export function Header() {
   const pathname = usePathname();
   const { itemCount, openCart } = useCart();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const isEn = lang === 'en';
+  const whatsappPhone = getKitchenWhatsAppNumber();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(
+    '🔥 [SCHNITZEL SCHMIEDE MÖNCHENGLADBACH · Dohler Str. 269]\n\nHallo Schnitzelschmiede-Team, ich möchte gerne bestellen / eine Frage stellen:'
+  )}`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,93 +42,136 @@ export function Header() {
 
   const navLinks = [
     { href: '/speisekarte', label: t.nav.menu },
-    { href: '/konfigurator', label: t.nav.configurator, highlight: true },
     { href: '/reservierung', label: t.nav.reservation },
     { href: '/catering', label: t.nav.catering },
   ];
 
   return (
     <>
+      {/* Top Utility Announcement & Direct Contact Bar (Owner's WhatsApp & Phone Priority) */}
+      <div className="bg-[#1a3a52] text-white border-b border-[#2e5f7e]/40 py-1.5 px-4 text-xs font-mono">
+        <div className="mx-auto max-w-7xl flex flex-wrap items-center justify-between gap-2 text-[11px]">
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1 text-[#ffecd2]">
+              <MapPin className="h-3 w-3 text-[#9bc1d9]" />
+              <strong className="text-white">Dohler Str. 269</strong>, 41238 MG
+            </span>
+            <span className="hidden sm:inline text-white/40">|</span>
+            <span className="hidden sm:flex items-center gap-1 text-[#9bc1d9]">
+              <Clock className="h-3 w-3" />
+              <span>Mo-Sa ab 16:30 · So ab 12:00</span>
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3 ml-auto">
+            <a
+              href="tel:+4921669786951"
+              className="flex items-center gap-1 text-[#ffecd2] hover:text-white transition-colors"
+            >
+              <Phone className="h-3 w-3 text-[#9bc1d9]" />
+              <span>02166 9786951</span>
+            </a>
+            <span className="text-white/40">|</span>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 font-bold text-emerald-300 hover:text-emerald-200 transition-colors"
+            >
+              <MessageSquare className="h-3 w-3 fill-current text-emerald-400" />
+              <span>WhatsApp: 0176 70341602</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#121110]/95 backdrop-blur-md border-b border-[#312B26] shadow-xl shadow-black/60 py-3'
-            : 'bg-transparent py-4'
+            ? 'bg-white/90 backdrop-blur-md border-b border-[#b8d4e8]/60 shadow-md shadow-[#1a3a52]/5 py-2.5'
+            : 'bg-white/60 backdrop-blur-sm py-3.5 border-b border-white/60'
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          {/* Logo & Brand Identity */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#D4A347] via-[#E5B24E] to-[#B88526] text-[#121110] shadow-lg shadow-[#D4A347]/25 transition-transform duration-300 group-hover:scale-105">
-              <Flame className="h-6 w-6 fill-current" />
+          {/* Logo & Brand Identity: BebeQ Marine & Sky Blue */}
+          <Link href="/" className="flex items-center gap-3 group shrink-0">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#9bc1d9] via-[#b8d4e8] to-[#9bc1d9] text-[#1a3a52] shadow-md shadow-[#9bc1d9]/30 transition-transform duration-300 group-hover:scale-105 shrink-0 border border-white">
+              <Flame className="h-6 w-6 fill-current text-[#1a3a52]" />
             </div>
-            <div>
-              <div className="text-lg font-black tracking-wider text-[#FBF9F5] font-serif flex items-center gap-1.5">
+            <div className="flex flex-col">
+              <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-[#2e5f7e] uppercase leading-none mb-1">
+                DIE
+              </span>
+              <div className="text-base sm:text-lg font-black tracking-wider text-[#1a3a52] font-serif flex items-center gap-1.5 leading-none">
                 <span>SCHNITZEL</span>
-                <span className="text-[#E5B24E]">SCHMIEDE</span>
+                <span className="text-[#a87b41]">SCHMIEDE</span>
               </div>
-              <div className="text-[10px] tracking-widest text-[#C4BFB5] uppercase font-semibold">
-                Mönchengladbach
+              <div className="text-[9px] tracking-widest text-[#1a3a52] uppercase font-mono font-bold mt-1">
+                MÖNCHENGLADBACH · DOHLER STR. 269
               </div>
             </div>
           </Link>
 
-          {/* Desktop Live Kitchen Pill */}
-          <div className="hidden xl:block">
-            <KitchenStatusBar />
-          </div>
-
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+          <nav className="hidden md:flex items-center gap-1.5 lg:gap-2">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative rounded-xl px-3.5 py-2 text-xs font-bold transition-all ${
+                  className={`relative rounded-xl px-4 py-2 text-xs font-bold transition-all ${
                     isActive
-                      ? 'text-[#E5B24E] bg-[#D4A347]/15'
-                      : 'text-[#D5CEBF] hover:text-[#FBF9F5] hover:bg-[#23201C]'
+                      ? 'text-[#1a3a52] bg-[#cce3f1] shadow-sm font-black'
+                      : 'text-[#2e5f7e] hover:text-[#1a3a52] hover:bg-white/70'
                   }`}
                 >
-                  <span className="flex items-center gap-1.5">
-                    {link.highlight && <Sparkles className="h-3 w-3 text-[#E5B24E]" />}
-                    {link.label}
-                  </span>
+                  <span>{link.label}</span>
                   {isActive && (
-                    <span className="absolute bottom-1 left-3.5 right-3.5 h-0.5 rounded-full bg-[#E5B24E]" />
+                    <span className="absolute bottom-1 left-4 right-4 h-0.5 rounded-full bg-[#1a3a52]" />
                   )}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Action Hub (Language Switcher + Cart + Table Booking CTA) */}
+          {/* Action Hub (Language Switcher + WhatsApp Direct + Table Booking + Cart) */}
           <div className="flex items-center gap-2 sm:gap-2.5">
+            {/* Direct WhatsApp Pill (Owner's Top Priority) */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/40 bg-emerald-50 hover:bg-emerald-100/90 px-3.5 py-2 text-xs font-black text-emerald-900 transition-all shadow-sm active:scale-95"
+              title="Per WhatsApp direkt anfragen (0176 70341602)"
+            >
+              <MessageSquare className="h-3.5 w-3.5 text-emerald-600 fill-emerald-600" />
+              <span>WhatsApp <span className="hidden xl:inline">0176 70341602</span></span>
+            </a>
+
             {/* Desktop Language Switcher */}
-            <div className="hidden sm:block">
+            <div className="hidden lg:block">
               <LanguageSwitcher />
             </div>
 
             {/* Table Booking Shortcut */}
             <Link
               href="/reservierung"
-              className="hidden lg:inline-flex items-center gap-1.5 rounded-xl border border-[#D4A347]/35 bg-[#1C1A18] px-3.5 py-2 text-xs font-bold text-[#E5B24E] hover:bg-[#D4A347] hover:text-[#121110] transition-colors"
+              className="hidden md:inline-flex items-center gap-1.5 rounded-xl border border-[#b8d4e8] bg-white/80 px-3.5 py-2 text-xs font-bold text-[#1a3a52] hover:bg-[#cce3f1] transition-colors shadow-sm"
             >
-              <Calendar className="h-3.5 w-3.5" />
+              <Calendar className="h-3.5 w-3.5 text-[#2e5f7e]" />
               <span>{t.nav.bookTable}</span>
             </Link>
 
             {/* Cart Trigger */}
             <button
               onClick={openCart}
-              className="relative flex items-center gap-2 rounded-xl bg-[#D4A347] px-3.5 sm:px-4 py-2 text-xs font-black text-[#121110] hover:bg-[#E5B24E] shadow-md shadow-[#D4A347]/20 transition-all cursor-pointer active:scale-95"
+              className="relative flex items-center gap-2 rounded-xl bg-[#9bc1d9] px-3.5 sm:px-4 py-2 text-xs font-black text-[#1a3a52] hover:bg-[#b8d4e8] shadow-md shadow-[#9bc1d9]/30 transition-all cursor-pointer active:scale-95 border border-white/60"
             >
               <ShoppingBag className="h-4 w-4" />
               <span className="hidden xs:inline">{t.nav.cart}</span>
               {itemCount > 0 && (
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#121110] text-[10px] font-bold text-[#E5B24E]">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1a3a52] text-[10px] font-bold text-white shadow-sm">
                   {itemCount}
                 </span>
               )}
@@ -129,7 +180,7 @@ export function Header() {
             {/* Mobile Menu Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden rounded-xl border border-[#312B26] bg-[#1C1A18] p-2 text-[#D5CEBF] hover:text-[#FBF9F5]"
+              className="md:hidden rounded-xl border border-[#b8d4e8] bg-white/80 p-2 text-[#1a3a52] hover:bg-[#cce3f1]"
               aria-label="Navigation menu"
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -140,20 +191,16 @@ export function Header() {
 
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-50 bg-[#121110] pt-20 px-6 space-y-6">
-          <div className="flex items-center justify-between pb-2">
+        <div className="md:hidden fixed inset-0 z-50 bg-[#edf7fc]/98 backdrop-blur-xl pt-16 px-6 space-y-5 overflow-y-auto">
+          <div className="flex items-center justify-between pb-3 border-b border-[#b8d4e8]/40">
             <LanguageSwitcher />
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2 text-[#C4BFB5] hover:text-white"
+              className="p-2.5 text-[#1a3a52] hover:bg-white/80 rounded-xl"
               aria-label="Close menu"
             >
               <X className="h-6 w-6" />
             </button>
-          </div>
-
-          <div className="pb-2">
-            <KitchenStatusBar />
           </div>
 
           <div className="flex flex-col space-y-2">
@@ -162,21 +209,35 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="rounded-xl bg-[#1C1A18] border border-[#312B26] p-4 text-base font-bold text-[#FBF9F5] flex items-center justify-between"
+                className="rounded-xl bg-white/90 border border-white p-4 text-base font-bold text-[#1a3a52] flex items-center justify-between shadow-sm"
               >
                 <span>{link.label}</span>
-                <span className="text-[#E5B24E]">&rarr;</span>
+                <span className="text-[#2e5f7e]">&rarr;</span>
               </Link>
             ))}
           </div>
 
-          <div className="pt-4 border-t border-[#312B26] space-y-3">
+          {/* Mobile Direct Contact Gateway: WhatsApp & Phone */}
+          <div className="pt-2 border-t border-[#b8d4e8]/40 space-y-2.5">
+            <span className="text-xs font-mono font-bold text-[#2e5f7e] uppercase block">
+              DIREKTKONTAKT INHABER
+            </span>
             <a
-              href="tel:+492161123456"
-              className="flex items-center justify-center gap-2 rounded-xl bg-[#24211D] border border-[#312B26] p-3 text-sm font-semibold text-[#FBF9F5]"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 p-3.5 text-sm font-black text-white shadow-md shadow-emerald-600/20 transition-all"
             >
-              <Phone className="h-4 w-4 text-[#E5B24E]" />
-              <span>{t.nav.callUs}</span>
+              <MessageSquare className="h-5 w-5 fill-current" />
+              <span>WhatsApp Chat: 0176 70341602</span>
+            </a>
+
+            <a
+              href="tel:+4921669786951"
+              className="flex items-center justify-center gap-2 rounded-xl bg-white border border-[#b8d4e8] p-3 text-sm font-bold text-[#1a3a52] shadow-sm"
+            >
+              <Phone className="h-4 w-4 text-[#2e5f7e]" />
+              <span>02166 9786951 anrufen</span>
             </a>
           </div>
         </div>

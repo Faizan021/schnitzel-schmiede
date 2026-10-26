@@ -77,7 +77,7 @@ export function calculateOrderSummary(
 }
 
 export const DEFAULT_WHATSAPP_PHONE =
-  process.env.NEXT_PUBLIC_RESTAURANT_WHATSAPP || '4917612345678';
+  process.env.NEXT_PUBLIC_RESTAURANT_WHATSAPP || '4917670341602';
 
 export function getKitchenWhatsAppNumber(): string {
   return DEFAULT_WHATSAPP_PHONE;
@@ -85,6 +85,17 @@ export function getKitchenWhatsAppNumber(): string {
 
 export function generateReferenceId(prefix: string): string {
   return `${prefix}-${Date.now().toString().slice(-4)}`;
+}
+
+export function buildGeneralWhatsAppUrl(topic: string = 'Allgemeine Anfrage / Tischreservierung'): string {
+  const phone = getKitchenWhatsAppNumber();
+  const text = [
+    '🔥 [SCHNITZEL SCHMIEDE MÖNCHENGLADBACH · Dohler Str. 269]',
+    '📍 RESTAURANT: Die Schnitzel Schmiede Mönchengladbach',
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+    `Hallo! Ich habe eine Frage zu: *${topic}*`,
+  ].join('\n');
+  return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
 }
 
 export function generateWhatsAppOrderMessage(
@@ -95,7 +106,7 @@ export function generateWhatsAppOrderMessage(
 ): string {
   const fulfillmentTitle =
     details.fulfillmentType === 'pickup'
-      ? '🥡 *SELBSTABHOLUNG* (10% Rabatt)'
+      ? '🥡 *SELBSTABHOLUNG* (10% Rabatt an der Theke)'
       : `🚗 *LIEFERUNG* (PLZ: ${details.postalCode} Mönchengladbach)`;
 
   const paymentLabels: Record<string, string> = {
@@ -105,7 +116,9 @@ export function generateWhatsAppOrderMessage(
   };
 
   const lines: string[] = [
-    `🔥 [SCHNITZEL-SCHMIEDE] 🥩 BESTELLUNG #${orderNumber}`,
+    '🔥 [SCHNITZEL SCHMIEDE MÖNCHENGLADBACH · Dohler Str. 269]',
+    '📍 RESTAURANT: Die Schnitzel Schmiede (Dohler Str. 269, 41238 MG)',
+    `🥩 *NEUE BESTELLUNG #${orderNumber}*`,
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
     `📍 Art: ${fulfillmentTitle}`,
     `⏰ Wunschzeit: *${details.preferredTime}*`,

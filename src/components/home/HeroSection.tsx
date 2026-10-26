@@ -73,7 +73,7 @@ export function HeroSection() {
             </GlowingButton>
           </Link>
 
-          <Link href="/konfigurator">
+          <Link href="/speisekarte">
             <GlowingButton
               variant="forge"
               size="lg"
@@ -112,7 +112,7 @@ export function HeroSection() {
 
           <div className="flex items-center gap-1.5">
             <ShieldCheck className="h-4 w-4 text-emerald-400" />
-            <span>100% Halal Hähnchen-Optionen</span>
+            <span>100% Reines Butterschmalz</span>
           </div>
 
           <div className="flex items-center gap-1.5">

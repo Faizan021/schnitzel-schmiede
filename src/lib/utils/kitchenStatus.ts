@@ -5,6 +5,8 @@ export interface KitchenStatus {
   details: string;
   nextOpenNotice?: string;
   acceptsPreOrders: boolean;
+  isDeliveryOpen: boolean;
+  deliveryStatusBadge: string;
 }
 
 export function getLiveKitchenStatus(date: Date = new Date(), lang: 'de' | 'en' = 'de'): KitchenStatus {
@@ -14,100 +16,72 @@ export function getLiveKitchenStatus(date: Date = new Date(), lang: 'de' | 'en' 
   const minutes = date.getMinutes();
   const currentTimeVal = hours * 60 + minutes;
 
-  // Monday: Ruhetag
-  if (day === 1) {
-    return {
-      isOpen: false,
-      statusBadge: isEn ? 'Monday Closed' : 'Montag Ruhetag',
-      statusColor: 'ruby',
-      details: isEn
-        ? 'Our kitchen is resting. Reopening Tuesday at 12:00 PM.'
-        : 'Unsere Küche schöpft neue Kraft. Wieder geöffnet am Dienstag ab 12:00 Uhr.',
-      nextOpenNotice: isEn ? 'Tuesday 12:00 PM' : 'Dienstag 12:00 Uhr',
-      acceptsPreOrders: true,
-    };
+  // Exact Öffnungszeiten:
+  // Mo-Fr (1-5): 16:30 (990) - 21:45 (1305)
+  // Sa (6): 16:00 (960) - 21:45 (1305)
+  // So (0): 12:00 (720) - 21:45 (1305)
+
+  let openMin = 16 * 60 + 30; // 16:30 default for Mo-Fr
+  let closeMin = 21 * 60 + 45; // 21:45
+  let nextOpen = '16:30 Uhr';
+  let nextOpenEn = '4:30 PM';
+
+  // Exact Lieferzeiten:
+  // Mo-Fr (1-5): 16:00 (960) - 21:45 (1305)
+  // Sa (6): 14:00 (840) - 21:45 (1305)
+  // So (0): 11:30 (690) - 21:45 (1305)
+  let delivOpenMin = 16 * 60; // 16:00
+  let delivCloseMin = 21 * 60 + 45;
+
+  if (day === 6) {
+    // Saturday
+    openMin = 16 * 60; // 16:00
+    delivOpenMin = 14 * 60; // 14:00
+    nextOpen = 'Samstag 16:00 Uhr';
+    nextOpenEn = 'Saturday 4:00 PM';
+  } else if (day === 0) {
+    // Sunday
+    openMin = 12 * 60; // 12:00
+    delivOpenMin = 11 * 60 + 30; // 11:30
+    nextOpen = 'Sonntag 12:00 Uhr';
+    nextOpenEn = 'Sunday 12:00 PM';
+  } else {
+    // Monday to Friday
+    openMin = 16 * 60 + 30;
+    delivOpenMin = 16 * 60;
+    nextOpen = 'Heute 16:30 Uhr';
+    nextOpenEn = 'Today 4:30 PM';
   }
 
-  // Tuesday to Friday: 12:00 - 14:30 & 17:00 - 22:00
-  if (day >= 2 && day <= 5) {
-    const lunchStart = 12 * 60;
-    const lunchEnd = 14 * 60 + 30;
-    const dinnerStart = 17 * 60;
-    const dinnerEnd = 22 * 60;
+  const isPickupOpen = currentTimeVal >= openMin && currentTimeVal <= closeMin;
+  const isDeliveryOpen = currentTimeVal >= delivOpenMin && currentTimeVal <= delivCloseMin;
 
-    if (currentTimeVal >= lunchStart && currentTimeVal < lunchEnd) {
-      return {
-        isOpen: true,
-        statusBadge: isEn ? 'Open Now (Lunch)' : 'Jetzt geöffnet (Mittagstisch)',
-        statusColor: 'emerald',
-        details: isEn
-          ? 'Lunch service open until 2:30 PM · Fast preparation'
-          : 'Mittags geöffnet bis 14:30 Uhr · Schnelle Zubereitung',
-        acceptsPreOrders: true,
-      };
-    }
-
-    if (currentTimeVal >= lunchEnd && currentTimeVal < dinnerStart) {
-      return {
-        isOpen: false,
-        statusBadge: isEn ? 'Afternoon Break' : 'Mittagspause',
-        statusColor: 'amber',
-        details: isEn
-          ? 'Reopening for dinner at 5:00 PM. Pre-orders welcome!'
-          : 'Abends wieder geöffnet ab 17:00 Uhr. Vorbestellungen jederzeit möglich!',
-        nextOpenNotice: isEn ? 'Today 5:00 PM' : 'Heute 17:00 Uhr',
-        acceptsPreOrders: true,
-      };
-    }
-
-    if (currentTimeVal >= dinnerStart && currentTimeVal < dinnerEnd) {
-      return {
-        isOpen: true,
-        statusBadge: isEn ? 'Open Now (Dinner Service)' : 'Jetzt geöffnet (Abend-Service)',
-        statusColor: 'emerald',
-        details: isEn
-          ? 'Hot kitchen until 10:00 PM · Pickup & delivery active'
-          : 'Küche heiß bis 22:00 Uhr · Abholung & Lieferung aktiv',
-        acceptsPreOrders: true,
-      };
-    }
-
-    return {
-      isOpen: false,
-      statusBadge: isEn ? 'Closed' : 'Geschlossen',
-      statusColor: 'amber',
-      details: isEn
-        ? 'Reopening at 12:00 PM. Pre-orders for today are warmly welcomed!'
-        : 'Wieder geöffnet ab 12:00 Uhr. Vorbestellungen für heute werden gerne entgegengenommen!',
-      nextOpenNotice: isEn ? 'Today 12:00 PM' : 'Heute 12:00 Uhr',
-      acceptsPreOrders: true,
-    };
-  }
-
-  // Saturday & Sunday: 12:00 - 22:00 durchgehend
-  const weekendStart = 12 * 60;
-  const weekendEnd = 22 * 60;
-
-  if (currentTimeVal >= weekendStart && currentTimeVal < weekendEnd) {
+  if (isPickupOpen || isDeliveryOpen) {
     return {
       isOpen: true,
-      statusBadge: isEn ? 'Open Now (Weekend Kitchen)' : 'Jetzt geöffnet (Wochenend-Küche)',
+      statusBadge: isEn ? 'Kitchen & Delivery Open' : 'Jetzt geöffnet & Lieferdienst aktiv',
       statusColor: 'emerald',
       details: isEn
-        ? 'Continuous hot kitchen until 10:00 PM · Table reservation recommended'
-        : 'Durchgehend warme Küche bis 22:00 Uhr · Tischreservierung empfohlen',
+        ? 'Fresh craft schnitzel hot from the pan · Pickup & delivery until 9:45 PM'
+        : 'Frische Schnitzel heiß aus Butterschmalz · Abholung & Lieferung bis 21:45 Uhr',
+      nextOpenNotice: isEn ? 'Open today until 9:45 PM' : 'Heute bis 21:45 Uhr geöffnet',
       acceptsPreOrders: true,
+      isDeliveryOpen,
+      deliveryStatusBadge: isDeliveryOpen ? (isEn ? 'Delivery active' : 'Lieferung aktiv') : (isEn ? 'Delivery opens soon' : 'Lieferung ab ' + (day === 0 ? '11:30' : day === 6 ? '14:00' : '16:00') + ' Uhr'),
     };
   }
 
+  // Pre-open or closed
   return {
     isOpen: false,
-    statusBadge: isEn ? 'Closed' : 'Geschlossen',
+    statusBadge: isEn ? 'Currently Closed' : 'Derzeit geschlossen',
     statusColor: 'amber',
     details: isEn
-      ? 'Reopening at 12:00 PM. Feel free to pre-order or book a table!'
-      : 'Wieder geöffnet ab 12:00 Uhr. Gerne für heute vorbestellen oder reservieren!',
-    nextOpenNotice: isEn ? '12:00 PM' : '12:00 Uhr',
+      ? `Reopening at ${nextOpenEn}. Pre-orders for today are warmly welcomed!`
+      : `Wieder geöffnet ab ${nextOpen}. Gerne für heute vorbestellen oder reservieren!`,
+    nextOpenNotice: isEn ? nextOpenEn : nextOpen,
     acceptsPreOrders: true,
+    isDeliveryOpen: false,
+    deliveryStatusBadge: isEn ? 'Pre-order active' : 'Vorbestellung aktiv',
   };
 }

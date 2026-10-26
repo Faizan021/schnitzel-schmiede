@@ -5,6 +5,7 @@ import {
   Users,
   MessageSquare,
   Flame,
+  Sparkles,
 } from 'lucide-react';
 import { getKitchenWhatsAppNumber, generateReferenceId } from '@/lib/utils/whatsapp';
 import { useLanguage } from '../providers/LanguageContext';
@@ -50,14 +51,14 @@ export function CateringCalculator() {
       description: 'Heiß geliefertes Buffet mit professionellen Chafing Dishes (Warmhaltebehältern).',
       descriptionEn: 'Hot delivered buffet equipped with professional stainless chafing dishes.',
       features: [
-        'Hähnchen- & Schweineschnitzel in Goldpanade (100% Halal Option)',
+        'Hähnchen- & Schweineschnitzel in Goldpanade (Regionale Fleischqualitäten)',
         'Schmiede Champignon-Rahmsauce & Paprikasauce',
         'Knusprige Bratkartoffeln mit Zwiebeln & Kartoffelsalat',
         'Rheinischer Gurkensalat & knackiger Marktsalat',
         'Inkl. Vorlegebesteck & Chafing Dishes',
       ],
       featuresEn: [
-        'Chicken & pork schnitzels in golden crust (100% Halal option)',
+        'Chicken & pork schnitzels in golden crust (Regional cuts)',
         'Forge mushroom cream sauce & bell pepper sauce',
         'Crispy fried potatoes with onions & potato salad',
         'Rhenish cucumber salad & garden salad',
@@ -128,7 +129,9 @@ export function CateringCalculator() {
 
     const refId = generateReferenceId('CAT-MG');
     const message = [
-      `🎉 [SCHNITZEL-SCHMIEDE] 🎪 CATERING ANFRAGE #${refId}`,
+      '🔥 [SCHNITZEL SCHMIEDE MÖNCHENGLADBACH · Dohler Str. 269]',
+      '📍 RESTAURANT: Die Schnitzel Schmiede (Dohler Str. 269, 41238 MG)',
+      `🎪 *CATERING ANFRAGE #${refId}*`,
       '━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
       `Event-Art: ${eventType === 'company' ? 'Firmenfeier' : eventType === 'birthday' ? 'Geburtstag' : 'Vereins-/Sportfeier'}`,
       `Gästeanzahl: *${guests} Personen*`,
@@ -170,14 +173,14 @@ export function CateringCalculator() {
     <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-10">
-        <div className="inline-flex items-center gap-2 rounded-full border border-[#E6B84A]/30 bg-[#E6B84A]/10 px-4 py-1.5 text-xs font-bold text-[#E6B84A] mb-4">
-          <Flame className="h-3.5 w-3.5" />
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#b8d4e8] bg-white/80 backdrop-blur-md px-4 py-1.5 text-xs font-bold text-[#1a3a52] mb-4 shadow-sm">
+          <Flame className="h-3.5 w-3.5 text-[#2e5f7e]" />
           <span>{t.catering.tagline}</span>
         </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#FDFBF7]">
+        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#1a3a52] font-serif">
           {t.catering.heading}
         </h1>
-        <p className="mt-3 text-sm sm:text-base text-[#C4BFB5]">
+        <p className="mt-3 text-sm sm:text-base text-[#2e5f7e]">
           {t.catering.subtitle}
         </p>
       </div>
@@ -185,10 +188,10 @@ export function CateringCalculator() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Calculator Configuration */}
         <div className="lg:col-span-7 space-y-6">
-          <div className="rounded-2xl border border-white/10 bg-[#121216] p-6 shadow-xl space-y-6">
+          <div className="rounded-2xl border border-white/95 bg-white/85 p-6 shadow-md shadow-[#1a3a52]/5 space-y-6 text-[#1a3a52]">
             {/* Event Type */}
             <div>
-              <label className="block text-xs font-bold text-[#C4BFB5] uppercase tracking-wider mb-2">
+              <label className="block text-xs font-bold text-[#2e5f7e] uppercase tracking-wider mb-2">
                 {t.catering.eventType}
               </label>
               <div className="grid grid-cols-3 gap-2">
@@ -203,8 +206,8 @@ export function CateringCalculator() {
                     onClick={() => setEventType(item.id)}
                     className={`rounded-xl py-2.5 px-3 text-xs font-bold border transition-all cursor-pointer ${
                       eventType === item.id
-                        ? 'border-[#E6B84A] bg-[#E6B84A]/10 text-[#FDFBF7]'
-                        : 'border-white/5 bg-[#181820] text-[#C4BFB5]'
+                        ? 'border-[#9bc1d9] bg-[#cce3f1] text-[#1a3a52] font-black shadow-sm'
+                        : 'border-[#b8d4e8] bg-[#f0f7fb] text-[#2e5f7e]'
                     }`}
                   >
                     {item.label}
@@ -216,11 +219,11 @@ export function CateringCalculator() {
             {/* Guests Slider */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-bold text-[#C4BFB5] uppercase tracking-wider flex items-center gap-1.5">
-                  <Users className="h-4 w-4 text-[#E6B84A]" />
+                <label className="text-xs font-bold text-[#2e5f7e] uppercase tracking-wider flex items-center gap-1.5">
+                  <Users className="h-4 w-4 text-[#2e5f7e]" />
                   <span>{t.catering.guestSlider}</span>
                 </label>
-                <span className="font-mono text-xl font-black text-[#E6B84A]">
+                <span className="font-mono text-xl font-black text-[#1a3a52]">
                   {guests} {isEn ? 'Guests' : 'Personen'}
                 </span>
               </div>
@@ -231,9 +234,9 @@ export function CateringCalculator() {
                 step="5"
                 value={guests}
                 onChange={(e) => setGuests(Number(e.target.value))}
-                className="w-full accent-[#E6B84A] cursor-pointer"
+                className="w-full accent-[#9bc1d9] cursor-pointer"
               />
-              <div className="flex justify-between text-[11px] text-[#C4BFB5] mt-1">
+              <div className="flex justify-between text-[11px] text-[#2e5f7e] mt-1">
                 <span>{t.catering.minSize}</span>
                 <span>100 {isEn ? 'Guests' : 'Gäste'}</span>
                 <span>{t.catering.largeEvent}</span>
@@ -242,7 +245,7 @@ export function CateringCalculator() {
 
             {/* Package Selection */}
             <div>
-              <label className="block text-xs font-bold text-[#C4BFB5] uppercase tracking-wider mb-3">
+              <label className="block text-xs font-bold text-[#2e5f7e] uppercase tracking-wider mb-3">
                 {t.catering.packageHeading}
               </label>
               <div className="space-y-3">
@@ -257,32 +260,36 @@ export function CateringCalculator() {
                     <div
                       key={pkg.id}
                       onClick={() => setSelectedTier(pkg.id)}
-                      className={`cursor-pointer rounded-xl border p-4 transition-all relative ${
+                      className={`cursor-pointer rounded-xl border p-4 sm:p-5 transition-all relative ${
                         isSelected
-                          ? 'border-[#E6B84A] bg-[#E6B84A]/10 shadow-md shadow-[#E6B84A]/10'
-                          : 'border-white/5 bg-[#181820] hover:border-white/20'
+                          ? 'border-2 border-[#1a3a52] bg-[#cce3f1]/70 shadow-md'
+                          : 'border-[#b8d4e8] bg-[#f0f7fb] hover:border-[#9bc1d9]'
                       }`}
                     >
+                      {/* Bestseller Badge - Elevated on upper card border to eliminate overlap */}
                       {pkg.recommended && (
-                        <span className="absolute top-3 right-3 rounded-md bg-[#E6B84A] px-2 py-0.5 text-[10px] font-black text-[#0A0A0C] uppercase">
-                          {t.catering.bestseller}
+                        <span className="absolute -top-2.5 right-4 rounded-full bg-[#1a3a52] text-white px-3 py-0.5 text-[10px] font-black uppercase tracking-wider shadow-sm flex items-center gap-1 border border-white">
+                          <Sparkles className="h-3 w-3 text-[#ffecd2]" />
+                          <span>{t.catering.bestseller}</span>
                         </span>
                       )}
-                      <div className="flex items-start justify-between">
+                      <div className="flex items-start justify-between gap-4">
                         <div>
-                          <h4 className="text-sm font-bold text-[#FDFBF7]">{name}</h4>
-                          <p className="text-xs text-[#E6B84A]">{subtitle}</p>
+                          <h4 className="text-sm sm:text-base font-bold text-[#1a3a52]">{name}</h4>
+                          <p className="text-xs text-[#163044] font-semibold mt-0.5">{subtitle}</p>
                         </div>
-                        <span className="font-mono text-base font-bold text-[#FDFBF7]">
-                          {pkg.pricePerPerson.toFixed(2).replace('.', ',')} €{' '}
-                          <span className="text-[10px] text-[#C4BFB5] font-normal">{t.catering.perPerson}</span>
-                        </span>
+                        <div className="text-right shrink-0">
+                          <span className="font-mono text-base sm:text-lg font-black text-[#1a3a52]">
+                            {pkg.pricePerPerson.toFixed(2).replace('.', ',')} €{' '}
+                            <span className="text-[11px] text-[#163044] font-medium">{t.catering.perPerson}</span>
+                          </span>
+                        </div>
                       </div>
-                      <p className="text-xs text-[#C4BFB5] mt-2">{desc}</p>
-                      <ul className="mt-3 space-y-1 text-xs text-[#C4BFB5]">
+                      <p className="text-xs text-[#163044] leading-relaxed mt-2">{desc}</p>
+                      <ul className="mt-3 space-y-1.5 text-xs text-[#163044]">
                         {features.map((f, idx) => (
                           <li key={idx} className="flex items-center gap-1.5">
-                            <span className="text-[#E6B84A] font-bold">✓</span>
+                            <span className="text-[#1a3a52] font-black">✓</span>
                             <span>{f}</span>
                           </li>
                         ))}
@@ -297,23 +304,23 @@ export function CateringCalculator() {
 
         {/* Right Column: Instant Live Estimate & Inquiry Form */}
         <div className="lg:col-span-5 sticky top-24 space-y-4">
-          <div className="rounded-2xl border border-[#E6B84A]/30 bg-[#141418] p-6 shadow-2xl">
-            <span className="text-[11px] font-bold text-[#E6B84A] uppercase tracking-widest">
+          <div className="rounded-2xl border border-[#b8d4e8] bg-white/90 backdrop-blur-md p-6 shadow-xl text-[#1a3a52]">
+            <span className="text-[11px] font-bold text-[#2e5f7e] uppercase tracking-widest">
               {t.catering.liveEstimate}
             </span>
-            <div className="mt-2 flex items-baseline justify-between border-b border-white/10 pb-4">
+            <div className="mt-2 flex items-baseline justify-between border-b border-[#b8d4e8]/60 pb-4">
               <div>
-                <span className="text-2xl sm:text-3xl font-black font-mono text-[#FDFBF7]">
+                <span className="text-2xl sm:text-3xl font-black font-mono text-[#1a3a52]">
                   ca. {totalEstimate.toFixed(2).replace('.', ',')} €
                 </span>
-                <span className="block text-[11px] text-[#C4BFB5]">
+                <span className="block text-[11px] text-[#2e5f7e]">
                   ({guests} x {currentPkg.pricePerPerson.toFixed(2).replace('.', ',')} € {isEn ? 'plus VAT' : 'zzgl. ges. MwSt.'})
                 </span>
               </div>
             </div>
 
             <form onSubmit={handleInquiry} className="mt-5 space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#FDFBF7]">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#1a3a52]">
                 {t.catering.inquiryHeading}
               </h4>
 
@@ -324,7 +331,7 @@ export function CateringCalculator() {
                   placeholder={t.catering.nameCompany}
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
-                  className="w-full rounded-xl bg-[#1E1E26] border border-white/10 px-3 py-2 text-xs text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
+                  className="w-full rounded-xl bg-[#f0f7fb] border border-[#b8d4e8] px-3 py-2 text-xs text-[#1a3a52] focus:border-[#9bc1d9] focus:outline-none"
                 />
               </div>
 
@@ -335,7 +342,7 @@ export function CateringCalculator() {
                   placeholder={t.catering.phone}
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full rounded-xl bg-[#1E1E26] border border-white/10 px-3 py-2 text-xs text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
+                  className="w-full rounded-xl bg-[#f0f7fb] border border-[#b8d4e8] px-3 py-2 text-xs text-[#1a3a52] focus:border-[#9bc1d9] focus:outline-none"
                 />
               </div>
 
@@ -345,7 +352,7 @@ export function CateringCalculator() {
                   placeholder={isEn ? "Email Address (optional)" : "E-Mail-Adresse (optional)"}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-xl bg-[#1E1E26] border border-white/10 px-3 py-2 text-xs text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
+                  className="w-full rounded-xl bg-[#f0f7fb] border border-[#b8d4e8] px-3 py-2 text-xs text-[#1a3a52] focus:border-[#9bc1d9] focus:outline-none"
                 />
               </div>
 
@@ -355,14 +362,14 @@ export function CateringCalculator() {
                   placeholder={t.catering.date}
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full rounded-xl bg-[#1E1E26] border border-white/10 px-3 py-2 text-xs text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
+                  className="w-full rounded-xl bg-[#f0f7fb] border border-[#b8d4e8] px-3 py-2 text-xs text-[#1a3a52] focus:border-[#9bc1d9] focus:outline-none"
                 />
                 <input
                   type="text"
                   placeholder={t.catering.city}
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className="w-full rounded-xl bg-[#1E1E26] border border-white/10 px-3 py-2 text-xs text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
+                  className="w-full rounded-xl bg-[#f0f7fb] border border-[#b8d4e8] px-3 py-2 text-xs text-[#1a3a52] focus:border-[#9bc1d9] focus:outline-none"
                 />
               </div>
 
@@ -372,26 +379,26 @@ export function CateringCalculator() {
                   placeholder={t.catering.wishes}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full rounded-xl bg-[#1E1E26] border border-white/10 px-3 py-2 text-xs text-[#FDFBF7] focus:border-[#E6B84A] focus:outline-none"
+                  className="w-full rounded-xl bg-[#f0f7fb] border border-[#b8d4e8] px-3 py-2 text-xs text-[#1a3a52] focus:border-[#9bc1d9] focus:outline-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] py-3.5 text-xs font-black text-white hover:brightness-110 shadow-lg shadow-[#25D366]/20 transition-all cursor-pointer"
+                className="w-full flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] py-4 text-xs font-black text-white hover:brightness-105 shadow-md shadow-[#25D366]/20 transition-all cursor-pointer active:scale-98"
               >
                 <MessageSquare className="h-4 w-4 fill-current" />
-                <span>{t.catering.inquiryWhatsappBtn}</span>
+                <span>{t.catering.inquiryWhatsappBtn} · 0176 70341602</span>
               </button>
 
               {isSent && (
-                <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-2 text-center text-xs text-emerald-300">
+                <div className="rounded-lg bg-emerald-50 border border-emerald-300 p-2 text-center text-xs text-emerald-800 font-bold">
                   {t.catering.openedNotice}
                 </div>
               )}
 
-              <p className="text-[10px] text-center text-[#C4BFB5]/80">
-                {t.catering.replyGuarantee}
+              <p className="text-[11px] text-center text-[#163044] font-semibold">
+                {isEn ? 'Direct Line to Owner Umar Jabbar (+49 176 70341602) · Reply in < 30 Min' : 'Direkter Draht zu Inhaber Umar Jabbar (0176 70341602) · Antwort in < 30 Min'}
               </p>
             </form>
           </div>

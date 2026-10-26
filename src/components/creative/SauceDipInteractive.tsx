@@ -100,17 +100,17 @@ export function SauceDipInteractive() {
   const current = sauces.find((s) => s.id === selectedSauce) || sauces[0];
 
   return (
-    <section className="py-20 bg-[#121110] border-t border-[#312B26]">
+    <section className="py-20 bg-gradient-to-b from-[#edf7fc] via-[#ddeef7] to-[#edf7fc] border-t border-[#b8d4e8]/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#D4A347]/30 bg-[#D4A347]/10 px-4 py-1.5 text-xs font-bold text-[#E5B24E] mb-3">
-            <Soup className="h-3.5 w-3.5" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#b8d4e8] bg-white/80 backdrop-blur-md px-4 py-1.5 text-xs font-bold text-[#1a3a52] mb-3 shadow-sm">
+            <Soup className="h-3.5 w-3.5 text-[#2e5f7e]" />
             <span>{t.sauce.tagline}</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-[#FBF9F5] font-serif">
+          <h2 className="text-3xl sm:text-5xl font-black text-[#1a3a52] font-serif">
             {t.sauce.heading}
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-[#D5CEBF]">
+          <p className="mt-2 text-sm sm:text-base text-[#2e5f7e]">
             {t.sauce.subtitle}
           </p>
         </div>
@@ -131,8 +131,8 @@ export function SauceDipInteractive() {
                   }}
                   className={`w-full text-left rounded-2xl p-4 transition-all border flex items-center justify-between cursor-pointer ${
                     isSelected
-                      ? 'border-[#D4A347] bg-[#221E1B] shadow-lg shadow-[#D4A347]/15'
-                      : 'border-[#312B26] bg-[#181615] hover:border-[#D4A347]/40'
+                      ? 'border-[#9bc1d9] bg-[#cce3f1] shadow-md shadow-[#9bc1d9]/25 font-bold'
+                      : 'border-[#b8d4e8] bg-white/80 hover:border-[#9bc1d9]'
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -141,11 +141,11 @@ export function SauceDipInteractive() {
                       className="h-4 w-4 rounded-full shrink-0 shadow-sm"
                     />
                     <div>
-                      <div className="text-sm font-bold text-[#FBF9F5] font-serif">{name}</div>
-                      <div className="text-[11px] text-[#C4BFB5]">{subtitle}</div>
+                      <div className="text-sm font-bold text-[#1a3a52] font-serif">{name}</div>
+                      <div className="text-[11px] text-[#2e5f7e]">{subtitle}</div>
                     </div>
                   </div>
-                  {isSelected && <Check className="h-4 w-4 text-[#E5B24E]" />}
+                  {isSelected && <Check className="h-4 w-4 text-[#1a3a52]" />}
                 </button>
               );
             })}
@@ -153,71 +153,71 @@ export function SauceDipInteractive() {
 
           {/* Interactive Flavor Radar Card */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl border border-[#D4A347]/30 bg-[#1C1A18] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-              <div className="flex items-center justify-between pb-4 border-b border-[#312B26]">
+            <div className="rounded-3xl border border-white/90 bg-white/85 backdrop-blur-md p-6 sm:p-8 shadow-xl shadow-[#1a3a52]/5 relative overflow-hidden">
+              <div className="flex items-center justify-between pb-4 border-b border-[#b8d4e8]/60">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#E5B24E]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#2e5f7e]">
                     {t.sauce.flavorProfile}
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#FBF9F5] font-serif mt-0.5">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#1a3a52] font-serif mt-0.5">
                     {isEn ? current.nameEn : current.name}
                   </h3>
                 </div>
-                <span className="rounded-lg bg-[#D4A347]/15 border border-[#D4A347]/30 px-2.5 py-1 text-xs font-bold text-[#E5B24E]">
+                <span className="rounded-full bg-[#cce3f1] border border-[#b8d4e8] px-3 py-1 text-xs font-bold text-[#1a3a52]">
                   {t.sauce.packedSeparately}
                 </span>
               </div>
 
-              <p className="mt-4 text-xs sm:text-sm text-[#D5CEBF] leading-relaxed">
+              <p className="mt-4 text-xs sm:text-sm text-[#2e5f7e] leading-relaxed">
                 {isEn ? current.descriptionEn : current.description}
               </p>
 
               {/* Flavor Meters */}
-              <div className="mt-6 space-y-3 bg-[#24211D] p-4 rounded-2xl border border-[#3A332C]">
+              <div className="mt-6 space-y-3 bg-[#f0f7fb] p-4 rounded-2xl border border-[#b8d4e8]/60">
                 <div>
                   <div className="flex justify-between text-xs font-semibold mb-1">
-                    <span className="text-[#C4BFB5]">{t.sauce.creaminess}:</span>
-                    <span className="text-[#E5B24E]">{current.creaminess} / 5</span>
+                    <span className="text-[#2e5f7e]">{t.sauce.creaminess}:</span>
+                    <span className="text-[#1a3a52] font-bold">{current.creaminess} / 5</span>
                   </div>
-                  <div className="h-1.5 w-full bg-black/40 rounded-full overflow-hidden">
+                  <div className="h-2 w-full bg-[#ddeef7] rounded-full overflow-hidden">
                     <div
                       style={{ width: `${(current.creaminess / 5) * 100}%` }}
-                      className="h-full bg-[#E5B24E] rounded-full transition-all duration-500"
+                      className="h-full bg-[#9bc1d9] rounded-full transition-all duration-500"
                     />
                   </div>
                 </div>
 
                 <div>
                   <div className="flex justify-between text-xs font-semibold mb-1">
-                    <span className="text-[#C4BFB5]">{t.sauce.heat}:</span>
-                    <span className="text-rose-400">{current.heat} / 5</span>
+                    <span className="text-[#2e5f7e]">{t.sauce.heat}:</span>
+                    <span className="text-[#1a3a52] font-bold">{current.heat} / 5</span>
                   </div>
-                  <div className="h-1.5 w-full bg-black/40 rounded-full overflow-hidden">
+                  <div className="h-2 w-full bg-[#ddeef7] rounded-full overflow-hidden">
                     <div
                       style={{ width: `${(current.heat / 5) * 100}%` }}
-                      className="h-full bg-rose-500 rounded-full transition-all duration-500"
+                      className="h-full bg-[#2e5f7e] rounded-full transition-all duration-500"
                     />
                   </div>
                 </div>
 
                 <div>
                   <div className="flex justify-between text-xs font-semibold mb-1">
-                    <span className="text-[#C4BFB5]">{t.sauce.depth}:</span>
-                    <span className="text-[#E5B24E]">{current.depth} / 5</span>
+                    <span className="text-[#2e5f7e]">{t.sauce.depth}:</span>
+                    <span className="text-[#1a3a52] font-bold">{current.depth} / 5</span>
                   </div>
-                  <div className="h-1.5 w-full bg-black/40 rounded-full overflow-hidden">
+                  <div className="h-2 w-full bg-[#ddeef7] rounded-full overflow-hidden">
                     <div
                       style={{ width: `${(current.depth / 5) * 100}%` }}
-                      className="h-full bg-[#D4A347] rounded-full transition-all duration-500"
+                      className="h-full bg-[#1a3a52] rounded-full transition-all duration-500"
                     />
                   </div>
                 </div>
               </div>
 
               {/* Recommendation */}
-              <div className="mt-4 pt-4 border-t border-[#312B26] flex items-center justify-between text-xs">
-                <span className="text-[#C4BFB5]">{t.sauce.perfectPair}:</span>
-                <span className="font-bold text-[#FBF9F5] font-serif">
+              <div className="mt-4 pt-4 border-t border-[#b8d4e8]/60 flex items-center justify-between text-xs">
+                <span className="text-[#2e5f7e]">{t.sauce.perfectPair}:</span>
+                <span className="font-bold text-[#1a3a52] font-serif">
                   {isEn ? current.bestPairEn : current.bestPair}
                 </span>
               </div>

@@ -4,279 +4,292 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  ShieldCheck,
-  MapPin,
-  Layers,
-  ChefHat,
+  Flame,
+  Volume2,
   CheckCircle2,
-  Calendar,
+  Waves,
+  Bike,
   Sparkles,
   ArrowRight,
+  ShieldCheck,
+  Compass,
+  Sliders,
 } from 'lucide-react';
-import { SpotlightCard } from '../ui/SpotlightCard';
 import { playSizzleSound } from './AudioCrunchEngine';
-import { getKitchenWhatsAppNumber } from '@/lib/utils/whatsapp';
 import { useLanguage } from '../providers/LanguageContext';
 
 export function BentoCraftGrid() {
-  const [activeStep, setActiveStep] = useState(3); // Default to Butterschmalz
-  const whatsappPhone = getKitchenWhatsAppNumber();
   const { lang } = useLanguage();
   const isEn = lang === 'en';
+  const [isPlayingSound, setIsPlayingSound] = useState(false);
 
-  const panierSteps = [
-    {
-      step: 1,
-      title: isEn ? 'Hand-Pounded' : 'Frisch geklopft',
-      desc: isEn
-        ? 'Tender cuts pounded paper-thin by hand for peak juiciness.'
-        : 'Saftiges Fleisch wird erst bei Bestellung hauchdünn mit dem Plattiereisen geklopft.',
-    },
-    {
-      step: 2,
-      title: isEn ? 'Flour & Farm Eggs' : 'Mehl & Land-Ei',
-      desc: isEn
-        ? 'Finest wheat flour and fresh country eggs for seamless crumb adhesion.'
-        : 'Feinstes Weizenmehl und frische Eier für die perfekte Bindung.',
-    },
-    {
-      step: 3,
-      title: isEn ? 'Golden Crumb' : 'Knusper-Panade',
-      desc: isEn
-        ? 'Golden breadcrumbs or Bavarian pretzel crust gently coating the cutlet.'
-        : 'Klassische goldene Semmelbrösel oder bayerische Brezelkruste – locker aufliegend.',
-    },
-    {
-      step: 4,
-      title: isEn ? 'Clarified Butter' : 'Butterschmalz-Pfanne',
-      desc: isEn
-        ? 'Floated at 175°C and waved for cloud-like soufflé blistering.'
-        : 'Schwimmend bei 175°C wellenförmig souffliert – goldgelb und federleicht.',
-    },
-  ];
+  const handlePlaySound = () => {
+    setIsPlayingSound(true);
+    playSizzleSound();
+    setTimeout(() => setIsPlayingSound(false), 1500);
+  };
 
   return (
-    <section className="py-20 bg-[#161413] border-t border-[#312B26] relative">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold text-[#E5B24E] uppercase tracking-widest">
-            {isEn ? 'Culinary Pillars & Tradition' : 'Vier Säulen unserer Schmiede'}
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-black text-[#FBF9F5] mt-2 font-serif">
-            {isEn ? 'The Secret Behind Every Schnitzel' : 'Das Geheimnis echter Schnitzelkultur'}
+    <section className="py-20 bg-gradient-to-b from-[#edf7fc] via-[#ddeef7] to-[#edf7fc] border-t border-[#b8d4e8]/60 relative">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 space-y-10">
+        
+        {/* Section Header */}
+        <div className="space-y-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-[#b8d4e8] text-xs font-mono font-bold text-[#1a3a52] uppercase tracking-wider shadow-sm">
+            <Sliders className="h-3.5 w-3.5 text-[#2e5f7e]" />
+            <span>{isEn ? 'INTERACTIVE CRAFT BENTO' : 'INTERAKTIVER KRAFT-BENTO'}</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black text-[#1a3a52] font-serif tracking-tight">
+            {isEn ? 'THE CRAFT FORGE' : 'DIE HANDWERKS-SCHMIEDE'}
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[#D5CEBF]">
+          <p className="text-sm sm:text-base text-[#2e5f7e] max-w-2xl">
             {isEn
-              ? 'Handcrafted pan-frying, a cozy historic dining room, and packaging designed to keep your crust crispy.'
-              : 'Echte Pfannenzubereitung, ein gemütlicher Gastraum und Verpackungen, die Ihre Panade knusprig halten.'}
+              ? 'Precision culinary craft meets gentle butter heat. Explore our meat cuts, skillet acoustics, sauce alchemy lab, and delivery radius.'
+              : 'Präzise Kulinarik trifft sanfte Butterschmalz-Hitze. Erforschen Sie Zuschnitt, Pfannen-Akustik, Saucen-Labor und Kurier-Radius.'}
           </p>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1: Interactive Panierstraße (Span 2) */}
-          <SpotlightCard className="md:col-span-2 p-6 sm:p-8 bg-[#1C1A18] border border-[#3A332C] flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#D4A347]/15 border border-[#D4A347]/30 px-3 py-1 text-xs font-bold text-[#E5B24E]">
-                  <Layers className="h-3.5 w-3.5" />
-                  <span>{isEn ? 'Craftsmanship Line' : 'Traditionelle Panierstraße'}</span>
+        {/* 4 Bento Chapters Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          {/* BENTO TILE 1: THE MEAT FORGE (Zuschnitt & Textur) */}
+          <div className="rounded-2xl overflow-hidden border border-white/90 bg-white/85 backdrop-blur-md shadow-lg shadow-[#1a3a52]/5 flex flex-col justify-between">
+            <div className="relative h-56 w-full overflow-hidden bg-[#ddeef7]">
+              <Image
+                src="/images/stitch/schnitzel-hero-stitch.jpg"
+                alt="Die Schmiede Goldbraunes Kalbsschnitzel"
+                fill
+                sizes="(max-width: 768px) 100vw, 500px"
+                className="object-cover object-center transform hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent" />
+              
+              <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-2">
+                <span className="px-3 py-1 bg-white/90 backdrop-blur-md border border-[#b8d4e8] rounded-full text-[11px] font-mono font-bold text-[#1a3a52] flex items-center gap-1.5 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#9bc1d9]" />
+                  100% REGIONAL FRESH CUTS · NIEDERRHEIN
                 </span>
-                <span className="text-xs text-[#C4BFB5]">
-                  {isEn ? 'Step by step craft' : 'Schritt für Schritt'}
+                <span className="p-1 rounded-full bg-white/90 border border-[#b8d4e8] text-emerald-600 shadow-sm">
+                  <CheckCircle2 className="h-4 w-4" />
                 </span>
               </div>
+            </div>
 
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#FBF9F5] font-serif">
-                {isEn ? 'Souffléed in Pure Clarified Butter' : 'In Butterschmalz souffliert'}
-              </h3>
-              <p className="text-xs sm:text-sm text-[#D5CEBF] mt-1.5 max-w-lg">
-                {isEn
-                  ? 'Click through the four stations to see how our crust rises like a golden cloud.'
-                  : 'Klicken Sie auf die Stationen, um das Geheimnis unserer wellenförmig abgehobenen Panade zu entdecken.'}
-              </p>
-
-              {/* Interactive Step Selector */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
-                {panierSteps.map((s, idx) => {
-                  const isActive = activeStep === idx;
-                  return (
-                    <button
-                      key={s.step}
-                      onClick={() => {
-                        setActiveStep(idx);
-                        playSizzleSound();
-                      }}
-                      className={`rounded-2xl p-3.5 text-left transition-all border cursor-pointer ${
-                        isActive
-                          ? 'border-[#D4A347] bg-[#D4A347]/15 shadow-md shadow-[#D4A347]/20'
-                          : 'border-[#312B26] bg-[#23201C] hover:border-[#D4A347]/40'
-                      }`}
-                    >
-                      <div className="text-[10px] font-black uppercase text-[#E5B24E]">
-                        Station 0{s.step}
-                      </div>
-                      <div className="text-xs font-bold text-[#FBF9F5] mt-1">{s.title}</div>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Active Step Showcase */}
-              <div className="mt-5 rounded-2xl border border-[#3A332C] bg-[#24211D] p-4 flex items-center gap-3.5">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#D4A347] text-[#121110]">
-                  <ChefHat className="h-5 w-5" />
-                </div>
+            <div className="p-5 space-y-4 -mt-2 relative z-10">
+              <div className="flex items-baseline justify-between border-b border-[#b8d4e8]/60 pb-2">
                 <div>
-                  <h4 className="text-sm font-bold text-[#FBF9F5]">
-                    {panierSteps[activeStep].title}
-                  </h4>
-                  <p className="text-xs text-[#D5CEBF] mt-0.5">
-                    {panierSteps[activeStep].desc}
-                  </p>
+                  <span className="text-xs font-mono font-bold text-[#163044] tracking-wider uppercase block">
+                    KAPITEL 01 // TEXTUR
+                  </span>
+                  <h3 className="text-xl font-bold font-serif text-[#1a3a52]">
+                    {isEn ? 'The Meat Craft' : 'Das Fleischhandwerk'}
+                  </h3>
+                </div>
+                <span className="text-xs font-mono font-black text-[#1a3a52] bg-[#cce3f1] px-2.5 py-1 rounded border border-[#b8d4e8]">
+                  180g - 240g CUT
+                </span>
+              </div>
+
+              {/* Spec Tags */}
+              <div className="space-y-2 text-xs">
+                <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#f0f7fb] border border-[#b8d4e8]/60">
+                  <span className="text-[#163044] font-bold flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#9bc1d9]" />
+                    REIFEGRAD
+                  </span>
+                  <span className="font-black text-[#1a3a52]">Dry-Aged 21 Tage</span>
+                </div>
+                <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#f0f7fb] border border-[#b8d4e8]/60">
+                  <span className="text-[#163044] font-bold flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#9bc1d9]" />
+                    SCHNITTVERFAHREN
+                  </span>
+                  <span className="font-black text-[#1a3a52]">Präzisions-Klopfschnitt</span>
+                </div>
+                <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#f0f7fb] border border-[#b8d4e8]/60">
+                  <span className="text-[#163044] font-bold flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#9bc1d9]" />
+                    HERKUNFT
+                  </span>
+                  <span className="font-black text-[#1a3a52]">Metzgerei Stüttgen MG</span>
                 </div>
               </div>
-            </div>
 
-            <div className="mt-6 pt-4 border-t border-[#312B26] flex items-center justify-between text-xs text-[#C4BFB5]">
-              <span className="flex items-center gap-1.5">
-                <Sparkles className="h-3.5 w-3.5 text-[#E5B24E]" />
-                {isEn ? 'Handmade upon every order' : 'Frisch geklopft statt Tiefkühl-Ware'}
+              <div className="flex items-center justify-between text-xs font-mono text-[#163044] font-bold pt-1">
+                <span className="flex items-center gap-1.5">
+                  <Waves className="h-3.5 w-3.5 text-[#1a3a52]" />
+                  PANIERUNG: WELLEN-SOUFFLÉ
+                </span>
+                <span className="text-[#1a3a52] font-black">CRUST: 185°C</span>
+              </div>
+            </div>
+          </div>
+
+          {/* BENTO TILE 2: BUTTER-PAN SIZZLE (Akustik & Pfanne) */}
+          <div className="rounded-2xl p-6 border border-white/90 bg-white/85 backdrop-blur-md shadow-lg shadow-[#1a3a52]/5 flex flex-col justify-between space-y-5">
+            <div className="flex items-start justify-between">
+              <div>
+                <span className="text-xs font-mono font-bold text-[#163044] tracking-wider uppercase block">
+                  KAPITEL 02 // AKUSTIK
+                </span>
+                <h3 className="text-xl font-bold font-serif text-[#1a3a52]">
+                  {isEn ? 'The Pan Alchemy' : 'Die Pfannen-Alchemie'}
+                </h3>
+              </div>
+              <span className="px-2.5 py-1 rounded bg-[#cce3f1] border border-[#b8d4e8] text-xs font-mono font-black text-[#1a3a52]">
+                100% REINES BUTTERSCHMALZ
               </span>
-              <span className="text-[#E5B24E] font-bold">100% Butterschmalz</span>
             </div>
-          </SpotlightCard>
 
-          {/* Card 2: Unser Gastraum auf der Bismarckstraße (Featuring REAL Interior Photo!) */}
-          <SpotlightCard className="p-6 sm:p-8 bg-[#1C1A18] border border-[#3A332C] flex flex-col justify-between overflow-hidden relative group">
-            <div>
-              <div className="relative h-44 w-full rounded-2xl overflow-hidden mb-4 border border-[#D4A347]/25 shadow-md">
-                <Image
-                  src="/images/restaurant/gastraum-interior.jpg"
-                  alt={isEn ? "Cozy dining room with brick fireplace at Schnitzel Schmiede" : "Gemütlicher Gastraum mit Kamin in der Schnitzel Schmiede Mönchengladbach"}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 360px"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1C1A18] via-transparent to-transparent opacity-80" />
-                <span className="absolute top-2.5 right-2.5 rounded-full bg-black/80 backdrop-blur-md border border-[#D4A347]/40 px-2 py-0.5 text-[10px] font-bold text-[#E5B24E]">
-                  {isEn ? 'Bismarckstraße 45' : 'Bismarckstr. 45'}
+            {/* Live Sonic Wave Visualizer */}
+            <div className="p-4 rounded-xl bg-[#f0f7fb] border border-[#b8d4e8]/60 space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-[#1a3a52] font-black flex items-center gap-1.5">
+                  <Volume2 className="h-4 w-4 text-[#1a3a52]" />
+                  SIZZLE AUDIO LIVE
                 </span>
+                <span className="text-xs font-mono font-bold text-[#163044]">92 dB CRUNCH</span>
               </div>
 
-              <h3 className="text-xl font-bold text-[#FBF9F5] font-serif">
-                {isEn ? 'Our Historic Gastraum' : 'Unser gemütlicher Gastraum'}
-              </h3>
-              <p className="text-xs text-[#D5CEBF] mt-1.5 leading-relaxed">
-                {isEn
-                  ? 'Warm brick fireplace, authentic wooden tables, and cold beer on tap. The perfect setting for family dinners, dates, and celebrations.'
-                  : 'Warmer Backsteinkamin, rustikale Gemütlichkeit und frisch gezapftes Bier. Perfekt für Familienabende, Paare und Feiern.'}
+              {/* Animated waveform bars */}
+              <div className="flex items-center justify-center gap-1.5 h-14">
+                {[12, 28, 48, 35, 52, 20, 42, 60, 45, 25, 50, 32, 58, 22].map((height, idx) => (
+                  <span
+                    key={idx}
+                    style={{ height: isPlayingSound ? `${height}px` : '14px' }}
+                    className="w-1.5 bg-gradient-to-t from-[#1a3a52] via-[#2e5f7e] to-[#9bc1d9] rounded-full transition-all duration-300"
+                  />
+                ))}
+              </div>
+
+              <p className="text-xs text-[#163044] font-medium italic text-center">
+                &quot;Das hörbare Ausbacken im schäumenden Schmalz bei exakt 178°C.&quot;
               </p>
             </div>
 
-            <Link
-              href="/reservierung"
-              className="mt-6 flex items-center justify-center gap-2 rounded-xl border border-[#D4A347]/40 bg-[#D4A347]/15 py-2.5 text-xs font-bold text-[#E5B24E] hover:bg-[#D4A347] hover:text-[#121110] transition-all cursor-pointer"
+            <button
+              onClick={handlePlaySound}
+              className="w-full py-3 rounded-xl bg-[#9bc1d9] hover:bg-[#85b0cb] text-xs font-mono font-black text-[#1a3a52] transition-all flex items-center justify-center gap-2 uppercase tracking-wider active:scale-98 shadow-sm cursor-pointer"
             >
-              <Calendar className="h-4 w-4" />
-              <span>{isEn ? 'Book a Table' : 'Tisch reservieren'}</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </SpotlightCard>
+              <Volume2 className="h-4 w-4 text-[#1a3a52]" />
+              <span>{isEn ? 'PLAY CRUNCH SOUND' : 'SOUND ANHÖREN (KNISTERN)'}</span>
+            </button>
+          </div>
 
-          {/* Card 3: Sauce-Separation Garantie (Span 1) */}
-          <SpotlightCard className="p-6 sm:p-8 bg-[#1C1A18] border border-[#3A332C] flex flex-col justify-between">
-            <div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-400 mb-4 border border-emerald-500/30">
-                <ShieldCheck className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold text-[#FBF9F5] font-serif">
-                {isEn ? 'Crunch Guarantee' : 'Die Knusper-Garantie'}
-              </h3>
-              <p className="text-xs text-[#D5CEBF] mt-1 leading-relaxed">
-                {isEn
-                  ? 'Why our schnitzels never arrive soggy at your doorstep.'
-                  : 'Warum unsere Schnitzel auch nach der Lieferung super-knusprig bleiben.'}
-              </p>
-
-              <div className="my-5 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4 space-y-2.5 text-xs text-emerald-200">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                  <span>{isEn ? 'Sauce always sealed in separate jar' : 'Sauce reist im separaten Glas'}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                  <span>{isEn ? 'Steam-permeable custom packaging' : 'Dampfdurchlässige Kartonagen'}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                  <span>{isEn ? 'Pour or dip freshly at home' : 'Erst am Tisch dippen oder übergießen'}</span>
-                </div>
+          {/* BENTO TILE 3: SAUCE ALCHEMY LAB (mit Stitch Pan Foto) */}
+          <div className="rounded-2xl overflow-hidden border border-white/90 bg-white/85 backdrop-blur-md shadow-lg shadow-[#1a3a52]/5 flex flex-col justify-between">
+            <div className="relative h-56 w-full overflow-hidden bg-[#ddeef7]">
+              <Image
+                src="/images/stitch/sauce-pan-stitch.jpg"
+                alt="Artisanal Sauce Alchemy Skillet - Champignon Rahm"
+                fill
+                sizes="(max-width: 768px) 100vw, 500px"
+                className="object-cover object-center transform hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent" />
+              
+              <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md border border-[#b8d4e8] px-3 py-1 rounded-full text-[11px] font-mono font-bold text-[#1a3a52] shadow-sm">
+                FOND: 48h RINDERKNOCHEN REDUKTION
               </div>
             </div>
 
-            <p className="text-[11px] text-[#C4BFB5] italic">
-              {isEn
-                ? '“The only schnitzel in Mönchengladbach that still crunches after a 20-minute drive.”'
-                : '„Das einzige Schnitzel in Mönchengladbach, das nach 20 Minuten Fahrt noch kracht.“'}
-            </p>
-          </SpotlightCard>
-
-          {/* Card 4: Mönchengladbacher Lokale Schmiede & Blitz-Lieferung (Span 2) */}
-          <SpotlightCard className="md:col-span-2 p-6 sm:p-8 bg-[#1C1A18] border border-[#3A332C] flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#D4A347]/15 border border-[#D4A347]/30 px-3 py-1 text-xs font-bold text-[#E5B24E]">
-                  <MapPin className="h-3.5 w-3.5" />
-                  <span>{isEn ? 'Locally Rooted' : 'Lokal verwurzelt'}</span>
+            <div className="p-5 space-y-3 -mt-2 relative z-10">
+              <div className="flex items-baseline justify-between border-b border-[#b8d4e8]/60 pb-2">
+                <div>
+                  <span className="text-[10px] font-mono text-[#2e5f7e] tracking-wider uppercase block">
+                    KAPITEL 03 // EXTRAKT
+                  </span>
+                  <h3 className="text-xl font-bold font-serif text-[#1a3a52]">
+                    Sauce Alchemy Lab
+                  </h3>
+                </div>
+                <span className="text-xs font-mono font-bold text-[#2e5f7e]">
+                  SEPARAT IM GLAS
                 </span>
-                <span className="text-xs text-[#E5B24E] font-bold">Mönchengladbach & Umland</span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#FBF9F5] font-serif">
-                {isEn ? 'From Bismarckstraße to Your Table' : 'Von der Bismarckstraße direkt zu Ihnen'}
-              </h3>
-              <p className="text-xs sm:text-sm text-[#D5CEBF] mt-1.5 max-w-xl">
-                {isEn
-                  ? 'Centrally located in Mönchengladbach, delivering to City Centre, Rheydt, Odenkirchen, Lürrip, Windberg, and Korschenbroich in record time.'
-                  : 'Zentral in Mönchengladbach gelegen beliefern wir die Stadtteile Mitte, Rheydt, Odenkirchen, Lürrip, Windberg sowie Teile von Korschenbroich in kürzester Zeit.'}
-              </p>
-
-              {/* Delivery Speed Metric Pills */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-6">
-                <div className="rounded-xl bg-[#24211D] p-3.5 border border-[#3A332C]">
-                  <div className="text-xs text-[#C4BFB5]">{isEn ? 'Average Time' : 'Durchschnitt'}</div>
-                  <div className="text-xl font-bold font-serif text-[#E5B24E] mt-0.5">32 Min.</div>
-                  <div className="text-[10px] text-[#C4BFB5]">{isEn ? 'Delivered hot & crispy' : 'Heiß & kross geliefert'}</div>
+              {/* 3 Signature Sauces with Radar Metrics */}
+              <div className="space-y-2 text-xs">
+                <div className="p-2.5 rounded-lg bg-[#f0f7fb] border border-[#b8d4e8]/60 flex items-center justify-between">
+                  <div>
+                    <span className="font-bold text-[#1a3a52] block">Schmiede-Rahm (+4.80 €)</span>
+                    <span className="text-[11px] text-[#2e5f7e]">Pfifferlinge & Waldpilze</span>
+                  </div>
+                  <span className="text-[11px] font-mono text-[#1a3a52] font-semibold bg-[#cce3f1] px-2 py-0.5 rounded">
+                    SCHMELZ 5/5
+                  </span>
                 </div>
 
-                <div className="rounded-xl bg-[#24211D] p-3.5 border border-[#3A332C]">
-                  <div className="text-xs text-[#C4BFB5]">{isEn ? 'Self Pickup' : 'Selbstabholung'}</div>
-                  <div className="text-xl font-bold font-serif text-emerald-400 mt-0.5">-10% Rabatt</div>
-                  <div className="text-[10px] text-[#C4BFB5]">{isEn ? 'Directly at counter' : 'Direkt an der Theke'}</div>
+                <div className="p-2.5 rounded-lg bg-[#f0f7fb] border border-[#b8d4e8]/60 flex items-center justify-between">
+                  <div>
+                    <span className="font-bold text-[#1a3a52] block">Pfeffer-Cognac Glacé</span>
+                    <span className="text-[11px] text-[#2e5f7e]">Madagaskar Pfeffer & Rémy</span>
+                  </div>
+                  <span className="text-[11px] font-mono text-[#1a3a52] font-semibold bg-[#cce3f1] px-2 py-0.5 rounded">
+                    FEUER 4/5
+                  </span>
                 </div>
 
-                <div className="rounded-xl bg-[#24211D] p-3.5 border border-[#3A332C]">
-                  <div className="text-xs text-[#C4BFB5]">{isEn ? 'Delivery Zones' : 'Liefergebiet'}</div>
-                  <div className="text-xl font-bold font-serif text-[#FBF9F5] mt-0.5">9 PLZ-Zonen</div>
-                  <div className="text-[10px] text-[#C4BFB5]">{isEn ? 'Starting from 15 €' : 'Ab 15 € Mindestbestellwert'}</div>
+                <div className="p-2.5 rounded-lg bg-[#f0f7fb] border border-[#b8d4e8]/60 flex items-center justify-between">
+                  <div>
+                    <span className="font-bold text-[#1a3a52] block">Preiselbeer-Chili Chutney</span>
+                    <span className="text-[11px] text-[#2e5f7e]">Wildfrüchte & Schärfe</span>
+                  </div>
+                  <span className="text-[11px] font-mono text-[#1a3a52] font-semibold bg-[#cce3f1] px-2 py-0.5 rounded">
+                    FRUCHT 4/5
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* BENTO TILE 4: SCHNITZELTAXI MG (Logistik & Radius) */}
+          <div className="rounded-2xl p-6 border border-white/90 bg-white/85 backdrop-blur-md shadow-lg shadow-[#1a3a52]/5 flex flex-col justify-between space-y-4">
+            <div className="flex items-start justify-between">
+              <div>
+                <span className="text-[10px] font-mono text-[#2e5f7e] tracking-wider uppercase block">
+                  KAPITEL 04 // LOGISTIK
+                </span>
+                <h3 className="text-xl font-bold font-serif text-[#1a3a52]">
+                  Schnitzeltaxi Mönchengladbach
+                </h3>
+              </div>
+              <span className="px-2.5 py-1 rounded-full bg-[#cce3f1] border border-[#b8d4e8] text-[10px] font-mono font-bold text-[#1a3a52] flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                ONLINE
+              </span>
+            </div>
+
+            <div className="p-4 rounded-xl bg-[#f0f7fb] border border-[#b8d4e8]/60 space-y-3">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-[#2e5f7e]">ZENTRALE:</span>
+                <span className="font-bold text-[#1a3a52]">Dohler Str. 269, 41238 MG</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="p-2 rounded-lg bg-white border border-[#b8d4e8]/50 shadow-sm">
+                  <span className="text-[10px] font-mono text-[#2e5f7e] block">ZONE 1 (0–5 km)</span>
+                  <span className="font-bold text-[#1a3a52]">~ 20 Min</span>
+                  <span className="text-[10px] text-emerald-600 block">Frisch & Knusprig</span>
+                </div>
+                <div className="p-2 rounded-lg bg-white border border-[#b8d4e8]/50 shadow-sm">
+                  <span className="text-[10px] font-mono text-[#2e5f7e] block">ZONE 2 (5–12 km)</span>
+                  <span className="font-bold text-[#1a3a52]">~ 35 Min</span>
+                  <span className="text-[10px] text-[#2e5f7e] block">Thermo-Spezialbox</span>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-[#312B26] flex items-center justify-between text-xs text-[#C4BFB5]">
-              <span>Bismarckstraße 45, 41061 Mönchengladbach</span>
-              <a
-                href={`https://wa.me/${whatsappPhone}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#25D366] font-bold hover:underline"
-              >
-                {isEn ? 'Order via WhatsApp →' : 'Bestellen via WhatsApp →'}
-              </a>
-            </div>
-          </SpotlightCard>
+            <Link href="/speisekarte">
+              <button className="w-full py-3 rounded-xl bg-[#9bc1d9] hover:bg-[#85b0cb] text-[#1a3a52] font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer">
+                <Bike className="h-4 w-4" />
+                <span>{isEn ? 'ORDER SCHNITZELTAXI NOW' : 'SCHNITZELTAXI JETZT BESTELLEN'}</span>
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </Link>
+          </div>
+
         </div>
+
       </div>
     </section>
   );

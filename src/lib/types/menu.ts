@@ -60,7 +60,19 @@ export const ALLERGEN_CATALOG: Record<AllergenKey, AllergenInfo> = {
   },
 };
 
-export type DietaryTag = 'halal' | 'veggie' | 'bestseller' | 'chef_special' | 'spicy';
+export type DietaryTag = 'regional' | 'veggie' | 'bestseller' | 'chef_special' | 'spicy';
+
+export type MenuItemCategory =
+  | 'schnitzel'
+  | 'schnitzel_110g'
+  | 'specials'
+  | 'party'
+  | 'burgers'
+  | 'fries'
+  | 'salads'
+  | 'kids'
+  | 'desserts'
+  | 'drinks';
 
 export interface MenuItem {
   id: string;
@@ -71,7 +83,7 @@ export interface MenuItem {
   description: string;
   descriptionEn?: string;
   price: number;
-  category: 'schnitzel' | 'specials' | 'burgers' | 'fries' | 'kids' | 'desserts' | 'drinks';
+  category: MenuItemCategory;
   image?: string;
   allergens: AllergenKey[];
   tags: DietaryTag[];

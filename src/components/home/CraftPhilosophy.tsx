@@ -27,10 +27,10 @@ export function CraftPhilosophy() {
     },
     {
       icon: Award,
-      title: '100% Halal-Zertifiziert & Kalb',
+      title: 'Regionales Fleisch & Kalb',
       subtitle: 'Transparenz für jeden Gast',
       description:
-        'Unser saftiges Hähnchenbrustfilet ist 100% Halal zertifiziert. Für Feinschmecker bieten wir echtes Kalbfleisch nach Wiener Tradition sowie hausgemachte Veggie-Schnitzel.',
+        'Für Feinschmecker bieten wir echtes Kalbfleisch nach Wiener Tradition sowie hausgemachte Veggie-Schnitzel.',
     },
     {
       icon: HeartHandshake,
@@ -92,7 +92,7 @@ export function CraftPhilosophy() {
             </p>
             <div className="pt-2">
               <Link
-                href="/konfigurator"
+                href="/speisekarte"
                 className="inline-flex items-center gap-2 rounded-xl bg-[#E6B84A] px-7 py-3 text-sm font-black text-[#0A0A0C] hover:bg-[#F5C75D] shadow-lg shadow-[#E6B84A]/30 transition-all"
               >
                 <Sparkles className="h-4 w-4" />

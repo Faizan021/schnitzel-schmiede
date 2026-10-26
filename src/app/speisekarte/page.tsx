@@ -5,7 +5,7 @@ import { MenuPageHeader } from '@/components/menu/MenuPageHeader';
 export const metadata = {
   title: 'Speisekarte & Online Bestellen | Schnitzel Schmiede Mönchengladbach',
   description:
-    'Entdecken Sie unsere handpanierten Schnitzel, Burger, Loaded Fries und hausgemachten Saucen. 100% Halal Optionen verfügbar. 10% Rabatt bei Selbstabholung.',
+    'Entdecken Sie unsere handpanierten Schnitzel, Burger, Loaded Fries und hausgemachten Saucen. Regionale Spezialitäten & Veggie-Optionen. 10% Rabatt bei Selbstabholung.',
 };
 
 export default function SpeisekartePage() {

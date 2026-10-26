@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { AllergenKey } from '../types/menu';
 
 export const MeatBaseEnum = z.enum([
-  'haehnchen',     // Zartes Hähnchenbrustfilet (100% Halal)
+  'haehnchen',     // Zartes Hähnchenbrustfilet (Regional)
   'kalb',          // Original Wiener Art vom Kalb (+4.50€)
   'schwein',       // Traditionelles Schweine-Rückensteak
   'veggie_plant'   // Hausgemachtes Kichererbsen-Kräuter-Schnitzel (Veggie)
@@ -76,9 +76,9 @@ export const MEAT_OPTIONS: Record<z.infer<typeof MeatBaseEnum>, ConfigOptionMeta
   haehnchen: {
     id: 'haehnchen',
     name: 'Zartes Hähnchenbrustfilet',
-    description: '100% Halal zertifiziert, saftig von Hand geklopft',
+    description: 'Aus regionaler Aufzucht, butterzart von Hand geklopft',
     priceDelta: 0.0,
-    badge: '100% Halal',
+    badge: 'Regional',
     allergens: ['A', 'C'],
   },
   kalb: {
