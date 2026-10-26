@@ -95,14 +95,27 @@ export function InteractiveSizzleHero() {
 
   return (
     <section className="relative overflow-hidden pt-8 pb-16 bg-[#edf7fc]">
-      {/* BebeQ Riviera & Glacier Atmospheric Ambient Lighting (Clean & Elegant, No Double Video) */}
+      {/* Full-Bleed Cinematic Background Video (No Old Poster Flash) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#edf7fc] via-[#ddeef7]/80 to-[#edf7fc]" />
-        {/* Soft BebeQ Glacier & Riviera Blue Light Pools */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-[#9bc1d9]/25 rounded-full blur-[160px]" />
-        <div className="absolute top-10 left-10 w-[420px] h-[420px] bg-[#b8d4e8]/35 rounded-full blur-[140px]" />
-        <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-[#ffecd2]/30 rounded-full blur-[150px]" />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="h-full w-full object-cover object-center filter brightness-[0.98] contrast-[1.05] opacity-40 transition-opacity duration-1000"
+        >
+          <source src={`${basePath}/videos/kitchen-free.mp4`} type="video/mp4" />
+          <source src={`${basePath}/videos/zeitlos-hero.mp4`} type="video/mp4" />
+        </video>
+        {/* BebeQ Light Frosted Ambient Overlays - Crystal Text Visibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#edf7fc]/70 via-[#ddeef7]/50 to-[#edf7fc]/95 backdrop-blur-[1px]" />
       </div>
+
+      {/* Soft BebeQ Glacier & Riviera Blue Light Pools */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-[#9bc1d9]/25 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-10 left-10 w-[420px] h-[420px] bg-[#b8d4e8]/35 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-[#ffecd2]/30 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 w-full space-y-8">
         {/* Hero Editorial Statement: BebeQ Deep Marine & Sky Blue */}
@@ -159,7 +172,6 @@ export function InteractiveSizzleHero() {
               loop
               playsInline
               preload="auto"
-              poster={`${basePath}/images/stitch/schnitzel-hero-stitch.jpg`}
               className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             >
               <source src={`${basePath}/videos/pan-sizzle-free.mp4`} type="video/mp4" />
