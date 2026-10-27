@@ -48,63 +48,65 @@ export function Header() {
 
   return (
     <>
-      {/* Top Utility Announcement & Direct Contact Bar (Owner's WhatsApp & Phone Priority) */}
-      <div
-        suppressHydrationWarning
-        className="bg-[#16202a] text-white border-b border-[#4b3b2f]/40 py-1.5 px-3 sm:px-4 text-[10px] sm:text-xs font-mono"
-      >
-        <div className="mx-auto max-w-7xl flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 sm:gap-3 truncate">
-            <span className="flex items-center gap-1 text-[#ffecd2] truncate">
-              <MapPin className="h-3 w-3 text-[#d99036] shrink-0" />
-              <span className="truncate">
-                <strong className="text-white">Dohler Str. 269</strong>
-                <span className="hidden xs:inline">, 41238 MG</span>
+      <header className="sticky top-0 z-40 w-full">
+        {/* Top Utility Announcement & Direct Contact Bar (Owner's WhatsApp & Phone Priority) */}
+        <div
+          suppressHydrationWarning
+          className="bg-[#16202a] text-white border-b border-[#4b3b2f]/40 py-1.5 px-3 sm:px-4 text-[10px] sm:text-xs font-mono"
+        >
+          <div className="mx-auto max-w-7xl flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 sm:gap-3 truncate">
+              <span className="flex items-center gap-1 text-[#ffecd2] truncate">
+                <MapPin className="h-3 w-3 text-[#d99036] shrink-0" />
+                <span className="truncate">
+                  <strong className="text-white">Dohler Str. 269</strong>
+                  <span className="hidden xs:inline">, 41238 MG</span>
+                </span>
               </span>
-            </span>
-            <span className="hidden sm:inline text-white/40">|</span>
-            <span className="hidden md:flex items-center gap-1 text-[#d99036]">
-              <Clock className="h-3 w-3" />
-              <span>Mo-Sa ab 16:30 · So ab 12:00</span>
-            </span>
-          </div>
+              <span className="hidden sm:inline text-white/40">|</span>
+              <span className="hidden md:flex items-center gap-1 text-[#d99036]">
+                <Clock className="h-3 w-3" />
+                <span>Mo-Sa ab 16:30 · So ab 12:00</span>
+              </span>
+            </div>
 
-          <div className="flex items-center gap-2 sm:gap-3 ml-auto shrink-0">
-            <a
-              href="tel:+4921669786951"
-              className="hidden sm:flex items-center gap-1 text-[#ffecd2] hover:text-white transition-colors"
-            >
-              <Phone className="h-3 w-3 text-[#d99036]" />
-              <span>02166 9786951</span>
-            </a>
-            <span className="hidden sm:inline text-white/40">|</span>
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 font-bold text-emerald-300 hover:text-white transition-colors text-[10px] sm:text-xs"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-              </span>
-              <MessageSquare className="h-3 w-3 fill-current text-emerald-400" />
-              <span>WhatsApp Live</span>
-            </a>
+            <div className="flex items-center gap-2 sm:gap-3 ml-auto shrink-0">
+              <a
+                href="tel:+4921669786951"
+                className="hidden sm:flex items-center gap-1 text-[#ffecd2] hover:text-white transition-colors"
+              >
+                <Phone className="h-3 w-3 text-[#d99036]" />
+                <span>02166 9786951</span>
+              </a>
+              <span className="hidden sm:inline text-white/40">|</span>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 font-bold text-emerald-300 hover:text-white transition-colors text-[10px] sm:text-xs"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                </span>
+                <MessageSquare className="h-3 w-3 fill-current text-emerald-400" />
+                <span>WhatsApp Live</span>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-md border-b border-[#e8d5be] shadow-md shadow-[#16202a]/5 py-2'
-            : 'bg-white/85 backdrop-blur-md py-2.5 sm:py-3.5 border-b border-[#e8d5be]/70'
-        }`}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-6 lg:px-8">
-          {/* Logo & Brand Identity: Living Forge Crest & Luminous Gold Wordmark */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0 pr-2">
+        {/* Main Navigation Bar - Constant Height & Zero Cumulative Layout Shift (CLS = 0) */}
+        <div
+          className={`w-full transition-[background-color,box-shadow,border-color] duration-300 ${
+            isScrolled
+              ? 'bg-white/95 backdrop-blur-md border-b border-[#e8d5be] shadow-md shadow-[#16202a]/6'
+              : 'bg-white/90 backdrop-blur-md border-b border-[#e8d5be]/70 shadow-none'
+          }`}
+        >
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3">
+            {/* Logo & Brand Identity: Living Forge Crest & Luminous Gold Wordmark */}
+            <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0 pr-2">
             {/* Forged Cast-Iron Guild Emblem with Living Ember Simmer */}
             <div className="relative flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#16202a] via-[#241812] to-[#16202a] shadow-md shadow-[#16202a]/30 border-2 border-[#d99036]/70 group-hover:border-[#f59e0b] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] transition-all duration-300 shrink-0 overflow-hidden">
               {/* Radial Ember Flare */}
@@ -212,7 +214,8 @@ export function Header() {
             </button>
           </div>
         </div>
-      </header>
+      </div>
+    </header>
 
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
