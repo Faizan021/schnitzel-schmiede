@@ -72,18 +72,17 @@ export function Header() {
           <div className="flex items-center gap-2 sm:gap-3 ml-auto shrink-0">
             <a
               href="tel:+4921669786951"
-              className="flex items-center gap-1 text-[#ffecd2] hover:text-white transition-colors"
+              className="hidden sm:flex items-center gap-1 text-[#ffecd2] hover:text-white transition-colors"
             >
               <Phone className="h-3 w-3 text-[#9bc1d9]" />
-              <span className="hidden xs:inline">02166 9786951</span>
-              <span className="xs:hidden">Anrufen</span>
+              <span>02166 9786951</span>
             </a>
-            <span className="text-white/40">|</span>
+            <span className="hidden sm:inline text-white/40">|</span>
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 font-bold text-emerald-300 hover:text-white transition-colors"
+              className="flex items-center gap-1 font-bold text-emerald-300 hover:text-white transition-colors text-[10px] sm:text-xs"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -105,15 +104,15 @@ export function Header() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-6 lg:px-8">
           {/* Logo & Brand Identity: BebeQ Marine & Sky Blue */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
-            <div className="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#9bc1d9] via-[#b8d4e8] to-[#9bc1d9] text-[#1a3a52] shadow-sm transition-transform duration-300 group-hover:scale-105 shrink-0 border border-white">
-              <Flame className="h-5 w-5 sm:h-6 sm:w-6 fill-current text-[#1a3a52]" />
+          <Link href="/" className="flex items-center gap-1.5 sm:gap-3 group shrink-0 min-w-0 pr-2">
+            <div className="flex h-8 w-8 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#9bc1d9] via-[#b8d4e8] to-[#9bc1d9] text-[#1a3a52] shadow-sm transition-transform duration-300 group-hover:scale-105 shrink-0 border border-white">
+              <Flame className="h-4 w-4 sm:h-6 sm:w-6 fill-current text-[#1a3a52]" />
             </div>
-            <div className="flex flex-col">
-              <span className="text-[9px] sm:text-[10px] font-mono font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#2e5f7e] uppercase leading-none mb-0.5 sm:mb-1">
+            <div className="flex flex-col min-w-0">
+              <span className="text-[8px] sm:text-[10px] font-mono font-bold tracking-[0.15em] sm:tracking-[0.25em] text-[#2e5f7e] uppercase leading-none mb-0.5">
                 DIE
               </span>
-              <div className="text-sm sm:text-lg font-black tracking-wider text-[#1a3a52] font-serif flex items-center gap-1 sm:gap-1.5 leading-none">
+              <div className="text-xs xs:text-sm sm:text-lg font-black tracking-wider text-[#1a3a52] font-serif flex items-center gap-1 sm:gap-1.5 leading-none">
                 <span>SCHNITZEL</span>
                 <span className="text-[#a87b41]">SCHMIEDE</span>
               </div>

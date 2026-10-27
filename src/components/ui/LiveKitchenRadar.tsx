@@ -53,7 +53,7 @@ export function LiveKitchenRadar() {
               ? isEn
                 ? 'Kitchen Active'
                 : 'Küche aktiv'
-              : status.nextOpenNotice || (isEn ? 'Pre-Order' : 'Vorbestellung')}
+              : (isEn ? 'From 16:30' : 'Ab 16:30')}
           </span>
 
           <span className="text-[10px] text-[#163044] font-mono font-black hidden sm:inline">

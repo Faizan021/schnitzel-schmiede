@@ -22,7 +22,7 @@ export default function HomePage() {
   const isEn = lang === 'en';
 
   return (
-    <div className="relative min-h-screen bg-[#edf7fc] text-[#1a3a52]">
+    <div className="relative min-h-screen min-w-0 max-w-full overflow-x-hidden bg-[#edf7fc] text-[#1a3a52]">
       {/* Dynamic Forge Embers Simulation */}
       <EmbersBackground />
 
@@ -33,7 +33,9 @@ export default function HomePage() {
       <InteractiveSizzleHero />
 
       {/* Infinite Craft Marquee Banner */}
-      <CraftMarquee />
+      <div className="w-full max-w-[100vw] overflow-x-hidden">
+        <CraftMarquee />
+      </div>
 
       {/* Zeitlos-inspired Chapter 1: Warm Hospitality & Philosophy */}
       <ZeitlosWelcomeChapter />

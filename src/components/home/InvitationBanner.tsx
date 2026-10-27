@@ -16,9 +16,9 @@ export function InvitationBanner() {
   )}`;
 
   return (
-    <section className="relative py-16 sm:py-24 bg-gradient-to-b from-[#edf7fc] via-[#cce3f1] to-[#ddeef7] border-t border-[#b8d4e8]/60 overflow-hidden">
+    <section className="relative py-16 sm:py-24 bg-gradient-to-b from-[#edf7fc] via-[#cce3f1] to-[#ddeef7] border-t border-[#b8d4e8]/60 overflow-hidden [contain:paint]">
       {/* Warm ambient background */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[250px] bg-[#9bc1d9]/35 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[700px] h-[250px] bg-[#9bc1d9]/35 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div className="inline-flex items-center gap-2 rounded-full border border-[#b8d4e8] bg-white/80 backdrop-blur-md px-4 py-1.5 text-xs font-mono font-bold text-[#1a3a52] mb-4 shadow-sm">

@@ -10,9 +10,9 @@ export function ZeitlosWelcomeChapter() {
   const isEn = lang === 'en';
 
   return (
-    <section className="relative py-20 sm:py-28 bg-gradient-to-b from-[#edf7fc] via-[#ddeef7] to-[#edf7fc] border-t border-[#b8d4e8]/60 overflow-hidden">
+    <section className="relative py-20 sm:py-28 bg-gradient-to-b from-[#edf7fc] via-[#ddeef7] to-[#edf7fc] border-t border-[#b8d4e8]/60 overflow-hidden [contain:paint]">
       {/* Subtle ambient lighting */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#9bc1d9]/25 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[600px] h-[300px] bg-[#9bc1d9]/25 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
         {/* Poetic Flourish Badge */}
