@@ -197,16 +197,29 @@ export function InteractiveSizzleHero() {
         
         {/* Editorial Statement & Brand Header */}
         <div className="text-center space-y-2.5 sm:space-y-3 pt-1 sm:pt-2">
-          {/* Animated Gold Forge Badge (Mobile-Safe Width) */}
-          <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#1a3a52]/90 border border-[#d99036]/60 shadow-lg shadow-[#1a3a52]/30 backdrop-blur-md max-w-full">
-            <span className="relative flex h-2 w-2 shrink-0">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d99036] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d99036]" />
-            </span>
-            <Flame className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#ffecd2] shrink-0" />
-            <span className="text-[10px] sm:text-xs font-black tracking-wider sm:tracking-widest text-white uppercase font-mono truncate">
-              DIE SCHNITZEL SCHMIEDE <span className="hidden xs:inline">· MG</span>
-            </span>
+          {/* Elevated Living Forge Brand Hallmark (Matches Header & Guild Identity) */}
+          <div className="inline-flex items-center justify-center gap-2 px-3.5 sm:px-5 py-1.5 rounded-full bg-gradient-to-r from-[#162e40]/95 via-[#1a3a52]/95 to-[#162e40]/95 border border-[#d99036]/60 shadow-[0_4px_20px_rgba(0,0,0,0.35),0_0_15px_rgba(217,144,54,0.25)] backdrop-blur-md max-w-full">
+            {/* Living Ember Flame Icon */}
+            <div className="relative flex items-center justify-center shrink-0">
+              <Flame className="h-3.5 w-3.5 sm:h-4 sm:w-4 fill-[#d99036] text-[#ffecd2] filter drop-shadow-[0_0_8px_rgba(245,158,11,0.85)] animate-flame-simmer shrink-0" />
+            </div>
+
+            {/* Dual-Tone Chiseled Typography */}
+            <div className="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm font-serif leading-none truncate">
+              <span className="text-[9px] sm:text-[10px] font-mono font-black tracking-[0.22em] text-[#d99036] uppercase">
+                DIE
+              </span>
+              <span className="font-black tracking-wider text-white">
+                SCHNITZEL
+              </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d99036] via-[#f59e0b] to-[#b45309] font-black animate-brand-sheen drop-shadow-sm">
+                SCHMIEDE
+              </span>
+              <span className="hidden xs:inline-flex items-center gap-1.5 ml-1 text-[9px] sm:text-[10px] font-mono font-bold tracking-widest text-[#ffecd2]/80 uppercase">
+                <span className="text-[#d99036]">·</span>
+                <span>MG</span>
+              </span>
+            </div>
           </div>
 
           {/* Main Hero Headline with Golden Metallic Shimmer (Fluid Responsive Sizing) */}
