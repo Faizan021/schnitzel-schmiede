@@ -30,15 +30,22 @@ export function Footer() {
           {/* Brand & Craft Story */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#9bc1d9] via-[#b8d4e8] to-[#9bc1d9] text-[#1a3a52] shadow-sm">
-                <Flame className="h-5 w-5 fill-current" />
+              <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#162e40] via-[#1a3a52] to-[#0f2130] text-white shadow-md border-2 border-[#d99036]/70 shrink-0 overflow-hidden">
+                <div className="absolute inset-0 bg-radial from-[#d99036]/30 via-transparent to-transparent pointer-events-none" />
+                <Flame className="h-6 w-6 fill-[#d99036] text-[#ffecd2] filter drop-shadow-[0_0_8px_rgba(245,158,11,0.85)] animate-flame-simmer relative z-10" />
               </div>
               <div>
-                <div className="text-base font-black tracking-wider text-[#1a3a52] font-serif">
-                  SCHNITZEL <span className="text-[#2e5f7e]">SCHMIEDE</span>
+                <div className="text-[9px] font-mono font-black tracking-[0.25em] text-[#b45309] uppercase leading-none mb-0.5">
+                  DIE
                 </div>
-                <div className="text-[10px] uppercase tracking-widest text-[#2e5f7e] font-bold">
-                  MÖNCHENGLADBACH
+                <div className="text-base font-black tracking-wider font-serif flex items-center gap-1.5 leading-none">
+                  <span className="text-[#1a3a52]">SCHNITZEL</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d99036] via-[#f59e0b] to-[#b45309] font-black">
+                    SCHMIEDE
+                  </span>
+                </div>
+                <div className="text-[10px] uppercase tracking-widest text-[#2e5f7e] font-bold mt-1">
+                  MÖNCHENGLADBACH · MEISTERBETRIEB
                 </div>
               </div>
             </div>

@@ -93,6 +93,39 @@
 }
 
 /* Aceternity & React Bits Inspired Animations for Culinary WOW */
+@keyframes flame-simmer {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 6px rgba(217, 144, 54, 0.55)) drop-shadow(0 0 12px rgba(245, 158, 11, 0.35));
+  }
+  33% {
+    transform: scale(1.06) rotate(-1.5deg);
+    filter: drop-shadow(0 0 10px rgba(217, 144, 54, 0.85)) drop-shadow(0 0 18px rgba(245, 158, 11, 0.6));
+  }
+  66% {
+    transform: scale(1.03) rotate(1.5deg);
+    filter: drop-shadow(0 0 8px rgba(217, 144, 54, 0.7)) drop-shadow(0 0 14px rgba(245, 158, 11, 0.45));
+  }
+}
+
+.animate-flame-simmer {
+  animation: flame-simmer 3.2s ease-in-out infinite;
+}
+
+@keyframes brand-gold-sheen {
+  0% {
+    background-position: -200% center;
+  }
+  50%, 100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-brand-sheen {
+  background-size: 200% auto;
+  animation: brand-gold-sheen 6s ease-in-out infinite;
+}
+
 @keyframes gold-shimmer {
   0% {
     background-position: -200% 0;

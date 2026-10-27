@@ -103,21 +103,31 @@ export function Header() {
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-6 lg:px-8">
-          {/* Logo & Brand Identity: BebeQ Marine & Sky Blue */}
-          <Link href="/" className="flex items-center gap-1.5 sm:gap-3 group shrink-0 min-w-0 pr-2">
-            <div className="flex h-8 w-8 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#9bc1d9] via-[#b8d4e8] to-[#9bc1d9] text-[#1a3a52] shadow-sm transition-transform duration-300 group-hover:scale-105 shrink-0 border border-white">
-              <Flame className="h-4 w-4 sm:h-6 sm:w-6 fill-current text-[#1a3a52]" />
+          {/* Logo & Brand Identity: Living Forge Crest & Luminous Gold Wordmark */}
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0 pr-2">
+            {/* Forged Cast-Iron Guild Emblem with Living Ember Simmer */}
+            <div className="relative flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#162e40] via-[#1a3a52] to-[#0f2130] shadow-md shadow-[#1a3a52]/30 border-2 border-[#d99036]/70 group-hover:border-[#f59e0b] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] transition-all duration-300 shrink-0 overflow-hidden">
+              {/* Radial Ember Flare */}
+              <div className="absolute inset-0 bg-radial from-[#d99036]/35 via-transparent to-transparent pointer-events-none" />
+              
+              {/* Living Flame with Ember Simmer Glow */}
+              <Flame className="h-5 w-5 sm:h-6 sm:w-6 fill-[#d99036] text-[#ffecd2] filter drop-shadow-[0_0_8px_rgba(245,158,11,0.85)] animate-flame-simmer relative z-10 transition-transform duration-300 group-hover:scale-110" />
             </div>
+
             <div className="flex flex-col min-w-0">
-              <span className="text-[8px] sm:text-[10px] font-mono font-bold tracking-[0.15em] sm:tracking-[0.25em] text-[#2e5f7e] uppercase leading-none mb-0.5">
+              <span className="text-[8px] sm:text-[9px] font-mono font-black tracking-[0.25em] sm:tracking-[0.3em] text-[#b45309] uppercase leading-none mb-0.5">
                 DIE
               </span>
-              <div className="text-xs xs:text-sm sm:text-lg font-black tracking-wider text-[#1a3a52] font-serif flex items-center gap-1 sm:gap-1.5 leading-none">
-                <span>SCHNITZEL</span>
-                <span className="text-[#a87b41]">SCHMIEDE</span>
+              <div className="text-xs xs:text-sm sm:text-lg font-black tracking-wider font-serif flex items-center gap-1 sm:gap-1.5 leading-none">
+                <span className="text-[#1a3a52]">SCHNITZEL</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d99036] via-[#f59e0b] to-[#b45309] animate-brand-sheen drop-shadow-sm font-black">
+                  SCHMIEDE
+                </span>
               </div>
-              <div className="hidden sm:block text-[9px] tracking-widest text-[#1a3a52] uppercase font-mono font-bold mt-1">
-                MÖNCHENGLADBACH · DOHLER STR. 269
+              <div className="hidden sm:flex items-center gap-1.5 text-[9px] tracking-widest text-[#2e5f7e] uppercase font-mono font-bold mt-1">
+                <span>MÖNCHENGLADBACH</span>
+                <span className="text-[#d99036]">·</span>
+                <span className="text-[#b45309]">MEISTERBETRIEB</span>
               </div>
             </div>
           </Link>
