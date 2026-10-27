@@ -40,12 +40,12 @@ export function EmbersBackground() {
       color: string;
     }
 
-    // Premium culinary embers: golden butter sparks & glacier mist
+    // Premium culinary embers: golden butter sparks & warm amber bokeh
     const emberColors = [
       'rgba(217, 144, 54, ',   // Golden Butter Sizzle
       'rgba(255, 236, 210, ',  // Warm Champagne Cream Glow
       'rgba(230, 163, 71, ',   // Crisp Caramel Amber
-      'rgba(155, 193, 217, ',  // Riviera Mist
+      'rgba(245, 158, 11, ',   // Radiant Forge Gold
     ];
 
     // 28 subtle culinary particles for smooth 60fps GPU performance

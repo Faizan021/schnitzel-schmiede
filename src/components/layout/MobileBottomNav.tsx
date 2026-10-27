@@ -27,18 +27,18 @@ export function MobileBottomNav() {
   )}`;
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-[#b8d4e8]/80 px-2 py-1 shadow-[0_-5px_25px_rgba(26,58,82,0.12)]">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-[#e8d5be] px-2 py-1 shadow-[0_-5px_25px_rgba(217,144,54,0.12)]">
       <div className="flex items-center justify-around max-w-md mx-auto">
         {/* Start / Home */}
         <Link
           href="/"
           className={`flex flex-col items-center justify-center min-w-[50px] min-h-[46px] rounded-xl px-1 py-1 transition-all ${
             pathname === '/'
-              ? 'text-[#1a3a52] bg-[#cce3f1] font-black'
-              : 'text-[#2e5f7e] hover:text-[#1a3a52]'
+              ? 'text-[#16202a] bg-[#ffedd5] font-black'
+              : 'text-[#4b3b2f] hover:text-[#16202a]'
           }`}
         >
-          <Flame className="h-5 w-5" />
+          <Flame className="h-5 w-5 text-[#d99036]" />
           <span className="text-[10px] font-bold mt-0.5 tracking-tight">{isEn ? 'Home' : 'Start'}</span>
         </Link>
 
@@ -47,8 +47,8 @@ export function MobileBottomNav() {
           href="/speisekarte"
           className={`flex flex-col items-center justify-center min-w-[50px] min-h-[46px] rounded-xl px-1 py-1 transition-all ${
             pathname === '/speisekarte'
-              ? 'text-[#1a3a52] bg-[#cce3f1] font-black'
-              : 'text-[#2e5f7e] hover:text-[#1a3a52]'
+              ? 'text-[#16202a] bg-[#ffedd5] font-black'
+              : 'text-[#4b3b2f] hover:text-[#16202a]'
           }`}
         >
           <UtensilsCrossed className="h-5 w-5" />

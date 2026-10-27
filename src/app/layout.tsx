@@ -12,7 +12,7 @@ import { FloatingWhatsAppFAB } from '@/components/ui/FloatingWhatsAppFAB';
 import { getRestaurantJsonLd } from '@/lib/seo/schema-org';
 
 export const viewport: Viewport = {
-  themeColor: '#edf7fc',
+  themeColor: '#faf7f2',
   colorScheme: 'light',
   width: 'device-width',
   initialScale: 1,
@@ -103,7 +103,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col min-w-0 max-w-full overflow-x-hidden bg-[#edf7fc] text-[#1a3a52] selection:bg-[#9bc1d9] selection:text-[#1a3a52]">
+      <body className="min-h-full flex flex-col min-w-0 max-w-full overflow-x-hidden bg-[#faf7f2] text-[#16202a] selection:bg-[#ffedd5] selection:text-[#9a3412]">
         <SmoothScrollProvider>
           <LanguageProvider>
             <CartProvider>

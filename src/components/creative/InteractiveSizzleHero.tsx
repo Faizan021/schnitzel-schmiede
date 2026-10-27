@@ -150,7 +150,7 @@ export function InteractiveSizzleHero() {
   };
 
   return (
-    <section className="relative overflow-hidden pt-6 sm:pt-10 pb-16 sm:pb-24 bg-[#edf7fc]">
+    <section className="relative overflow-hidden pt-6 sm:pt-10 pb-16 sm:pb-24 bg-[#faf7f2]">
       {/* =========================================================================
           SENSORY HERO BACKGROUND ARCHITECTURE (100% Mobile & Desktop WOW Guarantee)
           ========================================================================= */}
@@ -183,11 +183,11 @@ export function InteractiveSizzleHero() {
         </video>
 
         {/* Layer 3: Warm Golden Butter Aurora & Vignette Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1a3a52]/85 via-[#1a3a52]/55 to-[#edf7fc] backdrop-blur-[1.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#16202a]/90 via-[#16202a]/60 to-[#faf7f2] backdrop-blur-[1.5px]" />
         
         {/* Layer 4: Glowing Radial Spotlight for Headline Drama */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[800px] h-[450px] bg-gradient-to-tr from-[#d99036]/25 via-[#ffecd2]/20 to-transparent rounded-full blur-[130px] pointer-events-none" />
-        <div className="absolute bottom-10 left-10 w-[70vw] max-w-[350px] h-[350px] bg-[#9bc1d9]/20 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[800px] h-[450px] bg-gradient-to-tr from-[#d99036]/30 via-[#ffedd5]/25 to-transparent rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-10 left-10 w-[70vw] max-w-[350px] h-[350px] bg-[#d99036]/15 rounded-full blur-[120px] pointer-events-none" />
       </div>
 
       {/* =========================================================================
@@ -452,35 +452,35 @@ export function InteractiveSizzleHero() {
 
           {/* 4 Quick Anatomical Pillars */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3.5">
-            <div className="p-2.5 sm:p-3 rounded-lg bg-[#edf7fc]/80 border border-[#b8d4e8]/60">
-              <span className="text-[10px] font-mono font-bold text-[#1a3a52] block">
+            <div className="p-2.5 sm:p-3 rounded-lg bg-[#ffedd5]/40 border border-[#fed7aa]">
+              <span className="text-[10px] font-mono font-bold text-[#b45309] block">
                 [01] SOUFFLÉ-PANADE
               </span>
-              <p className="text-xs text-[#1a3a52] font-black mt-0.5">
+              <p className="text-xs text-[#16202a] font-black mt-0.5">
                 {isEn ? 'Airy wave crust' : 'Luftige Wellenstruktur'}
               </p>
             </div>
-            <div className="p-2.5 sm:p-3 rounded-lg bg-[#edf7fc]/80 border border-[#b8d4e8]/60">
-              <span className="text-[10px] font-mono font-bold text-[#1a3a52] block">
+            <div className="p-2.5 sm:p-3 rounded-lg bg-[#ffedd5]/40 border border-[#fed7aa]">
+              <span className="text-[10px] font-mono font-bold text-[#b45309] block">
                 [02] KALB & GEFLÜGEL
               </span>
-              <p className="text-xs text-[#1a3a52] font-black mt-0.5">
+              <p className="text-xs text-[#16202a] font-black mt-0.5">
                 {isEn ? 'Hand pounded cutlet' : 'Täglich frisch geklopft'}
               </p>
             </div>
-            <div className="p-2.5 sm:p-3 rounded-lg bg-[#edf7fc]/80 border border-[#b8d4e8]/60">
-              <span className="text-[10px] font-mono font-bold text-[#1a3a52] block">
+            <div className="p-2.5 sm:p-3 rounded-lg bg-[#ffedd5]/40 border border-[#fed7aa]">
+              <span className="text-[10px] font-mono font-bold text-[#b45309] block">
                 [03] BUTTERSCHMALZ
               </span>
-              <p className="text-xs text-[#1a3a52] font-black mt-0.5">
+              <p className="text-xs text-[#16202a] font-black mt-0.5">
                 {isEn ? 'Clarified butter sizzle' : 'Reines Butterschmalz'}
               </p>
             </div>
-            <div className="p-2.5 sm:p-3 rounded-lg bg-[#edf7fc]/80 border border-[#b8d4e8]/60">
-              <span className="text-[10px] font-mono font-bold text-[#1a3a52] block">
+            <div className="p-2.5 sm:p-3 rounded-lg bg-[#ffedd5]/40 border border-[#fed7aa]">
+              <span className="text-[10px] font-mono font-bold text-[#b45309] block">
                 [04] BIO-ZITRONE
               </span>
-              <p className="text-xs text-[#1a3a52] font-black mt-0.5">
+              <p className="text-xs text-[#16202a] font-black mt-0.5">
                 {isEn ? 'Fresh aromatic oils' : 'Frische Zitrus-Öle'}
               </p>
             </div>
@@ -494,7 +494,7 @@ export function InteractiveSizzleHero() {
           {/* High-Converting Order Button with Gold Shimmer */}
           <Link
             href="/speisekarte"
-            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-[#d99036] to-[#b37324] hover:from-[#c27f2e] hover:to-[#9e631d] text-white font-black text-sm tracking-wider uppercase shadow-xl shadow-[#d99036]/30 transition-all active:scale-95 border-2 border-white cursor-pointer"
+            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-[#d99036] via-[#ea8e24] to-[#b45309] hover:from-[#e09b43] hover:to-[#9a3412] text-white font-black text-sm tracking-wider uppercase shadow-xl shadow-[#d99036]/30 transition-all active:scale-95 border-2 border-white cursor-pointer"
             onMouseEnter={playSizzleSound}
           >
             <Bike className="h-5 w-5" />
@@ -504,18 +504,18 @@ export function InteractiveSizzleHero() {
           {/* Explore Menu */}
           <a
             href="#speisekarte-section"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white/95 hover:bg-[#ffecd2] text-[#1a3a52] font-black text-sm tracking-wider uppercase border-2 border-[#b8d4e8] transition-all shadow-md cursor-pointer"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white hover:bg-[#ffedd5] text-[#16202a] font-black text-sm tracking-wider uppercase border-2 border-[#e8d5be] transition-all shadow-md cursor-pointer"
           >
-            <Utensils className="h-4 w-4 text-[#1a3a52]" />
+            <Utensils className="h-4 w-4 text-[#16202a]" />
             <span>{isEn ? 'EXPLORE MENU' : 'SPEISEKARTE ÖFFNEN'}</span>
           </a>
 
           {/* Table Reservation */}
           <Link
             href="/reservierung"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white/95 hover:bg-white text-[#1a3a52] font-black text-sm tracking-wider uppercase border-2 border-[#b8d4e8] transition-all shadow-md cursor-pointer"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white hover:bg-[#ffedd5] text-[#16202a] font-black text-sm tracking-wider uppercase border-2 border-[#e8d5be] transition-all shadow-md cursor-pointer"
           >
-            <Calendar className="h-4 w-4 text-[#1a3a52]" />
+            <Calendar className="h-4 w-4 text-[#16202a]" />
             <span>{isEn ? 'RESERVE TABLE' : 'TISCH RESERVIEREN'}</span>
           </Link>
         </div>
@@ -525,13 +525,13 @@ export function InteractiveSizzleHero() {
             ========================================================================= */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
           {/* Bento Item 1: Verified Google Rating */}
-          <div className="p-4 rounded-xl bg-white/95 border border-[#b8d4e8]/60 shadow-sm flex items-center justify-between">
+          <div className="p-4 rounded-xl bg-white border border-[#e8d5be] shadow-[0_10px_30px_rgba(217,144,54,0.06)] flex items-center justify-between">
             <div className="space-y-0.5">
               <div className="flex items-center gap-1 text-[#d99036]">
                 <Star className="h-4 w-4 fill-current text-[#d99036]" />
                 <span className="text-sm font-black text-[#d99036]">4.9 / 5.0</span>
               </div>
-              <p className="text-xs text-[#1a3a52] font-bold">
+              <p className="text-xs text-[#16202a] font-bold">
                 {isEn ? 'From 850+ Guests' : 'Aus 850+ Gäste-Bewertungen'}
               </p>
               <p className="text-[11px] text-emerald-700 font-extrabold uppercase">
@@ -539,28 +539,28 @@ export function InteractiveSizzleHero() {
               </p>
             </div>
             <div className="text-right">
-              <span className="text-xl font-bold font-serif text-[#1a3a52]">Top 1%</span>
-              <span className="block text-xs font-semibold text-[#2e5f7e]">Mönchengladbach</span>
+              <span className="text-xl font-bold font-serif text-[#16202a]">Top 1%</span>
+              <span className="block text-xs font-semibold text-[#b45309]">Mönchengladbach</span>
             </div>
           </div>
 
           {/* Bento Item 2: Physical Address & Call Direct */}
-          <div className="p-4 rounded-xl bg-white/95 border border-[#b8d4e8]/60 shadow-sm flex items-center justify-between">
+          <div className="p-4 rounded-xl bg-white border border-[#e8d5be] shadow-[0_10px_30px_rgba(217,144,54,0.06)] flex items-center justify-between">
             <div className="space-y-0.5">
-              <span className="text-xs font-mono text-[#2e5f7e] uppercase font-black flex items-center gap-1">
-                <MapPin className="h-3.5 w-3.5 text-[#1a3a52]" />
+              <span className="text-xs font-mono text-[#b45309] uppercase font-black flex items-center gap-1">
+                <MapPin className="h-3.5 w-3.5 text-[#16202a]" />
                 STANDORT
               </span>
-              <p className="text-xs sm:text-sm text-[#1a3a52] font-bold">
+              <p className="text-xs sm:text-sm text-[#16202a] font-bold">
                 Dohler Str. 269
               </p>
-              <p className="text-xs font-medium text-[#2e5f7e]">
+              <p className="text-xs font-medium text-[#4b3b2f]">
                 41238 Mönchengladbach
               </p>
             </div>
             <a
               href="tel:+4921669786951"
-              className="text-xs font-mono font-black text-[#1a3a52] bg-[#cce3f1] px-3 py-2 rounded-lg border border-[#b8d4e8] hover:bg-[#9bc1d9] transition-colors"
+              className="text-xs font-mono font-black text-[#16202a] bg-[#ffedd5] px-3 py-2 rounded-lg border border-[#fed7aa] hover:bg-[#fed7aa] transition-colors"
               title="Telefonisch anrufen: 02166 9786951"
             >
               02166 9786951

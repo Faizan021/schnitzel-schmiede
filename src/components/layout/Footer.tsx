@@ -24,7 +24,7 @@ export function Footer() {
   const [scheduleTab, setScheduleTab] = useState<'restaurant' | 'delivery'>('restaurant');
 
   return (
-    <footer className="border-t border-[#b8d4e8] bg-gradient-to-b from-[#ddeef7] via-[#cce3f1] to-[#b8d4e8]/40 text-[#2e5f7e] pt-14 pb-24 md:pb-14">
+    <footer className="border-t border-[#e8d5be] bg-gradient-to-b from-[#f4ede4] via-[#faf7f2] to-[#f4ede4] text-[#4b3b2f] pt-14 pb-24 md:pb-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Brand & Craft Story */}

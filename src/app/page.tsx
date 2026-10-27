@@ -22,7 +22,7 @@ export default function HomePage() {
   const isEn = lang === 'en';
 
   return (
-    <div className="relative min-h-screen min-w-0 max-w-full overflow-x-hidden bg-[#edf7fc] text-[#1a3a52]">
+    <div className="relative min-h-screen min-w-0 max-w-full overflow-x-hidden bg-[#faf7f2] text-[#16202a]">
       {/* Dynamic Forge Embers Simulation */}
       <EmbersBackground />
 
@@ -41,7 +41,7 @@ export default function HomePage() {
       <ZeitlosWelcomeChapter />
 
       {/* Featured Visual Speisekarte Section: Fast-Track to Appetizing Bestsellers */}
-      <section id="speisekarte-section" className="py-16 sm:py-20 bg-gradient-to-b from-[#edf7fc] via-[#fffbf5] to-[#edf7fc] border-t border-[#b8d4e8]/60 relative z-10">
+      <section id="speisekarte-section" className="py-16 sm:py-20 bg-gradient-to-b from-[#faf7f2] via-[#fffbf5] to-[#f4ede4] border-t border-[#e6d7c3]/70 relative z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-1.5 text-xs font-black text-[#b45309] uppercase tracking-wider mb-2 bg-[#fef3c7] px-3 py-1 rounded-full border border-[#fde68a]">

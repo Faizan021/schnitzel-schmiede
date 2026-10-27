@@ -210,17 +210,17 @@ export function FeaturedDishesPreview() {
       )}
 
       {/* Prominent High-Converting Call-To-Action Banner (UX/UI Best Practice) */}
-      <div className="mt-12 rounded-3xl bg-gradient-to-r from-white/95 via-[#edf7fc]/95 to-white/95 backdrop-blur-xl border border-[#b8d4e8] p-6 sm:p-10 shadow-[0_20px_50px_rgba(26,58,82,0.08)]">
+      <div className="mt-12 rounded-3xl bg-gradient-to-r from-white/95 via-[#fffdfa]/95 to-white/95 backdrop-blur-xl border border-[#e8d5be] p-6 sm:p-10 shadow-[0_20px_50px_rgba(217,144,54,0.09)]">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6 text-center lg:text-left">
           <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#cce3f1] text-[#1a3a52] text-xs font-bold font-mono">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffedd5] text-[#9a3412] text-xs font-bold font-mono border border-[#fed7aa]">
               <UtensilsCrossed className="h-3.5 w-3.5" />
               <span>{isEn ? '56 Signature Dishes Online' : '56 Spezialitäten & Beilagen Online'}</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-black text-[#1a3a52] font-serif">
+            <h3 className="text-2xl sm:text-3xl font-black text-[#16202a] font-serif">
               {isEn ? 'Craving more? Discover our full menu' : 'Lust auf mehr? Entdecken Sie unsere gesamte Schmiede-Karte'}
             </h3>
-            <p className="text-xs sm:text-sm text-[#2e5f7e] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#4b3b2f] leading-relaxed">
               {isEn
                 ? 'From small 110g portions to oven-gratinated specialties, homemade burgers, fresh garden salads, loaded fries and sweet desserts.'
                 : 'Von kleinen 110g Portionen über ofenfrisch gratiniertes Schnitzel, saftige Burger & Hacksteaks bis hin zu knackigen Salaten, hausgemachten Saucen und Desserts.'}
@@ -230,7 +230,7 @@ export function FeaturedDishesPreview() {
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
             <Link
               href="/speisekarte"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-[#1a3a52] hover:bg-[#2e5f7e] text-white font-black text-sm tracking-wider uppercase shadow-lg shadow-[#1a3a52]/25 hover:shadow-xl hover:shadow-[#1a3a52]/35 transition-all active:scale-95 cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#d99036] to-[#b45309] hover:from-[#e09b43] hover:to-[#c25c0e] text-white font-black text-sm tracking-wider uppercase shadow-lg shadow-[#d99036]/25 hover:shadow-xl hover:shadow-[#d99036]/35 transition-all active:scale-95 cursor-pointer"
             >
               <span>{isEn ? 'Open Complete Menu (56 Items)' : 'Komplette Speisekarte ansehen (56 Gerichte)'}</span>
               <ArrowRight className="h-4 w-4" />
@@ -239,43 +239,43 @@ export function FeaturedDishesPreview() {
         </div>
 
         {/* Quick Category Discovery Pills */}
-        <div className="mt-8 pt-6 border-t border-[#b8d4e8]/60 flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xs">
-          <span className="text-[11px] font-bold text-[#2e5f7e] uppercase tracking-wider mr-1">
+        <div className="mt-8 pt-6 border-t border-[#e8d5be]/80 flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xs">
+          <span className="text-[11px] font-bold text-[#b45309] uppercase tracking-wider mr-1">
             {isEn ? 'Direct categories:' : 'Direkt zu den Rubriken:'}
           </span>
           <Link
             href="/speisekarte"
-            className="px-3 py-1.5 rounded-lg bg-white/80 hover:bg-[#cce3f1] border border-[#b8d4e8] text-[#1a3a52] font-semibold transition-colors"
+            className="px-3 py-1.5 rounded-lg bg-white hover:bg-[#ffedd5] border border-[#e8d5be] text-[#16202a] font-semibold transition-colors"
           >
             Schnitzel 200g
           </Link>
           <Link
             href="/speisekarte"
-            className="px-3 py-1.5 rounded-lg bg-white/80 hover:bg-[#cce3f1] border border-[#b8d4e8] text-[#1a3a52] font-semibold transition-colors"
+            className="px-3 py-1.5 rounded-lg bg-white hover:bg-[#ffedd5] border border-[#e8d5be] text-[#16202a] font-semibold transition-colors"
           >
             Kleine Schnitzel 110g
           </Link>
           <Link
             href="/speisekarte"
-            className="px-3 py-1.5 rounded-lg bg-white/80 hover:bg-[#cce3f1] border border-[#b8d4e8] text-[#1a3a52] font-semibold transition-colors"
+            className="px-3 py-1.5 rounded-lg bg-white hover:bg-[#ffedd5] border border-[#e8d5be] text-[#16202a] font-semibold transition-colors"
           >
             Überbackene Schnitzel
           </Link>
           <Link
             href="/speisekarte"
-            className="px-3 py-1.5 rounded-lg bg-white/80 hover:bg-[#cce3f1] border border-[#b8d4e8] text-[#1a3a52] font-semibold transition-colors"
+            className="px-3 py-1.5 rounded-lg bg-white hover:bg-[#ffedd5] border border-[#e8d5be] text-[#16202a] font-semibold transition-colors"
           >
             Burger & Hacksteaks
           </Link>
           <Link
             href="/speisekarte"
-            className="px-3 py-1.5 rounded-lg bg-white/80 hover:bg-[#cce3f1] border border-[#b8d4e8] text-[#1a3a52] font-semibold transition-colors"
+            className="px-3 py-1.5 rounded-lg bg-white hover:bg-[#ffedd5] border border-[#e8d5be] text-[#16202a] font-semibold transition-colors"
           >
             Beilagen & Salate
           </Link>
           <Link
             href="/catering"
-            className="px-3 py-1.5 rounded-lg bg-[#a87b41]/10 hover:bg-[#a87b41]/20 border border-[#a87b41]/40 text-[#a87b41] font-bold transition-colors"
+            className="px-3 py-1.5 rounded-lg bg-[#d99036]/15 hover:bg-[#d99036]/25 border border-[#d99036]/40 text-[#b45309] font-bold transition-colors"
           >
             Party-Catering Angebote
           </Link>

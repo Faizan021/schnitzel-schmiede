@@ -10,23 +10,23 @@
   :root {
     color-scheme: light only;
     supported-color-schemes: light;
-    /* BebeQ Berlin Theme Tokens */
-    --bebeq-blue: #9bc1d9;       /* Primary Riviera / Glacier Blue */
-    --bebeq-mid: #b8d4e8;        /* Frosted Sky Blue */
-    --bebeq-light: #ddeef7;      /* Ice Mist Section Tint */
-    --bebeq-section: #cce3f1;    /* Powder Blue Section Background */
-    --bebeq-bg: #edf7fc;         /* Main Page Background */
-    --bebeq-navy: #1a3a52;       /* Deep Marine Navy (Primary Text & Headings) */
-    --bebeq-teal: #2e5f7e;       /* Slate Ocean Teal (Secondary Text) */
-    --bebeq-gold: #a87b41;       /* Warm Caramel / Butter Gold Accent */
-    --bebeq-peach: #ffecd2;      /* Champagne Warm Glow */
-    --glass-bg: rgba(255, 255, 255, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.85);
-    --glass-shadow: 0 10px 32px 0 rgba(26, 58, 82, 0.08);
+    /* Die Schnitzel Schmiede - Warm Culinary Forge & Alabaster Tokens */
+    --bebeq-blue: #d99036;       /* Primary Forge Gold */
+    --bebeq-mid: #e6d7c3;        /* Warm Chiseled Sandstone */
+    --bebeq-light: #f7f1e9;      /* Ivory Silk Tint */
+    --bebeq-section: #f4ede4;    /* Roasted Almond Cream Section */
+    --bebeq-bg: #faf7f2;         /* Main Page Background (Warm Alabaster) */
+    --bebeq-navy: #16202a;       /* Deep Cast-Iron Slate */
+    --bebeq-teal: #4b3b2f;       /* Roasted Coffee Charcoal */
+    --bebeq-gold: #c27a24;       /* Radiant Clarified Butter Gold */
+    --bebeq-peach: #ffedd5;      /* Champagne Butter Glow */
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.9);
+    --glass-shadow: 0 10px 32px 0 rgba(22, 32, 42, 0.08);
   }
 
   * {
-    border-color: rgba(184, 212, 232, 0.35);
+    border-color: rgba(230, 215, 195, 0.5);
     box-sizing: border-box;
   }
 
@@ -37,8 +37,8 @@
   }
 
   body {
-    background: linear-gradient(180deg, #edf7fc 0%, #ddeef7 45%, #edf7fc 100%);
-    color: #1a3a52;
+    background: linear-gradient(180deg, #faf7f2 0%, #f4ede4 45%, #faf7f2 100%);
+    color: #16202a;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

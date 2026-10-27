@@ -98,8 +98,8 @@ export function Header() {
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/90 backdrop-blur-md border-b border-[#b8d4e8]/60 shadow-md shadow-[#1a3a52]/5 py-2'
-            : 'bg-white/60 backdrop-blur-sm py-2.5 sm:py-3.5 border-b border-white/60'
+            ? 'bg-white/95 backdrop-blur-md border-b border-[#e8d5be] shadow-md shadow-[#16202a]/5 py-2'
+            : 'bg-white/85 backdrop-blur-md py-2.5 sm:py-3.5 border-b border-[#e8d5be]/70'
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-6 lg:px-8">
@@ -119,12 +119,12 @@ export function Header() {
                 DIE
               </span>
               <div className="text-xs xs:text-sm sm:text-lg font-black tracking-wider font-serif flex items-center gap-1 sm:gap-1.5 leading-none">
-                <span className="text-[#1a3a52]">SCHNITZEL</span>
+                <span className="text-[#16202a]">SCHNITZEL</span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d99036] via-[#f59e0b] to-[#b45309] animate-brand-sheen drop-shadow-sm font-black">
                   SCHMIEDE
                 </span>
               </div>
-              <div className="hidden sm:flex items-center gap-1.5 text-[9px] tracking-widest text-[#2e5f7e] uppercase font-mono font-bold mt-1">
+              <div className="hidden sm:flex items-center gap-1.5 text-[9px] tracking-widest text-[#4b3b2f] uppercase font-mono font-bold mt-1">
                 <span>MÖNCHENGLADBACH</span>
                 <span className="text-[#d99036]">·</span>
                 <span className="text-[#b45309]">MEISTERBETRIEB</span>
@@ -142,13 +142,13 @@ export function Header() {
                   href={link.href}
                   className={`relative rounded-xl px-4 py-2 text-xs font-bold transition-all ${
                     isActive
-                      ? 'text-[#1a3a52] bg-[#cce3f1] shadow-sm font-black'
-                      : 'text-[#2e5f7e] hover:text-[#1a3a52] hover:bg-white/70'
+                      ? 'text-[#16202a] bg-[#ffedd5] shadow-sm font-black'
+                      : 'text-[#4b3b2f] hover:text-[#16202a] hover:bg-[#ffedd5]/50'
                   }`}
                 >
                   <span>{link.label}</span>
                   {isActive && (
-                    <span className="absolute bottom-1 left-4 right-4 h-0.5 rounded-full bg-[#1a3a52]" />
+                    <span className="absolute bottom-1 left-4 right-4 h-0.5 rounded-full bg-[#d99036]" />
                   )}
                 </Link>
               );
