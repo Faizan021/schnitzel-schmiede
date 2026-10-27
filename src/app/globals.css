@@ -88,6 +88,39 @@
   box-shadow: 0 0 35px -5px rgba(155, 193, 217, 0.45);
 }
 
+/* Aceternity & React Bits Inspired Animations for Culinary WOW */
+@keyframes gold-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-gold-shimmer {
+  background: linear-gradient(90deg, rgba(217, 144, 54, 0.1) 0%, rgba(255, 236, 210, 0.8) 50%, rgba(217, 144, 54, 0.1) 100%);
+  background-size: 200% 100%;
+  animation: gold-shimmer 3.5s infinite linear;
+}
+
+@keyframes sound-wave-1 {
+  0%, 100% { height: 4px; }
+  50% { height: 18px; }
+}
+@keyframes sound-wave-2 {
+  0%, 100% { height: 16px; }
+  50% { height: 6px; }
+}
+@keyframes sound-wave-3 {
+  0%, 100% { height: 8px; }
+  50% { height: 22px; }
+}
+
+.animate-wave-1 { animation: sound-wave-1 0.45s ease-in-out infinite; }
+.animate-wave-2 { animation: sound-wave-2 0.35s ease-in-out infinite; }
+.animate-wave-3 { animation: sound-wave-3 0.55s ease-in-out infinite; }
+
 /* Mobile Safe Bottom Padding for Sticky Nav */
 .pb-mobile-safe {
   padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));

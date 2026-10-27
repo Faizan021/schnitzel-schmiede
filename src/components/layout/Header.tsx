@@ -49,7 +49,10 @@ export function Header() {
   return (
     <>
       {/* Top Utility Announcement & Direct Contact Bar (Owner's WhatsApp & Phone Priority) */}
-      <div className="bg-[#1a3a52] text-white border-b border-[#2e5f7e]/40 py-1.5 px-3 sm:px-4 text-[10px] sm:text-xs font-mono">
+      <div
+        suppressHydrationWarning
+        className="bg-[#1a3a52] text-white border-b border-[#2e5f7e]/40 py-1.5 px-3 sm:px-4 text-[10px] sm:text-xs font-mono"
+      >
         <div className="mx-auto max-w-7xl flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 sm:gap-3 truncate">
             <span className="flex items-center gap-1 text-[#ffecd2] truncate">

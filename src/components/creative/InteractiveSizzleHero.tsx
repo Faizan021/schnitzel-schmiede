@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
@@ -12,18 +12,22 @@ import {
   Star,
   MapPin,
   CheckCircle2,
-  ArrowRight,
-  ShieldCheck,
-  Award,
   Volume2,
   VolumeX,
   Play,
   Pause,
   Utensils,
   MessageSquare,
-  Phone,
+  Thermometer,
+  ShieldCheck,
+  ChevronRight,
+  Info,
 } from 'lucide-react';
-import { playSizzleSound, playSkilletSizzleSimulation } from './AudioCrunchEngine';
+import {
+  playSizzleSound,
+  playCrunchSound,
+  playSkilletSizzleSimulation,
+} from './AudioCrunchEngine';
 import { useLanguage } from '../providers/LanguageContext';
 import { getKitchenWhatsAppNumber } from '@/lib/utils/whatsapp';
 
@@ -32,15 +36,58 @@ export function InteractiveSizzleHero() {
   const isEn = lang === 'en';
   const whatsappPhone = getKitchenWhatsAppNumber();
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
   const [isSizzlingActive, setIsSizzlingActive] = useState(false);
   const [isPlayingVideo, setIsPlayingVideo] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
+  const [selectedCrustTab, setSelectedCrustTab] = useState<'schmiede' | 'standard'>('schmiede');
+  const [temperature, setTemperature] = useState(178);
 
   const whatsappHeroUrl = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(
-    '🔥 [SCHNITZEL SCHMIEDE MÖNCHENGLADBACH · Dohler Str. 269]\n\nHallo Team der Schnitzelschmiede, ich möchte gerne bestellen / eine Frage stellen:'
+    '🔥 [SCHNITZEL SCHMIEDE MÖNCHENGLADBACH · Dohler Str. 269]\n\nHallo Herr Jabbar & Schmiede-Team, ich möchte gerne bestellen / eine Frage stellen:'
   )}`;
 
+  const bgVideoRef = useRef<HTMLVideoElement | null>(null);
   const showcaseVideoRef = useRef<HTMLVideoElement | null>(null);
+
+  // Bulletproof Mobile Video Autoplay Engine
+  useEffect(() => {
+    const startVideos = () => {
+      [bgVideoRef.current, showcaseVideoRef.current].forEach((vid) => {
+        if (!vid) return;
+        vid.muted = true;
+        vid.defaultMuted = true;
+        vid.setAttribute('playsinline', 'true');
+        vid.setAttribute('webkit-playsinline', 'true');
+        const playPromise = vid.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => setIsPlayingVideo(true))
+            .catch(() => {
+              // Browser policy prevented autoplay (e.g., Low Power Mode)
+              // The high-res golden schnitzel backdrop remains seamlessly visible
+            });
+        }
+      });
+    };
+
+    startVideos();
+
+    // Fallback: First touch on mobile awakens videos if blocked by battery-saver
+    const handleFirstTouch = () => {
+      startVideos();
+      window.removeEventListener('touchstart', handleFirstTouch);
+      window.removeEventListener('scroll', handleFirstTouch);
+    };
+
+    window.addEventListener('touchstart', handleFirstTouch, { once: true, passive: true });
+    window.addEventListener('scroll', handleFirstTouch, { once: true, passive: true });
+
+    return () => {
+      window.removeEventListener('touchstart', handleFirstTouch);
+      window.removeEventListener('scroll', handleFirstTouch);
+    };
+  }, []);
 
   const handleTogglePlay = () => {
     if (!showcaseVideoRef.current) return;
@@ -61,20 +108,29 @@ export function InteractiveSizzleHero() {
 
   const handleTriggerSizzle = () => {
     setIsSizzlingActive(true);
-    playSkilletSizzleSimulation(3000);
-    setTimeout(() => setIsSizzlingActive(false), 3000);
+    setTemperature(182);
+    playSkilletSizzleSimulation(3500);
+
+    setTimeout(() => {
+      setIsSizzlingActive(false);
+      setTemperature(178);
+    }, 3500);
   };
 
-  // 3D Tilt Spring Physics
+  const handleCrunchTest = () => {
+    playCrunchSound();
+  };
+
+  // 3D Tilt Spring Physics for Desktop
   const cardRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), {
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [4, -4]), {
     damping: 25,
     stiffness: 140,
   });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), {
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), {
     damping: 25,
     stiffness: 140,
   });
@@ -94,77 +150,106 @@ export function InteractiveSizzleHero() {
   };
 
   return (
-    <section className="relative overflow-hidden pt-8 pb-16 bg-[#edf7fc]">
-      {/* Full-Bleed Cinematic Background Video (No Old Poster Flash) */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    <section className="relative overflow-hidden pt-6 sm:pt-10 pb-16 sm:pb-24 bg-[#edf7fc]">
+      {/* =========================================================================
+          SENSORY HERO BACKGROUND ARCHITECTURE (100% Mobile & Desktop WOW Guarantee)
+          ========================================================================= */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        {/* Layer 1: High-Resolution Golden Schnitzel Craftsmanship Photo (Never blank or black) */}
+        <div className="absolute inset-0 h-full w-full">
+          <Image
+            src={`${basePath}/images/stitch/schnitzel-hero-stitch.jpg`}
+            alt="Goldbraun souffliertes Schnitzel in Butterschmalz"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center filter brightness-[0.92] contrast-[1.1] scale-105"
+          />
+        </div>
+
+        {/* Layer 2: Full-Bleed Live Video (Autoplays seamlessly on all devices) */}
         <video
+          ref={bgVideoRef}
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
-          className="h-full w-full object-cover object-center filter brightness-[0.98] contrast-[1.05] opacity-40 transition-opacity duration-1000"
+          className="absolute inset-0 h-full w-full object-cover object-center filter brightness-[0.9] contrast-[1.1] opacity-70 transition-opacity duration-1000"
         >
           <source src={`${basePath}/videos/kitchen-free.mp4`} type="video/mp4" />
           <source src={`${basePath}/videos/zeitlos-hero.mp4`} type="video/mp4" />
         </video>
-        {/* BebeQ Light Frosted Ambient Overlays - Crystal Text Visibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#edf7fc]/70 via-[#ddeef7]/50 to-[#edf7fc]/95 backdrop-blur-[1px]" />
+
+        {/* Layer 3: Warm Golden Butter Aurora & Vignette Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a3a52]/85 via-[#1a3a52]/55 to-[#edf7fc] backdrop-blur-[1.5px]" />
+        
+        {/* Layer 4: Glowing Radial Spotlight for Headline Drama */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-gradient-to-tr from-[#d99036]/25 via-[#ffecd2]/20 to-transparent rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-10 left-10 w-[350px] h-[350px] bg-[#9bc1d9]/20 rounded-full blur-[120px] pointer-events-none" />
       </div>
 
-      {/* Soft BebeQ Glacier & Riviera Blue Light Pools */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-[#9bc1d9]/25 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute top-10 left-10 w-[420px] h-[420px] bg-[#b8d4e8]/35 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-[#ffecd2]/30 rounded-full blur-[150px] pointer-events-none" />
-
-      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 w-full space-y-8">
-        {/* Hero Editorial Statement: BebeQ Deep Marine & Sky Blue */}
-        <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-white/85 border border-[#b8d4e8] shadow-sm backdrop-blur-md">
-            <Flame className="h-4 w-4 text-[#a87b41] fill-[#a87b41]" />
-            <span className="text-xs sm:text-sm font-bold tracking-widest text-[#1a3a52] uppercase font-mono">
-              DIE SCHNITZEL SCHMIEDE
+      {/* =========================================================================
+          HERO CONTENT CONTAINER
+          ========================================================================= */}
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 w-full space-y-6 sm:space-y-8">
+        
+        {/* Editorial Statement & Brand Header */}
+        <div className="text-center space-y-3 pt-2">
+          {/* Animated Gold Forge Badge */}
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-[#1a3a52]/90 border border-[#d99036]/60 shadow-lg shadow-[#1a3a52]/30 backdrop-blur-md">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d99036] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d99036]" />
+            </span>
+            <Flame className="h-3.5 w-3.5 text-[#ffecd2]" />
+            <span className="text-[11px] sm:text-xs font-black tracking-widest text-white uppercase font-mono">
+              DIE SCHNITZEL SCHMIEDE · MÖNCHENGLADBACH
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-[#1a3a52] font-serif leading-[1.1] max-w-4xl mx-auto">
+          {/* Main Hero Headline with Golden Metallic Shimmer */}
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white font-serif leading-[1.1] max-w-4xl mx-auto drop-shadow-md">
             {isEn ? (
               <>
                 WHERE CRAFT MEETS THE{' '}
-                <span className="italic text-[#d99036] drop-shadow-sm">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffecd2] via-[#d99036] to-[#ffecd2] underline decoration-[#d99036]/60 underline-offset-4">
                   GOLDEN CRUST.
                 </span>
               </>
             ) : (
               <>
-                WO DIE SCHMIEDE AUF DIE{' '}
-                <span className="italic text-[#d99036] drop-shadow-sm">
+                WO ECHTES HANDWERK AUF DIE{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffecd2] via-[#d99036] to-[#ffecd2] underline decoration-[#d99036]/60 underline-offset-4">
                   GOLDENE KRUSTE TRIFFT.
                 </span>
               </>
             )}
           </h1>
 
-          <div className="inline-block bg-white/75 backdrop-blur-sm px-4 py-1.5 rounded-xl border border-[#b8d4e8]/60 text-[11px] sm:text-xs font-mono text-[#2e5f7e] tracking-wider uppercase shadow-sm">
+          {/* Kitchen Live Pulse Banner */}
+          <p className="text-xs sm:text-sm text-[#ffecd2]/90 font-mono tracking-wide max-w-2xl mx-auto drop-shadow-sm">
             {isEn
-              ? 'CINEMATIC KITCHEN // BUTTER-SIZZLE @ 178°C // ARTISANAL VEAL CUTLET'
-              : 'CINEMATISCHE KÜCHE // BUTTER-SIZZLE @ 178°C // KALBFLEISCH ARTISANAL'}
-          </div>
+              ? '✨ 100% Clarified Butter · Freshly Pounded by Hand · Zero Deep Fryer'
+              : '✨ 100% Reines Butterschmalz · Täglich frisch von Hand geklopft · 0% Fritteuse'}
+          </p>
         </div>
 
-        {/* Visual Centerpiece: BebeQ Frosted Glass Dish Matrix with Live Video Showcase */}
+        {/* =========================================================================
+            VISUAL CENTERPIECE: INTERACTIVE MASTERPIECE SHOWCASE & SIZZLE CONSOLE
+            ========================================================================= */}
         <div
           ref={cardRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative rounded-2xl bg-white/80 backdrop-blur-md p-2.5 sm:p-6 border border-white shadow-[0_20px_50px_rgba(26,58,82,0.1)] overflow-hidden"
+          className="relative rounded-2xl bg-white/95 backdrop-blur-xl p-2.5 sm:p-5 border-2 border-white shadow-[0_25px_60px_rgba(26,58,82,0.18)] overflow-hidden"
         >
-          {/* Top Edge Glow */}
-          <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#9bc1d9] to-transparent opacity-90" />
+          {/* Top Golden Border Beam */}
+          <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#d99036] to-transparent opacity-90" />
 
-          {/* Dish Showcase Container with Live Cinematic Video */}
-          <div className="relative w-full h-80 sm:h-auto sm:aspect-[21/9] rounded-xl overflow-hidden border border-[#b8d4e8]/50 bg-[#1a3a52] shadow-inner group">
-            {/* Live Video Element */}
+          {/* Video / Cinema Stage Container */}
+          <div className="relative w-full h-80 sm:h-auto sm:aspect-[21/9] rounded-xl overflow-hidden border border-[#b8d4e8]/60 bg-[#163044] shadow-inner group">
+            {/* Live Kitchen Video */}
             <video
               ref={showcaseVideoRef}
               autoPlay
@@ -178,180 +263,267 @@ export function InteractiveSizzleHero() {
               <source src={`${basePath}/videos/kitchen-free.mp4`} type="video/mp4" />
             </video>
 
-            {/* Cinematic Shadow Vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a52]/90 via-transparent to-black/30 pointer-events-none" />
+            {/* Cinematic Gradient Vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#163044]/95 via-[#163044]/20 to-black/40 pointer-events-none" />
 
-            {/* Top Interactive Row: Origin Badge + Controls (Never Clips or Hides on Mobile) */}
+            {/* TOP CONTROLS & LIVE SKILLET HEAT BAR */}
             <div className="absolute top-3 inset-x-3 flex items-center justify-between z-20 gap-2">
-              {/* Origin badge - visible on tablet and desktop to preserve mobile space */}
-              <div className="hidden sm:flex bg-white/90 backdrop-blur-md border border-white px-3 py-1 rounded-lg text-xs font-bold text-[#1a3a52] items-center gap-1.5 shadow-md shrink-0">
-                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
-                <span>{isEn ? 'LIVE FORGE' : 'PFANNEN-KUNST'}</span>
+              {/* Heat Status Indicator */}
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md border border-white/20 text-white text-xs font-mono font-bold">
+                <Thermometer className="h-3.5 w-3.5 text-[#d99036]" />
+                <span className="text-[#ffecd2]">{temperature}°C</span>
+                <span className="hidden xs:inline text-white/60">| Butterschmalz</span>
               </div>
 
-              {/* Action buttons with plenty of breathing room */}
-              <div className="flex items-center gap-2 sm:gap-2.5 ml-auto shrink-0">
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2 ml-auto shrink-0">
                 {/* Play / Pause Toggle */}
                 <button
                   type="button"
                   onClick={handleTogglePlay}
-                  className="h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-xl bg-white/95 hover:bg-white text-[#1a3a52] backdrop-blur-md border border-[#b8d4e8] transition-all shadow-md cursor-pointer active:scale-95 shrink-0"
-                  title={isPlayingVideo ? 'Pause Video' : 'Play Video'}
+                  className="h-8 w-8 sm:h-9 sm:w-9 flex items-center justify-center rounded-lg bg-white/95 hover:bg-white text-[#1a3a52] backdrop-blur-md border border-white transition-all shadow-md cursor-pointer active:scale-95"
+                  title={isPlayingVideo ? 'Video pausieren' : 'Video abspielen'}
                   aria-label="Video Play/Pause"
                 >
-                  {isPlayingVideo ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4 fill-current" />}
+                  {isPlayingVideo ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5 fill-current" />}
                 </button>
 
                 {/* Mute / Unmute Toggle */}
                 <button
                   type="button"
                   onClick={handleToggleMute}
-                  className="h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-xl bg-white/95 hover:bg-white text-[#1a3a52] backdrop-blur-md border border-[#b8d4e8] transition-all shadow-md cursor-pointer active:scale-95 shrink-0"
-                  title={isMuted ? 'Unmute Video' : 'Mute Video'}
+                  className="h-8 w-8 sm:h-9 sm:w-9 flex items-center justify-center rounded-lg bg-white/95 hover:bg-white text-[#1a3a52] backdrop-blur-md border border-white transition-all shadow-md cursor-pointer active:scale-95"
+                  title={isMuted ? 'Ton einschalten' : 'Stummschalten'}
                   aria-label="Video Sound"
                 >
-                  {isMuted ? <VolumeX className="h-4 w-4 text-[#2e5f7e]" /> : <Volume2 className="h-4 w-4 text-emerald-600" />}
+                  {isMuted ? <VolumeX className="h-3.5 w-3.5 text-[#2e5f7e]" /> : <Volume2 className="h-3.5 w-3.5 text-emerald-600" />}
                 </button>
 
-                {/* Sizzle Simulator Interactive Toggle */}
+                {/* Interactive Sizzle Ignition Button (Interactive Wow Element) */}
                 <button
                   type="button"
                   onClick={handleTriggerSizzle}
-                  className={`h-8 sm:h-10 px-3 sm:px-4 rounded-xl text-xs font-mono font-bold tracking-wider flex items-center gap-1.5 transition-all shadow-md cursor-pointer active:scale-95 shrink-0 ${
+                  className={`h-8 sm:h-9 px-3 sm:px-4 rounded-lg text-xs font-mono font-bold tracking-wider flex items-center gap-2 transition-all shadow-lg cursor-pointer active:scale-95 border ${
                     isSizzlingActive
-                      ? 'bg-[#9bc1d9] text-[#1a3a52] shadow-[#9bc1d9]/50 scale-105 border border-white'
-                      : 'bg-white/95 backdrop-blur-md border border-[#b8d4e8] text-[#1a3a52] hover:bg-[#cce3f1]'
+                      ? 'bg-[#d99036] text-white border-white shadow-[#d99036]/50 animate-pulse'
+                      : 'bg-white/95 text-[#1a3a52] border-white/80 hover:bg-[#ffecd2]'
                   }`}
                 >
-                  <Flame className={`h-3.5 w-3.5 ${isSizzlingActive ? 'animate-bounce text-[#92601e]' : 'text-[#92601e]'}`} />
-                  <span className="hidden sm:inline">
-                    {isSizzlingActive
-                      ? (isEn ? '🔥 SIZZLING @ 178°C' : '🔥 178°C BUTTER-HITZE')
-                      : (isEn ? 'Sizzle Sound 🔊' : 'Pfannen-Hitze zünden 🔊')}
-                  </span>
-                  <span className="sm:hidden">
-                    {isSizzlingActive ? '🔥 178°C' : 'Hitze 🔊'}
-                  </span>
+                  <Flame className={`h-3.5 w-3.5 ${isSizzlingActive ? 'animate-bounce text-white' : 'text-[#d99036]'}`} />
+                  {isSizzlingActive ? (
+                    <span className="flex items-center gap-1.5">
+                      <span className="flex gap-0.5 items-end h-3">
+                        <span className="w-0.5 bg-white rounded-full animate-wave-1" />
+                        <span className="w-0.5 bg-white rounded-full animate-wave-2" />
+                        <span className="w-0.5 bg-white rounded-full animate-wave-3" />
+                      </span>
+                      <span>182°C SIZZLE AKTIV!</span>
+                    </span>
+                  ) : (
+                    <span>Hitze zünden 🔊</span>
+                  )}
                 </button>
               </div>
             </div>
 
+            {/* BOTTOM DISH IDENTIFIER */}
             <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between text-white pointer-events-none">
               <div className="pr-2">
-                <p className="text-[10px] sm:text-xs font-mono text-[#ffecd2] uppercase tracking-wider">
-                  MASTERPIECE SPEISE NR. 01
-                </p>
-                <h3 className="text-base sm:text-2xl font-bold font-serif text-white drop-shadow">
+                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#d99036] text-white text-[10px] font-mono font-black uppercase tracking-wider mb-1">
+                  <span>★ Bestseller Nr. 01</span>
+                </div>
+                <h3 className="text-lg sm:text-2xl font-bold font-serif text-white drop-shadow">
                   Original Wiener Schnitzel
                 </h3>
+                <p className="text-xs text-[#ffecd2] font-mono hidden xs:block">
+                  Zartes Kalbfleisch · In Butterschmalz souffliert · Frische Zitrone
+                </p>
               </div>
 
               <div className="text-right shrink-0">
-                <span className="text-xl sm:text-3xl font-black font-mono tracking-tight text-[#ffecd2] drop-shadow">
+                <span className="text-2xl sm:text-3xl font-black font-mono tracking-tight text-[#ffecd2] drop-shadow">
                   12,90 €
                 </span>
               </div>
             </div>
           </div>
 
-          {/* 4 Exploded Anatomical Callouts - High Contrast */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-4">
-            <div className="p-3.5 rounded-xl bg-white/90 border border-[#b8d4e8]/60 hover:border-[#9bc1d9] transition-colors shadow-sm">
-              <span className="text-xs font-mono font-bold text-[#163044] block">
+          {/* =========================================================================
+              HIGH-END "WOW" INTERACTIVE FEATURE: DIE SOUFFLIERTE KRUSTEN-ANALYSE
+              ========================================================================= */}
+          <div className="mt-4 p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-[#1a3a52] to-[#244b68] text-white border border-[#2e5f7e]/50 shadow-md">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
+              <div>
+                <span className="text-[10px] font-mono font-bold text-[#d99036] uppercase tracking-widest block">
+                  DAS SCHMIEDE-GEHEIMNIS
+                </span>
+                <h4 className="text-sm sm:text-base font-bold font-serif text-white flex items-center gap-2">
+                  <span>Warum unsere Panade weltklasse souffliert</span>
+                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-mono font-semibold border border-emerald-500/30">
+                    Geprüftes Handwerk
+                  </span>
+                </h4>
+              </div>
+
+              {/* Interactive Tabs */}
+              <div className="flex items-center gap-1.5 bg-black/40 p-1 rounded-lg shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setSelectedCrustTab('schmiede')}
+                  className={`px-2.5 py-1 rounded text-xs font-mono font-bold transition-all ${
+                    selectedCrustTab === 'schmiede'
+                      ? 'bg-[#d99036] text-white shadow'
+                      : 'text-white/70 hover:text-white'
+                  }`}
+                >
+                  ⭐ Schmiede-Kruste
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedCrustTab('standard')}
+                  className={`px-2.5 py-1 rounded text-xs font-mono font-bold transition-all ${
+                    selectedCrustTab === 'standard'
+                      ? 'bg-white/20 text-white shadow'
+                      : 'text-white/70 hover:text-white'
+                  }`}
+                >
+                  Fritteuse (Standard)
+                </button>
+              </div>
+            </div>
+
+            {/* Tab Details with Crunch Sound Trigger */}
+            <div className="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+              <div className="space-y-1">
+                {selectedCrustTab === 'schmiede' ? (
+                  <p className="text-[#ffecd2] leading-relaxed">
+                    <strong className="text-white">Goldgelbe Wellenkruste:</strong> Das Schnitzel schwimmt frei in siedendem Butterschmalz. Durch ständiges Schwenken der Pfanne löst sich die Panade luftig vom Kalbfleisch – saftig im Kern, knusprig außen.
+                  </p>
+                ) : (
+                  <p className="text-white/80 leading-relaxed">
+                    <strong className="text-rose-300">Flach & Ölig:</strong> In gewöhnlichen Gastro-Fritteusen klebt die Panade platt am Fleisch, saugt altes Pflanzenöl auf und wird schnell zäh oder labbrig.
+                  </p>
+                )}
+              </div>
+
+              {/* Interactive Acoustic Crunch Button */}
+              <button
+                type="button"
+                onClick={handleCrunchTest}
+                className="shrink-0 self-start sm:self-center px-3.5 py-2 rounded-lg bg-white/10 hover:bg-[#d99036] text-white font-mono font-bold text-xs border border-white/20 transition-all active:scale-95 flex items-center gap-1.5"
+                title="Klicken, um den Knusper-Ton anzuhören"
+              >
+                <span>Knusper-Test hören</span>
+                <span>🔊</span>
+              </button>
+            </div>
+          </div>
+
+          {/* 4 Quick Anatomical Pillars */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3.5">
+            <div className="p-2.5 sm:p-3 rounded-lg bg-[#edf7fc]/80 border border-[#b8d4e8]/60">
+              <span className="text-[10px] font-mono font-bold text-[#1a3a52] block">
                 [01] SOUFFLÉ-PANADE
               </span>
-              <p className="text-xs sm:text-sm text-[#1a3a52] font-black mt-1">
+              <p className="text-xs text-[#1a3a52] font-black mt-0.5">
                 {isEn ? 'Airy wave crust' : 'Luftige Wellenstruktur'}
               </p>
             </div>
-            <div className="p-3.5 rounded-xl bg-white/90 border border-[#b8d4e8]/60 hover:border-[#9bc1d9] transition-colors shadow-sm">
-              <span className="text-xs font-mono font-bold text-[#163044] block">
+            <div className="p-2.5 sm:p-3 rounded-lg bg-[#edf7fc]/80 border border-[#b8d4e8]/60">
+              <span className="text-[10px] font-mono font-bold text-[#1a3a52] block">
                 [02] KALB & GEFLÜGEL
               </span>
-              <p className="text-xs sm:text-sm text-[#1a3a52] font-black mt-1">
-                {isEn ? 'Tender pounded cutlet' : 'Frisch von Hand geklopft'}
+              <p className="text-xs text-[#1a3a52] font-black mt-0.5">
+                {isEn ? 'Hand pounded cutlet' : 'Täglich frisch geklopft'}
               </p>
             </div>
-            <div className="p-3.5 rounded-xl bg-white/90 border border-[#b8d4e8]/60 hover:border-[#9bc1d9] transition-colors shadow-sm">
-              <span className="text-xs font-mono font-bold text-[#163044] block">
-                [03] KLÄRBUTTER-SIZZLE
+            <div className="p-2.5 sm:p-3 rounded-lg bg-[#edf7fc]/80 border border-[#b8d4e8]/60">
+              <span className="text-[10px] font-mono font-bold text-[#1a3a52] block">
+                [03] BUTTERSCHMALZ
               </span>
-              <p className="text-xs sm:text-sm text-[#1a3a52] font-black mt-1">
-                {isEn ? 'Pure clarified butter' : 'Reines Butterschmalz'}
+              <p className="text-xs text-[#1a3a52] font-black mt-0.5">
+                {isEn ? 'Clarified butter sizzle' : 'Reines Butterschmalz'}
               </p>
             </div>
-            <div className="p-3.5 rounded-xl bg-white/90 border border-[#b8d4e8]/60 hover:border-[#9bc1d9] transition-colors shadow-sm">
-              <span className="text-xs font-mono font-bold text-[#163044] block">
+            <div className="p-2.5 sm:p-3 rounded-lg bg-[#edf7fc]/80 border border-[#b8d4e8]/60">
+              <span className="text-[10px] font-mono font-bold text-[#1a3a52] block">
                 [04] BIO-ZITRONE
               </span>
-              <p className="text-xs sm:text-sm text-[#1a3a52] font-black mt-1">
-                {isEn ? 'Fresh aromatic oils' : 'Frische ätherische Öle'}
+              <p className="text-xs text-[#1a3a52] font-black mt-0.5">
+                {isEn ? 'Fresh aromatic oils' : 'Frische Zitrus-Öle'}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Major Action Buttons: BebeQ Riviera Blue & Frosted Glass + Express Menu Jump */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+        {/* =========================================================================
+            MAJOR CALL TO ACTION BUTTONS
+            ========================================================================= */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1">
+          {/* High-Converting Order Button with Gold Shimmer */}
           <Link
             href="/speisekarte"
-            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#9bc1d9] hover:bg-[#85b0cb] text-[#1a3a52] font-black text-sm tracking-wider uppercase shadow-lg shadow-[#9bc1d9]/30 transition-all active:scale-95 border border-white cursor-pointer"
+            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-[#d99036] to-[#b37324] hover:from-[#c27f2e] hover:to-[#9e631d] text-white font-black text-sm tracking-wider uppercase shadow-xl shadow-[#d99036]/30 transition-all active:scale-95 border-2 border-white cursor-pointer"
             onMouseEnter={playSizzleSound}
           >
             <Bike className="h-5 w-5" />
             <span>{isEn ? 'ORDER SCHNITZELTAXI' : 'SCHNITZELTAXI BESTELLEN'}</span>
           </Link>
 
+          {/* Explore Menu */}
           <a
             href="#speisekarte-section"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white/90 hover:bg-[#cce3f1] text-[#1a3a52] font-black text-sm tracking-wider uppercase border border-[#b8d4e8] transition-all shadow-sm cursor-pointer"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white/95 hover:bg-[#ffecd2] text-[#1a3a52] font-black text-sm tracking-wider uppercase border-2 border-[#b8d4e8] transition-all shadow-md cursor-pointer"
           >
-            <Utensils className="h-4 w-4 text-[#163044]" />
+            <Utensils className="h-4 w-4 text-[#1a3a52]" />
             <span>{isEn ? 'EXPLORE MENU' : 'SPEISEKARTE ÖFFNEN'}</span>
           </a>
 
+          {/* Table Reservation */}
           <Link
             href="/reservierung"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white/90 hover:bg-white text-[#1a3a52] font-black text-sm tracking-wider uppercase border border-[#b8d4e8] transition-all shadow-sm cursor-pointer"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white/95 hover:bg-white text-[#1a3a52] font-black text-sm tracking-wider uppercase border-2 border-[#b8d4e8] transition-all shadow-md cursor-pointer"
           >
-            <Calendar className="h-4 w-4 text-[#163044]" />
+            <Calendar className="h-4 w-4 text-[#1a3a52]" />
             <span>{isEn ? 'RESERVE TABLE' : 'TISCH RESERVIEREN'}</span>
           </Link>
         </div>
 
-        {/* Quick Access Bento Grid - 3 Lead & Trust Anchors */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
-          {/* Bento Item 1: Rating */}
-          <div className="p-4 rounded-xl bg-white/95 border border-white shadow-sm flex items-center justify-between">
+        {/* =========================================================================
+            QUICK ACCESS BENTO GRID - OWNER PRIORITY & REAL TRUST ANCHORS
+            ========================================================================= */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+          {/* Bento Item 1: Verified Google Rating */}
+          <div className="p-4 rounded-xl bg-white/95 border border-[#b8d4e8]/60 shadow-sm flex items-center justify-between">
             <div className="space-y-0.5">
-              <div className="flex items-center gap-1 text-[#92601e]">
-                <Star className="h-4 w-4 fill-current text-[#92601e]" />
-                <span className="text-sm font-black text-[#92601e]">4.9 / 5.0</span>
+              <div className="flex items-center gap-1 text-[#d99036]">
+                <Star className="h-4 w-4 fill-current text-[#d99036]" />
+                <span className="text-sm font-black text-[#d99036]">4.9 / 5.0</span>
               </div>
               <p className="text-xs text-[#1a3a52] font-bold">
-                {isEn ? 'From 850+ Guests' : 'Aus 850+ Schmiede-Gästen'}
+                {isEn ? 'From 850+ Guests' : 'Aus 850+ Gäste-Bewertungen'}
               </p>
               <p className="text-[11px] text-emerald-700 font-extrabold uppercase">
-                {isEn ? 'VERIFIED CRAFT' : 'VERIFIZIERTES HANDWERK'}
+                {isEn ? 'VERIFIED HANDMADE' : 'VERIFIZIERTES HANDWERK'}
               </p>
             </div>
             <div className="text-right">
               <span className="text-xl font-bold font-serif text-[#1a3a52]">Top 1%</span>
-              <span className="block text-xs font-semibold text-[#163044]">Mönchengladbach</span>
+              <span className="block text-xs font-semibold text-[#2e5f7e]">Mönchengladbach</span>
             </div>
           </div>
 
-          {/* Bento Item 2: Real Location & Phone */}
-          <div className="p-4 rounded-xl bg-white/95 border border-white shadow-sm flex items-center justify-between">
+          {/* Bento Item 2: Physical Address & Call Direct */}
+          <div className="p-4 rounded-xl bg-white/95 border border-[#b8d4e8]/60 shadow-sm flex items-center justify-between">
             <div className="space-y-0.5">
-              <span className="text-xs font-mono text-[#163044] uppercase font-black flex items-center gap-1">
+              <span className="text-xs font-mono text-[#2e5f7e] uppercase font-black flex items-center gap-1">
                 <MapPin className="h-3.5 w-3.5 text-[#1a3a52]" />
                 STANDORT
               </span>
               <p className="text-xs sm:text-sm text-[#1a3a52] font-bold">
                 Dohler Str. 269
               </p>
-              <p className="text-xs font-medium text-[#163044]">
+              <p className="text-xs font-medium text-[#2e5f7e]">
                 41238 Mönchengladbach
               </p>
             </div>
@@ -364,31 +536,36 @@ export function InteractiveSizzleHero() {
             </a>
           </div>
 
-          {/* Bento Item 3: Direct WhatsApp Fast-Lane (Owner Priority) */}
-          <div className="p-4 rounded-xl bg-emerald-50/90 border border-emerald-300 shadow-sm flex items-center justify-between">
+          {/* Bento Item 3: Direct WhatsApp Fast-Lane with Owner Umar Jabbar */}
+          <div className="p-4 rounded-xl bg-gradient-to-r from-emerald-500/10 to-emerald-600/15 border-2 border-emerald-500/60 shadow-sm flex items-center justify-between">
             <div className="space-y-0.5">
-              <span className="text-xs font-mono text-emerald-800 uppercase font-black flex items-center gap-1">
+              <span className="text-xs font-mono text-emerald-900 uppercase font-black flex items-center gap-1">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
                 <MessageSquare className="h-3.5 w-3.5 text-emerald-600 fill-emerald-600" />
-                WHATSAPP LIVE
+                INHABER DIREKT-CHAT
               </span>
               <p className="text-xs sm:text-sm text-emerald-950 font-black">
-                0176 70341602
+                Umar Jabbar · 0176 70341602
               </p>
               <p className="text-[11px] text-emerald-700 font-semibold">
-                {isEn ? 'Instant Owner Chat' : 'Inhaber-Direktkontakt'}
+                {isEn ? 'Fastest Response via WhatsApp' : 'Schnellste Antwort via WhatsApp'}
               </p>
             </div>
             <a
               href={whatsappHeroUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-mono font-black text-white bg-emerald-600 hover:bg-emerald-700 px-3.5 py-2 rounded-lg shadow-sm transition-all active:scale-95 flex items-center gap-1.5"
+              className="text-xs font-mono font-black text-white bg-emerald-600 hover:bg-emerald-700 px-3.5 py-2.5 rounded-lg shadow-md transition-all active:scale-95 flex items-center gap-1.5 shrink-0"
             >
               <MessageSquare className="h-3.5 w-3.5 fill-current" />
               <span>Chat</span>
             </a>
           </div>
         </div>
+
       </div>
     </section>
   );
