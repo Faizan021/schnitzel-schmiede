@@ -45,10 +45,10 @@ export function Badge({ tag, label, variant, className = '', onClick }: BadgePro
   }
 
   const variantStyles = {
-    gold: 'bg-[#9bc1d9]/30 text-[#1a3a52] border-[#9bc1d9]',
+    gold: 'bg-[#d99036]/30 text-[#16202a] border-[#d99036]',
     emerald: 'bg-emerald-50 text-emerald-800 border-emerald-300',
     ruby: 'bg-rose-50 text-rose-800 border-rose-300',
-    muted: 'bg-[#f0f7fb] text-[#2e5f7e] border-[#b8d4e8]',
+    muted: 'bg-[#fffbf5] text-[#4b3b2f] border-[#e8d5be]',
   }[resolvedVariant];
 
   return (

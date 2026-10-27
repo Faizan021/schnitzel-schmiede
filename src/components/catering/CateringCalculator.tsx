@@ -173,14 +173,14 @@ export function CateringCalculator() {
     <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-10">
-        <div className="inline-flex items-center gap-2 rounded-full border border-[#b8d4e8] bg-white/80 backdrop-blur-md px-4 py-1.5 text-xs font-bold text-[#1a3a52] mb-4 shadow-sm">
-          <Flame className="h-3.5 w-3.5 text-[#2e5f7e]" />
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#e8d5be] bg-white/80 backdrop-blur-md px-4 py-1.5 text-xs font-bold text-[#16202a] mb-4 shadow-sm">
+          <Flame className="h-3.5 w-3.5 text-[#4b3b2f]" />
           <span>{t.catering.tagline}</span>
         </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#1a3a52] font-serif">
+        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#16202a] font-serif">
           {t.catering.heading}
         </h1>
-        <p className="mt-3 text-sm sm:text-base text-[#2e5f7e]">
+        <p className="mt-3 text-sm sm:text-base text-[#4b3b2f]">
           {t.catering.subtitle}
         </p>
       </div>
@@ -188,10 +188,10 @@ export function CateringCalculator() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Calculator Configuration */}
         <div className="lg:col-span-7 space-y-6">
-          <div className="rounded-2xl border border-white/95 bg-white/85 p-6 shadow-md shadow-[#1a3a52]/5 space-y-6 text-[#1a3a52]">
+          <div className="rounded-2xl border border-white/95 bg-white/85 p-6 shadow-md shadow-[#16202a]/5 space-y-6 text-[#16202a]">
             {/* Event Type */}
             <div>
-              <label className="block text-xs font-bold text-[#2e5f7e] uppercase tracking-wider mb-2">
+              <label className="block text-xs font-bold text-[#4b3b2f] uppercase tracking-wider mb-2">
                 {t.catering.eventType}
               </label>
               <div className="grid grid-cols-3 gap-2">
@@ -206,8 +206,8 @@ export function CateringCalculator() {
                     onClick={() => setEventType(item.id)}
                     className={`rounded-xl py-2.5 px-3 text-xs font-bold border transition-all cursor-pointer ${
                       eventType === item.id
-                        ? 'border-[#9bc1d9] bg-[#cce3f1] text-[#1a3a52] font-black shadow-sm'
-                        : 'border-[#b8d4e8] bg-[#f0f7fb] text-[#2e5f7e]'
+                        ? 'border-[#d99036] bg-[#ffedd5] text-[#16202a] font-black shadow-sm'
+                        : 'border-[#e8d5be] bg-[#fffbf5] text-[#4b3b2f]'
                     }`}
                   >
                     {item.label}
@@ -219,11 +219,11 @@ export function CateringCalculator() {
             {/* Guests Slider */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-bold text-[#2e5f7e] uppercase tracking-wider flex items-center gap-1.5">
-                  <Users className="h-4 w-4 text-[#2e5f7e]" />
+                <label className="text-xs font-bold text-[#4b3b2f] uppercase tracking-wider flex items-center gap-1.5">
+                  <Users className="h-4 w-4 text-[#4b3b2f]" />
                   <span>{t.catering.guestSlider}</span>
                 </label>
-                <span className="font-mono text-xl font-black text-[#1a3a52]">
+                <span className="font-mono text-xl font-black text-[#16202a]">
                   {guests} {isEn ? 'Guests' : 'Personen'}
                 </span>
               </div>
@@ -234,9 +234,9 @@ export function CateringCalculator() {
                 step="5"
                 value={guests}
                 onChange={(e) => setGuests(Number(e.target.value))}
-                className="w-full accent-[#9bc1d9] cursor-pointer"
+                className="w-full accent-[#d99036] cursor-pointer"
               />
-              <div className="flex justify-between text-[11px] text-[#2e5f7e] mt-1">
+              <div className="flex justify-between text-[11px] text-[#4b3b2f] mt-1">
                 <span>{t.catering.minSize}</span>
                 <span>100 {isEn ? 'Guests' : 'Gäste'}</span>
                 <span>{t.catering.largeEvent}</span>
@@ -245,7 +245,7 @@ export function CateringCalculator() {
 
             {/* Package Selection */}
             <div>
-              <label className="block text-xs font-bold text-[#2e5f7e] uppercase tracking-wider mb-3">
+              <label className="block text-xs font-bold text-[#4b3b2f] uppercase tracking-wider mb-3">
                 {t.catering.packageHeading}
               </label>
               <div className="space-y-3">
@@ -262,24 +262,24 @@ export function CateringCalculator() {
                       onClick={() => setSelectedTier(pkg.id)}
                       className={`cursor-pointer rounded-xl border p-4 sm:p-5 transition-all relative ${
                         isSelected
-                          ? 'border-2 border-[#1a3a52] bg-[#cce3f1]/70 shadow-md'
-                          : 'border-[#b8d4e8] bg-[#f0f7fb] hover:border-[#9bc1d9]'
+                          ? 'border-2 border-[#16202a] bg-[#ffedd5]/70 shadow-md'
+                          : 'border-[#e8d5be] bg-[#fffbf5] hover:border-[#d99036]'
                       }`}
                     >
                       {/* Bestseller Badge - Elevated on upper card border to eliminate overlap */}
                       {pkg.recommended && (
-                        <span className="absolute -top-2.5 right-4 rounded-full bg-[#1a3a52] text-white px-3 py-0.5 text-[10px] font-black uppercase tracking-wider shadow-sm flex items-center gap-1 border border-white">
+                        <span className="absolute -top-2.5 right-4 rounded-full bg-[#16202a] text-white px-3 py-0.5 text-[10px] font-black uppercase tracking-wider shadow-sm flex items-center gap-1 border border-white">
                           <Sparkles className="h-3 w-3 text-[#ffecd2]" />
                           <span>{t.catering.bestseller}</span>
                         </span>
                       )}
                       <div className="flex items-start justify-between gap-4">
                         <div>
-                          <h4 className="text-sm sm:text-base font-bold text-[#1a3a52]">{name}</h4>
+                          <h4 className="text-sm sm:text-base font-bold text-[#16202a]">{name}</h4>
                           <p className="text-xs text-[#163044] font-semibold mt-0.5">{subtitle}</p>
                         </div>
                         <div className="text-right shrink-0">
-                          <span className="font-mono text-base sm:text-lg font-black text-[#1a3a52]">
+                          <span className="font-mono text-base sm:text-lg font-black text-[#16202a]">
                             {pkg.pricePerPerson.toFixed(2).replace('.', ',')} €{' '}
                             <span className="text-[11px] text-[#163044] font-medium">{t.catering.perPerson}</span>
                           </span>
@@ -289,7 +289,7 @@ export function CateringCalculator() {
                       <ul className="mt-3 space-y-1.5 text-xs text-[#163044]">
                         {features.map((f, idx) => (
                           <li key={idx} className="flex items-center gap-1.5">
-                            <span className="text-[#1a3a52] font-black">✓</span>
+                            <span className="text-[#16202a] font-black">✓</span>
                             <span>{f}</span>
                           </li>
                         ))}
@@ -304,23 +304,23 @@ export function CateringCalculator() {
 
         {/* Right Column: Instant Live Estimate & Inquiry Form */}
         <div className="lg:col-span-5 sticky top-24 space-y-4">
-          <div className="rounded-2xl border border-[#b8d4e8] bg-white/90 backdrop-blur-md p-6 shadow-xl text-[#1a3a52]">
-            <span className="text-[11px] font-bold text-[#2e5f7e] uppercase tracking-widest">
+          <div className="rounded-2xl border border-[#e8d5be] bg-white/90 backdrop-blur-md p-6 shadow-xl text-[#16202a]">
+            <span className="text-[11px] font-bold text-[#4b3b2f] uppercase tracking-widest">
               {t.catering.liveEstimate}
             </span>
-            <div className="mt-2 flex items-baseline justify-between border-b border-[#b8d4e8]/60 pb-4">
+            <div className="mt-2 flex items-baseline justify-between border-b border-[#e8d5be]/60 pb-4">
               <div>
-                <span className="text-2xl sm:text-3xl font-black font-mono text-[#1a3a52]">
+                <span className="text-2xl sm:text-3xl font-black font-mono text-[#16202a]">
                   ca. {totalEstimate.toFixed(2).replace('.', ',')} €
                 </span>
-                <span className="block text-[11px] text-[#2e5f7e]">
+                <span className="block text-[11px] text-[#4b3b2f]">
                   ({guests} x {currentPkg.pricePerPerson.toFixed(2).replace('.', ',')} € {isEn ? 'plus VAT' : 'zzgl. ges. MwSt.'})
                 </span>
               </div>
             </div>
 
             <form onSubmit={handleInquiry} className="mt-5 space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#1a3a52]">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#16202a]">
                 {t.catering.inquiryHeading}
               </h4>
 
@@ -331,7 +331,7 @@ export function CateringCalculator() {
                   placeholder={t.catering.nameCompany}
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
-                  className="w-full rounded-xl bg-[#f0f7fb] border border-[#b8d4e8] px-3 py-2 text-xs text-[#1a3a52] focus:border-[#9bc1d9] focus:outline-none"
+                  className="w-full rounded-xl bg-[#fffbf5] border border-[#e8d5be] px-3 py-2 text-xs text-[#16202a] focus:border-[#d99036] focus:outline-none"
                 />
               </div>
 
@@ -342,7 +342,7 @@ export function CateringCalculator() {
                   placeholder={t.catering.phone}
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full rounded-xl bg-[#f0f7fb] border border-[#b8d4e8] px-3 py-2 text-xs text-[#1a3a52] focus:border-[#9bc1d9] focus:outline-none"
+                  className="w-full rounded-xl bg-[#fffbf5] border border-[#e8d5be] px-3 py-2 text-xs text-[#16202a] focus:border-[#d99036] focus:outline-none"
                 />
               </div>
 
@@ -352,7 +352,7 @@ export function CateringCalculator() {
                   placeholder={isEn ? "Email Address (optional)" : "E-Mail-Adresse (optional)"}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-xl bg-[#f0f7fb] border border-[#b8d4e8] px-3 py-2 text-xs text-[#1a3a52] focus:border-[#9bc1d9] focus:outline-none"
+                  className="w-full rounded-xl bg-[#fffbf5] border border-[#e8d5be] px-3 py-2 text-xs text-[#16202a] focus:border-[#d99036] focus:outline-none"
                 />
               </div>
 
@@ -362,14 +362,14 @@ export function CateringCalculator() {
                   placeholder={t.catering.date}
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full rounded-xl bg-[#f0f7fb] border border-[#b8d4e8] px-3 py-2 text-xs text-[#1a3a52] focus:border-[#9bc1d9] focus:outline-none"
+                  className="w-full rounded-xl bg-[#fffbf5] border border-[#e8d5be] px-3 py-2 text-xs text-[#16202a] focus:border-[#d99036] focus:outline-none"
                 />
                 <input
                   type="text"
                   placeholder={t.catering.city}
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className="w-full rounded-xl bg-[#f0f7fb] border border-[#b8d4e8] px-3 py-2 text-xs text-[#1a3a52] focus:border-[#9bc1d9] focus:outline-none"
+                  className="w-full rounded-xl bg-[#fffbf5] border border-[#e8d5be] px-3 py-2 text-xs text-[#16202a] focus:border-[#d99036] focus:outline-none"
                 />
               </div>
 
@@ -379,7 +379,7 @@ export function CateringCalculator() {
                   placeholder={t.catering.wishes}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full rounded-xl bg-[#f0f7fb] border border-[#b8d4e8] px-3 py-2 text-xs text-[#1a3a52] focus:border-[#9bc1d9] focus:outline-none"
+                  className="w-full rounded-xl bg-[#fffbf5] border border-[#e8d5be] px-3 py-2 text-xs text-[#16202a] focus:border-[#d99036] focus:outline-none"
                 />
               </div>
 

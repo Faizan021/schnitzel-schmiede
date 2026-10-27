@@ -45,7 +45,7 @@ export function FloatingWhatsAppFAB() {
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             {isEn ? 'Direct WhatsApp' : 'WhatsApp Live'}
           </span>
-          <span className="text-xs font-black text-[#1a3a52] leading-none mt-0.5">
+          <span className="text-xs font-black text-[#16202a] leading-none mt-0.5">
             {isEn ? 'Chat Now →' : 'Jetzt anfragen →'}
           </span>
         </div>
@@ -54,7 +54,7 @@ export function FloatingWhatsAppFAB() {
       {/* Dismiss Button */}
       <button
         onClick={() => setIsDismissed(true)}
-        className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded-full bg-white/80 hover:bg-white text-[#2e5f7e] hover:text-[#1a3a52] border border-[#b8d4e8] shadow-sm cursor-pointer"
+        className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded-full bg-white/80 hover:bg-white text-[#4b3b2f] hover:text-[#16202a] border border-[#e8d5be] shadow-sm cursor-pointer"
         aria-label="Schließen"
         title="Ausblenden"
       >

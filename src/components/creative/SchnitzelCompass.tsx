@@ -58,21 +58,21 @@ export function SchnitzelCompass() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#edf7fc] via-[#ddeef7] to-[#edf7fc] border-t border-[#b8d4e8]/60 relative overflow-hidden [contain:paint]">
+    <section className="py-20 bg-gradient-to-b from-[#faf7f2] via-[#f5efe6] to-[#faf7f2] border-t border-[#e8d5be]/70 relative overflow-hidden [contain:paint]">
       {/* Volumetric Radial Sconce Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[700px] h-[350px] bg-[#9bc1d9]/25 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[700px] h-[350px] bg-[#d99036]/15 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#b8d4e8] bg-white/80 backdrop-blur-md px-4 py-1.5 text-xs font-mono font-bold text-[#1a3a52] mb-3 shadow-sm">
-            <Compass className="h-4 w-4 text-[#2e5f7e] animate-pulse" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#e8d5be] bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-mono font-bold text-[#b45309] mb-3 shadow-sm">
+            <Compass className="h-4 w-4 text-[#d99036] animate-pulse" />
             <span>{isEn ? 'INTERACTIVE FLAVOR MATCHER' : 'DER SCHNITZEL-KOMPASS'}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black text-[#1a3a52] font-serif tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-black text-[#16202a] font-serif tracking-tight">
             {isEn ? 'Find Your Perfect Schnitzel in 2 Clicks' : 'In 2 Klicks zum perfekten Schnitzel'}
           </h2>
-          <p className="mt-3 text-xs sm:text-sm text-[#2e5f7e]">
+          <p className="mt-3 text-xs sm:text-sm text-[#4b3b2f]">
             {isEn
               ? 'Tell us your hunger level and taste preference. Our kitchen algorithm matches your ideal creation instantly.'
               : 'Wählen Sie Ihren Hunger und Ihr Geschmacksprofil – unser Schmiede-Kompass empfiehlt sofort das passende Gericht.'}
@@ -84,8 +84,8 @@ export function SchnitzelCompass() {
           {/* Controls Column */}
           <div className="md:col-span-7 space-y-6">
             {/* Step 1: Hunger Level */}
-            <div className="p-5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/90 shadow-md shadow-[#1a3a52]/5 space-y-3">
-              <span className="text-xs font-mono font-black text-[#163044] uppercase tracking-wider block">
+            <div className="p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-[#e8d5be] shadow-md shadow-[#16202a]/5 space-y-3">
+              <span className="text-xs font-mono font-black text-[#b45309] uppercase tracking-wider block">
                 {isEn ? '1. HOW BIG IS YOUR APPETITE?' : '1. WIE GROSS IST DER HUNGER?'}
               </span>
               <div className="grid grid-cols-3 gap-2.5">
@@ -100,12 +100,12 @@ export function SchnitzelCompass() {
                     onClick={() => setPortion(opt.id)}
                     className={`p-3 rounded-xl text-left border transition-all cursor-pointer ${
                       portion === opt.id
-                        ? 'bg-[#9bc1d9] text-[#1a3a52] border-[#9bc1d9] font-black shadow-md shadow-[#9bc1d9]/30 scale-[1.02]'
-                        : 'bg-[#f0f7fb] text-[#1a3a52] border-[#b8d4e8] hover:border-[#9bc1d9]'
+                        ? 'bg-[#d99036] text-white border-[#d99036] font-black shadow-md shadow-[#d99036]/25 scale-[1.02]'
+                        : 'bg-white text-[#16202a] border-[#e8d5be] hover:border-[#d99036] hover:bg-[#fffdfa]'
                     }`}
                   >
                     <div className="text-xs font-bold">{opt.label}</div>
-                    <div className={`text-[11px] font-medium ${portion === opt.id ? 'text-[#1a3a52]' : 'text-[#163044]'}`}>
+                    <div className={`text-[11px] font-medium ${portion === opt.id ? 'text-white/90' : 'text-[#4b3b2f]'}`}>
                       {opt.desc}
                     </div>
                   </button>
@@ -114,8 +114,8 @@ export function SchnitzelCompass() {
             </div>
 
             {/* Step 2: Flavor Soul */}
-            <div className="p-5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/90 shadow-md shadow-[#1a3a52]/5 space-y-3">
-              <span className="text-xs font-mono font-black text-[#163044] uppercase tracking-wider block">
+            <div className="p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-[#e8d5be] shadow-md shadow-[#16202a]/5 space-y-3">
+              <span className="text-xs font-mono font-black text-[#b45309] uppercase tracking-wider block">
                 {isEn ? '2. WHICH FLAVOR PROFILE DO YOU CRAVE?' : '2. WELCHE GESCHMACKS-RICHTUNG?'}
               </span>
               <div className="grid grid-cols-2 gap-2.5">
@@ -131,8 +131,8 @@ export function SchnitzelCompass() {
                     onClick={() => setFlavor(opt.id)}
                     className={`p-3.5 rounded-xl text-left border transition-all cursor-pointer flex items-center gap-2.5 ${
                       flavor === opt.id
-                        ? 'bg-[#9bc1d9] text-[#1a3a52] border-[#9bc1d9] font-black shadow-md shadow-[#9bc1d9]/30 scale-[1.02]'
-                        : 'bg-[#f0f7fb] text-[#1a3a52] border-[#b8d4e8] hover:border-[#9bc1d9]'
+                        ? 'bg-[#d99036] text-white border-[#d99036] font-black shadow-md shadow-[#d99036]/25 scale-[1.02]'
+                        : 'bg-white text-[#16202a] border-[#e8d5be] hover:border-[#d99036] hover:bg-[#fffdfa]'
                     }`}
                   >
                     <span className="text-xl">{opt.icon}</span>
@@ -145,37 +145,37 @@ export function SchnitzelCompass() {
 
           {/* Recommended Dish Match Card Column */}
           <div className="md:col-span-5">
-            <SpotlightCard className="p-6 sm:p-7 bg-white/95 backdrop-blur-md border-2 border-[#9bc1d9] shadow-xl shadow-[#1a3a52]/10">
+            <SpotlightCard className="p-6 sm:p-7 bg-white/95 backdrop-blur-md border-2 border-[#d99036] shadow-xl shadow-[#d99036]/10">
               <div className="flex items-center justify-between mb-3">
-                <span className="px-3 py-1 rounded-full bg-[#9bc1d9] text-[#1a3a52] text-xs font-black uppercase tracking-wider flex items-center gap-1.5">
-                  <Sparkles className="h-3.5 w-3.5 text-[#1a3a52]" />
+                <span className="px-3 py-1 rounded-full bg-[#d99036] text-white text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+                  <Sparkles className="h-3.5 w-3.5 text-white" />
                   <span>{isEn ? 'MATCH FOUND' : 'DEIN MATCH'}</span>
                 </span>
-                <span className="text-xs font-mono font-black text-[#163044]">
+                <span className="text-xs font-mono font-black text-[#b45309]">
                   {matchedDish.defaultPortion || 'Frisch aus der Pfanne'}
                 </span>
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-bold font-serif text-[#1a3a52] mb-1">
+              <h3 className="text-xl sm:text-2xl font-bold font-serif text-[#16202a] mb-1">
                 {isEn && matchedDish.nameEn ? matchedDish.nameEn : matchedDish.name}
               </h3>
 
               {matchedDish.subtitle && (
-                <p className="text-xs sm:text-sm text-[#163044] font-semibold mb-3">
+                <p className="text-xs sm:text-sm text-[#b45309] font-bold mb-3">
                   {matchedDish.subtitle}
                 </p>
               )}
 
-              <p className="text-xs sm:text-sm text-[#163044] leading-relaxed mb-6 line-clamp-3">
+              <p className="text-xs sm:text-sm text-[#4b3b2f] leading-relaxed mb-6 line-clamp-3">
                 {matchedDish.description}
               </p>
 
-              <div className="pt-4 border-t border-[#b8d4e8]/60 flex items-center justify-between gap-4">
+              <div className="pt-4 border-t border-[#e8d5be]/70 flex items-center justify-between gap-4">
                 <div>
-                  <span className="text-xs text-[#163044] block font-bold uppercase tracking-wider">
+                  <span className="text-xs text-[#4b3b2f] block font-bold uppercase tracking-wider">
                     {isEn ? 'Real Price' : 'Original-Preis'}
                   </span>
-                  <span className="text-2xl sm:text-3xl font-black font-serif text-[#1a3a52]">
+                  <span className="text-2xl sm:text-3xl font-black font-serif text-[#16202a]">
                     {matchedDish.price.toFixed(2).replace('.', ',')} €
                   </span>
                 </div>
@@ -183,7 +183,7 @@ export function SchnitzelCompass() {
                 <button
                   type="button"
                   onClick={handleAdd}
-                  className="flex items-center gap-2 px-5 py-3 rounded-xl bg-[#9bc1d9] hover:bg-[#85b0cb] text-[#1a3a52] font-black text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer"
+                  className="flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#d99036] to-[#b45309] hover:from-[#e09b43] hover:to-[#c25c0e] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer"
                 >
                   {addedNotice ? (
                     <>

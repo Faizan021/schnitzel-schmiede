@@ -198,7 +198,7 @@ export function InteractiveSizzleHero() {
         {/* Editorial Statement & Brand Header */}
         <div className="text-center space-y-2.5 sm:space-y-3 pt-1 sm:pt-2">
           {/* Elevated Living Forge Brand Hallmark (Matches Header & Guild Identity) */}
-          <div className="inline-flex items-center justify-center gap-2 px-3.5 sm:px-5 py-1.5 rounded-full bg-gradient-to-r from-[#162e40]/95 via-[#1a3a52]/95 to-[#162e40]/95 border border-[#d99036]/60 shadow-[0_4px_20px_rgba(0,0,0,0.35),0_0_15px_rgba(217,144,54,0.25)] backdrop-blur-md max-w-full">
+          <div className="inline-flex items-center justify-center gap-2 px-3.5 sm:px-5 py-1.5 rounded-full bg-gradient-to-r from-[#16202a]/95 via-[#231812]/95 to-[#16202a]/95 border border-[#d99036]/60 shadow-[0_4px_20px_rgba(0,0,0,0.35),0_0_15px_rgba(217,144,54,0.25)] backdrop-blur-md max-w-full">
             {/* Living Ember Flame Icon */}
             <div className="relative flex items-center justify-center shrink-0">
               <Flame className="h-3.5 w-3.5 sm:h-4 sm:w-4 fill-[#d99036] text-[#ffecd2] filter drop-shadow-[0_0_8px_rgba(245,158,11,0.85)] animate-flame-simmer shrink-0" />
@@ -278,7 +278,7 @@ export function InteractiveSizzleHero() {
           <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#d99036] to-transparent opacity-90" />
 
           {/* Video / Cinema Stage Container */}
-          <div className="relative w-full h-72 sm:h-auto sm:aspect-[21/9] rounded-xl overflow-hidden border border-[#b8d4e8]/60 bg-[#163044] shadow-inner group">
+          <div className="relative w-full h-72 sm:h-auto sm:aspect-[21/9] rounded-xl overflow-hidden border border-[#e8d5be]/70 bg-[#16202a] shadow-inner group">
             {/* Live Kitchen Video with Instant Poster Fallback */}
             <video
               ref={showcaseVideoRef}
@@ -312,7 +312,7 @@ export function InteractiveSizzleHero() {
                 <button
                   type="button"
                   onClick={handleTogglePlay}
-                  className="h-7 w-7 sm:h-9 sm:w-9 flex items-center justify-center rounded-lg bg-white/95 hover:bg-white text-[#1a3a52] backdrop-blur-md border border-white transition-all shadow-md cursor-pointer active:scale-95"
+                  className="h-7 w-7 sm:h-9 sm:w-9 flex items-center justify-center rounded-lg bg-white/95 hover:bg-white text-[#16202a] backdrop-blur-md border border-white transition-all shadow-md cursor-pointer active:scale-95"
                   title={isPlayingVideo ? 'Video pausieren' : 'Video abspielen'}
                   aria-label="Video Play/Pause"
                 >
@@ -323,11 +323,11 @@ export function InteractiveSizzleHero() {
                 <button
                   type="button"
                   onClick={handleToggleMute}
-                  className="h-7 w-7 sm:h-9 sm:w-9 flex items-center justify-center rounded-lg bg-white/95 hover:bg-white text-[#1a3a52] backdrop-blur-md border border-white transition-all shadow-md cursor-pointer active:scale-95"
+                  className="h-7 w-7 sm:h-9 sm:w-9 flex items-center justify-center rounded-lg bg-white/95 hover:bg-white text-[#16202a] backdrop-blur-md border border-white transition-all shadow-md cursor-pointer active:scale-95"
                   title={isMuted ? 'Ton einschalten' : 'Stummschalten'}
                   aria-label="Video Sound"
                 >
-                  {isMuted ? <VolumeX className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#2e5f7e]" /> : <Volume2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-emerald-600" />}
+                  {isMuted ? <VolumeX className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#4b3b2f]" /> : <Volume2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-emerald-600" />}
                 </button>
 
                 {/* Interactive Sizzle Ignition Button (Interactive Wow Element) */}
@@ -337,7 +337,7 @@ export function InteractiveSizzleHero() {
                   className={`h-7 sm:h-9 px-2 sm:px-4 rounded-lg text-[10px] sm:text-xs font-mono font-bold tracking-wider flex items-center gap-1 sm:gap-2 transition-all shadow-lg cursor-pointer active:scale-95 border ${
                     isSizzlingActive
                       ? 'bg-[#d99036] text-white border-white shadow-[#d99036]/50 animate-pulse'
-                      : 'bg-white/95 text-[#1a3a52] border-white/80 hover:bg-[#ffecd2]'
+                      : 'bg-white/95 text-[#16202a] border-white/80 hover:bg-[#ffecd2]'
                   }`}
                 >
                   <Flame className={`h-3 w-3 sm:h-3.5 sm:w-3.5 ${isSizzlingActive ? 'animate-bounce text-white' : 'text-[#d99036]'}`} />
@@ -382,7 +382,7 @@ export function InteractiveSizzleHero() {
           {/* =========================================================================
               HIGH-END "WOW" INTERACTIVE FEATURE: DIE SOUFFLIERTE KRUSTEN-ANALYSE
               ========================================================================= */}
-          <div className="mt-3 sm:mt-4 p-3 sm:p-4 rounded-xl bg-gradient-to-r from-[#1a3a52] to-[#244b68] text-white border border-[#2e5f7e]/50 shadow-md">
+          <div className="mt-3 sm:mt-4 p-3 sm:p-4 rounded-xl bg-gradient-to-r from-[#16202a] to-[#251b14] text-white border border-[#d99036]/30 shadow-md">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-white/10">
               <div>
                 <span className="text-[9px] sm:text-[10px] font-mono font-bold text-[#d99036] uppercase tracking-widest block">

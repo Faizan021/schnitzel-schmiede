@@ -9,24 +9,24 @@ export const metadata = {
 
 export default function AgbPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 text-xs sm:text-sm text-[#2e5f7e] space-y-6">
-      <div className="flex items-center gap-2 text-[#1a3a52]">
+    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 text-xs sm:text-sm text-[#4b3b2f] space-y-6">
+      <div className="flex items-center gap-2 text-[#16202a]">
         <ShieldCheck className="h-5 w-5" />
         <span className="text-xs uppercase tracking-widest font-bold">Transparenz & Vertrauen</span>
       </div>
-      <h1 className="text-2xl sm:text-4xl font-extrabold text-[#1a3a52] font-serif">
+      <h1 className="text-2xl sm:text-4xl font-extrabold text-[#16202a] font-serif">
         Allgemeine Geschäftsbedingungen (AGB)
       </h1>
-      <p className="text-[#2e5f7e]">
+      <p className="text-[#4b3b2f]">
         Schnitzelschmiede Mönchengladbach · Dohler Str. 269, 41238 Mönchengladbach
       </p>
 
-      <div className="rounded-2xl border border-[#b8d4e8] bg-white/85 backdrop-blur-md p-6 sm:p-8 space-y-6 text-[#1a3a52] shadow-sm">
+      <div className="rounded-2xl border border-[#e8d5be] bg-white/85 backdrop-blur-md p-6 sm:p-8 space-y-6 text-[#16202a] shadow-sm">
         <div>
-          <h2 className="text-lg font-bold text-[#1a3a52] font-serif mb-2">1. Geltungsbereich</h2>
-          <p className="leading-relaxed text-[#2e5f7e]">
+          <h2 className="text-lg font-bold text-[#16202a] font-serif mb-2">1. Geltungsbereich</h2>
+          <p className="leading-relaxed text-[#4b3b2f]">
             Diese Allgemeinen Geschäftsbedingungen gelten für alle Bestellungen, Lieferungen,
-            Abholungen und Catering-Vereinbarungen, die Kunden bei der <strong className="text-[#1a3a52]">Schnitzelschmiede</strong> (Dohler Str. 269, 41238 Mönchengladbach)
+            Abholungen und Catering-Vereinbarungen, die Kunden bei der <strong className="text-[#16202a]">Schnitzelschmiede</strong> (Dohler Str. 269, 41238 Mönchengladbach)
             über unsere Online-Systeme, telefonisch oder vor Ort aufgeben.
           </p>
         </div>

@@ -144,17 +144,17 @@ export function CartSlideOver() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-            className="relative z-10 flex h-full w-full max-w-xl flex-col bg-white/95 backdrop-blur-xl border-l border-[#b8d4e8] shadow-2xl text-[#1a3a52]"
+            className="relative z-10 flex h-full w-full max-w-xl flex-col bg-white/95 backdrop-blur-xl border-l border-[#e8d5be] shadow-2xl text-[#16202a]"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-[#b8d4e8]/60 p-4 sm:p-5">
+            <div className="flex items-center justify-between border-b border-[#e8d5be]/60 p-4 sm:p-5">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#cce3f1] text-[#1a3a52]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ffedd5] text-[#16202a]">
                   <ShoppingBag className="h-5 w-5" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-[#1a3a52]">{t.cart.title}</h2>
-                  <p className="text-xs text-[#2e5f7e]">
+                  <h2 className="text-lg font-bold text-[#16202a]">{t.cart.title}</h2>
+                  <p className="text-xs text-[#4b3b2f]">
                     {itemCount} {t.cart.positions} · {isEn ? 'Fresh Preparation' : 'Frische Zubereitung'}
                   </p>
                 </div>
@@ -164,7 +164,7 @@ export function CartSlideOver() {
                 {items.length > 0 && (
                   <button
                     onClick={clearCart}
-                    className="rounded-lg p-2 text-xs text-[#2e5f7e] hover:text-rose-600 hover:bg-[#f0f7fb] transition-colors cursor-pointer"
+                    className="rounded-lg p-2 text-xs text-[#4b3b2f] hover:text-rose-600 hover:bg-[#fffbf5] transition-colors cursor-pointer"
                     title={isEn ? "Clear Cart" : "Warenkorb leeren"}
                   >
                     <Trash2 className="h-4 w-4" />
@@ -172,7 +172,7 @@ export function CartSlideOver() {
                 )}
                 <button
                   onClick={closeCart}
-                  className="rounded-xl p-2 text-[#2e5f7e] hover:bg-[#f0f7fb] hover:text-[#1a3a52] transition-colors cursor-pointer"
+                  className="rounded-xl p-2 text-[#4b3b2f] hover:bg-[#fffbf5] hover:text-[#16202a] transition-colors cursor-pointer"
                   aria-label={isEn ? "Close Cart" : "Schließen"}
                 >
                   <X className="h-5 w-5" />
@@ -183,17 +183,17 @@ export function CartSlideOver() {
             {/* Empty State */}
             {items.length === 0 ? (
               <div className="flex flex-1 flex-col items-center justify-center p-8 text-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#f0f7fb] text-[#1a3a52] mb-4">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#fffbf5] text-[#16202a] mb-4">
                   <ShoppingBag className="h-10 w-10 opacity-70" />
                 </div>
-                <h3 className="text-xl font-bold text-[#1a3a52]">{t.cart.emptyTitle}</h3>
-                <p className="mt-2 text-sm text-[#2e5f7e] max-w-xs">
+                <h3 className="text-xl font-bold text-[#16202a]">{t.cart.emptyTitle}</h3>
+                <p className="mt-2 text-sm text-[#4b3b2f] max-w-xs">
                   {t.cart.emptyDesc}
                 </p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={closeCart}
-                    className="rounded-xl bg-[#9bc1d9] hover:bg-[#85b0cb] px-5 py-2.5 text-sm font-black text-[#1a3a52] transition-colors cursor-pointer shadow-sm"
+                    className="rounded-xl bg-[#d99036] hover:bg-[#85b0cb] px-5 py-2.5 text-sm font-black text-[#16202a] transition-colors cursor-pointer shadow-sm"
                   >
                     {t.cart.exploreMenu}
                   </button>
@@ -202,7 +202,7 @@ export function CartSlideOver() {
             ) : (
               <>
                 {/* Fulfillment Tabs */}
-                <div className="grid grid-cols-2 gap-2 p-4 border-b border-[#b8d4e8]/60 bg-[#edf7fc]">
+                <div className="grid grid-cols-2 gap-2 p-4 border-b border-[#e8d5be]/60 bg-[#faf7f2]">
                   <button
                     onClick={() => {
                       setFulfillmentType('pickup');
@@ -210,8 +210,8 @@ export function CartSlideOver() {
                     }}
                     className={`flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold transition-all cursor-pointer ${
                       fulfillmentType === 'pickup'
-                        ? 'bg-[#9bc1d9] text-[#1a3a52] shadow-sm font-black'
-                        : 'bg-white text-[#2e5f7e] hover:text-[#1a3a52] border border-[#b8d4e8]'
+                        ? 'bg-[#d99036] text-[#16202a] shadow-sm font-black'
+                        : 'bg-white text-[#4b3b2f] hover:text-[#16202a] border border-[#e8d5be]'
                     }`}
                   >
                     <Store className="h-4 w-4" />
@@ -228,8 +228,8 @@ export function CartSlideOver() {
                     }}
                     className={`flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold transition-all cursor-pointer ${
                       fulfillmentType === 'delivery'
-                        ? 'bg-[#9bc1d9] text-[#1a3a52] shadow-sm font-black'
-                        : 'bg-white text-[#2e5f7e] hover:text-[#1a3a52] border border-[#b8d4e8]'
+                        ? 'bg-[#d99036] text-[#16202a] shadow-sm font-black'
+                        : 'bg-white text-[#4b3b2f] hover:text-[#16202a] border border-[#e8d5be]'
                     }`}
                   >
                     <Car className="h-4 w-4" />
@@ -239,10 +239,10 @@ export function CartSlideOver() {
 
                 {/* Delivery Zone / PLZ Picker */}
                 {fulfillmentType === 'delivery' && (
-                  <div className="bg-[#f0f7fb] px-4 py-3 border-b border-[#b8d4e8]/60">
+                  <div className="bg-[#fffbf5] px-4 py-3 border-b border-[#e8d5be]/60">
                     <div className="flex items-center justify-between text-xs mb-1.5">
-                      <span className="text-[#2e5f7e]">{t.cart.deliveryArea}:</span>
-                      <span className="font-semibold text-[#1a3a52]">{selectedZone.name}</span>
+                      <span className="text-[#4b3b2f]">{t.cart.deliveryArea}:</span>
+                      <span className="font-semibold text-[#16202a]">{selectedZone.name}</span>
                     </div>
 
                     <div className="flex items-center gap-2">
@@ -252,7 +252,7 @@ export function CartSlideOver() {
                           setPostalCode(e.target.value);
                           updateCustomerDetails({ postalCode: e.target.value });
                         }}
-                        className="rounded-lg bg-white px-3 py-1.5 text-xs text-[#1a3a52] border border-[#b8d4e8] focus:border-[#9bc1d9] focus:outline-none"
+                        className="rounded-lg bg-white px-3 py-1.5 text-xs text-[#16202a] border border-[#e8d5be] focus:border-[#d99036] focus:outline-none"
                       >
                         <option value="41238">41238 (Bonnenbroich / Dohler Str.)</option>
                         <option value="41063">41063 (Windberg / Eicken)</option>
@@ -265,7 +265,7 @@ export function CartSlideOver() {
                         <option value="41748">41748 (Viersen Süd)</option>
                       </select>
 
-                      <div className="text-[11px] text-[#2e5f7e] flex-1">
+                      <div className="text-[11px] text-[#4b3b2f] flex-1">
                         Min. {selectedZone.minOrder.toFixed(2).replace('.', ',')} € ·{' '}
                         {calculations.subtotal >= selectedZone.freeDeliveryThreshold
                           ? (isEn ? '🎉 Free Delivery' : '🎉 Frei Haus')
@@ -289,13 +289,13 @@ export function CartSlideOver() {
                 )}
 
                 {/* Sub-Tabs: Positions vs Checkout Details */}
-                <div className="flex border-b border-[#b8d4e8]/60 bg-[#ddeef7]/50 px-4">
+                <div className="flex border-b border-[#e8d5be]/60 bg-[#f4ede4]/50 px-4">
                   <button
                     onClick={() => setActiveTab('cart')}
                     className={`py-2.5 px-4 text-xs font-bold border-b-2 transition-colors cursor-pointer ${
                       activeTab === 'cart'
-                        ? 'border-[#1a3a52] text-[#1a3a52]'
-                        : 'border-transparent text-[#2e5f7e] hover:text-[#1a3a52]'
+                        ? 'border-[#16202a] text-[#16202a]'
+                        : 'border-transparent text-[#4b3b2f] hover:text-[#16202a]'
                     }`}
                   >
                     {t.cart.tabPositions} ({itemCount})
@@ -304,8 +304,8 @@ export function CartSlideOver() {
                     onClick={() => setActiveTab('checkout')}
                     className={`py-2.5 px-4 text-xs font-bold border-b-2 transition-colors cursor-pointer ${
                       activeTab === 'checkout'
-                        ? 'border-[#1a3a52] text-[#1a3a52]'
-                        : 'border-transparent text-[#2e5f7e] hover:text-[#1a3a52]'
+                        ? 'border-[#16202a] text-[#16202a]'
+                        : 'border-transparent text-[#4b3b2f] hover:text-[#16202a]'
                     }`}
                   >
                     {t.cart.tabCheckout}
@@ -319,7 +319,7 @@ export function CartSlideOver() {
                       {items.map((item) => (
                         <div
                           key={item.cartItemId}
-                          className="rounded-xl border border-[#b8d4e8] bg-white p-3.5 transition-all shadow-sm"
+                          className="rounded-xl border border-[#e8d5be] bg-white p-3.5 transition-all shadow-sm"
                         >
                           {item.type === 'standard' ? (
                             <div className="flex gap-3">
@@ -332,48 +332,48 @@ export function CartSlideOver() {
                                   className="h-16 w-16 rounded-lg object-cover"
                                 />
                               ) : (
-                                <div className="h-16 w-16 rounded-lg bg-[#f0f7fb] border border-[#b8d4e8]/60 flex items-center justify-center shrink-0 text-[#1a3a52]">
+                                <div className="h-16 w-16 rounded-lg bg-[#fffbf5] border border-[#e8d5be]/60 flex items-center justify-center shrink-0 text-[#16202a]">
                                   <Flame className="h-6 w-6" />
                                 </div>
                               )}
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-start justify-between">
-                                  <h4 className="font-semibold text-sm text-[#1a3a52] truncate">
+                                  <h4 className="font-semibold text-sm text-[#16202a] truncate">
                                     {isEn && item.item.nameEn ? item.item.nameEn : item.item.name}
                                   </h4>
                                   <button
                                     onClick={() => removeItem(item.cartItemId)}
-                                    className="text-[#2e5f7e] hover:text-rose-600 p-1 cursor-pointer"
+                                    className="text-[#4b3b2f] hover:text-rose-600 p-1 cursor-pointer"
                                     title={isEn ? "Remove" : "Entfernen"}
                                   >
                                     <Trash2 className="h-3.5 w-3.5" />
                                   </button>
                                 </div>
-                                <p className="text-xs text-[#2e5f7e] mt-0.5 line-clamp-1">
+                                <p className="text-xs text-[#4b3b2f] mt-0.5 line-clamp-1">
                                   {isEn && item.item.subtitleEn
                                     ? item.item.subtitleEn
                                     : (item.item.subtitle || item.item.description)}
                                 </p>
                                 <div className="mt-2.5 flex items-center justify-between">
-                                  <span className="font-mono text-sm font-bold text-[#1a3a52]">
+                                  <span className="font-mono text-sm font-bold text-[#16202a]">
                                     {(item.item.price * item.quantity)
                                       .toFixed(2)
                                       .replace('.', ',')}{' '}
                                     €
                                   </span>
-                                  <div className="flex items-center gap-2 rounded-lg bg-[#f0f7fb] border border-[#b8d4e8]/60 px-2 py-1">
+                                  <div className="flex items-center gap-2 rounded-lg bg-[#fffbf5] border border-[#e8d5be]/60 px-2 py-1">
                                     <button
                                       onClick={() => updateQuantity(item.cartItemId, -1)}
-                                      className="text-[#2e5f7e] hover:text-[#1a3a52] p-0.5 cursor-pointer"
+                                      className="text-[#4b3b2f] hover:text-[#16202a] p-0.5 cursor-pointer"
                                     >
                                       <Minus className="h-3.5 w-3.5" />
                                     </button>
-                                    <span className="text-xs font-bold text-[#1a3a52] w-4 text-center">
+                                    <span className="text-xs font-bold text-[#16202a] w-4 text-center">
                                       {item.quantity}
                                     </span>
                                     <button
                                       onClick={() => updateQuantity(item.cartItemId, 1)}
-                                      className="text-[#2e5f7e] hover:text-[#1a3a52] p-0.5 cursor-pointer"
+                                      className="text-[#4b3b2f] hover:text-[#16202a] p-0.5 cursor-pointer"
                                     >
                                       <Plus className="h-3.5 w-3.5" />
                                     </button>
@@ -385,47 +385,47 @@ export function CartSlideOver() {
                             <div>
                               <div className="flex items-start justify-between">
                                 <div className="flex items-center gap-2">
-                                  <span className="flex h-5 items-center rounded-md bg-[#cce3f1] px-2 text-[10px] font-bold text-[#1a3a52] uppercase tracking-wider">
+                                  <span className="flex h-5 items-center rounded-md bg-[#ffedd5] px-2 text-[10px] font-bold text-[#16202a] uppercase tracking-wider">
                                     Custom Schnitzel
                                   </span>
-                                  <h4 className="font-semibold text-sm text-[#1a3a52]">
+                                  <h4 className="font-semibold text-sm text-[#16202a]">
                                     {MEAT_OPTIONS[item.config.meat]?.name}
                                   </h4>
                                 </div>
                                 <button
                                   onClick={() => removeItem(item.cartItemId)}
-                                  className="text-[#2e5f7e] hover:text-rose-600 p-1 cursor-pointer"
+                                  className="text-[#4b3b2f] hover:text-rose-600 p-1 cursor-pointer"
                                   title={isEn ? "Remove" : "Entfernen"}
                                 >
                                   <Trash2 className="h-3.5 w-3.5" />
                                 </button>
                               </div>
 
-                              <div className="mt-2 space-y-1 text-xs text-[#2e5f7e] bg-[#f0f7fb] p-2.5 rounded-lg border border-[#b8d4e8]/60">
+                              <div className="mt-2 space-y-1 text-xs text-[#4b3b2f] bg-[#fffbf5] p-2.5 rounded-lg border border-[#e8d5be]/60">
                                 <div>
-                                  • <strong className="text-[#1a3a52]">{t.customizer.sizeLabel}:</strong>{' '}
+                                  • <strong className="text-[#16202a]">{t.customizer.sizeLabel}:</strong>{' '}
                                   {SIZE_OPTIONS[item.config.size]?.name}
                                 </div>
                                 <div>
-                                  • <strong className="text-[#1a3a52]">{t.customizer.crustLabel}:</strong>{' '}
+                                  • <strong className="text-[#16202a]">{t.customizer.crustLabel}:</strong>{' '}
                                   {CRUST_OPTIONS[item.config.crust]?.name}
                                 </div>
                                 <div>
-                                  • <strong className="text-[#1a3a52]">{t.customizer.sauceLabel}:</strong>{' '}
+                                  • <strong className="text-[#16202a]">{t.customizer.sauceLabel}:</strong>{' '}
                                   {SAUCE_OPTIONS[item.config.sauce]?.name}
                                   {item.config.sauceSeparated && (
-                                    <span className="ml-1 text-[#1a3a52] font-bold text-[11px]">
+                                    <span className="ml-1 text-[#16202a] font-bold text-[11px]">
                                       ({isEn ? 'packaged separately' : 'separat im Becher'})
                                     </span>
                                   )}
                                 </div>
                                 <div>
-                                  • <strong className="text-[#1a3a52]">{t.customizer.sidesLabel}:</strong>{' '}
+                                  • <strong className="text-[#16202a]">{t.customizer.sidesLabel}:</strong>{' '}
                                   {SIDE_OPTIONS[item.config.side]?.name}
                                 </div>
                                 {item.config.extras.length > 0 && (
                                   <div>
-                                    • <strong className="text-[#1a3a52]">{t.customizer.extrasLabel}:</strong>{' '}
+                                    • <strong className="text-[#16202a]">{t.customizer.extrasLabel}:</strong>{' '}
                                     {item.config.extras
                                       .map((e) => EXTRA_OPTIONS[e]?.name)
                                       .join(', ')}
@@ -434,25 +434,25 @@ export function CartSlideOver() {
                               </div>
 
                               <div className="mt-3 flex items-center justify-between">
-                                <span className="font-mono text-sm font-bold text-[#1a3a52]">
+                                <span className="font-mono text-sm font-bold text-[#16202a]">
                                   {(item.config.unitPrice * item.quantity)
                                     .toFixed(2)
                                     .replace('.', ',')}{' '}
                                   €
                                 </span>
-                                <div className="flex items-center gap-2 rounded-lg bg-[#f0f7fb] border border-[#b8d4e8]/60 px-2 py-1">
+                                <div className="flex items-center gap-2 rounded-lg bg-[#fffbf5] border border-[#e8d5be]/60 px-2 py-1">
                                   <button
                                     onClick={() => updateQuantity(item.cartItemId, -1)}
-                                    className="text-[#2e5f7e] hover:text-[#1a3a52] p-0.5 cursor-pointer"
+                                    className="text-[#4b3b2f] hover:text-[#16202a] p-0.5 cursor-pointer"
                                   >
                                     <Minus className="h-3.5 w-3.5" />
                                   </button>
-                                  <span className="text-xs font-bold text-[#1a3a52] w-4 text-center">
+                                  <span className="text-xs font-bold text-[#16202a] w-4 text-center">
                                     {item.quantity}
                                   </span>
                                   <button
                                     onClick={() => updateQuantity(item.cartItemId, 1)}
-                                    className="text-[#2e5f7e] hover:text-[#1a3a52] p-0.5 cursor-pointer"
+                                    className="text-[#4b3b2f] hover:text-[#16202a] p-0.5 cursor-pointer"
                                   >
                                     <Plus className="h-3.5 w-3.5" />
                                   </button>
@@ -464,13 +464,13 @@ export function CartSlideOver() {
                       ))}
 
                       {/* Tip Selector */}
-                      <div className="mt-4 rounded-xl border border-[#b8d4e8] bg-white p-3.5 shadow-sm">
+                      <div className="mt-4 rounded-xl border border-[#e8d5be] bg-white p-3.5 shadow-sm">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-xs font-semibold text-[#1a3a52] flex items-center gap-1.5">
-                            <Sparkles className="h-3.5 w-3.5 text-[#2e5f7e]" />
+                          <span className="text-xs font-semibold text-[#16202a] flex items-center gap-1.5">
+                            <Sparkles className="h-3.5 w-3.5 text-[#4b3b2f]" />
                             {t.cart.tipLabel}
                           </span>
-                          <span className="text-xs font-mono font-bold text-[#1a3a52]">
+                          <span className="text-xs font-mono font-bold text-[#16202a]">
                             {calculations.tipAmount.toFixed(2).replace('.', ',')} €
                           </span>
                         </div>
@@ -481,8 +481,8 @@ export function CartSlideOver() {
                               onClick={() => setTipPercent(pct)}
                               className={`rounded-lg py-1.5 text-xs font-bold transition-all cursor-pointer ${
                                 tipPercent === pct
-                                  ? 'bg-[#9bc1d9] text-[#1a3a52] shadow-sm font-black'
-                                  : 'bg-[#f0f7fb] text-[#2e5f7e] hover:text-[#1a3a52] border border-[#b8d4e8]/60'
+                                  ? 'bg-[#d99036] text-[#16202a] shadow-sm font-black'
+                                  : 'bg-[#fffbf5] text-[#4b3b2f] hover:text-[#16202a] border border-[#e8d5be]/60'
                               }`}
                             >
                               {pct === 0 ? t.cart.noneTip : `${pct}%`}
@@ -494,13 +494,13 @@ export function CartSlideOver() {
                   ) : (
                     /* Checkout Tab */
                     <div className="space-y-3.5">
-                      <div className="rounded-xl border border-[#b8d4e8] bg-white p-3.5 space-y-3 shadow-sm">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#1a3a52]">
+                      <div className="rounded-xl border border-[#e8d5be] bg-white p-3.5 space-y-3 shadow-sm">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#16202a]">
                           {t.cart.contactHeading}
                         </h4>
 
                         <div>
-                          <label className="block text-xs font-medium text-[#2e5f7e] mb-1">
+                          <label className="block text-xs font-medium text-[#4b3b2f] mb-1">
                             {t.cart.nameLabel}
                           </label>
                           <input
@@ -508,9 +508,9 @@ export function CartSlideOver() {
                             placeholder={t.cart.namePlaceholder}
                             value={customerDetails.name}
                             onChange={(e) => updateCustomerDetails({ name: e.target.value })}
-                            className={`w-full rounded-lg bg-[#f0f7fb] px-3 py-2 text-sm text-[#1a3a52] border ${
-                              formErrors.name ? 'border-rose-500' : 'border-[#b8d4e8]'
-                            } focus:border-[#9bc1d9] focus:outline-none`}
+                            className={`w-full rounded-lg bg-[#fffbf5] px-3 py-2 text-sm text-[#16202a] border ${
+                              formErrors.name ? 'border-rose-500' : 'border-[#e8d5be]'
+                            } focus:border-[#d99036] focus:outline-none`}
                           />
                           {formErrors.name && (
                             <p className="text-[11px] text-rose-600 mt-1">{formErrors.name}</p>
@@ -518,7 +518,7 @@ export function CartSlideOver() {
                         </div>
 
                         <div>
-                          <label className="block text-xs font-medium text-[#2e5f7e] mb-1">
+                          <label className="block text-xs font-medium text-[#4b3b2f] mb-1">
                             {t.cart.phoneLabel}
                           </label>
                           <input
@@ -526,9 +526,9 @@ export function CartSlideOver() {
                             placeholder={t.cart.phonePlaceholder}
                             value={customerDetails.phone}
                             onChange={(e) => updateCustomerDetails({ phone: e.target.value })}
-                            className={`w-full rounded-lg bg-[#f0f7fb] px-3 py-2 text-sm text-[#1a3a52] border ${
-                              formErrors.phone ? 'border-rose-500' : 'border-[#b8d4e8]'
-                            } focus:border-[#9bc1d9] focus:outline-none`}
+                            className={`w-full rounded-lg bg-[#fffbf5] px-3 py-2 text-sm text-[#16202a] border ${
+                              formErrors.phone ? 'border-rose-500' : 'border-[#e8d5be]'
+                            } focus:border-[#d99036] focus:outline-none`}
                           />
                           {formErrors.phone && (
                             <p className="text-[11px] text-rose-600 mt-1">{formErrors.phone}</p>
@@ -538,7 +538,7 @@ export function CartSlideOver() {
                         {fulfillmentType === 'delivery' && (
                           <div className="grid grid-cols-3 gap-2">
                             <div className="col-span-2">
-                              <label className="block text-xs font-medium text-[#2e5f7e] mb-1">
+                              <label className="block text-xs font-medium text-[#4b3b2f] mb-1">
                                 {t.cart.streetLabel}
                               </label>
                               <input
@@ -546,13 +546,13 @@ export function CartSlideOver() {
                                 placeholder="Dohler Straße"
                                 value={customerDetails.street}
                                 onChange={(e) => updateCustomerDetails({ street: e.target.value })}
-                                className={`w-full rounded-lg bg-[#f0f7fb] px-3 py-2 text-sm text-[#1a3a52] border ${
-                                  formErrors.street ? 'border-rose-500' : 'border-[#b8d4e8]'
-                                } focus:border-[#9bc1d9] focus:outline-none`}
+                                className={`w-full rounded-lg bg-[#fffbf5] px-3 py-2 text-sm text-[#16202a] border ${
+                                  formErrors.street ? 'border-rose-500' : 'border-[#e8d5be]'
+                                } focus:border-[#d99036] focus:outline-none`}
                               />
                             </div>
                             <div>
-                              <label className="block text-xs font-medium text-[#2e5f7e] mb-1">
+                              <label className="block text-xs font-medium text-[#4b3b2f] mb-1">
                                 {t.cart.houseNumberLabel}
                               </label>
                               <input
@@ -562,13 +562,13 @@ export function CartSlideOver() {
                                 onChange={(e) =>
                                   updateCustomerDetails({ houseNumber: e.target.value })
                                 }
-                                className={`w-full rounded-lg bg-[#f0f7fb] px-3 py-2 text-sm text-[#1a3a52] border ${
-                                  formErrors.houseNumber ? 'border-rose-500' : 'border-[#b8d4e8]'
-                                } focus:border-[#9bc1d9] focus:outline-none`}
+                                className={`w-full rounded-lg bg-[#fffbf5] px-3 py-2 text-sm text-[#16202a] border ${
+                                  formErrors.houseNumber ? 'border-rose-500' : 'border-[#e8d5be]'
+                                } focus:border-[#d99036] focus:outline-none`}
                               />
                             </div>
                             <div className="col-span-3">
-                              <label className="block text-xs font-medium text-[#2e5f7e] mb-1">
+                              <label className="block text-xs font-medium text-[#4b3b2f] mb-1">
                                 {t.cart.floorNotesLabel}
                               </label>
                               <input
@@ -578,14 +578,14 @@ export function CartSlideOver() {
                                 onChange={(e) =>
                                   updateCustomerDetails({ floorNotes: e.target.value })
                                 }
-                                className="w-full rounded-lg bg-[#f0f7fb] px-3 py-2 text-sm text-[#1a3a52] border border-[#b8d4e8] focus:border-[#9bc1d9] focus:outline-none"
+                                className="w-full rounded-lg bg-[#fffbf5] px-3 py-2 text-sm text-[#16202a] border border-[#e8d5be] focus:border-[#d99036] focus:outline-none"
                               />
                             </div>
                           </div>
                         )}
 
                         <div>
-                          <label className="block text-xs font-medium text-[#2e5f7e] mb-1">
+                          <label className="block text-xs font-medium text-[#4b3b2f] mb-1">
                             {t.cart.preferredTimeLabel}
                           </label>
                           <select
@@ -593,7 +593,7 @@ export function CartSlideOver() {
                             onChange={(e) =>
                               updateCustomerDetails({ preferredTime: e.target.value })
                             }
-                            className="w-full rounded-lg bg-[#f0f7fb] px-3 py-2 text-sm text-[#1a3a52] border border-[#b8d4e8] focus:border-[#9bc1d9] focus:outline-none"
+                            className="w-full rounded-lg bg-[#fffbf5] px-3 py-2 text-sm text-[#16202a] border border-[#e8d5be] focus:border-[#d99036] focus:outline-none"
                           >
                             <option>{isEn ? 'As soon as possible (~30–45 mins)' : 'Schnellstmöglich (ca. 30–45 Min)'}</option>
                             <option>{isEn ? 'In approx. 60 minutes' : 'In ca. 60 Minuten'}</option>
@@ -606,8 +606,8 @@ export function CartSlideOver() {
                       </div>
 
                       {/* Payment Method Pre-Selection */}
-                      <div className="rounded-xl border border-[#b8d4e8] bg-white p-3.5 space-y-2 shadow-sm">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#1a3a52]">
+                      <div className="rounded-xl border border-[#e8d5be] bg-white p-3.5 space-y-2 shadow-sm">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#16202a]">
                           {t.cart.paymentHeading}
                         </h4>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -644,17 +644,17 @@ export function CartSlideOver() {
                                 }
                                 className={`flex flex-col items-center justify-center rounded-xl p-2.5 text-center transition-all border cursor-pointer ${
                                   isSelected
-                                    ? 'border-[#9bc1d9] bg-[#cce3f1] text-[#1a3a52] font-bold shadow-sm'
-                                    : 'border-[#b8d4e8]/60 bg-[#f0f7fb] text-[#2e5f7e] hover:border-[#9bc1d9]'
+                                    ? 'border-[#d99036] bg-[#ffedd5] text-[#16202a] font-bold shadow-sm'
+                                    : 'border-[#e8d5be]/60 bg-[#fffbf5] text-[#4b3b2f] hover:border-[#d99036]'
                                 }`}
                               >
                                 <Icon
                                   className={`h-5 w-5 mb-1 ${
-                                    isSelected ? 'text-[#1a3a52]' : 'text-[#2e5f7e]'
+                                    isSelected ? 'text-[#16202a]' : 'text-[#4b3b2f]'
                                   }`}
                                 />
                                 <span className="text-xs font-bold">{pay.label}</span>
-                                <span className="text-[10px] text-[#2e5f7e] mt-0.5">{pay.desc}</span>
+                                <span className="text-[10px] text-[#4b3b2f] mt-0.5">{pay.desc}</span>
                               </button>
                             );
                           })}
@@ -662,8 +662,8 @@ export function CartSlideOver() {
                       </div>
 
                       {/* Kitchen Note */}
-                      <div className="rounded-xl border border-[#b8d4e8] bg-white p-3.5 shadow-sm">
-                        <label className="block text-xs font-medium text-[#2e5f7e] mb-1">
+                      <div className="rounded-xl border border-[#e8d5be] bg-white p-3.5 shadow-sm">
+                        <label className="block text-xs font-medium text-[#4b3b2f] mb-1">
                           {t.cart.kitchenNoteLabel}
                         </label>
                         <input
@@ -671,12 +671,12 @@ export function CartSlideOver() {
                           placeholder={t.cart.kitchenNotePlaceholder}
                           value={customerDetails.notes || ''}
                           onChange={(e) => updateCustomerDetails({ notes: e.target.value })}
-                          className="w-full rounded-lg bg-[#f0f7fb] px-3 py-2 text-sm text-[#1a3a52] border border-[#b8d4e8] focus:border-[#9bc1d9] focus:outline-none"
+                          className="w-full rounded-lg bg-[#fffbf5] px-3 py-2 text-sm text-[#16202a] border border-[#e8d5be] focus:border-[#d99036] focus:outline-none"
                         />
                       </div>
 
                       {/* Legal Compliance Checkbox */}
-                      <div className="rounded-xl border border-[#b8d4e8] bg-white p-3 shadow-sm">
+                      <div className="rounded-xl border border-[#e8d5be] bg-white p-3 shadow-sm">
                         <label className="flex items-start gap-2.5 cursor-pointer">
                           <input
                             type="checkbox"
@@ -684,9 +684,9 @@ export function CartSlideOver() {
                             onChange={(e) =>
                               updateCustomerDetails({ privacyAgreed: e.target.checked })
                             }
-                            className="mt-1 h-4 w-4 rounded border-[#b8d4e8] text-[#1a3a52] focus:ring-0"
+                            className="mt-1 h-4 w-4 rounded border-[#e8d5be] text-[#16202a] focus:ring-0"
                           />
-                          <span className="text-xs text-[#2e5f7e] leading-relaxed">
+                          <span className="text-xs text-[#4b3b2f] leading-relaxed">
                             {t.cart.privacyConsent}
                           </span>
                         </label>
@@ -701,11 +701,11 @@ export function CartSlideOver() {
                 </div>
 
                 {/* Footer with Calculations & 1-Click WhatsApp Button */}
-                <div className="border-t border-[#b8d4e8] bg-[#edf7fc] p-4 sm:p-5 space-y-3">
-                  <div className="space-y-1.5 text-xs text-[#2e5f7e]">
+                <div className="border-t border-[#e8d5be] bg-[#faf7f2] p-4 sm:p-5 space-y-3">
+                  <div className="space-y-1.5 text-xs text-[#4b3b2f]">
                     <div className="flex justify-between">
                       <span>{t.cart.subtotal}:</span>
-                      <span className="font-mono text-[#1a3a52] font-semibold">
+                      <span className="font-mono text-[#16202a] font-semibold">
                         {calculations.subtotal.toFixed(2).replace('.', ',')} €
                       </span>
                     </div>
@@ -722,7 +722,7 @@ export function CartSlideOver() {
                     {fulfillmentType === 'delivery' && (
                       <div className="flex justify-between">
                         <span>{t.cart.deliveryFee} ({selectedZone.name.split('(')[0].trim()}):</span>
-                        <span className="font-mono text-[#1a3a52] font-semibold">
+                        <span className="font-mono text-[#16202a] font-semibold">
                           {calculations.deliveryFee === 0
                             ? (isEn ? 'Free Delivery' : 'Kostenlos (Frei Haus)')
                             : `${calculations.deliveryFee.toFixed(2).replace('.', ',')} €`}
@@ -733,20 +733,20 @@ export function CartSlideOver() {
                     {calculations.tipAmount > 0 && (
                       <div className="flex justify-between">
                         <span>{t.cart.tip}:</span>
-                        <span className="font-mono text-[#1a3a52] font-semibold">
+                        <span className="font-mono text-[#16202a] font-semibold">
                           {calculations.tipAmount.toFixed(2).replace('.', ',')} €
                         </span>
                       </div>
                     )}
 
-                    <div className="flex justify-between pt-2 border-t border-[#b8d4e8]/60 text-base font-bold text-[#1a3a52]">
+                    <div className="flex justify-between pt-2 border-t border-[#e8d5be]/60 text-base font-bold text-[#16202a]">
                       <span>{t.cart.totalAmount}:</span>
-                      <span className="font-mono text-xl text-[#1a3a52]">
+                      <span className="font-mono text-xl text-[#16202a]">
                         {calculations.total.toFixed(2).replace('.', ',')} €
                       </span>
                     </div>
 
-                    <div className="text-[10px] text-[#2e5f7e]/80 flex justify-between">
+                    <div className="text-[10px] text-[#4b3b2f]/80 flex justify-between">
                       <span>{t.cart.taxFood}: {calculations.taxFood7.toFixed(2).replace('.', ',')} €</span>
                       <span>{t.cart.taxDrinks}: {calculations.taxDrinks19.toFixed(2).replace('.', ',')} €</span>
                     </div>

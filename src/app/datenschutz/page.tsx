@@ -9,19 +9,19 @@ export const metadata = {
 
 export default function DatenschutzPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 text-xs sm:text-sm text-[#2e5f7e] space-y-6">
-      <div className="flex items-center gap-2 text-[#1a3a52]">
+    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 text-xs sm:text-sm text-[#4b3b2f] space-y-6">
+      <div className="flex items-center gap-2 text-[#16202a]">
         <ShieldCheck className="h-5 w-5" />
         <span className="text-xs uppercase tracking-widest font-bold">DSGVO-Konformität</span>
       </div>
-      <h1 className="text-2xl sm:text-4xl font-extrabold text-[#1a3a52] font-serif">
+      <h1 className="text-2xl sm:text-4xl font-extrabold text-[#16202a] font-serif">
         Datenschutzerklärung
       </h1>
 
-      <div className="rounded-2xl border border-[#b8d4e8] bg-white/85 backdrop-blur-md p-6 sm:p-8 space-y-6 text-[#1a3a52] shadow-sm">
+      <div className="rounded-2xl border border-[#e8d5be] bg-white/85 backdrop-blur-md p-6 sm:p-8 space-y-6 text-[#16202a] shadow-sm">
         <div>
-          <h2 className="text-lg font-bold text-[#1a3a52] font-serif mb-2">1. Datenschutz auf einen Blick</h2>
-          <p className="leading-relaxed text-[#2e5f7e]">
+          <h2 className="text-lg font-bold text-[#16202a] font-serif mb-2">1. Datenschutz auf einen Blick</h2>
+          <p className="leading-relaxed text-[#4b3b2f]">
             Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Die folgenden
             Hinweise geben einen verständlichen Überblick darüber, was mit Ihren personenbezogenen Daten
             passiert, wenn Sie unsere Website besuchen oder Bestellungen aufgeben.
@@ -29,23 +29,23 @@ export default function DatenschutzPage() {
         </div>
 
         <div>
-          <h2 className="text-lg font-bold text-[#1a3a52] font-serif mb-2">2. Verantwortliche Stelle</h2>
-          <p className="leading-relaxed text-[#2e5f7e]">
-            <strong className="text-[#1a3a52]">Schnitzelschmiede</strong>
+          <h2 className="text-lg font-bold text-[#16202a] font-serif mb-2">2. Verantwortliche Stelle</h2>
+          <p className="leading-relaxed text-[#4b3b2f]">
+            <strong className="text-[#16202a]">Schnitzelschmiede</strong>
             <br />
             Inhaber: Umar Jabbar
             <br />
             Dohler Str. 269, 41238 Mönchengladbach
             <br />
             Telefon:{' '}
-            <a href="tel:+4921669786951" className="text-[#1a3a52] hover:underline font-mono font-bold">
+            <a href="tel:+4921669786951" className="text-[#16202a] hover:underline font-mono font-bold">
               02166 9786951
             </a>
             <br />
             E-Mail:{' '}
             <a
               href="mailto:umarjabbar@yahoo.com?subject=Datenschutz%20Schnitzelschmiede"
-              className="text-[#1a3a52] hover:underline font-bold"
+              className="text-[#16202a] hover:underline font-bold"
             >
               umarjabbar@yahoo.com
             </a>

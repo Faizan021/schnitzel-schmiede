@@ -92,18 +92,18 @@ export function MenuSection() {
         {/* Search & Dietary Bar */}
         <div className="flex flex-col md:flex-row gap-3 items-center justify-between">
           <div className="relative w-full md:w-80">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#2e5f7e]" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#4b3b2f]" />
             <input
               type="text"
               placeholder={t.menu.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl bg-white/85 backdrop-blur-md border border-[#b8d4e8] pl-10 pr-4 py-2.5 text-xs text-[#1a3a52] placeholder-[#2e5f7e]/60 focus:border-[#9bc1d9] focus:outline-none transition-colors shadow-sm"
+              className="w-full rounded-xl bg-white/85 backdrop-blur-md border border-[#e8d5be] pl-10 pr-4 py-2.5 text-xs text-[#16202a] placeholder-[#4b3b2f]/60 focus:border-[#d99036] focus:outline-none transition-colors shadow-sm"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#2e5f7e] hover:text-[#1a3a52]"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#4b3b2f] hover:text-[#16202a]"
               >
                 ✕
               </button>
@@ -124,8 +124,8 @@ export function MenuSection() {
                 onClick={() => setSelectedDietary(diet.id)}
                 className={`whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-bold transition-all cursor-pointer ${
                   selectedDietary === diet.id
-                    ? 'bg-[#9bc1d9] text-[#1a3a52] shadow-sm font-black'
-                    : 'bg-white/80 text-[#2e5f7e] hover:text-[#1a3a52] border border-[#b8d4e8]'
+                    ? 'bg-[#d99036] text-[#16202a] shadow-sm font-black'
+                    : 'bg-white/80 text-[#4b3b2f] hover:text-[#16202a] border border-[#e8d5be]'
                 }`}
               >
                 {diet.label}
@@ -135,15 +135,15 @@ export function MenuSection() {
         </div>
 
         {/* Category Pills (Horizontal Scrollable) */}
-        <div className="flex items-center gap-2 overflow-x-auto py-2 scrollbar-none border-b border-[#b8d4e8]/60">
+        <div className="flex items-center gap-2 overflow-x-auto py-2 scrollbar-none border-b border-[#e8d5be]/60">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
               className={`whitespace-nowrap rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
                 selectedCategory === cat.id
-                  ? 'bg-[#9bc1d9] text-[#1a3a52] shadow-sm font-black'
-                  : 'bg-white/80 text-[#2e5f7e] hover:bg-[#cce3f1] hover:text-[#1a3a52] border border-[#b8d4e8]'
+                  ? 'bg-[#d99036] text-[#16202a] shadow-sm font-black'
+                  : 'bg-white/80 text-[#4b3b2f] hover:bg-[#ffedd5] hover:text-[#16202a] border border-[#e8d5be]'
               }`}
             >
               {cat.label}
@@ -156,25 +156,25 @@ export function MenuSection() {
       <div>
         {isDefaultView && (
           <div className="flex items-center gap-2 mb-6">
-            <SlidersHorizontal className="h-4 w-4 text-[#2e5f7e]" />
-            <h3 className="text-xl sm:text-2xl font-bold text-[#1a3a52] font-serif">
+            <SlidersHorizontal className="h-4 w-4 text-[#4b3b2f]" />
+            <h3 className="text-xl sm:text-2xl font-bold text-[#16202a] font-serif">
               {isEn ? 'Handcrafted Menu · Authentic Selection' : 'Original Speisekarte der Schnitzelschmiede'}
             </h3>
           </div>
         )}
 
         {filteredItems.length === 0 ? (
-          <div className="rounded-2xl border border-[#b8d4e8] bg-white/80 p-12 text-center max-w-md mx-auto my-12 shadow-sm">
-            <ChefHat className="h-12 w-12 text-[#2e5f7e] mx-auto mb-3 opacity-60" />
-            <h3 className="text-lg font-bold text-[#1a3a52] font-serif">{t.menu.noDishesFound}</h3>
-            <p className="mt-1 text-xs text-[#2e5f7e]">{t.menu.noDishesDesc}</p>
+          <div className="rounded-2xl border border-[#e8d5be] bg-white/80 p-12 text-center max-w-md mx-auto my-12 shadow-sm">
+            <ChefHat className="h-12 w-12 text-[#4b3b2f] mx-auto mb-3 opacity-60" />
+            <h3 className="text-lg font-bold text-[#16202a] font-serif">{t.menu.noDishesFound}</h3>
+            <p className="mt-1 text-xs text-[#4b3b2f]">{t.menu.noDishesDesc}</p>
             <button
               onClick={() => {
                 setSearchQuery('');
                 setSelectedCategory('all');
                 setSelectedDietary('all');
               }}
-              className="mt-4 rounded-xl bg-[#9bc1d9] hover:bg-[#85b0cb] px-4 py-2 text-xs font-bold text-[#1a3a52] cursor-pointer"
+              className="mt-4 rounded-xl bg-[#d99036] hover:bg-[#85b0cb] px-4 py-2 text-xs font-bold text-[#16202a] cursor-pointer"
             >
               {t.menu.resetFilters}
             </button>
@@ -189,17 +189,17 @@ export function MenuSection() {
               return (
                 <SpotlightCard
                   key={dish.id}
-                  className="flex flex-col h-full bg-white/85 backdrop-blur-md border border-white/95 shadow-md shadow-[#1a3a52]/5 overflow-hidden hover:border-[#9bc1d9] hover:shadow-xl transition-all duration-300 group rounded-2xl"
+                  className="flex flex-col h-full bg-white/85 backdrop-blur-md border border-white/95 shadow-md shadow-[#16202a]/5 overflow-hidden hover:border-[#d99036] hover:shadow-xl transition-all duration-300 group rounded-2xl"
                 >
                   {/* Header Bar for Typography-only Cards */}
-                  <div className="px-5 pt-5 pb-2 flex items-center justify-between border-b border-[#b8d4e8]/50">
+                  <div className="px-5 pt-5 pb-2 flex items-center justify-between border-b border-[#e8d5be]/50">
                     <div className="flex flex-wrap gap-1.5">
                       {dish.tags.map((tag) => (
                         <Badge key={tag} tag={tag} />
                       ))}
                     </div>
                     {dish.defaultPortion && (
-                      <span className="text-[10px] font-medium text-[#2e5f7e] bg-[#f0f7fb] border border-[#b8d4e8] px-2 py-0.5 rounded-md">
+                      <span className="text-[10px] font-medium text-[#4b3b2f] bg-[#fffbf5] border border-[#e8d5be] px-2 py-0.5 rounded-md">
                         {dish.defaultPortion}
                       </span>
                     )}
@@ -209,34 +209,34 @@ export function MenuSection() {
                   <div className="flex flex-1 flex-col p-5 justify-between">
                     <div>
                       <div className="flex items-start justify-between gap-2">
-                        <h3 className="text-base font-bold text-[#1a3a52] font-serif group-hover:text-[#2e5f7e] transition-colors leading-snug">
+                        <h3 className="text-base font-bold text-[#16202a] font-serif group-hover:text-[#4b3b2f] transition-colors leading-snug">
                           {displayName}
                         </h3>
-                        <span className="font-serif text-base font-bold text-[#1a3a52] whitespace-nowrap ml-2">
+                        <span className="font-serif text-base font-bold text-[#16202a] whitespace-nowrap ml-2">
                           {dish.price.toFixed(2).replace('.', ',')} €
                         </span>
                       </div>
 
                       {displaySubtitle && (
-                        <p className="text-xs font-semibold text-[#2e5f7e] mt-1">
+                        <p className="text-xs font-semibold text-[#4b3b2f] mt-1">
                           {displaySubtitle}
                         </p>
                       )}
 
-                      <p className="mt-2 text-xs text-[#2e5f7e] leading-relaxed line-clamp-3">
+                      <p className="mt-2 text-xs text-[#4b3b2f] leading-relaxed line-clamp-3">
                         {displayDesc}
                       </p>
                     </div>
 
                     {/* Card Footer: Allergens + Action Buttons */}
-                    <div className="mt-5 pt-4 border-t border-[#b8d4e8]/50 flex items-center justify-between gap-3">
+                    <div className="mt-5 pt-4 border-t border-[#e8d5be]/50 flex items-center justify-between gap-3">
                       {/* Allergen Key Badges */}
                       <button
                         onClick={() => setActiveAllergenModal(dish.allergens)}
-                        className="text-[10px] text-[#2e5f7e] hover:text-[#1a3a52] flex items-center gap-1 cursor-pointer transition-colors"
+                        className="text-[10px] text-[#4b3b2f] hover:text-[#16202a] flex items-center gap-1 cursor-pointer transition-colors"
                         title={isEn ? 'View Allergens' : 'Allergene anzeigen'}
                       >
-                        <Info className="h-3 w-3 text-[#2e5f7e]" />
+                        <Info className="h-3 w-3 text-[#4b3b2f]" />
                         <span>
                           {dish.allergens.length > 0
                             ? `Allergene: ${dish.allergens.join(', ')}`
@@ -250,7 +250,7 @@ export function MenuSection() {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleQuickAdd(dish)}
-                          className="flex items-center gap-1.5 rounded-xl bg-[#9bc1d9] hover:bg-[#85b0cb] px-3.5 py-1.5 text-xs font-bold text-[#1a3a52] shadow-sm transition-all active:scale-95 cursor-pointer"
+                          className="flex items-center gap-1.5 rounded-xl bg-[#d99036] hover:bg-[#85b0cb] px-3.5 py-1.5 text-xs font-bold text-[#16202a] shadow-sm transition-all active:scale-95 cursor-pointer"
                         >
                           {addedItemNotice === dish.id ? (
                             <>

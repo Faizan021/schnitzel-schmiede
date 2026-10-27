@@ -33,18 +33,18 @@ export function AllergenModal({ isOpen, onClose, activeAllergens }: AllergenModa
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-            className="relative z-10 w-full max-w-lg rounded-2xl border border-[#b8d4e8] bg-white/95 backdrop-blur-md p-6 shadow-2xl text-[#1a3a52]"
+            className="relative z-10 w-full max-w-lg rounded-2xl border border-[#e8d5be] bg-white/95 backdrop-blur-md p-6 shadow-2xl text-[#16202a]"
           >
-            <div className="flex items-center justify-between pb-4 border-b border-[#b8d4e8]/60">
+            <div className="flex items-center justify-between pb-4 border-b border-[#e8d5be]/60">
               <div className="flex items-center gap-2.5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#cce3f1] text-[#1a3a52]">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#ffedd5] text-[#16202a]">
                   <Info className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-[#1a3a52]">
+                  <h3 className="text-lg font-bold text-[#16202a]">
                     {isEn ? 'Allergen Information (EU-LMIV)' : 'Allergen-Kennzeichnung (EU-LMIV)'}
                   </h3>
-                  <p className="text-xs text-[#2e5f7e]">
+                  <p className="text-xs text-[#4b3b2f]">
                     {isEn ? 'Transparency & Product Safety at Schnitzel Schmiede MG' : 'Transparenz & Produktsicherheit bei Schnitzel Schmiede MG'}
                   </p>
                 </div>
@@ -52,7 +52,7 @@ export function AllergenModal({ isOpen, onClose, activeAllergens }: AllergenModa
 
               <button
                 onClick={onClose}
-                className="rounded-lg p-2 text-[#2e5f7e] hover:bg-[#ddeef7] hover:text-[#1a3a52] transition-colors cursor-pointer"
+                className="rounded-lg p-2 text-[#4b3b2f] hover:bg-[#f4ede4] hover:text-[#16202a] transition-colors cursor-pointer"
                 aria-label={isEn ? 'Close' : 'Schließen'}
               >
                 <X className="h-5 w-5" />
@@ -81,23 +81,23 @@ export function AllergenModal({ isOpen, onClose, activeAllergens }: AllergenModa
                       key={item.code}
                       className={`flex items-start gap-3 rounded-xl border p-3 transition-colors ${
                         isHighlighted
-                          ? 'border-[#9bc1d9] bg-[#cce3f1]/60'
-                          : 'border-[#b8d4e8]/60 bg-[#f0f7fb]'
+                          ? 'border-[#d99036] bg-[#ffedd5]/60'
+                          : 'border-[#e8d5be]/60 bg-[#fffbf5]'
                       }`}
                     >
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#9bc1d9] text-xs font-black text-[#1a3a52]">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#d99036] text-xs font-black text-[#16202a]">
                         {item.code}
                       </span>
                       <div className="flex-1">
-                        <div className="text-sm font-semibold text-[#1a3a52] flex items-center justify-between">
+                        <div className="text-sm font-semibold text-[#16202a] flex items-center justify-between">
                           <span>{label}</span>
                           {isHighlighted && (
-                            <span className="text-[10px] font-bold text-[#1a3a52] uppercase bg-[#9bc1d9] px-2 py-0.5 rounded">
+                            <span className="text-[10px] font-bold text-[#16202a] uppercase bg-[#d99036] px-2 py-0.5 rounded">
                               {isEn ? 'Present in this dish' : 'In diesem Gericht enthalten'}
                             </span>
                           )}
                         </div>
-                        <p className="text-xs text-[#2e5f7e] mt-0.5">{desc}</p>
+                        <p className="text-xs text-[#4b3b2f] mt-0.5">{desc}</p>
                       </div>
                     </div>
                   );
@@ -108,7 +108,7 @@ export function AllergenModal({ isOpen, onClose, activeAllergens }: AllergenModa
             <div className="mt-6 flex justify-end">
               <button
                 onClick={onClose}
-                className="rounded-xl bg-[#9bc1d9] hover:bg-[#85b0cb] px-5 py-2 text-xs font-black uppercase tracking-wider text-[#1a3a52] transition-colors cursor-pointer"
+                className="rounded-xl bg-[#d99036] hover:bg-[#85b0cb] px-5 py-2 text-xs font-black uppercase tracking-wider text-[#16202a] transition-colors cursor-pointer"
               >
                 {isEn ? 'Understood' : 'Verstanden'}
               </button>

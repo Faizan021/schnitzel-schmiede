@@ -71,10 +71,10 @@ export function FeaturedDishesPreview() {
               <div
                 className={`h-1.5 w-full ${
                   isGladbacher
-                    ? 'bg-gradient-to-r from-[#d99036] via-[#f59e0b] to-[#1a3a52]'
+                    ? 'bg-gradient-to-r from-[#d99036] via-[#f59e0b] to-[#16202a]'
                     : isWiener
                     ? 'bg-gradient-to-r from-[#d99036] to-[#ffecd2]'
-                    : 'bg-gradient-to-r from-[#9bc1d9] via-[#d99036] to-[#b8d4e8]'
+                    : 'bg-gradient-to-r from-[#d99036] via-[#d99036] to-[#e8d5be]'
                 }`}
               />
 
@@ -101,13 +101,13 @@ export function FeaturedDishesPreview() {
                       )}
                     </span>
 
-                    <span className="text-[11px] font-mono text-[#1a3a52] font-extrabold bg-[#ffecd2]/80 px-2 py-0.5 rounded-md border border-[#f5d0a9]">
+                    <span className="text-[11px] font-mono text-[#16202a] font-extrabold bg-[#ffecd2]/80 px-2 py-0.5 rounded-md border border-[#f5d0a9]">
                       {item.defaultPortion || 'ca. 200g'}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg font-black text-[#1a3a52] font-serif group-hover:text-[#b45309] transition-colors leading-snug">
+                  <h3 className="text-lg font-black text-[#16202a] font-serif group-hover:text-[#b45309] transition-colors leading-snug">
                     {isEn ? item.nameEn || item.name : item.name}
                   </h3>
 
@@ -119,7 +119,7 @@ export function FeaturedDishesPreview() {
                   )}
 
                   {/* Description */}
-                  <p className="text-xs text-[#2e5f7e] mt-2 leading-relaxed line-clamp-3">
+                  <p className="text-xs text-[#4b3b2f] mt-2 leading-relaxed line-clamp-3">
                     {isEn ? item.descriptionEn || item.description : item.description}
                   </p>
                 </div>
@@ -127,10 +127,10 @@ export function FeaturedDishesPreview() {
                 {/* Footer of Card: Price & Quick Add */}
                 <div className="pt-5 mt-4 border-t border-[#f5d0a9]/60 flex items-center justify-between">
                   <div>
-                    <div className="text-[10px] uppercase font-bold text-[#2e5f7e] tracking-wider">
+                    <div className="text-[10px] uppercase font-bold text-[#4b3b2f] tracking-wider">
                       {isEn ? 'Price' : 'Hauspreis'}
                     </div>
-                    <div className="text-xl font-black text-[#1a3a52] font-mono tracking-tight">
+                    <div className="text-xl font-black text-[#16202a] font-mono tracking-tight">
                       {item.price.toFixed(2).replace('.', ',')} €
                     </div>
                   </div>
@@ -141,7 +141,7 @@ export function FeaturedDishesPreview() {
                       <button
                         type="button"
                         onClick={() => setActiveAllergenModal(item.allergens)}
-                        className="h-10 w-10 rounded-xl bg-white border border-[#b8d4e8] text-[#2e5f7e] hover:text-[#1a3a52] hover:bg-[#edf7fc] flex items-center justify-center transition-colors cursor-pointer"
+                        className="h-10 w-10 rounded-xl bg-white border border-[#e8d5be] text-[#4b3b2f] hover:text-[#16202a] hover:bg-[#faf7f2] flex items-center justify-center transition-colors cursor-pointer"
                         title={isEn ? 'Allergen information' : 'Allergene & Inhaltsstoffe'}
                         aria-label="Allergene"
                       >
@@ -182,7 +182,7 @@ export function FeaturedDishesPreview() {
       {/* Floating Instant-Add Micro-Cart Confirmation Toast */}
       {addedItemNotice && (
         <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 w-[92vw] max-w-md animate-in fade-in slide-in-from-bottom-5 duration-300">
-          <div className="rounded-2xl bg-[#1a3a52] text-white p-3.5 shadow-2xl border-2 border-[#d99036] flex items-center justify-between gap-3">
+          <div className="rounded-2xl bg-[#16202a] text-white p-3.5 shadow-2xl border-2 border-[#d99036] flex items-center justify-between gap-3">
             <div className="flex items-center gap-2.5 min-w-0">
               <div className="h-9 w-9 rounded-xl bg-[#d99036] text-white flex items-center justify-center shrink-0 font-bold">
                 <Check className="h-5 w-5 stroke-[3]" />

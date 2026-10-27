@@ -30,7 +30,7 @@ export function Footer() {
           {/* Brand & Craft Story */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#162e40] via-[#1a3a52] to-[#0f2130] text-white shadow-md border-2 border-[#d99036]/70 shrink-0 overflow-hidden">
+              <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#16202a] via-[#241812] to-[#16202a] text-white shadow-md border-2 border-[#d99036]/70 shrink-0 overflow-hidden">
                 <div className="absolute inset-0 bg-radial from-[#d99036]/30 via-transparent to-transparent pointer-events-none" />
                 <Flame className="h-6 w-6 fill-[#d99036] text-[#ffecd2] filter drop-shadow-[0_0_8px_rgba(245,158,11,0.85)] animate-flame-simmer relative z-10" />
               </div>
@@ -39,26 +39,26 @@ export function Footer() {
                   DIE
                 </div>
                 <div className="text-base font-black tracking-wider font-serif flex items-center gap-1.5 leading-none">
-                  <span className="text-[#1a3a52]">SCHNITZEL</span>
+                  <span className="text-[#16202a]">SCHNITZEL</span>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d99036] via-[#f59e0b] to-[#b45309] font-black">
                     SCHMIEDE
                   </span>
                 </div>
-                <div className="text-[10px] uppercase tracking-widest text-[#2e5f7e] font-bold mt-1">
+                <div className="text-[10px] uppercase tracking-widest text-[#4b3b2f] font-bold mt-1">
                   MÖNCHENGLADBACH · MEISTERBETRIEB
                 </div>
               </div>
             </div>
-            <p className="text-xs leading-relaxed text-[#2e5f7e]">
+            <p className="text-xs leading-relaxed text-[#4b3b2f]">
               {isEn
                 ? 'Handcrafted culinary gastronomy in Mönchengladbach. Golden souffléed schnitzels, regional fresh meats, homemade sauces and crispy sides with no compromises.'
                 : 'Traditionelle Handwerksgastronomie in Mönchengladbach. Goldbraun soufflierte Schnitzel, regionales Frischfleisch, hausgemachte Saucen und knusprige Beilagen ohne Kompromisse.'}
             </p>
             <div className="flex flex-wrap items-center gap-2 pt-1">
-              <span className="rounded-md border border-[#b8d4e8] bg-white/80 px-2 py-0.5 text-[10px] font-bold text-[#1a3a52]">
+              <span className="rounded-md border border-[#e8d5be] bg-white/80 px-2 py-0.5 text-[10px] font-bold text-[#16202a]">
                 ✓ 100% Frischezubereitung
               </span>
-              <span className="rounded-md border border-[#b8d4e8] bg-white/80 px-2 py-0.5 text-[10px] font-bold text-[#1a3a52]">
+              <span className="rounded-md border border-[#e8d5be] bg-white/80 px-2 py-0.5 text-[10px] font-bold text-[#16202a]">
                 ✓ Reines Butterschmalz
               </span>
             </div>
@@ -67,21 +67,21 @@ export function Footer() {
           {/* Schedule (Opening & Delivery Hours) - UX/UI Senior Manager Layout */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <h4 className="text-sm font-bold uppercase tracking-wider text-[#1a3a52] flex items-center gap-1.5 font-serif">
-                <Clock className="h-4 w-4 text-[#1a3a52]" />
+              <h4 className="text-sm font-bold uppercase tracking-wider text-[#16202a] flex items-center gap-1.5 font-serif">
+                <Clock className="h-4 w-4 text-[#16202a]" />
                 <span>{isEn ? 'Operating Hours' : 'Zeiten & Service'}</span>
               </h4>
             </div>
 
             {/* Subtle Tab Switcher for Clean UX */}
-            <div className="grid grid-cols-2 p-1 rounded-xl bg-white/80 border border-[#b8d4e8] text-[11px] font-semibold">
+            <div className="grid grid-cols-2 p-1 rounded-xl bg-white/80 border border-[#e8d5be] text-[11px] font-semibold">
               <button
                 type="button"
                 onClick={() => setScheduleTab('restaurant')}
                 className={`py-1.5 px-2 rounded-lg transition-all text-center cursor-pointer ${
                   scheduleTab === 'restaurant'
-                    ? 'bg-[#9bc1d9] text-[#1a3a52] shadow-sm font-black'
-                    : 'text-[#2e5f7e] hover:text-[#1a3a52]'
+                    ? 'bg-[#d99036] text-[#16202a] shadow-sm font-black'
+                    : 'text-[#4b3b2f] hover:text-[#16202a]'
                 }`}
               >
                 {isEn ? 'Restaurant' : 'Vor Ort / Abhol.'}
@@ -91,8 +91,8 @@ export function Footer() {
                 onClick={() => setScheduleTab('delivery')}
                 className={`py-1.5 px-2 rounded-lg transition-all flex items-center justify-center gap-1 cursor-pointer ${
                   scheduleTab === 'delivery'
-                    ? 'bg-[#9bc1d9] text-[#1a3a52] shadow-sm font-black'
-                    : 'text-[#2e5f7e] hover:text-[#1a3a52]'
+                    ? 'bg-[#d99036] text-[#16202a] shadow-sm font-black'
+                    : 'text-[#4b3b2f] hover:text-[#16202a]'
                 }`}
               >
                 <Truck className="h-3 w-3" />
@@ -102,43 +102,43 @@ export function Footer() {
 
             {/* Tab 1: Öffnungszeiten (Vor Ort & Abholung) */}
             {scheduleTab === 'restaurant' && (
-              <div className="space-y-1.5 text-xs rounded-xl bg-white/85 border border-[#b8d4e8] p-3 shadow-sm">
-                <div className="text-[10px] uppercase tracking-wider font-bold text-[#1a3a52] pb-1 border-b border-[#b8d4e8]/60">
+              <div className="space-y-1.5 text-xs rounded-xl bg-white/85 border border-[#e8d5be] p-3 shadow-sm">
+                <div className="text-[10px] uppercase tracking-wider font-bold text-[#16202a] pb-1 border-b border-[#e8d5be]/60">
                   {isEn ? 'Dine-In & Takeaway Hours' : 'Öffnungszeiten (Restaurant & Abholung)'}
                 </div>
                 <div className="flex justify-between items-center py-0.5">
-                  <span className="text-[#2e5f7e]">{isEn ? 'Mon – Fri:' : 'Montag – Freitag:'}</span>
-                  <span className="font-mono text-[#1a3a52] font-semibold">16:30 – 21:45</span>
+                  <span className="text-[#4b3b2f]">{isEn ? 'Mon – Fri:' : 'Montag – Freitag:'}</span>
+                  <span className="font-mono text-[#16202a] font-semibold">16:30 – 21:45</span>
                 </div>
                 <div className="flex justify-between items-center py-0.5">
-                  <span className="text-[#2e5f7e]">{isEn ? 'Saturday:' : 'Samstag:'}</span>
-                  <span className="font-mono text-[#1a3a52] font-semibold">16:00 – 21:45</span>
+                  <span className="text-[#4b3b2f]">{isEn ? 'Saturday:' : 'Samstag:'}</span>
+                  <span className="font-mono text-[#16202a] font-semibold">16:00 – 21:45</span>
                 </div>
                 <div className="flex justify-between items-center py-0.5">
-                  <span className="text-[#2e5f7e]">{isEn ? 'Sunday:' : 'Sonntag:'}</span>
-                  <span className="font-mono text-[#1a3a52] font-semibold">12:00 – 21:45</span>
+                  <span className="text-[#4b3b2f]">{isEn ? 'Sunday:' : 'Sonntag:'}</span>
+                  <span className="font-mono text-[#16202a] font-semibold">12:00 – 21:45</span>
                 </div>
               </div>
             )}
 
             {/* Tab 2: Lieferzeiten */}
             {scheduleTab === 'delivery' && (
-              <div className="space-y-1.5 text-xs rounded-xl bg-white/85 border border-[#b8d4e8] p-3 shadow-sm">
-                <div className="text-[10px] uppercase tracking-wider font-bold text-[#1a3a52] pb-1 border-b border-[#b8d4e8]/60 flex items-center gap-1.5">
+              <div className="space-y-1.5 text-xs rounded-xl bg-white/85 border border-[#e8d5be] p-3 shadow-sm">
+                <div className="text-[10px] uppercase tracking-wider font-bold text-[#16202a] pb-1 border-b border-[#e8d5be]/60 flex items-center gap-1.5">
                   <Truck className="h-3 w-3" />
                   <span>{isEn ? 'Delivery Service Hours' : 'Lieferzeiten (Bringdienst)'}</span>
                 </div>
                 <div className="flex justify-between items-center py-0.5">
-                  <span className="text-[#2e5f7e]">{isEn ? 'Mon – Fri:' : 'Montag – Freitag:'}</span>
-                  <span className="font-mono text-[#1a3a52] font-semibold">16:00 – 21:45</span>
+                  <span className="text-[#4b3b2f]">{isEn ? 'Mon – Fri:' : 'Montag – Freitag:'}</span>
+                  <span className="font-mono text-[#16202a] font-semibold">16:00 – 21:45</span>
                 </div>
                 <div className="flex justify-between items-center py-0.5">
-                  <span className="text-[#2e5f7e]">{isEn ? 'Saturday:' : 'Samstag:'}</span>
-                  <span className="font-mono text-[#1a3a52] font-semibold">14:00 – 21:45</span>
+                  <span className="text-[#4b3b2f]">{isEn ? 'Saturday:' : 'Samstag:'}</span>
+                  <span className="font-mono text-[#16202a] font-semibold">14:00 – 21:45</span>
                 </div>
                 <div className="flex justify-between items-center py-0.5">
-                  <span className="text-[#2e5f7e]">{isEn ? 'Sunday:' : 'Sonntag:'}</span>
-                  <span className="font-mono text-[#1a3a52] font-semibold">11:30 – 21:45</span>
+                  <span className="text-[#4b3b2f]">{isEn ? 'Sunday:' : 'Sonntag:'}</span>
+                  <span className="font-mono text-[#16202a] font-semibold">11:30 – 21:45</span>
                 </div>
               </div>
             )}
@@ -146,24 +146,24 @@ export function Footer() {
 
           {/* Direct Contact & Location */}
           <div className="space-y-3">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-[#1a3a52] flex items-center gap-1.5 font-serif">
-              <MapPin className="h-4 w-4 text-[#1a3a52]" />
+            <h4 className="text-sm font-bold uppercase tracking-wider text-[#16202a] flex items-center gap-1.5 font-serif">
+              <MapPin className="h-4 w-4 text-[#16202a]" />
               <span>{isEn ? 'Contact & Address' : 'Standort & Kontakt'}</span>
             </h4>
             <div className="space-y-2 text-xs">
-              <div className="p-3 rounded-xl bg-white/85 border border-[#b8d4e8] shadow-sm">
-                <p className="text-[#1a3a52] font-semibold leading-relaxed">
+              <div className="p-3 rounded-xl bg-white/85 border border-[#e8d5be] shadow-sm">
+                <p className="text-[#16202a] font-semibold leading-relaxed">
                   Schnitzelschmiede
                   <br />
-                  <span className="text-[#2e5f7e] font-normal">Dohler Str. 269</span>
+                  <span className="text-[#4b3b2f] font-normal">Dohler Str. 269</span>
                   <br />
-                  <span className="text-[#2e5f7e] font-normal">41238 Mönchengladbach</span>
+                  <span className="text-[#4b3b2f] font-normal">41238 Mönchengladbach</span>
                 </p>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=Dohler+Str+269+41238+M%C3%B6nchengladbach"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-[#1a3a52] hover:underline"
+                  className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-[#16202a] hover:underline"
                 >
                   <span>Google Maps Navigation</span>
                   <ExternalLink className="h-2.5 w-2.5" />
@@ -214,24 +214,24 @@ export function Footer() {
                 <div className="grid grid-cols-1 gap-1.5 pt-1">
                   <a
                     href="tel:+4921669786951"
-                    className="flex items-center justify-between px-3 py-2 rounded-xl bg-white/80 hover:bg-white border border-[#b8d4e8] text-[#1a3a52] transition-colors shadow-sm"
+                    className="flex items-center justify-between px-3 py-2 rounded-xl bg-white/80 hover:bg-white border border-[#e8d5be] text-[#16202a] transition-colors shadow-sm"
                   >
                     <div className="flex items-center gap-2">
-                      <Phone className="h-3.5 w-3.5 text-[#2e5f7e]" />
+                      <Phone className="h-3.5 w-3.5 text-[#4b3b2f]" />
                       <span className="text-xs font-semibold">{isEn ? 'Phone (Landline)' : 'Telefon (Festnetz)'}</span>
                     </div>
-                    <span className="font-mono text-xs font-bold text-[#1a3a52]">02166 9786951</span>
+                    <span className="font-mono text-xs font-bold text-[#16202a]">02166 9786951</span>
                   </a>
 
                   <a
                     href="mailto:umarjabbar@yahoo.com?subject=Anfrage%20von%20schnitzel-schmiede-mg.de"
-                    className="flex items-center justify-between px-3 py-2 rounded-xl bg-white/80 hover:bg-white border border-[#b8d4e8] text-[#1a3a52] transition-colors shadow-sm"
+                    className="flex items-center justify-between px-3 py-2 rounded-xl bg-white/80 hover:bg-white border border-[#e8d5be] text-[#16202a] transition-colors shadow-sm"
                   >
                     <div className="flex items-center gap-2">
-                      <Mail className="h-3.5 w-3.5 text-[#2e5f7e]" />
+                      <Mail className="h-3.5 w-3.5 text-[#4b3b2f]" />
                       <span className="text-xs font-semibold">E-Mail</span>
                     </div>
-                    <span className="text-xs text-[#2e5f7e] truncate max-w-[140px]">umarjabbar@yahoo.com</span>
+                    <span className="text-xs text-[#4b3b2f] truncate max-w-[140px]">umarjabbar@yahoo.com</span>
                   </a>
                 </div>
               </div>
@@ -240,15 +240,15 @@ export function Footer() {
 
           {/* Quick Links & Legal */}
           <div className="space-y-3">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-[#1a3a52] flex items-center gap-1.5 font-serif">
-              <ShieldCheck className="h-4 w-4 text-[#1a3a52]" />
+            <h4 className="text-sm font-bold uppercase tracking-wider text-[#16202a] flex items-center gap-1.5 font-serif">
+              <ShieldCheck className="h-4 w-4 text-[#16202a]" />
               <span>{isEn ? 'Legal & Transparency' : 'Rechtliches & Transparenz'}</span>
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
                 <Link
                   href="/speisekarte"
-                  className="hover:text-[#1a3a52] transition-colors flex items-center gap-1.5"
+                  className="hover:text-[#16202a] transition-colors flex items-center gap-1.5"
                 >
                   <span>→</span>
                   <span>{t.footer.menuLink}</span>
@@ -257,7 +257,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/reservierung"
-                  className="hover:text-[#1a3a52] transition-colors flex items-center gap-1.5"
+                  className="hover:text-[#16202a] transition-colors flex items-center gap-1.5"
                 >
                   <span>→</span>
                   <span>{t.footer.reserveLink}</span>
@@ -266,16 +266,16 @@ export function Footer() {
               <li>
                 <Link
                   href="/catering"
-                  className="hover:text-[#1a3a52] transition-colors flex items-center gap-1.5"
+                  className="hover:text-[#16202a] transition-colors flex items-center gap-1.5"
                 >
                   <span>→</span>
                   <span>{t.footer.cateringLink}</span>
                 </Link>
               </li>
-              <li className="pt-2 border-t border-[#b8d4e8]/60">
+              <li className="pt-2 border-t border-[#e8d5be]/60">
                 <Link
                   href="/impressum"
-                  className="hover:text-[#1a3a52] transition-colors flex items-center gap-1.5 font-semibold text-[#1a3a52]"
+                  className="hover:text-[#16202a] transition-colors flex items-center gap-1.5 font-semibold text-[#16202a]"
                 >
                   <span>§</span>
                   <span>Impressum (§ 5 DDG)</span>
@@ -284,7 +284,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/datenschutz"
-                  className="hover:text-[#1a3a52] transition-colors flex items-center gap-1.5 font-semibold text-[#1a3a52]"
+                  className="hover:text-[#16202a] transition-colors flex items-center gap-1.5 font-semibold text-[#16202a]"
                 >
                   <span>🛡</span>
                   <span>Datenschutzerklärung (DSGVO)</span>
@@ -293,7 +293,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/agb"
-                  className="hover:text-[#1a3a52] transition-colors flex items-center gap-1.5 font-semibold text-[#1a3a52]"
+                  className="hover:text-[#16202a] transition-colors flex items-center gap-1.5 font-semibold text-[#16202a]"
                 >
                   <span>📋</span>
                   <span>Allgemeine Geschäftsbedingungen (AGB)</span>
@@ -303,7 +303,7 @@ export function Footer() {
 
             {/* Speisebaron External Legal Links */}
             <div className="pt-2">
-              <span className="text-[10px] text-[#2e5f7e] block mb-1">
+              <span className="text-[10px] text-[#4b3b2f] block mb-1">
                 {isEn ? 'Official Speisebaron Portal:' : 'Offizielles Speisebaron Portal:'}
               </span>
               <div className="flex flex-wrap gap-2 text-[10px]">
@@ -311,25 +311,25 @@ export function Footer() {
                   href="https://speisebaron.de/webseite/664f673709580c0011f7c7d7/impressum"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#1a3a52] font-semibold hover:underline"
+                  className="text-[#16202a] font-semibold hover:underline"
                 >
                   Impressum
                 </a>
-                <span className="text-[#b8d4e8]">·</span>
+                <span className="text-[#e8d5be]">·</span>
                 <a
                   href="https://speisebaron.de/webseite/664f673709580c0011f7c7d7/datenschutz"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#1a3a52] font-semibold hover:underline"
+                  className="text-[#16202a] font-semibold hover:underline"
                 >
                   Datenschutz
                 </a>
-                <span className="text-[#b8d4e8]">·</span>
+                <span className="text-[#e8d5be]">·</span>
                 <a
                   href="https://speisebaron.de/webseite/664f673709580c0011f7c7d7/agb"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#1a3a52] font-semibold hover:underline"
+                  className="text-[#16202a] font-semibold hover:underline"
                 >
                   AGB
                 </a>
@@ -339,37 +339,37 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-[#b8d4e8]/60 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#163044] font-medium gap-3">
+        <div className="border-t border-[#e8d5be]/60 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#163044] font-medium gap-3">
           <p>
             © 2026 Schnitzelschmiede Mönchengladbach · Inh. Umar Jabbar · Alle Rechte vorbehalten.
           </p>
           <div className="flex items-center gap-4">
             <span>Alle Preise inkl. MwSt.</span>
             <span>·</span>
-            <span className="text-[#1a3a52] font-black">Dohler Str. 269 · 41238 Mönchengladbach</span>
+            <span className="text-[#16202a] font-black">Dohler Str. 269 · 41238 Mönchengladbach</span>
           </div>
         </div>
 
         {/* Speisely Network & Technology Credit Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-4 mt-4 border-t border-[#b8d4e8]/60 text-xs text-[#163044]">
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-4 mt-4 border-t border-[#e8d5be]/60 text-xs text-[#163044]">
           <div className="flex flex-wrap items-center gap-2">
             <span>{t.footer.platformTechBy}</span>
             <a
               href="https://speisely.de"
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-1.5 font-bold text-[#1a3a52] hover:underline transition-colors"
+              className="inline-flex items-center gap-1.5 font-bold text-[#16202a] hover:underline transition-colors"
               title="Speisely — Deutschlands Gastronomie- & Catering-Netzwerk"
             >
-              <span className="text-[#1a3a52]">✦</span>
-              <span className="underline decoration-[#9bc1d9] underline-offset-2">Speisely Gastro-Tech</span>
+              <span className="text-[#16202a]">✦</span>
+              <span className="underline decoration-[#d99036] underline-offset-2">Speisely Gastro-Tech</span>
             </a>
-            <span className="text-[#b8d4e8]">|</span>
+            <span className="text-[#e8d5be]">|</span>
             <a
               href="https://speisely.de/catering/ort/moenchengladbach"
               target="_blank"
               rel="noopener"
-              className="text-[#163044] hover:text-[#1a3a52] font-semibold transition-colors"
+              className="text-[#163044] hover:text-[#16202a] font-semibold transition-colors"
             >
               {t.footer.partnerNetwork}
             </a>

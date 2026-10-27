@@ -9,21 +9,21 @@ export const metadata = {
 
 export default function ImpressumPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 text-xs sm:text-sm text-[#2e5f7e] space-y-6">
-      <div className="flex items-center gap-2 text-[#1a3a52]">
+    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 text-xs sm:text-sm text-[#4b3b2f] space-y-6">
+      <div className="flex items-center gap-2 text-[#16202a]">
         <ShieldCheck className="h-5 w-5" />
         <span className="text-xs uppercase tracking-widest font-bold">Rechtliche Transparenz</span>
       </div>
-      <h1 className="text-2xl sm:text-4xl font-extrabold text-[#1a3a52] font-serif">
+      <h1 className="text-2xl sm:text-4xl font-extrabold text-[#16202a] font-serif">
         Impressum
       </h1>
-      <p className="text-[#2e5f7e]">Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG):</p>
+      <p className="text-[#4b3b2f]">Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG):</p>
 
-      <div className="rounded-2xl border border-[#b8d4e8] bg-white/85 backdrop-blur-md p-6 sm:p-8 space-y-6 text-[#1a3a52] shadow-sm">
+      <div className="rounded-2xl border border-[#e8d5be] bg-white/85 backdrop-blur-md p-6 sm:p-8 space-y-6 text-[#16202a] shadow-sm">
         <div>
-          <h2 className="text-lg font-bold text-[#1a3a52] font-serif mb-2">Betreiber der Website</h2>
-          <p className="leading-relaxed text-[#2e5f7e]">
-            <strong className="text-[#1a3a52]">Schnitzelschmiede</strong>
+          <h2 className="text-lg font-bold text-[#16202a] font-serif mb-2">Betreiber der Website</h2>
+          <p className="leading-relaxed text-[#4b3b2f]">
+            <strong className="text-[#16202a]">Schnitzelschmiede</strong>
             <br />
             Inhaber: Umar Jabbar
             <br />
@@ -36,28 +36,28 @@ export default function ImpressumPage() {
         </div>
 
         <div>
-          <h3 className="text-base font-bold text-[#1a3a52] font-serif mb-2">Kontakt</h3>
-          <p className="leading-relaxed text-[#2e5f7e]">
+          <h3 className="text-base font-bold text-[#16202a] font-serif mb-2">Kontakt</h3>
+          <p className="leading-relaxed text-[#4b3b2f]">
             Telefon:{' '}
-            <a href="tel:+4921669786951" className="text-[#1a3a52] hover:underline font-mono font-bold">
+            <a href="tel:+4921669786951" className="text-[#16202a] hover:underline font-mono font-bold">
               02166 9786951
             </a>
             <br />
             E-Mail:{' '}
             <a
               href="mailto:umarjabbar@yahoo.com?subject=Anfrage%20Schnitzelschmiede"
-              className="text-[#1a3a52] hover:underline font-bold"
+              className="text-[#16202a] hover:underline font-bold"
             >
               umarjabbar@yahoo.com
             </a>
             <br />
             Website:{' '}
-            <span className="text-[#1a3a52] font-medium">https://schnitzel-schmiede-mg.de</span>
+            <span className="text-[#16202a] font-medium">https://schnitzel-schmiede-mg.de</span>
           </p>
         </div>
 
         <div>
-          <h3 className="text-base font-bold text-[#1a3a52] font-serif mb-2">Öffnungszeiten & Lieferzeiten</h3>
+          <h3 className="text-base font-bold text-[#16202a] font-serif mb-2">Öffnungszeiten & Lieferzeiten</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             <div className="p-3.5 rounded-xl bg-[#1C1A18] border border-[#312B26]">
               <span className="font-bold text-[#E5B24E] block mb-1">Vor Ort & Abholung:</span>

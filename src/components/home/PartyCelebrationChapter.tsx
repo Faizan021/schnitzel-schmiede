@@ -65,24 +65,24 @@ export function PartyCelebrationChapter() {
   };
 
   return (
-    <section className="py-20 sm:py-28 bg-gradient-to-b from-[#edf7fc] via-[#ddeef7] to-[#edf7fc] border-t border-[#b8d4e8]/60 relative overflow-hidden">
+    <section className="py-20 sm:py-28 bg-gradient-to-b from-[#faf7f2] via-[#f5efe6] to-[#faf7f2] border-t border-[#e8d5be]/70 relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header: Zeitlos-inspired "Für Ihre Feier reserviert" */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#b8d4e8] bg-white/80 backdrop-blur-md px-4 py-1.5 text-xs font-mono font-bold text-[#1a3a52] mb-3 shadow-sm">
-            <PartyPopper className="h-3.5 w-3.5 text-[#2e5f7e]" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#e8d5be] bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-mono font-bold text-[#b45309] mb-3 shadow-sm">
+            <PartyPopper className="h-3.5 w-3.5 text-[#d99036]" />
             <span>{isEn ? 'FOR YOUR CELEBRATIONS & EVENTS' : 'FÜR IHRE FEIER & EVENTS RESERVIERT'}</span>
           </div>
 
-          <p className="text-xl sm:text-2xl font-serif italic text-[#2e5f7e] mb-2">
+          <p className="text-xl sm:text-2xl font-serif italic text-[#b45309] mb-2">
             {isEn ? '“Celebrate with genuine crunch…”' : '„Feiern mit echtem Schmiede-Crunch…“'}
           </p>
 
-          <h2 className="text-3xl sm:text-5xl font-black text-[#1a3a52] font-serif tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-black text-[#16202a] font-serif tracking-tight">
             {isEn ? 'The Schnitzel Party & Catering' : 'Die Schnitzel-Party & Partyservice'}
           </h2>
 
-          <p className="mt-4 text-sm sm:text-base text-[#2e5f7e] leading-relaxed">
+          <p className="mt-4 text-sm sm:text-base text-[#4b3b2f] leading-relaxed">
             {isEn
               ? 'Whether a family birthday, company anniversary, club celebration, or wedding: We deliver our freshly fried craft schnitzels on steaming thermal platters hot and crisp to your venue in Mönchengladbach.'
               : 'Ob runder Geburtstag, Firmenjubiläum, Vereinsfest oder Familienfeier: Unsere originalen Schnitzelparty-Pakete werden heiß in speziellen Thermobehältern geliefert – die Saucen reisen separat, damit alles bis zum Festtisch knusprig bleibt.'}
@@ -96,41 +96,41 @@ export function PartyCelebrationChapter() {
               key={pkg.id}
               className={`rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${
                 pkg.bestseller
-                  ? 'bg-white/95 backdrop-blur-md border-2 border-[#9bc1d9] shadow-xl shadow-[#1a3a52]/10'
-                  : 'bg-white/85 backdrop-blur-md border border-white/90 shadow-md shadow-[#1a3a52]/5 hover:border-[#9bc1d9]'
+                  ? 'bg-white/95 backdrop-blur-md border-2 border-[#d99036] shadow-xl shadow-[#d99036]/10'
+                  : 'bg-white/90 backdrop-blur-md border border-[#e8d5be] shadow-md shadow-[#16202a]/5 hover:border-[#d99036]'
               }`}
             >
               {pkg.bestseller && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#9bc1d9] text-[#1a3a52] text-[10px] font-black uppercase tracking-wider shadow-md">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-[#d99036] to-[#b45309] text-white text-[10px] font-black uppercase tracking-wider shadow-md">
                   {isEn ? 'Most Popular Event Deal' : 'Beliebtestes Festpaket'}
                 </span>
               )}
 
               <div>
-                <div className="flex items-center gap-2 text-xs font-mono text-[#2e5f7e] uppercase font-bold mb-2">
-                  <Users className="h-3.5 w-3.5 text-[#2e5f7e]" />
+                <div className="flex items-center gap-2 text-xs font-mono text-[#b45309] uppercase font-bold mb-2">
+                  <Users className="h-3.5 w-3.5 text-[#d99036]" />
                   <span>{pkg.people}</span>
                 </div>
 
-                <h3 className="text-xl font-bold text-[#1a3a52] font-serif mb-2">
+                <h3 className="text-xl font-bold text-[#16202a] font-serif mb-2">
                   {pkg.title}
                 </h3>
 
-                <div className="font-serif text-3xl font-black text-[#1a3a52] mb-6">
+                <div className="font-serif text-3xl font-black text-[#16202a] mb-6">
                   {pkg.price}
                 </div>
 
-                <ul className="space-y-3 text-xs text-[#2e5f7e] mb-8">
+                <ul className="space-y-3 text-xs text-[#4b3b2f] mb-8">
                   {pkg.features.map((feat, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-[#2e5f7e] shrink-0 mt-0.5" />
+                      <CheckCircle2 className="h-4 w-4 text-[#d99036] shrink-0 mt-0.5" />
                       <span>{feat}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="pt-4 border-t border-[#b8d4e8]/60 space-y-2.5">
+              <div className="pt-4 border-t border-[#e8d5be]/70 space-y-2.5">
                 <a
                   href={buildPartyInquiryUrl(pkg.title)}
                   target="_blank"
@@ -147,15 +147,15 @@ export function PartyCelebrationChapter() {
         </div>
 
         {/* Live Catering Calculator Teaser Bar */}
-        <div className="p-6 sm:p-8 rounded-2xl bg-white/85 backdrop-blur-md border border-[#b8d4e8] shadow-md shadow-[#1a3a52]/5 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="p-6 sm:p-8 rounded-2xl bg-white/95 backdrop-blur-md border border-[#e8d5be] shadow-md shadow-[#16202a]/5 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center sm:text-left">
-            <span className="text-xs font-mono font-bold text-[#2e5f7e] uppercase tracking-wider">
+            <span className="text-xs font-mono font-bold text-[#b45309] uppercase tracking-wider">
               {isEn ? 'INDIVIDUAL BUFFET OR 50+ GUESTS?' : 'INDIVIDUELLES BUFFET ODER 50+ GÄSTE?'}
             </span>
-            <h4 className="text-lg sm:text-xl font-bold text-[#1a3a52] font-serif">
+            <h4 className="text-lg sm:text-xl font-bold text-[#16202a] font-serif">
               {isEn ? 'Use our Live Catering Event Calculator' : 'Nutzen Sie unseren Live Event- & Catering-Rechner'}
             </h4>
-            <p className="text-xs text-[#2e5f7e]">
+            <p className="text-xs text-[#4b3b2f]">
               {isEn
                 ? 'Calculate budgets, guest counts, and warm buffet packages in real time.'
                 : 'Berechnen Sie Personenzahl, Buffets und Wünsche in Sekunden mit sofortigem Kostenvoranschlag.'}
@@ -164,7 +164,7 @@ export function PartyCelebrationChapter() {
 
           <Link
             href="/catering"
-            className="shrink-0 flex items-center gap-2 px-6 py-3 rounded-xl bg-[#9bc1d9] hover:bg-[#85b0cb] text-[#1a3a52] font-black text-xs uppercase tracking-wider transition-all shadow-md"
+            className="shrink-0 flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#d99036] to-[#b45309] hover:from-[#e09b43] hover:to-[#c25c0e] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md active:scale-95"
           >
             <span>{isEn ? 'Open Catering Calculator' : 'Zum Catering-Rechner'}</span>
             <ArrowRight className="h-4 w-4" />

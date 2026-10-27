@@ -75,8 +75,8 @@ export function MobileBottomNav() {
           href="/reservierung"
           className={`flex flex-col items-center justify-center min-w-[50px] min-h-[46px] rounded-xl px-1 py-1 transition-all ${
             pathname === '/reservierung'
-              ? 'text-[#1a3a52] bg-[#cce3f1] font-black'
-              : 'text-[#2e5f7e] hover:text-[#1a3a52]'
+              ? 'text-[#16202a] bg-[#ffedd5] font-black'
+              : 'text-[#4b3b2f] hover:text-[#16202a]'
           }`}
         >
           <Calendar className="h-5 w-5" />
@@ -86,13 +86,13 @@ export function MobileBottomNav() {
         {/* Cart Trigger */}
         <button
           onClick={openCart}
-          className="relative flex flex-col items-center justify-center min-w-[50px] min-h-[46px] rounded-xl px-1 py-1 text-[#2e5f7e] hover:text-[#1a3a52] transition-all cursor-pointer"
+          className="relative flex flex-col items-center justify-center min-w-[50px] min-h-[46px] rounded-xl px-1 py-1 text-[#4b3b2f] hover:text-[#16202a] transition-all cursor-pointer"
           aria-label={isEn ? 'Open Cart' : 'Warenkorb öffnen'}
         >
           <div className="relative">
             <ShoppingBag className="h-5 w-5" />
             {itemCount > 0 && (
-              <span className="absolute -top-1.5 -right-2.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#9bc1d9] text-[9px] font-black text-[#1a3a52]">
+              <span className="absolute -top-1.5 -right-2.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#d99036] text-[9px] font-black text-white shadow-sm">
                 {itemCount}
               </span>
             )}

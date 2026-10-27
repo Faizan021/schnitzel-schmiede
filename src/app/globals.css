@@ -59,37 +59,37 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #edf7fc;
+  background: #f4ede4;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #b8d4e8;
+  background: #d8c4ae;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9bc1d9;
+  background: #bfa386;
 }
 
-/* BebeQ Glassmorphism Utilities */
+/* Glassmorphism Utilities */
 .glass-bebeq {
-  background: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 10px 32px 0 rgba(26, 58, 82, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 32px 0 rgba(22, 32, 42, 0.06);
 }
 
 .glass-bebeq-card {
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 30px -4px rgba(26, 58, 82, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 30px -4px rgba(22, 32, 42, 0.06);
 }
 
 .bebeq-glow {
-  box-shadow: 0 0 35px -5px rgba(155, 193, 217, 0.45);
+  box-shadow: 0 0 35px -5px rgba(217, 144, 54, 0.35);
 }
 
 /* Aceternity & React Bits Inspired Animations for Culinary WOW */

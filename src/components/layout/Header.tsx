@@ -51,19 +51,19 @@ export function Header() {
       {/* Top Utility Announcement & Direct Contact Bar (Owner's WhatsApp & Phone Priority) */}
       <div
         suppressHydrationWarning
-        className="bg-[#1a3a52] text-white border-b border-[#2e5f7e]/40 py-1.5 px-3 sm:px-4 text-[10px] sm:text-xs font-mono"
+        className="bg-[#16202a] text-white border-b border-[#4b3b2f]/40 py-1.5 px-3 sm:px-4 text-[10px] sm:text-xs font-mono"
       >
         <div className="mx-auto max-w-7xl flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 sm:gap-3 truncate">
             <span className="flex items-center gap-1 text-[#ffecd2] truncate">
-              <MapPin className="h-3 w-3 text-[#9bc1d9] shrink-0" />
+              <MapPin className="h-3 w-3 text-[#d99036] shrink-0" />
               <span className="truncate">
                 <strong className="text-white">Dohler Str. 269</strong>
                 <span className="hidden xs:inline">, 41238 MG</span>
               </span>
             </span>
             <span className="hidden sm:inline text-white/40">|</span>
-            <span className="hidden md:flex items-center gap-1 text-[#9bc1d9]">
+            <span className="hidden md:flex items-center gap-1 text-[#d99036]">
               <Clock className="h-3 w-3" />
               <span>Mo-Sa ab 16:30 · So ab 12:00</span>
             </span>
@@ -74,7 +74,7 @@ export function Header() {
               href="tel:+4921669786951"
               className="hidden sm:flex items-center gap-1 text-[#ffecd2] hover:text-white transition-colors"
             >
-              <Phone className="h-3 w-3 text-[#9bc1d9]" />
+              <Phone className="h-3 w-3 text-[#d99036]" />
               <span>02166 9786951</span>
             </a>
             <span className="hidden sm:inline text-white/40">|</span>
@@ -106,7 +106,7 @@ export function Header() {
           {/* Logo & Brand Identity: Living Forge Crest & Luminous Gold Wordmark */}
           <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0 pr-2">
             {/* Forged Cast-Iron Guild Emblem with Living Ember Simmer */}
-            <div className="relative flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#162e40] via-[#1a3a52] to-[#0f2130] shadow-md shadow-[#1a3a52]/30 border-2 border-[#d99036]/70 group-hover:border-[#f59e0b] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] transition-all duration-300 shrink-0 overflow-hidden">
+            <div className="relative flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#16202a] via-[#241812] to-[#16202a] shadow-md shadow-[#16202a]/30 border-2 border-[#d99036]/70 group-hover:border-[#f59e0b] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] transition-all duration-300 shrink-0 overflow-hidden">
               {/* Radial Ember Flare */}
               <div className="absolute inset-0 bg-radial from-[#d99036]/35 via-transparent to-transparent pointer-events-none" />
               
@@ -181,22 +181,22 @@ export function Header() {
             {/* Table Booking Shortcut */}
             <Link
               href="/reservierung"
-              className="hidden md:inline-flex items-center gap-1.5 rounded-xl border border-[#b8d4e8] bg-white/80 px-3.5 py-2 text-xs font-bold text-[#1a3a52] hover:bg-[#cce3f1] transition-colors shadow-sm shrink-0"
+              className="hidden md:inline-flex items-center gap-1.5 rounded-xl border border-[#e8d5be] bg-white/80 px-3.5 py-2 text-xs font-bold text-[#16202a] hover:bg-[#ffedd5] transition-colors shadow-sm shrink-0"
             >
-              <Calendar className="h-3.5 w-3.5 text-[#2e5f7e]" />
+              <Calendar className="h-3.5 w-3.5 text-[#4b3b2f]" />
               <span>{t.nav.bookTable}</span>
             </Link>
 
             {/* Cart Trigger */}
             <button
               onClick={openCart}
-              className="relative flex items-center justify-center h-8 w-8 sm:h-auto sm:w-auto sm:gap-2 rounded-xl bg-[#9bc1d9] sm:px-3.5 sm:py-2 text-xs font-black text-[#1a3a52] hover:bg-[#b8d4e8] shadow-md shadow-[#9bc1d9]/30 transition-all cursor-pointer active:scale-95 border border-white/60 shrink-0"
+              className="relative flex items-center justify-center h-8 w-8 sm:h-auto sm:w-auto sm:gap-2 rounded-xl bg-[#d99036] sm:px-3.5 sm:py-2 text-xs font-black text-[#16202a] hover:bg-[#e8d5be] shadow-md shadow-[#d99036]/30 transition-all cursor-pointer active:scale-95 border border-white/60 shrink-0"
               aria-label={t.nav.cart}
             >
               <ShoppingBag className="h-4 w-4" />
               <span className="hidden md:inline">{t.nav.cart}</span>
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 sm:static flex h-4 w-4 sm:h-5 sm:w-5 items-center justify-center rounded-full bg-[#1a3a52] text-[9px] sm:text-[10px] font-bold text-white shadow-sm">
+                <span className="absolute -top-1 -right-1 sm:static flex h-4 w-4 sm:h-5 sm:w-5 items-center justify-center rounded-full bg-[#16202a] text-[9px] sm:text-[10px] font-bold text-white shadow-sm">
                   {itemCount}
                 </span>
               )}
@@ -205,7 +205,7 @@ export function Header() {
             {/* Mobile Menu Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden rounded-xl border border-[#b8d4e8] bg-white/80 p-1.5 sm:p-2 text-[#1a3a52] hover:bg-[#cce3f1] shrink-0"
+              className="md:hidden rounded-xl border border-[#e8d5be] bg-white/80 p-1.5 sm:p-2 text-[#16202a] hover:bg-[#ffedd5] shrink-0"
               aria-label="Navigation menu"
             >
               {mobileMenuOpen ? <X className="h-4 w-4 sm:h-5 sm:w-5" /> : <Menu className="h-4 w-4 sm:h-5 sm:w-5" />}
@@ -216,12 +216,12 @@ export function Header() {
 
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-50 bg-[#edf7fc]/98 backdrop-blur-xl pt-16 px-6 space-y-5 overflow-y-auto">
-          <div className="flex items-center justify-between pb-3 border-b border-[#b8d4e8]/40">
+        <div className="md:hidden fixed inset-0 z-50 bg-[#faf7f2]/98 backdrop-blur-xl pt-16 px-6 space-y-5 overflow-y-auto">
+          <div className="flex items-center justify-between pb-3 border-b border-[#e8d5be]/40">
             <LanguageSwitcher />
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2.5 text-[#1a3a52] hover:bg-white/80 rounded-xl"
+              className="p-2.5 text-[#16202a] hover:bg-white/80 rounded-xl"
               aria-label="Close menu"
             >
               <X className="h-6 w-6" />
@@ -234,17 +234,17 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="rounded-xl bg-white/90 border border-white p-4 text-base font-bold text-[#1a3a52] flex items-center justify-between shadow-sm"
+                className="rounded-xl bg-white/90 border border-white p-4 text-base font-bold text-[#16202a] flex items-center justify-between shadow-sm"
               >
                 <span>{link.label}</span>
-                <span className="text-[#2e5f7e]">&rarr;</span>
+                <span className="text-[#4b3b2f]">&rarr;</span>
               </Link>
             ))}
           </div>
 
           {/* Mobile Direct Contact Gateway: WhatsApp & Phone */}
-          <div className="pt-2 border-t border-[#b8d4e8]/40 space-y-2.5">
-            <span className="text-xs font-mono font-bold text-[#2e5f7e] uppercase block">
+          <div className="pt-2 border-t border-[#e8d5be]/40 space-y-2.5">
+            <span className="text-xs font-mono font-bold text-[#4b3b2f] uppercase block">
               DIREKTKONTAKT INHABER
             </span>
             <a
@@ -259,9 +259,9 @@ export function Header() {
 
             <a
               href="tel:+4921669786951"
-              className="flex items-center justify-center gap-2 rounded-xl bg-white border border-[#b8d4e8] p-3 text-sm font-bold text-[#1a3a52] shadow-sm"
+              className="flex items-center justify-center gap-2 rounded-xl bg-white border border-[#e8d5be] p-3 text-sm font-bold text-[#16202a] shadow-sm"
             >
-              <Phone className="h-4 w-4 text-[#2e5f7e]" />
+              <Phone className="h-4 w-4 text-[#4b3b2f]" />
               <span>02166 9786951 anrufen</span>
             </a>
           </div>

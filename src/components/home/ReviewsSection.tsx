@@ -43,23 +43,23 @@ export function ReviewsSection() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#edf7fc] via-[#ddeef7] to-[#edf7fc] border-t border-[#b8d4e8]/60">
+    <section className="py-20 bg-gradient-to-b from-[#faf7f2] via-[#f5efe6] to-[#faf7f2] border-t border-[#e8d5be]/70">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <div className="flex items-center gap-1.5 text-[#92601e] mb-2">
+            <div className="flex items-center gap-1.5 text-[#d99036] mb-2">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-4 w-4 fill-current text-[#92601e]" />
+                <Star key={i} className="h-4 w-4 fill-current text-[#d99036]" />
               ))}
-              <span className="text-xs sm:text-sm font-black text-[#1a3a52] ml-2">
+              <span className="text-xs sm:text-sm font-black text-[#16202a] ml-2">
                 {isEn ? '4.9 out of 5 Stars' : '4.9 von 5 Sternen'}
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#1a3a52] font-serif">
+            <h2 className="text-3xl sm:text-4xl font-black text-[#16202a] font-serif">
               {isEn ? 'What Guests in Mönchengladbach Say' : 'Das sagen Gäste aus Mönchengladbach'}
             </h2>
           </div>
-          <p className="text-xs sm:text-sm font-semibold text-[#163044] mt-2 md:mt-0">
+          <p className="text-xs sm:text-sm font-semibold text-[#b45309] mt-2 md:mt-0">
             {isEn
               ? 'Over 850+ verified reviews on Google & Delivery networks'
               : 'Über 850+ verifizierte Bewertungen bei Google & Lieferando'}
@@ -70,32 +70,32 @@ export function ReviewsSection() {
           {reviews.map((rev, idx) => (
             <SpotlightCard
               key={idx}
-              className="p-6 bg-white/90 backdrop-blur-md border border-white/95 shadow-md shadow-[#1a3a52]/5 hover:border-[#9bc1d9] flex flex-col justify-between rounded-2xl"
+              className="p-6 bg-white/95 backdrop-blur-md border border-[#e8d5be] shadow-md shadow-[#16202a]/5 hover:border-[#d99036] flex flex-col justify-between rounded-2xl"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="flex text-[#92601e]">
+                  <div className="flex text-[#d99036]">
                     {[...Array(rev.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-current text-[#92601e]" />
+                      <Star key={i} className="h-4 w-4 fill-current text-[#d99036]" />
                     ))}
                   </div>
-                  <span className="text-xs font-semibold text-[#163044]">{rev.date}</span>
+                  <span className="text-xs font-semibold text-[#4b3b2f]">{rev.date}</span>
                 </div>
 
-                <p className="text-xs sm:text-sm leading-relaxed text-[#1a3a52] font-medium italic mb-4">
+                <p className="text-xs sm:text-sm leading-relaxed text-[#16202a] font-medium italic mb-4">
                   &ldquo;{rev.text}&rdquo;
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-[#b8d4e8]/60 flex items-center justify-between">
+              <div className="pt-4 border-t border-[#e8d5be]/70 flex items-center justify-between">
                 <div>
-                  <div className="text-xs font-bold text-[#1a3a52] flex items-center gap-1">
+                  <div className="text-xs font-bold text-[#16202a] flex items-center gap-1">
                     <span>{rev.author}</span>
                     <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
                   </div>
-                  <div className="text-[10px] text-[#2e5f7e]">{rev.location}</div>
+                  <div className="text-[10px] text-[#4b3b2f]">{rev.location}</div>
                 </div>
-                <span className="text-[10px] font-bold text-[#1a3a52] rounded-full bg-[#cce3f1] border border-[#b8d4e8] px-2.5 py-0.5">
+                <span className="text-[10px] font-bold text-[#b45309] rounded-full bg-[#ffedd5] border border-[#fed7aa] px-2.5 py-0.5">
                   {rev.dish}
                 </span>
               </div>

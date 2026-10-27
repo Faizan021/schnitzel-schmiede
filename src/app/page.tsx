@@ -48,7 +48,7 @@ export default function HomePage() {
               <UtensilsCrossed className="h-4 w-4 text-[#d99036]" />
               <span>{isEn ? 'From Our Pan Kitchen' : 'Aus unserer Schmiede-Küche'}</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-[#1a3a52] font-serif">
+            <h2 className="text-3xl sm:text-5xl font-black text-[#16202a] font-serif">
               {isEn ? 'Popular House Creations' : 'Die beliebtesten Kreationen'}
             </h2>
           </div>
