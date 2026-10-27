@@ -167,13 +167,14 @@ export function InteractiveSizzleHero() {
           />
         </div>
 
-        {/* Layer 2: Full-Bleed Live Video (Autoplays seamlessly on all devices) */}
+        {/* Layer 2: Full-Bleed Live Video (Autoplays seamlessly on all devices with instant poster fallback) */}
         <video
           ref={bgVideoRef}
           autoPlay
           muted
           loop
           playsInline
+          poster={`${basePath}/images/stitch/schnitzel-hero-stitch.jpg`}
           preload="auto"
           className="absolute inset-0 h-full w-full object-cover object-center filter brightness-[0.9] contrast-[1.1] opacity-70 transition-opacity duration-1000"
         >
@@ -233,6 +234,22 @@ export function InteractiveSizzleHero() {
               ? '✨ 100% Clarified Butter · Freshly Pounded by Hand · Zero Deep Fryer'
               : '✨ 100% Reines Butterschmalz · Täglich frisch von Hand geklopft · 0% Fritteuse'}
           </p>
+
+          {/* High-Converting Social Proof Badge Above the Fold (NN/g Standard) */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-[#d99036]/50 shadow-md">
+            <div className="flex items-center text-[#d99036] text-xs">
+              <Star className="h-3.5 w-3.5 fill-[#d99036]" />
+              <Star className="h-3.5 w-3.5 fill-[#d99036]" />
+              <Star className="h-3.5 w-3.5 fill-[#d99036]" />
+              <Star className="h-3.5 w-3.5 fill-[#d99036]" />
+              <Star className="h-3.5 w-3.5 fill-[#d99036]" />
+            </div>
+            <span className="text-xs font-black text-white font-mono">4.9 / 5.0</span>
+            <span className="text-white/40 text-xs">|</span>
+            <span className="text-[11px] font-bold text-[#ffecd2]">
+              {isEn ? '850+ Guests in MG' : '850+ Gäste in Mönchengladbach'}
+            </span>
+          </div>
         </div>
 
         {/* =========================================================================
@@ -249,13 +266,14 @@ export function InteractiveSizzleHero() {
 
           {/* Video / Cinema Stage Container */}
           <div className="relative w-full h-72 sm:h-auto sm:aspect-[21/9] rounded-xl overflow-hidden border border-[#b8d4e8]/60 bg-[#163044] shadow-inner group">
-            {/* Live Kitchen Video */}
+            {/* Live Kitchen Video with Instant Poster Fallback */}
             <video
               ref={showcaseVideoRef}
               autoPlay
               muted={isMuted}
               loop
               playsInline
+              poster={`${basePath}/images/stitch/schnitzel-hero-stitch.jpg`}
               preload="auto"
               className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             >

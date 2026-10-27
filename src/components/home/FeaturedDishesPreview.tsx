@@ -13,6 +13,7 @@ import {
   UtensilsCrossed,
   ChefHat,
   Star,
+  ShoppingBag,
 } from 'lucide-react';
 import { MENU_ITEMS } from '@/lib/data/menu';
 import { MenuItem, AllergenKey } from '@/lib/types/menu';
@@ -31,13 +32,13 @@ const FEATURED_IDS = [
 ];
 
 export function FeaturedDishesPreview() {
-  const { addStandardItem } = useCart();
+  const { addStandardItem, openCart, calculations } = useCart();
   const { t, lang } = useLanguage();
   const isEn = lang === 'en';
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   const [activeAllergenModal, setActiveAllergenModal] = useState<AllergenKey[] | null>(null);
-  const [addedItemNotice, setAddedItemNotice] = useState<string | null>(null);
+  const [addedItemNotice, setAddedItemNotice] = useState<MenuItem | null>(null);
 
   const featuredDishes: MenuItem[] = FEATURED_IDS.map(
     (id) => MENU_ITEMS.find((item) => item.id === id)!
@@ -45,18 +46,18 @@ export function FeaturedDishesPreview() {
 
   const handleQuickAdd = (item: MenuItem) => {
     addStandardItem(item);
-    setAddedItemNotice(item.id);
+    setAddedItemNotice(item);
     setTimeout(() => {
       setAddedItemNotice(null);
-    }, 1200);
+    }, 2800);
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-      {/* 6 Curated Dishes Grid */}
+    <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8 relative">
+      {/* 6 Curated Dishes Grid with Warm Culinary Radiance */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {featuredDishes.map((item, index) => {
-          const isAdded = addedItemNotice === item.id;
+        {featuredDishes.map((item) => {
+          const isAdded = addedItemNotice?.id === item.id;
           const isGladbacher = item.id === 'schnitzel-200g-gladbacher';
           const isWiener = item.id === 'schnitzel-200g-wiener';
           const isGratinated = item.category === 'specials';
@@ -64,16 +65,16 @@ export function FeaturedDishesPreview() {
           return (
             <div
               key={item.id}
-              className="group relative rounded-2xl bg-white/90 backdrop-blur-md border border-white hover:border-[#9bc1d9] shadow-[0_10px_30px_rgba(26,58,82,0.06)] hover:shadow-[0_16px_40px_rgba(26,58,82,0.12)] transition-all duration-300 flex flex-col overflow-hidden"
+              className="group relative rounded-2xl bg-gradient-to-b from-white via-[#fffdfa] to-[#fffaf2] backdrop-blur-md border border-[#e8d5be] hover:border-[#d99036] shadow-[0_10px_30px_rgba(26,58,82,0.06)] hover:shadow-[0_16px_40px_rgba(217,144,54,0.14)] transition-all duration-300 flex flex-col overflow-hidden"
             >
-              {/* Top Accent Gradient Line */}
+              {/* Top Accent Gradient Line with Golden Butter Glow */}
               <div
                 className={`h-1.5 w-full ${
                   isGladbacher
-                    ? 'bg-gradient-to-r from-[#9bc1d9] via-[#a87b41] to-[#1a3a52]'
+                    ? 'bg-gradient-to-r from-[#d99036] via-[#f59e0b] to-[#1a3a52]'
                     : isWiener
-                    ? 'bg-gradient-to-r from-[#a87b41] to-[#ffecd2]'
-                    : 'bg-gradient-to-r from-[#9bc1d9] to-[#b8d4e8]'
+                    ? 'bg-gradient-to-r from-[#d99036] to-[#ffecd2]'
+                    : 'bg-gradient-to-r from-[#9bc1d9] via-[#d99036] to-[#b8d4e8]'
                 }`}
               />
 
@@ -81,38 +82,38 @@ export function FeaturedDishesPreview() {
                 <div>
                   {/* Badge Row */}
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-[#edf7fc] text-[#1a3a52] border border-[#b8d4e8]">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-[#fef3c7] text-[#92400e] border border-[#fde68a]">
                       {isGratinated ? (
                         <>
-                          <Flame className="h-3 w-3 text-[#a87b41]" />
+                          <Flame className="h-3 w-3 text-[#d99036]" />
                           <span>{isEn ? 'Gratinated Special' : 'Überbacken'}</span>
                         </>
                       ) : isGladbacher ? (
                         <>
-                          <Star className="h-3 w-3 fill-[#a87b41] text-[#a87b41]" />
+                          <Star className="h-3 w-3 fill-[#d99036] text-[#d99036]" />
                           <span>{isEn ? 'House Specialty MG' : 'Gladbacher Spezialität'}</span>
                         </>
                       ) : (
                         <>
-                          <Sparkles className="h-3 w-3 text-[#a87b41]" />
+                          <Sparkles className="h-3 w-3 text-[#d99036]" />
                           <span>{isEn ? 'Signature Classic' : 'Klassiker Bestseller'}</span>
                         </>
                       )}
                     </span>
 
-                    <span className="text-[11px] font-mono text-[#2e5f7e] font-semibold">
+                    <span className="text-[11px] font-mono text-[#1a3a52] font-extrabold bg-[#ffecd2]/80 px-2 py-0.5 rounded-md border border-[#f5d0a9]">
                       {item.defaultPortion || 'ca. 200g'}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg font-black text-[#1a3a52] font-serif group-hover:text-[#2e5f7e] transition-colors leading-snug">
+                  <h3 className="text-lg font-black text-[#1a3a52] font-serif group-hover:text-[#b45309] transition-colors leading-snug">
                     {isEn ? item.nameEn || item.name : item.name}
                   </h3>
 
                   {/* Subtitle / Key Flavor */}
                   {item.subtitle && (
-                    <p className="text-xs font-semibold text-[#a87b41] mt-1">
+                    <p className="text-xs font-bold text-[#b45309] mt-1">
                       {isEn ? item.subtitleEn || item.subtitle : item.subtitle}
                     </p>
                   )}
@@ -124,7 +125,7 @@ export function FeaturedDishesPreview() {
                 </div>
 
                 {/* Footer of Card: Price & Quick Add */}
-                <div className="pt-5 mt-4 border-t border-[#b8d4e8]/50 flex items-center justify-between">
+                <div className="pt-5 mt-4 border-t border-[#f5d0a9]/60 flex items-center justify-between">
                   <div>
                     <div className="text-[10px] uppercase font-bold text-[#2e5f7e] tracking-wider">
                       {isEn ? 'Price' : 'Hauspreis'}
@@ -140,7 +141,7 @@ export function FeaturedDishesPreview() {
                       <button
                         type="button"
                         onClick={() => setActiveAllergenModal(item.allergens)}
-                        className="h-9 w-9 rounded-xl bg-white border border-[#b8d4e8] text-[#2e5f7e] hover:text-[#1a3a52] hover:bg-[#edf7fc] flex items-center justify-center transition-colors cursor-pointer"
+                        className="h-10 w-10 rounded-xl bg-white border border-[#b8d4e8] text-[#2e5f7e] hover:text-[#1a3a52] hover:bg-[#edf7fc] flex items-center justify-center transition-colors cursor-pointer"
                         title={isEn ? 'Allergen information' : 'Allergene & Inhaltsstoffe'}
                         aria-label="Allergene"
                       >
@@ -148,19 +149,19 @@ export function FeaturedDishesPreview() {
                       </button>
                     )}
 
-                    {/* Quick Add Button */}
+                    {/* Quick Add Button with Rich Warm Butter/Crust Gradient */}
                     <button
                       type="button"
                       onClick={() => handleQuickAdd(item)}
-                      className={`h-10 px-4 rounded-xl font-black text-xs uppercase tracking-wider flex items-center gap-1.5 transition-all shadow-sm cursor-pointer active:scale-95 ${
+                      className={`h-10 px-4 rounded-xl font-black text-xs uppercase tracking-wider flex items-center gap-1.5 transition-all shadow-md cursor-pointer active:scale-95 ${
                         isAdded
-                          ? 'bg-emerald-600 text-white'
-                          : 'bg-[#9bc1d9] hover:bg-[#85b0cb] text-[#1a3a52] hover:shadow-md'
+                          ? 'bg-emerald-600 text-white shadow-emerald-600/30'
+                          : 'bg-gradient-to-r from-[#d99036] to-[#b45309] hover:from-[#e09b43] hover:to-[#c25c0e] text-white shadow-[#d99036]/25 hover:shadow-lg'
                       }`}
                     >
                       {isAdded ? (
                         <>
-                          <Check className="h-4 w-4" />
+                          <Check className="h-4 w-4 stroke-[3]" />
                           <span>{isEn ? 'Added' : 'Im Korb'}</span>
                         </>
                       ) : (
@@ -177,6 +178,36 @@ export function FeaturedDishesPreview() {
           );
         })}
       </div>
+
+      {/* Floating Instant-Add Micro-Cart Confirmation Toast */}
+      {addedItemNotice && (
+        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 w-[92vw] max-w-md animate-in fade-in slide-in-from-bottom-5 duration-300">
+          <div className="rounded-2xl bg-[#1a3a52] text-white p-3.5 shadow-2xl border-2 border-[#d99036] flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className="h-9 w-9 rounded-xl bg-[#d99036] text-white flex items-center justify-center shrink-0 font-bold">
+                <Check className="h-5 w-5 stroke-[3]" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs font-bold text-[#ffecd2] truncate">
+                  {isEn ? 'Added to order:' : 'Zur Bestellung hinzugefügt:'}
+                </p>
+                <p className="text-xs font-extrabold text-white truncate">
+                  {isEn ? addedItemNotice.nameEn || addedItemNotice.name : addedItemNotice.name}
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={openCart}
+              className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-[#d99036] to-[#b45309] text-white text-xs font-black uppercase tracking-wider hover:from-[#e09b43] hover:to-[#c25c0e] shadow-md transition-all active:scale-95 cursor-pointer"
+            >
+              <ShoppingBag className="h-3.5 w-3.5" />
+              <span>{isEn ? 'Open Cart' : 'Warenkorb'} ({calculations.total.toFixed(2).replace('.', ',')} €)</span>
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Prominent High-Converting Call-To-Action Banner (UX/UI Best Practice) */}
       <div className="mt-12 rounded-3xl bg-gradient-to-r from-white/95 via-[#edf7fc]/95 to-white/95 backdrop-blur-xl border border-[#b8d4e8] p-6 sm:p-10 shadow-[0_20px_50px_rgba(26,58,82,0.08)]">
