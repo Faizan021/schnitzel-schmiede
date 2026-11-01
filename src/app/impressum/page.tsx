@@ -52,7 +52,7 @@ export default function ImpressumPage() {
             </a>
             <br />
             Website:{' '}
-            <span className="text-[#16202a] font-medium">https://schnitzel-schmiede-mg.de</span>
+            <span className="text-[#16202a] font-medium">https://schnitzelschmiede-mg.de</span>
           </p>
         </div>
 

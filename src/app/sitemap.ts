@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://schnitzel-schmiede-mg.de';
+  const baseUrl = 'https://schnitzelschmiede-mg.de';
   const lastModified = new Date('2026-10-24');
 
   return [

@@ -208,7 +208,7 @@ export function ReservationForm() {
       'CALSCALE:GREGORIAN',
       'METHOD:PUBLISH',
       'BEGIN:VEVENT',
-      `UID:${bookingRef}@schnitzel-schmiede-mg.de`,
+      `UID:${bookingRef}@schnitzelschmiede-mg.de`,
       `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
       `DTSTART:${date.replace(/-/g, '')}T${startHour.toString().padStart(2, '0')}${startMin}00`,
       `DTEND:${date.replace(/-/g, '')}T${endHour}${startMin}00`,

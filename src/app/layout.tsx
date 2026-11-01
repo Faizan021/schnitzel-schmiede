@@ -59,12 +59,12 @@ export const metadata: Metadata = {
   ],
   creator: 'Speisely (https://speisely.de)',
   publisher: 'Speisely Gastronomie-Netzwerk Deutschland',
-  metadataBase: new URL('https://schnitzel-schmiede-mg.de'),
+  metadataBase: new URL('https://schnitzelschmiede-mg.de'),
   openGraph: {
     title: 'Schnitzel Schmiede Mönchengladbach | Echtes Handwerk',
     description:
       'Goldbraun soufflierte Schnitzel, frisches Butterschmalz, regionale Spezialitäten und Knusper-Garantie in Mönchengladbach.',
-    url: 'https://schnitzel-schmiede-mg.de',
+    url: 'https://schnitzelschmiede-mg.de',
     siteName: 'Schnitzel Schmiede Mönchengladbach',
     locale: 'de_DE',
     type: 'website',

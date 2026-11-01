@@ -205,7 +205,7 @@ export function generateWhatsAppOrderMessage(
   }
 
   lines.push('');
-  lines.push('✅ _Bestellung übermittelt via schnitzel-schmiede-mg.de_');
+  lines.push('✅ _Bestellung übermittelt via schnitzelschmiede-mg.de_');
   lines.push('Bitte um kurze Bestätigung mit Angabe der aktuellen Zubereitungszeit.');
 
   return lines.join('\n');

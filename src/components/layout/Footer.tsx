@@ -224,7 +224,7 @@ export function Footer() {
                   </a>
 
                   <a
-                    href="mailto:umarjabbar@yahoo.com?subject=Anfrage%20von%20schnitzel-schmiede-mg.de"
+                    href="mailto:umarjabbar@yahoo.com?subject=Anfrage%20von%20schnitzelschmiede-mg.de"
                     className="flex items-center justify-between px-3 py-2 rounded-xl bg-white/80 hover:bg-white border border-[#e8d5be] text-[#16202a] transition-colors shadow-sm"
                   >
                     <div className="flex items-center gap-2">
