@@ -400,6 +400,17 @@ export function CateringCalculator() {
               <p className="text-[11px] text-center text-[#163044] font-semibold">
                 {isEn ? 'Direct Line to Owner Umar Jabbar (+49 176 70341602) · Reply in < 30 Min' : 'Direkter Draht zu Inhaber Umar Jabbar (0176 70341602) · Antwort in < 30 Min'}
               </p>
+              <div className="pt-2 border-t border-[#e8d5be]/60 flex items-center justify-center gap-1.5 text-[10px] text-[#55697a]">
+                <span>{isEn ? 'Official Partner in' : 'Offizieller Partner im'}</span>
+                <a
+                  href="https://speisely.de/catering/ort/moenchengladbach"
+                  target="_blank"
+                  rel="noopener"
+                  className="font-bold text-[#d99036] hover:underline"
+                >
+                  Speisely Catering-Netzwerk Mönchengladbach
+                </a>
+              </div>
             </form>
           </div>
         </div>

@@ -5,8 +5,8 @@ export function getRestaurantJsonLd() {
     name: 'Schnitzel Schmiede Mönchengladbach',
     alternateName: 'Schnitzel Schmiede MG',
     image: [
-      'https://schnitzelschmiede-mg.de/images/stitch/schnitzel-hero-stitch.jpg',
-      'https://schnitzelschmiede-mg.de/images/stitch/sauce-pan-stitch.jpg',
+      'https://www.schnitzelschmiede-mg.de/images/stitch/schnitzel-hero-stitch.jpg',
+      'https://www.schnitzelschmiede-mg.de/images/stitch/sauce-pan-stitch.jpg',
     ],
     creator: {
       '@type': 'Organization',
@@ -14,6 +14,10 @@ export function getRestaurantJsonLd() {
       name: 'Speisely',
       url: 'https://speisely.de',
       description: 'Deutschlands Gastronomie- & Catering-Technologie-Netzwerk',
+      sameAs: [
+        'https://speisely.de',
+        'https://speisely.de/catering/ort/moenchengladbach',
+      ],
     },
     memberOf: {
       '@type': 'Organization',
@@ -21,8 +25,14 @@ export function getRestaurantJsonLd() {
       name: 'Speisely Gastro-Netzwerk',
       url: 'https://speisely.de',
     },
-    '@id': 'https://schnitzelschmiede-mg.de',
-    url: 'https://schnitzelschmiede-mg.de',
+    parentOrganization: {
+      '@type': 'Organization',
+      '@id': 'https://speisely.de/#organization',
+      name: 'Speisely',
+      url: 'https://speisely.de',
+    },
+    '@id': 'https://www.schnitzelschmiede-mg.de',
+    url: 'https://www.schnitzelschmiede-mg.de',
     telephone: '+4921669786951',
     email: 'umarjabbar@yahoo.com',
     priceRange: '€€',
@@ -40,6 +50,20 @@ export function getRestaurantJsonLd() {
       latitude: 51.1963,
       longitude: 6.4419,
     },
+    areaServed: [
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Mönchengladbach',
+      },
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Rheydt',
+      },
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Niederrhein',
+      },
+    ],
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -60,13 +84,13 @@ export function getRestaurantJsonLd() {
         closes: '21:45',
       },
     ],
-    hasMenu: 'https://schnitzelschmiede-mg.de/speisekarte',
+    hasMenu: 'https://www.schnitzelschmiede-mg.de/speisekarte',
     potentialAction: [
       {
         '@type': 'ReserveAction',
         target: {
           '@type': 'EntryPoint',
-          urlTemplate: 'https://schnitzelschmiede-mg.de/reservierung',
+          urlTemplate: 'https://www.schnitzelschmiede-mg.de/reservierung',
           inLanguage: 'de-DE',
           actionPlatform: [
             'http://schema.org/DesktopWebPlatform',
@@ -82,7 +106,7 @@ export function getRestaurantJsonLd() {
         '@type': 'OrderAction',
         target: {
           '@type': 'EntryPoint',
-          urlTemplate: 'https://schnitzelschmiede-mg.de/speisekarte',
+          urlTemplate: 'https://www.schnitzelschmiede-mg.de/speisekarte',
           inLanguage: 'de-DE',
           actionPlatform: [
             'http://schema.org/DesktopWebPlatform',

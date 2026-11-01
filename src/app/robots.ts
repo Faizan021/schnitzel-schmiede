@@ -15,6 +15,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: 'https://schnitzelschmiede-mg.de/sitemap.xml',
+    sitemap: 'https://www.schnitzelschmiede-mg.de/sitemap.xml',
   };
 }
