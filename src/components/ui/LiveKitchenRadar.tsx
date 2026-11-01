@@ -16,11 +16,16 @@ export function LiveKitchenRadar() {
   const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
-    setStatus(getLiveKitchenStatus(new Date(), isEn ? 'en' : 'de'));
+    const timer = setTimeout(() => {
+      setStatus(getLiveKitchenStatus(new Date(), isEn ? 'en' : 'de'));
+    }, 0);
     const interval = setInterval(() => {
       setStatus(getLiveKitchenStatus(new Date(), isEn ? 'en' : 'de'));
     }, 60000);
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
   }, [isEn]);
 
   if (!status || isDismissed) return null;
@@ -57,7 +62,7 @@ export function LiveKitchenRadar() {
           </span>
 
           <span className="text-[10px] text-[#163044] font-mono font-black hidden sm:inline">
-            // LIVE
+            {'// LIVE'}
           </span>
         </button>
 

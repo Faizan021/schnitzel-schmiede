@@ -22,7 +22,7 @@ export function getLiveKitchenStatus(date: Date = new Date(), lang: 'de' | 'en' 
   // So (0): 12:00 (720) - 21:45 (1305)
 
   let openMin = 16 * 60 + 30; // 16:30 default for Mo-Fr
-  let closeMin = 21 * 60 + 45; // 21:45
+  const closeMin = 21 * 60 + 45; // 21:45
   let nextOpen = '16:30 Uhr';
   let nextOpenEn = '4:30 PM';
 
@@ -31,7 +31,7 @@ export function getLiveKitchenStatus(date: Date = new Date(), lang: 'de' | 'en' 
   // Sa (6): 14:00 (840) - 21:45 (1305)
   // So (0): 11:30 (690) - 21:45 (1305)
   let delivOpenMin = 16 * 60; // 16:00
-  let delivCloseMin = 21 * 60 + 45;
+  const delivCloseMin = 21 * 60 + 45;
 
   if (day === 6) {
     // Saturday
