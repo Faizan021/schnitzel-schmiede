@@ -103,15 +103,15 @@ export function ZeitlosWelcomeChapter() {
           <div className="space-y-2 max-w-2xl relative z-10">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fef3c7] border border-[#fde68a] text-[11px] font-bold text-[#b45309] uppercase tracking-wider">
               <Award className="h-3.5 w-3.5 text-[#d99036]" />
-              <span>{isEn ? '13 Years Tradition · EineStadt-Fest MG' : '13 Jahre Tradition · EineStadt-Fest MG'}</span>
+              <span>{isEn ? '13 Years Tradition · Gourmet Mile MG' : '13 Jahre Tradition · Gourmet-Meile MG'}</span>
             </div>
             <h3 className="text-xl sm:text-2xl font-black text-[#16202a] font-serif">
-              {isEn ? 'A Familiar Highlight on the Mönchengladbach Gourmet Mile' : 'Fester Treffpunkt auf der Mönchengladbacher Gourmet-Meile'}
+              {isEn ? 'A Familiar Stop on the Mönchengladbach Gourmet Mile' : 'Fester Treffpunkt auf der Mönchengladbacher Gourmet-Meile'}
             </h3>
             <p className="text-xs sm:text-sm text-[#4b3b2f] leading-relaxed">
               {isEn
-                ? 'Since 2013, Schnitzel Schmiede has been delighting visitors at the EineStadt-Fest along Brucknerallee. Read the full editorial partner portrait in Speisely Magazine.'
-                : 'Bereits seit 2013 begeistert die Schnitzel Schmiede die Besucher auf dem EineStadt-Fest an der Brucknerallee mit frisch zubereiteten Schnitzeln. Lies die offizielle Fest-Reportage exklusiv im Speisely Magazin.'}
+                ? 'Since 2013, Schnitzel Schmiede has been welcoming visitors on the Gourmet Mile along Brucknerallee. Read the culinary feature in Speisely Magazine.'
+                : 'Bereits seit 2013 begeistert die Schnitzel Schmiede Besucher auf der Gourmet-Meile an der Brucknerallee mit frisch zubereiteten Schnitzeln. Lies das kulinarische Porträt im Speisely Magazin.'}
             </p>
           </div>
 
@@ -122,7 +122,7 @@ export function ZeitlosWelcomeChapter() {
             className="group inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-[#16202a] hover:bg-[#b45309] text-white text-xs font-black uppercase tracking-wider transition-all duration-300 shadow-md shrink-0 active:scale-95 cursor-pointer relative z-10"
           >
             <BookOpen className="h-4 w-4 text-[#d99036] group-hover:text-white transition-colors" />
-            <span>{isEn ? 'Story in Speisely Magazine' : 'Story im Speisely Magazin lesen'}</span>
+            <span>{isEn ? 'Read on Speisely Magazine' : 'Artikel im Speisely Magazin'}</span>
             <ArrowUpRight className="h-4 w-4 text-[#e8d5be] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
         </div>

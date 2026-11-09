@@ -32,10 +32,10 @@ export function getRestaurantJsonLd() {
       url: 'https://speisely.de',
     },
     subjectOf: {
-      '@type': 'NewsArticle',
+      '@type': 'Article',
       '@id': 'https://speisely.de/magazin/schnitzel-schmiede',
-      name: 'Schnitzel Schmiede beim EineStadt-Fest 2026',
-      headline: 'Schnitzel Schmiede beim EineStadt-Fest 2026 in Mönchengladbach: 13 Jahre Tradition & Genuss',
+      name: 'Kulinarisches Porträt: Schnitzel Schmiede Mönchengladbach',
+      headline: 'Schnitzel Schmiede beim EineStadt-Fest 2026: 13 Jahre Tradition & Genuss',
       url: 'https://speisely.de/magazin/schnitzel-schmiede',
       publisher: {
         '@type': 'Organization',
