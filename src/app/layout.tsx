@@ -10,6 +10,7 @@ import { MobileBottomNav } from '@/components/layout/MobileBottomNav';
 import { CartSlideOver } from '@/components/cart/CartSlideOver';
 import { FloatingWhatsAppFAB } from '@/components/ui/FloatingWhatsAppFAB';
 import { getRestaurantJsonLd } from '@/lib/seo/schema-org';
+import { Analytics } from '@vercel/analytics/next';
 
 export const viewport: Viewport = {
   themeColor: '#faf7f2',
@@ -116,6 +117,7 @@ export default function RootLayout({
             </CartProvider>
           </LanguageProvider>
         </SmoothScrollProvider>
+        <Analytics />
       </body>
     </html>
   );
